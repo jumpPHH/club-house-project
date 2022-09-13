@@ -17,23 +17,6 @@
 <script type="text/javascript">
 
 var data = new Array();
-function t1(e){
-	var m = {
-	"staff_id":"9280",
-	"pstn_div_no":"창업동아리",
-	"staff_name":"아이세상"
-}
-	data.push(m)
-}
-
-function t2(e){
-	var m = {
-	"staff_id":"9281",
-	"pstn_div_no":"창업동아리1",
-	"staff_name":"아이세상1"
-	}
-	data.push(m)
-}
 
 
 function test(){
@@ -68,6 +51,7 @@ function codeClick(e) {
 		
 		var tr = document.createElement("tr");
 		tr.classList.add("text-center");
+		tr.classList.add("contentRow");
 		codeBody.appendChild(tr);
 		
 		var tdd = document.createElement("th");
@@ -76,6 +60,8 @@ function codeClick(e) {
 		
 		var inputCheck = document.createElement("input")
 		inputCheck.classList.add("form-check-input");
+		inputCheck.classList.add("check");
+		inputCheck.setAttribute("onclick","deleteValuetoggle(this)")
 		inputCheck.setAttribute("type","checkBox")
 		tdd.appendChild(inputCheck);
 		
@@ -116,12 +102,41 @@ function codeClick(e) {
 	
 	}
 	
-function innerTextPlus(){
+function innerTextPlus(e){
 	var text = $("#edit").val()
-	$("#edit").parent().text(text)
+	var NOTI_DIV_NO = $("#edit").closest(".contentRow").children(".NOTI_DIV_NO").text()
+	var NOTI_DIV_NAME = text
+	var NOTI_DIV_STATE = $("#edit").closest(".contentRow").children(".stateCheck").children("input").val();
+	var jsonObj = {
+			"DIV": "수정",
+			"NOTI_DIV_NO":NOTI_DIV_NO,
+			"NOTI_DIV_NAME":NOTI_DIV_NAME,
+			"NOTI_DIV_STATE":NOTI_DIV_STATE
+		}
+	data.push(jsonObj)
+	
+	$("#edit").parent().text(text);
+}
+
+function stateCheck(e){
+	if(e.getAttribute("value") == 1){
+		e.setAttribute("value","2")
+	}else{
+		e.setAttribute("value","1")
+	}
+	var NOTI_DIV_NO = e.closest(".contentRow").querySelector(".NOTI_DIV_NO").innerText;
+	var NOTI_DIV_NAME = e.closest(".contentRow").querySelector(".NOTI_DIV_NAME").innerText;
+	var NOTI_DIV_STATE = e.value;
+	var jsonObj = {
+			"DIV": "수정",
+			"NOTI_DIV_NO":NOTI_DIV_NO,
+			"NOTI_DIV_NAME":NOTI_DIV_NAME,
+			"NOTI_DIV_STATE":NOTI_DIV_STATE
+		}
+	data.push(jsonObj)
 	
 }
-	
+
 	function inputBox(e){
 		var text = e.innerText;
 		e.innerText="";
@@ -151,6 +166,45 @@ function innerTextPlus(){
 		inputTag.focus();
 		}
 	}
+	function deleteValuetoggle(e){
+		e.classList.toggle("checkedDelte")
+	}
+	
+ 	function deleteRow(){
+ 		var count = document.getElementsByClassName("checkedDelte").length;
+ 		
+ 		for(var i = 0 ; i < count ; i++){
+ 			var NOTI_DIV_NO = $(".checkedDelte").closest(".contentRow").children(".NOTI_DIV_NO:eq("+i+")").text();
+ 	 		var NOTI_DIV_NAME = $(".checkedDelte").closest(".contentRow").children(".NOTI_DIV_NAME:eq("+i+")").text()
+ 	 		var NOTI_DIV_STATE = $(".checkedDelte").closest(".contentRow").children(".stateCheck:eq("+i+")").children("input").val();
+ 	 		console.log(NOTI_DIV_NO)
+ 	 		console.log(NOTI_DIV_NAME)
+ 	 		console.log(NOTI_DIV_STATE)
+ 	 		if(NOTI_DIV_NO){
+ 	 			var jsonObj = {
+ 	 					"DIV": "삭제",
+ 	 					"NOTI_DIV_NO":NOTI_DIV_NO,
+ 	 					"NOTI_DIV_NAME":NOTI_DIV_NAME,
+ 	 					"NOTI_DIV_STATE":NOTI_DIV_STATE
+ 	 				}
+ 	 			data.push(jsonObj)
+ 	 			
+ 	 			
+ 	 			
+ 	 		}else{
+ 	 			console.log("xx")
+ 	 		}	
+ 			
+ 		}
+ 		
+ 		$(".checkedDelte").closest(".contentRow").remove();
+		
+ 	}
+ 	
+ 	function totalCheck(){
+ 		$(".check").click();
+ 		
+ 	}
 </script>
 </head>
 <body>
@@ -200,7 +254,7 @@ function innerTextPlus(){
 								</div>
 								<div class="col-auto pe-0">
 									<button onclick="plusCode()" type="button" class="btn btn-sm">추가</button>
-									<button type="button" class="btn btn-sm">삭제</button>
+									<button onclick="deleteRow()" type="button" class="btn btn-sm">삭제</button>
 									<button type="button" class="btn btn-sm">저장</button>
 								</div>
 
@@ -261,7 +315,7 @@ function innerTextPlus(){
 										</caption>
 										<thead>
 											<tr class="text-center">
-											<th class="col-1"><input type="checkbox" class="form-check-input"></th>
+											<th class="col-1"><input onclick="totalCheck()" type="checkbox" class="form-check-input"></th>
 												<th class="col-1">코드</th>
 												<th class="col-3">코드명(국문)</th>
 												<th class="col-3">약어명(국문)</th>
@@ -269,21 +323,23 @@ function innerTextPlus(){
 												<th class="col-1">사용여부</th>
 											</tr>
 										</thead>
+										
 										<tbody id="codeBody">
 											<c:forEach items="${data }" var="data">
-												<tr class="text-center">
-												<td class="col-1"><input type="checkbox"  class="form-check-input"> </td>
-													<th class="col-1">${data.NOTI_DIV_NO }</th>
-													<td class="col-3" ondblclick="inputBox(this)">${data.NOTI_DIV_NAME }</td>
+										
+												<tr class="text-center contentRow">
+												<td class="col-1"><input class="check form-check-input" onclick="deleteValuetoggle(this)" type="checkbox"  class="form-check-input"> </td>
+													<th class="col-1 NOTI_DIV_NO"  >${data.NOTI_DIV_NO }</th>
+													<td class="col-3 NOTI_DIV_NAME" ondblclick="inputBox(this)">${data.NOTI_DIV_NAME }</td>
 													<td class="col-3" ondblclick="inputBox(this)"></td>
 													<td class="col-3" ondblclick="inputBox(this)"></td>
-													<td class="col-1" class="text-center"><c:choose>
+													<td class="col-1 stateCheck" class="text-center"><c:choose>
 															<c:when test="${data.NOTI_DIV_STATE eq '1' }">
-																<input type="checkbox" class="form-check-input"
+																<input onclick="stateCheck(this)" value="1" class="NOTI_DIV_STATE" type="checkbox" class="form-check-input"
 																	checked="checked">
 															</c:when>
 															<c:otherwise>
-																<input type="checkbox" class="form-check-input">
+																<input onclick="stateCheck(this)" value="2" class="NOTI_DIV_STATE" type="checkbox" class="form-check-input">
 															</c:otherwise>
 														</c:choose></td>
 												</tr>
@@ -296,7 +352,6 @@ function innerTextPlus(){
 								</div>
 
 							</div>
-
 						</div>
 					</div>
 
