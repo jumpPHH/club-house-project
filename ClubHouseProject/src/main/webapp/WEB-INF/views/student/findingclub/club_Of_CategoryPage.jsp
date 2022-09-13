@@ -151,7 +151,7 @@
 
 		<div class="text-center pe-0 mx-0"
 		    style="background-color: #C4073D; height: 9vh; color: white; display: flex; align-items: center; justify-content: center;">
-		    <p class="mb-0" id="bigMenuText" style="font-weight: bold">Club Activity</p>
+		    <p class="mb-0" id="bigMenuText" style="font-weight: bold">Club Activity 까불지말자</p>
 		</div>
 		
 		<div style="border:1px solid #d9d9d9; background-color: #f8f9fa" id="sideBar">
