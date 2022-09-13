@@ -18,9 +18,7 @@ public class Staff_LoginController {
 
 	@RequestMapping("staff_LoginPage")
 	public String staff_LoginPage() {
-		//히건히건
-		//ㄹ안미ㅓㄹ이ㅏㄴ머리ㅏㅇㄴ멀ㅇ
-		//안녕하세요찬우입니다
+		//22222
 		return "staff/login/staff_LoginPage";
 	}
 	
