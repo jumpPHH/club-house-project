@@ -68,6 +68,6 @@ local.properties
 .sts4-cache/
 
 ### root-context.xml ###
-*/root-context.xml
+.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse
