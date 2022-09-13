@@ -101,26 +101,39 @@ function codeClick(e) {
 	
 	}
 	
+function innerTextPlus(){
+	var text = $("#edit").val()
+	$("#edit").parent().text(text)
+	
+}
+	
 	function inputBox(e){
-		console.log($("#edit"))
+		var text = e.innerText;
+		e.innerText="";
 		if($("#edit")[0]){
 			$("#edit")[0].remove();
 			var inputTag =document.createElement("input");
 			inputTag.setAttribute("id","edit")
 			inputTag.setAttribute("type","text")
+			inputTag.setAttribute("onblur","innerTextPlus(this)")
 			inputTag.setAttribute("style","border: 0px; box-shadow: 0px 0px 0px 1px lightgrey;")
 			inputTag.classList.add("form-control");
 			inputTag.classList.add("py-0");
+			inputTag.setAttribute("value",text);
 			e.appendChild(inputTag);
+			inputTag.focus();
 		}else{
 		
 		var inputTag =document.createElement("input");
 		inputTag.setAttribute("id","edit")
 		inputTag.setAttribute("type","text")
+		inputTag.setAttribute("onblur","innerTextPlus(this)")
 		inputTag.setAttribute("style","border: 0px; box-shadow: 0px 0px 0px 1px lightgrey;")
 		inputTag.classList.add("form-control");
 		inputTag.classList.add("py-0");
+		inputTag.setAttribute("value",text);
 		e.appendChild(inputTag);
+		inputTag.focus();
 		}
 	}
 </script>
@@ -145,10 +158,6 @@ function codeClick(e) {
 
 					<div class="row px-3">
 						<div class="col">
-			<button type="button" onclick="test()">asdasdasd</button>
-					<button type="button" onclick="t1()">asd</button>
-					<button type="button" onclick="t2()">asd</button>
-
 
 							<div class="row justify-content-between mb-2">
 								<div class="col-auto ps-0">
@@ -176,7 +185,6 @@ function codeClick(e) {
 								</div>
 								<div class="col-auto pe-0">
 									<button onclick="plusCode()" type="button" class="btn btn-sm">추가</button>
-									<button type="button" class="btn btn-sm">수정</button>
 									<button type="button" class="btn btn-sm">삭제</button>
 									<button type="button" class="btn btn-sm">저장</button>
 								</div>
@@ -249,9 +257,9 @@ function codeClick(e) {
 											<c:forEach items="${data }" var="data">
 												<tr class="text-center">
 													<th class="col">${data.NOTI_DIV_NO }</th>
-													<td>${data.NOTI_DIV_NAME }</td>
-													<td></td>
-													<td></td>
+													<td ondblclick="inputBox(this)">${data.NOTI_DIV_NAME }</td>
+													<td ondblclick="inputBox(this)"></td>
+													<td ondblclick="inputBox(this)"></td>
 													<td class="text-center"><c:choose>
 															<c:when test="${data.NOTI_DIV_STATE eq '1' }">
 																<input type="checkbox" class="form-check-input"
