@@ -70,33 +70,48 @@ function codeClick(e) {
 		tr.classList.add("text-center");
 		codeBody.appendChild(tr);
 		
+		var tdd = document.createElement("th");
+		tdd.classList.add("col-1");
+		tr.appendChild(tdd);
+		
+		var inputCheck = document.createElement("input")
+		inputCheck.classList.add("form-check-input");
+		inputCheck.setAttribute("type","checkBox")
+		tdd.appendChild(inputCheck);
 		
 		var th = document.createElement("th");
+		th.classList.add("col-1");
 		tr.appendChild(th);
 		
 		var td1 = document.createElement("td");
-		inputTag.setAttribute("onclick","inputBox(this)")
+		td1.classList.add("col-3");
+		td1.setAttribute("ondblclick","inputBox(this)")
 		tr.appendChild(td1);
 		
 
 		var td2 = document.createElement("td");
-		inputTag.setAttribute("onclick","inputBox(this)")
+		td2.classList.add("col-3");
+		td2.setAttribute("ondblclick","inputBox(this)")
 		tr.appendChild(td2);
 		
 	
 		
 		var td3 = document.createElement("td");
-		inputTag.setAttribute("onclick","inputBox(this)")
+		td3.classList.add("col-3");
+		td3.setAttribute("ondblclick","inputBox(this)")
 		tr.appendChild(td3);
 		
 
 		
 		var td4 = document.createElement("td");
+		td4.classList.add("col-1");
 		tr.appendChild(td4);
 		
 		var checkBox = document.createElement("input")
 		checkBox.classList.add("form-check-input");
 		checkBox.setAttribute("type","checkBox")
+		checkBox.setAttribute("checked","checked")
+		td4.appendChild(checkBox);
 		
 	
 	}
@@ -246,8 +261,9 @@ function innerTextPlus(){
 										</caption>
 										<thead>
 											<tr class="text-center">
+											<th class="col-1"><input type="checkbox" class="form-check-input"></th>
 												<th class="col-1">코드</th>
-												<th class="col-4">코드명(국문)</th>
+												<th class="col-3">코드명(국문)</th>
 												<th class="col-3">약어명(국문)</th>
 												<th class="col-3">코드명(영문)</th>
 												<th class="col-1">사용여부</th>
@@ -256,11 +272,12 @@ function innerTextPlus(){
 										<tbody id="codeBody">
 											<c:forEach items="${data }" var="data">
 												<tr class="text-center">
-													<th class="col">${data.NOTI_DIV_NO }</th>
-													<td ondblclick="inputBox(this)">${data.NOTI_DIV_NAME }</td>
-													<td ondblclick="inputBox(this)"></td>
-													<td ondblclick="inputBox(this)"></td>
-													<td class="text-center"><c:choose>
+												<td class="col-1"><input type="checkbox"  class="form-check-input"> </td>
+													<th class="col-1">${data.NOTI_DIV_NO }</th>
+													<td class="col-3" ondblclick="inputBox(this)">${data.NOTI_DIV_NAME }</td>
+													<td class="col-3" ondblclick="inputBox(this)"></td>
+													<td class="col-3" ondblclick="inputBox(this)"></td>
+													<td class="col-1" class="text-center"><c:choose>
 															<c:when test="${data.NOTI_DIV_STATE eq '1' }">
 																<input type="checkbox" class="form-check-input"
 																	checked="checked">
@@ -272,14 +289,6 @@ function innerTextPlus(){
 												</tr>
 											</c:forEach>
 
-											<tr class="text-center">
-												<th scope="row"></th>
-												<td onclick="inputBox(this)"></td>
-												<td onclick="inputBox(this)"></td>
-												<td onclick="inputBox(this)"></td>
-												<td class="text-center"><input type="checkbox"
-													class="form-check-input"></td>
-											</tr>
 										</tbody>
 									</table>
 
