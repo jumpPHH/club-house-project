@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.staff.division.mapper.Staff_DivisionSQLMapper">
+
+	<select id="selectNotiDiv" resultType="HashMap">
+		SELECT * FROM CBH_NOTI_DIV
+	</select>
+
+	<select id="selectCountNotiDiv">
+		SELECT count(*) FROM CBH_NOTI_DIV
+	</select>
+
+</mapper>
