@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+.page_title{
+	padding-top: 5vh;
+}
+
+.page_title_image{
+	width:2em;
+	height:1.7em;
+	font-weight: bold;
+}
+
+.text_right{
+	text-align: right;
+}
+
+.page_title_text{
+	
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+.align_center{
+	float:none;
+	margin: 0 auto;
+}
+
+.text_align_left{
+	text-align:left;
+}
+
+.text_align_center{
+	text-align:center;
+}
+
+.text_align_right{
+	text-align:right;
+}
+
+.font_bold{
+	font-weight:bold;
+}
+
+a{
+	text-decoration:none;
+}
+
+#content{
+	margin-left:4em;
+}
+

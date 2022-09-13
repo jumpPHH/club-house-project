@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.login.mapper.Student_LoginSQLMapper">
+
+	<!--로그인 ID,PW를 찾는 쿼리-->
+	<select id="selectByIdAndPw" resultType="com.ja.cbh.vo.StudVO">
+		SELECT * 
+		FROM CBH_STUD
+		WHERE STUD_ID = #{stud_id} 
+		AND STUD_PW = #{stud_pw}
+	</select>
+	
+</mapper>

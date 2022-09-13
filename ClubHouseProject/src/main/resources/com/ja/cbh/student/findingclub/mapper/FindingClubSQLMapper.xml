@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.findingclub.mapper.FindingClubSQLMapper">
+
+	<select id="selectAllClubCategory" resultType="com.ja.cbh.vo.Club_Dept_CategoryVO">
+		SELECT * FROM CBH_CLUB_DEPT_CATEGORY
+	</select>
+	
+	<select id="selectClubCategoryByNo" resultType="com.ja.cbh.vo.Club_Dept_CategoryVO">
+		SELECT * FROM CBH_CLUB_DEPT_CATEGORY
+		WHERE CLUB_CATEGORY_NO = #{clubCategoryNo}
+	</select>
+	
+	<select id="selectAllClubOfCategory" resultType="com.ja.cbh.vo.ClubVO">
+		SELECT * FROM CBH_CLUB
+		WHERE CLUB_CATEGORY_NO = #{clubCategoryNo}
+	</select>
+</mapper> 

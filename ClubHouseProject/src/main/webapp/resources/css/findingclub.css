@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+
+
+.category_title{
+	font-weight:bold;
+	font-size:1em;
+}
+
+.category_explanation{
+	font-size:0.8em;
+	color::gray;
+	padding-top: 3vh;
+	height:12vh;
+}
+
+
+.category_box{
+	border: 1px solid #EAEAEA;
+	width: 25em;
+	height: 12.9em;
+	border-radius: 0.4em;
+}
+
+.category_image {
+	width:7em;
+	height:10em;
+}
+
+.button{
+	background-color: #A2CBEA;
+	width: 7em;
+	height: 1.7em;
+	border:none;
+	border-radius:5px;
+}
+
+.club_box{
+	border: 1px solid #EAEAEA;
+	width: 15.1em;
+	height: 12.9em;
+	border-radius: 0.4em;
+}
+
+
+a{
+	font-size: 0.9em;
+}
+
+
+
+
+

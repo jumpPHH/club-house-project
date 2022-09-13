@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.staff.login.mapper.Staff_LoginSQLMapper">
+
+	<!--로그인 ID,PW를 찾는 쿼리-->
+	<select id="selectByIdAndPw" resultType="com.ja.cbh.vo.StaffVO">
+		SELECT * 
+		FROM CBH_STAFF
+		WHERE STAFF_ID = #{staff_id} 
+		AND STAFF_PW = #{staff_pw}
+	</select>
+	
+</mapper>

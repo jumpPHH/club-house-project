@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.myclubmain.mapper.Student_MyClubMainSQLMapper">
+
+	<select id="selectGetClubBoss" resultType="com.ja.cbh.vo.StudVO">
+		SELECT
+			csi.*
+		FROM
+			CBH_STUD csi ,
+			CBH_CLUB_APPL cca ,
+			CBH_CLUB cc
+		WHERE
+			csi.STUD_ID = cca.STUD_ID
+			AND cca.CLUB_APPL_NO = cc.CLUB_APPL_NO
+			AND csi.STUD_ID = #{stud_id}
+			AND cc.CLUB_STATE = 'ACTIVE'
+	</select>
+	
+	<select id="selectGetClubBossClubInfo" resultType="com.ja.cbh.vo.ClubVO">
+		SELECT
+			cc.*
+		FROM
+			CBH_STUD csi ,
+			CBH_CLUB_APPL cca ,
+			CBH_CLUB cc
+		WHERE
+			csi.STUD_ID = cca.STUD_ID
+			AND cca.CLUB_APPL_NO = cc.CLUB_APPL_NO
+			AND csi.STUD_ID = #{stud_id}
+			AND cc.CLUB_STATE = 'ACTIVE'
+	</select>
+	
+	<select id="selectNormalMemberInfo" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT *
+		FROM CBH_CLUB_STUD
+		WHERE CULB_STUD_GRADE = '일반회원'
+		AND STUD_ID = #{stud_id}
+	</select>
+	
+	<select id="selectClubBossMemberInfo" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT *
+		FROM CBH_CLUB_STUD
+		WHERE CLUB_STUD_GRADE = '대표'
+		AND CLUB_NO = #{club_no}
+	</select>
+	
+	<select id="selectClubBossInfo" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT *
+		FROM CBH_STUD
+		WHERE STUD_ID = #{stud_id}
+	</select>
+	
+	<select id="selectClubInfo" resultType="com.ja.cbh.vo.ClubVO">
+		SELECT * 
+		FROM CBH_CLUB
+		WHERE CULB_NO = #{club_no}
+	</select>
+
+
+</mapper>
