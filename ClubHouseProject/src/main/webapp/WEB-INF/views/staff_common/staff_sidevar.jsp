@@ -28,8 +28,8 @@
 				<li>
 					<div>학생</div>
 					<ul>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>학생조회</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>학생공지사항</div></li>
+						<li><div onclick="location.href='/cbh/staff/studentSearch/staff_StudentSearchPage'" style="cursor: pointer;"><i class="bi bi-dot"></i>학생조회</div></li>
+						<li><div onclick="location.href='/cbh/staff/studentNotice/staff_StudentNoticePage'" style="cursor: pointer;"><i class="bi bi-dot"></i>학생공지사항</div></li>
 					</ul>
 				</li>
 <!-- 				<li class="border-top my-2" style="padding: 0"></li> -->
