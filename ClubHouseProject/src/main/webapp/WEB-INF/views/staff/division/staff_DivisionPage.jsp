@@ -19,7 +19,42 @@
 var data = new Array();
 
 
+function temp(){
+	var count = document.getElementsByClassName("newRow").length;
+	var totalCount = document.getElementsByClassName("contentRow").length;
+	
+	for(let i = 0 ; i < totalCount ; i++){
+		if($(".contentRow").children(".NOTI_DIV_NAME:eq("+i+")").text() != 0){
+		}else{
+			alert("코드명은 필수 사항입니다.")
+			return;
+		}	
+	}
+	
+	
+	for(let i = 0 ; i < count ; i++){
+		var NOTI_DIV_NAME = $(".newRow").children(".NOTI_DIV_NAME:eq("+i+")").text();
+		var NOTI_DIV_STATE = $(".newRow").children(".stateCheck").children("input").val()
+		console.log(NOTI_DIV_NAME)
+		var jsonObj = {
+			"DIV": "신규",
+			"NOTI_DIV_NAME":NOTI_DIV_NAME,
+			"NOTI_DIV_STATE":NOTI_DIV_STATE
+		}
+		data.push(jsonObj)
+	}
+	
+	
+	
+	
+}
+
+
 function test(){
+	
+	
+	
+	
 var data2 = JSON.stringify(data);
 console.log(data2)
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
@@ -51,6 +86,7 @@ function codeClick(e) {
 		
 		var tr = document.createElement("tr");
 		tr.classList.add("text-center");
+		tr.classList.add("newRow");
 		tr.classList.add("contentRow");
 		codeBody.appendChild(tr);
 		
@@ -71,6 +107,7 @@ function codeClick(e) {
 		
 		var td1 = document.createElement("td");
 		td1.classList.add("col-3");
+		td1.classList.add("NOTI_DIV_NAME");
 		td1.setAttribute("ondblclick","inputBox(this)")
 		tr.appendChild(td1);
 		
@@ -90,12 +127,14 @@ function codeClick(e) {
 
 		
 		var td4 = document.createElement("td");
+		td4.classList.add("stateCheck");
 		td4.classList.add("col-1");
 		tr.appendChild(td4);
 		
 		var checkBox = document.createElement("input")
 		checkBox.classList.add("form-check-input");
 		checkBox.setAttribute("type","checkBox")
+		checkBox.setAttribute("value","1")
 		checkBox.setAttribute("checked","checked")
 		td4.appendChild(checkBox);
 		
@@ -177,9 +216,6 @@ function stateCheck(e){
  			var NOTI_DIV_NO = $(".checkedDelte").closest(".contentRow").children(".NOTI_DIV_NO:eq("+i+")").text();
  	 		var NOTI_DIV_NAME = $(".checkedDelte").closest(".contentRow").children(".NOTI_DIV_NAME:eq("+i+")").text()
  	 		var NOTI_DIV_STATE = $(".checkedDelte").closest(".contentRow").children(".stateCheck:eq("+i+")").children("input").val();
- 	 		console.log(NOTI_DIV_NO)
- 	 		console.log(NOTI_DIV_NAME)
- 	 		console.log(NOTI_DIV_STATE)
  	 		if(NOTI_DIV_NO){
  	 			var jsonObj = {
  	 					"DIV": "삭제",
@@ -189,15 +225,15 @@ function stateCheck(e){
  	 				}
  	 			data.push(jsonObj)
  	 			
- 	 			
+ 	 			$(".checkedDelte").closest(".contentRow").remove();		
  	 			
  	 		}else{
- 	 			console.log("xx")
+ 	 			$(".checkedDelte").closest(".contentRow").remove();
  	 		}	
  			
  		}
  		
- 		$(".checkedDelte").closest(".contentRow").remove();
+ 		
 		
  	}
  	
@@ -255,7 +291,7 @@ function stateCheck(e){
 								<div class="col-auto pe-0">
 									<button onclick="plusCode()" type="button" class="btn btn-sm">추가</button>
 									<button onclick="deleteRow()" type="button" class="btn btn-sm">삭제</button>
-									<button type="button" class="btn btn-sm">저장</button>
+									<button onclick="temp()" type="button" class="btn btn-sm">저장</button>
 								</div>
 
 							</div>
@@ -335,11 +371,11 @@ function stateCheck(e){
 													<td class="col-3" ondblclick="inputBox(this)"></td>
 													<td class="col-1 stateCheck" class="text-center"><c:choose>
 															<c:when test="${data.NOTI_DIV_STATE eq '1' }">
-																<input onclick="stateCheck(this)" value="1" class="NOTI_DIV_STATE" type="checkbox" class="form-check-input"
+																<input onclick="stateCheck(this)" value="1" class="NOTI_DIV_STATE form-check-input" type="checkbox" 
 																	checked="checked">
 															</c:when>
 															<c:otherwise>
-																<input onclick="stateCheck(this)" value="2" class="NOTI_DIV_STATE" type="checkbox" class="form-check-input">
+																<input onclick="stateCheck(this)" value="2" class="NOTI_DIV_STATE form-check-input" type="checkbox">
 															</c:otherwise>
 														</c:choose></td>
 												</tr>
