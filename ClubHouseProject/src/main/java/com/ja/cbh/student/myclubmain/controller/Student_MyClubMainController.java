@@ -18,13 +18,14 @@ public class Student_MyClubMainController {
 	private Student_MyClubMainService myClubMainService;
 	
 	@RequestMapping("student_MyClubMainPage")
-	public String student_MyClubMainPage(StudVO studVO, HttpSession session,Model model) {
+	public String student_MyClubMainPage(HttpSession session,Model model) {
 		StudVO sessionUserInfo = (StudVO)session.getAttribute("sessionUserInfo");
-		String stud_id = sessionUserInfo.getStud_id();
-		studVO.setStud_id(stud_id);
+		String stud_id = sessionUserInfo.getStud_id();		
 		
-		model.addAttribute("myClubMainData",myClubMainService.student_MyCLubMainData(studVO)); 
-
+		model.addAttribute("MyClubMainData",myClubMainService.student_MyCLubMainData(stud_id)); 
+		model.addAttribute("MyClubMainBoardData",myClubMainService.student_MyCLubMainBoardData(stud_id));
+		model.addAttribute("MyClubMainActData",myClubMainService.student_MyClubMainActData(stud_id));
+		
 		return "student/myclubmain/student_MyClubMainPage"; 
 	}
 }

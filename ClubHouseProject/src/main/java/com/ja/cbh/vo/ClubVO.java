@@ -15,8 +15,8 @@ public class ClubVO {
 	private String club_state; //동아리 활동 상태
 	private String club_title_image; // 동아리 타이틀 이미지 
 	private String club_dscrp_image; // 동아리 설명 이미지
-	private Date club_estbl_date; //동아리 설립일자
-	private Date club_appl_date; //동아리 신청일자
+	private Date club_estbl_dt; //동아리 설립일자
+	private Date club_appl_dt; //동아리 신청일자
 	
 	public ClubVO() {
 		super();
@@ -24,7 +24,7 @@ public class ClubVO {
 
 	public ClubVO(int club_no, int club_division_no, int club_category_no, int club_appl_no, String club_boss,
 			String club_name, String club_description, int club_people_count, String club_state,
-			String club_title_image, String club_dscrp_image, Date club_estbl_date, Date club_appl_date) {
+			String club_title_image, String club_dscrp_image, Date club_estbl_dt, Date club_appl_dt) {
 		super();
 		this.club_no = club_no;
 		this.club_division_no = club_division_no;
@@ -37,8 +37,8 @@ public class ClubVO {
 		this.club_state = club_state;
 		this.club_title_image = club_title_image;
 		this.club_dscrp_image = club_dscrp_image;
-		this.club_estbl_date = club_estbl_date;
-		this.club_appl_date = club_appl_date;
+		this.club_estbl_dt = club_estbl_dt;
+		this.club_appl_dt = club_appl_dt;
 	}
 
 	public int getClub_no() {
@@ -129,19 +129,20 @@ public class ClubVO {
 		this.club_dscrp_image = club_dscrp_image;
 	}
 
-	public Date getClub_estbl_date() {
-		return club_estbl_date;
+	public Date getClub_estbl_dt() {
+		return club_estbl_dt;
 	}
 
-	public void setClub_estbl_date(Date club_estbl_date) {
-		this.club_estbl_date = club_estbl_date;
+	public void setClub_estbl_dt(Date club_estbl_dt) {
+		this.club_estbl_dt = club_estbl_dt;
 	}
 
-	public Date getClub_appl_date() {
-		return club_appl_date;
+	public Date getClub_appl_dt() {
+		return club_appl_dt;
 	}
 
-	public void setClub_appl_date(Date club_appl_date) {
-		this.club_appl_date = club_appl_date;
+	public void setClub_appl_dt(Date club_appl_dt) {
+		this.club_appl_dt = club_appl_dt;
 	}
+
 }
