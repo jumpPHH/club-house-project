@@ -34,7 +34,7 @@ function temp(){
 	
 	for(let i = 0 ; i < count ; i++){
 		var NOTI_DIV_NAME = $(".newRow").children(".NOTI_DIV_NAME:eq("+i+")").text();
-		var NOTI_DIV_STATE = $(".newRow").children(".stateCheck").children("input").val()
+		var NOTI_DIV_STATE = $(".newRow").children(".stateCheck").children(".NOTI_DIV_STATE:eq("+i+")").val()
 		console.log(NOTI_DIV_NAME)
 		var jsonObj = {
 			"DIV": "신규",
@@ -133,6 +133,7 @@ function codeClick(e) {
 		
 		var checkBox = document.createElement("input")
 		checkBox.classList.add("form-check-input");
+		checkBox.classList.add("NOTI_DIV_STATE");
 		checkBox.setAttribute("type","checkBox")
 		checkBox.setAttribute("value","1")
 		checkBox.setAttribute("checked","checked")
@@ -143,14 +144,14 @@ function codeClick(e) {
 	
 function innerTextPlus(e){
 	var text = $("#edit").val()
-	var NOTI_DIV_NO = $("#edit").closest(".contentRow").children(".NOTI_DIV_NO").text()
-	var NOTI_DIV_NAME = text
-	var NOTI_DIV_STATE = $("#edit").closest(".contentRow").children(".stateCheck").children("input").val();
+	var NO = $("#edit").closest(".contentRow").children(".NO").text()
+	var NAME = text
+	var STATE = $("#edit").closest(".contentRow").children(".stateCheck").children(".STATE").val();
 	var jsonObj = {
 			"DIV": "수정",
-			"NOTI_DIV_NO":NOTI_DIV_NO,
-			"NOTI_DIV_NAME":NOTI_DIV_NAME,
-			"NOTI_DIV_STATE":NOTI_DIV_STATE
+			"NO":NO,
+			"NAME":NAME,
+			"STATE":STATE
 		}
 	data.push(jsonObj)
 	
@@ -163,14 +164,14 @@ function stateCheck(e){
 	}else{
 		e.setAttribute("value","1")
 	}
-	var NOTI_DIV_NO = e.closest(".contentRow").querySelector(".NOTI_DIV_NO").innerText;
-	var NOTI_DIV_NAME = e.closest(".contentRow").querySelector(".NOTI_DIV_NAME").innerText;
-	var NOTI_DIV_STATE = e.value;
+	var NO = e.closest(".contentRow").querySelector(".NO").innerText;
+	var NAME = e.closest(".contentRow").querySelector(".NAME").innerText;
+	var STATE = e.value;
 	var jsonObj = {
 			"DIV": "수정",
-			"NOTI_DIV_NO":NOTI_DIV_NO,
-			"NOTI_DIV_NAME":NOTI_DIV_NAME,
-			"NOTI_DIV_STATE":NOTI_DIV_STATE
+			"NO":NO,
+			"NAME":NAME,
+			"STATE":STATE
 		}
 	data.push(jsonObj)
 	
@@ -213,15 +214,15 @@ function stateCheck(e){
  		var count = document.getElementsByClassName("checkedDelte").length;
  		
  		for(var i = 0 ; i < count ; i++){
- 			var NOTI_DIV_NO = $(".checkedDelte").closest(".contentRow").children(".NOTI_DIV_NO:eq("+i+")").text();
- 	 		var NOTI_DIV_NAME = $(".checkedDelte").closest(".contentRow").children(".NOTI_DIV_NAME:eq("+i+")").text()
- 	 		var NOTI_DIV_STATE = $(".checkedDelte").closest(".contentRow").children(".stateCheck:eq("+i+")").children("input").val();
+ 			var NO = $(".checkedDelte").closest(".contentRow").children(".NO:eq("+i+")").text();
+ 	 		var NAME = $(".checkedDelte").closest(".contentRow").children(".NAME:eq("+i+")").text()
+ 	 		var STATE = $(".checkedDelte").closest(".contentRow").children(".stateCheck:eq("+i+")").children("input").val();
  	 		if(NOTI_DIV_NO){
  	 			var jsonObj = {
  	 					"DIV": "삭제",
- 	 					"NOTI_DIV_NO":NOTI_DIV_NO,
- 	 					"NOTI_DIV_NAME":NOTI_DIV_NAME,
- 	 					"NOTI_DIV_STATE":NOTI_DIV_STATE
+ 	 					"NO":NO,
+ 	 					"NAME":NAME,
+ 	 					"STATE":STATE
  	 				}
  	 			data.push(jsonObj)
  	 			
@@ -296,6 +297,7 @@ function stateCheck(e){
 
 							</div>
 							<div class="row">
+							<input id="DIVISION" type="hidden" value="공지">
 								<div class="col-2 me-3 px-0"
 									style="height: 75vh; border: 1px solid;">
 									<table class="table table-hover caption-top table-sm">
@@ -362,20 +364,20 @@ function stateCheck(e){
 										
 										<tbody id="codeBody">
 											<c:forEach items="${data }" var="data">
-										
 												<tr class="text-center contentRow">
-												<td class="col-1"><input class="check form-check-input" onclick="deleteValuetoggle(this)" type="checkbox"  class="form-check-input"> </td>
-													<th class="col-1 NOTI_DIV_NO"  >${data.NOTI_DIV_NO }</th>
-													<td class="col-3 NOTI_DIV_NAME" ondblclick="inputBox(this)">${data.NOTI_DIV_NAME }</td>
+													
+													<td  class="col-1"><input class="check form-check-input" onclick="deleteValuetoggle(this)" type="checkbox"  class="form-check-input"> </td>
+													<th class="col-1 NO"  >${data.NOTI_DIV_NO }</th>
+													<td class="col-3 NAME" ondblclick="inputBox(this)">${data.NOTI_DIV_NAME }</td>
 													<td class="col-3" ondblclick="inputBox(this)"></td>
 													<td class="col-3" ondblclick="inputBox(this)"></td>
 													<td class="col-1 stateCheck" class="text-center"><c:choose>
 															<c:when test="${data.NOTI_DIV_STATE eq '1' }">
-																<input onclick="stateCheck(this)" value="1" class="NOTI_DIV_STATE form-check-input" type="checkbox" 
+																<input onclick="stateCheck(this)" value="1" class="STATE form-check-input" type="checkbox" 
 																	checked="checked">
 															</c:when>
 															<c:otherwise>
-																<input onclick="stateCheck(this)" value="2" class="NOTI_DIV_STATE form-check-input" type="checkbox">
+																<input onclick="stateCheck(this)" value="2" class="STATE form-check-input" type="checkbox">
 															</c:otherwise>
 														</c:choose></td>
 												</tr>
