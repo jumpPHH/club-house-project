@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.staff.studentSearch.mapper.Staff_StudentSearchSQLMapper">
+
+	<select id="createStudPk" resultType="int">
+		SELECT  CBH_STUD_seq.nextval FROM Dual
+	</select>
+
+	<!-- 회원조회에 필요한 정보 -->
+	<select id="selectByStudentId" resultType="com.ja.cbh.vo.StudVO">
+		SELECT * FROM CBH_STUD 
+		WHERE STUD_ID = #{stud_id}
+		AND STUD_NAME = #{stud_name}
+		AND STUD_GRADE = #{stud_grade}
+		AND STUD_GENDER = #{stud_gender}
+		AND STUD_DEPT = #{stud_dept}
+		AND STUD_STATE = #{stud_state}
+		 
+	</select>
+	
+</mapper>
