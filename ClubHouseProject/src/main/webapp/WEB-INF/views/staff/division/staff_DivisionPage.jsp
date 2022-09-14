@@ -24,7 +24,7 @@ function temp(){
 	var totalCount = document.getElementsByClassName("contentRow").length;
 	
 	for(let i = 0 ; i < totalCount ; i++){
-		if($(".contentRow").children(".NOTI_DIV_NAME:eq("+i+")").text() != 0){
+		if($(".contentRow").children(".NAME:eq("+i+")").text() != 0){
 		}else{
 			alert("코드명은 필수 사항입니다.")
 			return;
@@ -33,13 +33,13 @@ function temp(){
 	
 	
 	for(let i = 0 ; i < count ; i++){
-		var NOTI_DIV_NAME = $(".newRow").children(".NOTI_DIV_NAME:eq("+i+")").text();
-		var NOTI_DIV_STATE = $(".newRow").children(".stateCheck").children(".NOTI_DIV_STATE:eq("+i+")").val()
+		var NOTI_DIV_NAME = $(".newRow").children(".NAME:eq("+i+")").text();
+		var NOTI_DIV_STATE = $(".newRow").children(".stateCheck").children(".STATE:eq("+i+")").val()
 		console.log(NOTI_DIV_NAME)
 		var jsonObj = {
 			"DIV": "신규",
-			"NOTI_DIV_NAME":NOTI_DIV_NAME,
-			"NOTI_DIV_STATE":NOTI_DIV_STATE
+			"NAME":NAME,
+			"STATE":STATE
 		}
 		data.push(jsonObj)
 	}
@@ -107,7 +107,7 @@ function codeClick(e) {
 		
 		var td1 = document.createElement("td");
 		td1.classList.add("col-3");
-		td1.classList.add("NOTI_DIV_NAME");
+		td1.classList.add("NAME");
 		td1.setAttribute("ondblclick","inputBox(this)")
 		tr.appendChild(td1);
 		
@@ -133,7 +133,7 @@ function codeClick(e) {
 		
 		var checkBox = document.createElement("input")
 		checkBox.classList.add("form-check-input");
-		checkBox.classList.add("NOTI_DIV_STATE");
+		checkBox.classList.add("STATE");
 		checkBox.setAttribute("type","checkBox")
 		checkBox.setAttribute("value","1")
 		checkBox.setAttribute("checked","checked")
@@ -297,7 +297,7 @@ function stateCheck(e){
 
 							</div>
 							<div class="row">
-							<input id="DIVISION" type="hidden" value="공지">
+							
 								<div class="col-2 me-3 px-0"
 									style="height: 75vh; border: 1px solid;">
 									<table class="table table-hover caption-top table-sm">
@@ -346,7 +346,7 @@ function stateCheck(e){
 
 								</div>
 								<div class="col px-0" style="height: 75vh; border: 1px solid;">
-
+	<input id="DIVISION" type="hidden" value="공지">
 									<table class="table table-hover caption-top table-sm">
 										<caption>
 											코드내역 <span>0 건</span>
