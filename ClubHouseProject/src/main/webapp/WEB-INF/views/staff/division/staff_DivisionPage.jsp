@@ -33,10 +33,11 @@ function temp(){
 	
 	
 	for(let i = 0 ; i < count ; i++){
-		var NOTI_DIV_NAME = $(".newRow").children(".NAME:eq("+i+")").text();
-		var NOTI_DIV_STATE = $(".newRow").children(".stateCheck").children(".STATE:eq("+i+")").val()
-		console.log(NOTI_DIV_NAME)
+		var TABLE = $("#TABLE").val();
+		var NAME = $(".newRow").children(".NAME:eq("+i+")").text();
+		var STATE = $(".newRow").children(".stateCheck").children(".STATE:eq("+i+")").val()
 		var jsonObj = {
+			"TABLE" : TABLE,
 			"DIV": "신규",
 			"NAME":NAME,
 			"STATE":STATE
@@ -44,33 +45,29 @@ function temp(){
 		data.push(jsonObj)
 	}
 	
+	var data2 = JSON.stringify(data);
 	
-	
-	
-}
+	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+		 xhr.onreadystatechange = function () {
+	if(xhr.readyState == 4 && xhr.status == 200){
+    var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+	data = [];
 
-
-function test(){
 	
-	
-	
-	
-var data2 = JSON.stringify(data);
-console.log(data2)
-		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-   		 xhr.onreadystatechange = function () {
-     	if(xhr.readyState == 4 && xhr.status == 200){
-         var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-		
 		}      
-    }	
-	xhr.open("post","../restDivision/test",false);
+	}	
+	xhr.open("post","../restDivision/saveAndList",false);
 	xhr.setRequestHeader("Content-type","application/json");
 	xhr.send(data2); 
-		
+}
+
+
 
 	
-}
+	
+	
+	
+
 
 
 
@@ -92,6 +89,7 @@ function codeClick(e) {
 		
 		var tdd = document.createElement("th");
 		tdd.classList.add("col-1");
+		tdd.classList.add("NO");
 		tr.appendChild(tdd);
 		
 		var inputCheck = document.createElement("input")
@@ -136,6 +134,7 @@ function codeClick(e) {
 		checkBox.classList.add("STATE");
 		checkBox.setAttribute("type","checkBox")
 		checkBox.setAttribute("value","1")
+		checkBox.setAttribute("onclick","stateCheck(this)")
 		checkBox.setAttribute("checked","checked")
 		td4.appendChild(checkBox);
 		
@@ -144,10 +143,14 @@ function codeClick(e) {
 	
 function innerTextPlus(e){
 	var text = $("#edit").val()
+	var TABLE = $("#TABLE").val();
 	var NO = $("#edit").closest(".contentRow").children(".NO").text()
 	var NAME = text
 	var STATE = $("#edit").closest(".contentRow").children(".stateCheck").children(".STATE").val();
+	
+	if(NO){
 	var jsonObj = {
+			"TABLE" : TABLE,
 			"DIV": "수정",
 			"NO":NO,
 			"NAME":NAME,
@@ -156,6 +159,10 @@ function innerTextPlus(e){
 	data.push(jsonObj)
 	
 	$("#edit").parent().text(text);
+	}else{
+		$("#edit").parent().text(text);
+		return;
+	}
 }
 
 function stateCheck(e){
@@ -164,17 +171,22 @@ function stateCheck(e){
 	}else{
 		e.setAttribute("value","1")
 	}
+	var TABLE = $("#TABLE").val();
 	var NO = e.closest(".contentRow").querySelector(".NO").innerText;
 	var NAME = e.closest(".contentRow").querySelector(".NAME").innerText;
 	var STATE = e.value;
+	if(NO){
 	var jsonObj = {
+			"TABLE":TABLE,
 			"DIV": "수정",
 			"NO":NO,
 			"NAME":NAME,
 			"STATE":STATE
 		}
 	data.push(jsonObj)
-	
+	}else{
+		return;
+	}
 }
 
 	function inputBox(e){
@@ -212,13 +224,14 @@ function stateCheck(e){
 	
  	function deleteRow(){
  		var count = document.getElementsByClassName("checkedDelte").length;
- 		
+ 		var TABLE = $("#TABLE").val();
  		for(var i = 0 ; i < count ; i++){
  			var NO = $(".checkedDelte").closest(".contentRow").children(".NO:eq("+i+")").text();
  	 		var NAME = $(".checkedDelte").closest(".contentRow").children(".NAME:eq("+i+")").text()
  	 		var STATE = $(".checkedDelte").closest(".contentRow").children(".stateCheck:eq("+i+")").children("input").val();
- 	 		if(NOTI_DIV_NO){
+ 	 		if(NO){
  	 			var jsonObj = {
+ 	 					"TABLE":TABLE,
  	 					"DIV": "삭제",
  	 					"NO":NO,
  	 					"NAME":NAME,
@@ -227,7 +240,6 @@ function stateCheck(e){
  	 			data.push(jsonObj)
  	 			
  	 			$(".checkedDelte").closest(".contentRow").remove();		
- 	 			
  	 		}else{
  	 			$(".checkedDelte").closest(".contentRow").remove();
  	 		}	
@@ -346,7 +358,7 @@ function stateCheck(e){
 
 								</div>
 								<div class="col px-0" style="height: 75vh; border: 1px solid;">
-	<input id="DIVISION" type="hidden" value="공지">
+	<input id="TABLE" type="hidden" value="공지">
 									<table class="table table-hover caption-top table-sm">
 										<caption>
 											코드내역 <span>0 건</span>
