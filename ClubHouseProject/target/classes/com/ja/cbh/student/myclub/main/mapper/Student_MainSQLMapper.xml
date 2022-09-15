@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.myclub.main.mapper.Student_MainSQLMapper">
+	
+	<select id="selectBossMemberIs" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT *
+		FROM CBH_CLUB_STUD
+		WHERE  CLUB_STUD_GRADE = '대표'
+		AND STUD_ID = #{stud_id}
+	</select>
+	
+	<select id="selectGetClubBoss" resultType="com.ja.cbh.vo.StudVO">
+		SELECT
+			csi.*
+		FROM
+			CBH_STUD csi ,
+			CBH_CLUB_APPL cca ,
+			CBH_CLUB cc
+		WHERE
+			csi.STUD_ID = cca.STUD_ID
+			AND cca.CLUB_APPL_NO = cc.CLUB_APPL_NO
+			AND csi.STUD_ID = #{stud_id}
+			AND cc.CLUB_STATE = 'ACTIVE'
+	</select>
+	
+	<select id="selectGetClubBossClubInfo" resultType="com.ja.cbh.vo.ClubVO">
+		SELECT
+			cc.*
+		FROM
+			CBH_STUD csi ,
+			CBH_CLUB_APPL cca ,
+			CBH_CLUB cc
+		WHERE
+			csi.STUD_ID = cca.STUD_ID
+			AND cca.CLUB_APPL_NO = cc.CLUB_APPL_NO
+			AND csi.STUD_ID = #{stud_id}
+			AND cc.CLUB_STATE = 'ACTIVE'
+	</select>
+	
+	<select id="selectNormalMemberIsCount" resultType="int">
+		SELECT COUNT(*)
+		FROM CBH_CLUB_STUD
+		WHERE CLUB_STUD_GRADE = '일반회원'
+		AND STUD_ID = #{stud_id}
+	</select>
+	
+	<select id="selectNormalMemberIs" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT *
+		FROM CBH_CLUB_STUD
+		WHERE CLUB_STUD_GRADE = '일반회원'
+		AND STUD_ID = #{stud_id}
+	</select>
+	
+	<select id="selectClubBossMemberInfo" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT *
+		FROM CBH_CLUB_STUD
+		WHERE CLUB_STUD_GRADE = '대표'
+		AND CLUB_NO = #{club_no}
+	</select>
+	
+	<select id="selectClubBossInfo" resultType="com.ja.cbh.vo.StudVO">
+		SELECT *
+		FROM CBH_STUD
+		WHERE STUD_ID = #{stud_id}
+	</select>
+	
+	<select id="selectClubInfo" resultType="com.ja.cbh.vo.ClubVO">
+		SELECT * 
+		FROM CBH_CLUB
+		WHERE CLUB_NO = #{club_no}
+	</select>
+	
+	<select id="selectClubBoardInfo" resultType="com.ja.cbh.vo.Club_BoardVO">
+		SELECT * 
+		FROM CBH_CLUB_BOARD
+		WHERE CLUB_NO = #{club_no}
+		ORDER BY CLUB_BOARD_NO DESC
+	</select>
+
+	<select id="selectClubBoardStudByNo" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT * 
+		FROM CBH_CLUB_STUD
+		WHERE CLUB_STUD_NO = #{club_stud_no}
+	</select>
+	
+	<select id="selectClubBoardStudInfo" resultType="com.ja.cbh.vo.StudVO">
+		SELECT * 
+		FROM CBH_STUD
+		WHERE STUD_ID = #{club_stud_id}
+	</select>
+	 
+	<select id="selectClubActInfo" resultType="com.ja.cbh.vo.Club_ActVO">
+		SELECT * 
+		FROM CBH_CLUB_ACT 
+		WHERE CLUB_NO = #{club_no}
+		ORDER BY CLUB_ACT_NO DESC
+	</select>
+	
+	<select id="selectClubActStudInfo" resultType="com.ja.cbh.vo.StudVO">
+		SELECT * 
+		FROM CBH_STUD  
+		WHERE STUD_ID = #{club_boss_stud_id}
+	</select>
+	
+	<select id="selectClubNoIs" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT * 
+		FROM CBH_CLUB_STUD
+		WHERE STUD_ID = #{stud_id}
+	</select>
+	
+	<select id="selectClubNoCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM CBH_CLUB_STUD
+		WHERE CLUB_NO = #{club_no}
+	</select>
+	
+
+</mapper>

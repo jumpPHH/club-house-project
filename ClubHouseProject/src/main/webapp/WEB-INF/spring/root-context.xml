@@ -30,8 +30,11 @@
 
 	<mybatis-spring:scan base-package="com.ja.cbh.*.mapper"/>
 	<mybatis-spring:scan base-package="com.ja.cbh.*.*.mapper"/>
+	<mybatis-spring:scan base-package="com.ja.cbh.*.*.*.mapper"/>
+	
 	<context:component-scan base-package="com.ja.cbh.*.service" />
 	<context:component-scan base-package="com.ja.cbh.*.*.service" />
+	<context:component-scan base-package="com.ja.cbh.*.*.*.service" />
 	
 	<!-- 메일 전송 관련 라이브러리 세팅... -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

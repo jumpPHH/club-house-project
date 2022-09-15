@@ -33,7 +33,7 @@ public class Staff_LoginController {
 		}else {
 	
 			session.setAttribute("sessionUserInfo", sessionUserInfo);
-			return "redirect:../../staff/main/staff_MainPage";
+			return "redirect:../../staff/index/staff_IndexPage";
 		}
 	}
 	
