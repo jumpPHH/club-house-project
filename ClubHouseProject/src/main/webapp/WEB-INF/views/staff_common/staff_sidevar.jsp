@@ -19,12 +19,18 @@
 					<ul>
 						<li>
 							<!-- div태그 style 아래랑 교환, i태그도 교환 -->
-							<div style="font-weight: bold;color: #bf1f51;letter-spacing: 0;"onclick="location.href='/cbh/staff/division/staff_DivisionPage" ><i class="bi bi-check-lg"></i> 코드관리</div>
+							<div style="font-weight: bold;color: #bf1f51;letter-spacing: 0;"onclick="location.href='/cbh/staff/division/staff_DivisionPage'" ><i class="bi bi-check-lg"></i> 코드관리</div>
 						</li>
 					</ul>
 				</li>
 <!-- 				<li class="border-top my-2" style="padding: 0"></li> -->
-				
+				<li>
+					<div>전자결재</div>
+					<ul>
+						<li><div onclick="location.href='/cbh/staff/approval/staff_WriteDraftPage'" style="cursor: pointer;"><i class="bi bi-dot"></i>기안서작성</div></li>
+						<li><div onclick="location.href=''" style="cursor: pointer;"><i class="bi bi-dot"></i>기안서통합관리</div></li>
+					</ul>
+				</li>
 				<li>
 					<div>학생</div>
 					<ul>
