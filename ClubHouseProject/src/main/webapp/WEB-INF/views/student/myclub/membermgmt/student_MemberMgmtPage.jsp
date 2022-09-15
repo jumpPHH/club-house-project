@@ -67,6 +67,7 @@ a:hover {
 								<th scope="col">직책</th>
 								<th scope="col">가입일</th>
 								<th scope="col">성별</th>
+								<th scope="col">번호</th>
 								<th scope="col"></th>
 								<th scope="col"></th>
 							</tr>
@@ -79,6 +80,7 @@ a:hover {
 								<td>일반회원</td>
 								<td>2022-08-22</td>
 								<td>남자</td>
+								<td>010-1111-1111</td>
 								<td>
 									<div class="dropdown">
 										<button class="btn btn-secondary dropdown-toggle"
@@ -103,6 +105,7 @@ a:hover {
 								<td>일반회원</td>
 								<td>2022-08-22</td>
 								<td>남자</td>
+								<td>010-2222-2222</td>
 								<td>
 									<div class="dropdown">
 										<button class="btn btn-secondary dropdown-toggle"
@@ -127,6 +130,7 @@ a:hover {
 								<td>일반회원</td>
 								<td>2022-08-22</td>
 								<td>남자</td>
+								<td>010-3333-3333</td>
 								<td>
 									<div class="dropdown">
 										<button class="btn btn-secondary dropdown-toggle"
@@ -159,12 +163,9 @@ a:hover {
 								<select name="searchType" class="form-select"
 									id="floatingSelect" aria-label="Floating label select example"
 									style="font-size: 15px; color: #333; font-weight: bold; padding: 10px;">
-									<option selected value="title">이름</option>
-									<option value="content">아이디</option>
-									<option value="content">직책</option>
-									<option value="content">가입일</option>
-									<option value="content">성별</option>
-									<option value="content">직책</option>
+									<option selected value="name">이름</option>
+									<option value="id">아이디</option>
+									<option value="phone">번호</option>
 								</select>
 							</div>
 						</div>
