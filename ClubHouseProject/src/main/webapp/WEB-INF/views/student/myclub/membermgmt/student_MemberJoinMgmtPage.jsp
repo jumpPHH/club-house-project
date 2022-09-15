@@ -64,8 +64,7 @@ a:hover {
 								<th scope="col">#</th>
 								<th scope="col">아이디</th>
 								<th scope="col">이름</th>
-								<th scope="col">직책</th>
-								<th scope="col">가입일</th>
+								<th scope="col">가입신청일</th>
 								<th scope="col">성별</th>
 								<th scope="col"></th>
 								<th scope="col"></th>
@@ -76,117 +75,45 @@ a:hover {
 								<th scope="row">1</th>
 								<td>stud01</td>
 								<td>송성용</td>
-								<td>일반회원</td>
 								<td>2022-08-22</td>
 								<td>남자</td>
 								<td>
-									<div class="dropdown">
-										<button class="btn btn-secondary dropdown-toggle"
-											type="button" data-bs-toggle="dropdown" aria-expanded="false">
-											직책 임명</button>
-										<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="#">부회장으로 임명</a></li>
-											<li><a class="dropdown-item" href="#">총무로 임명</a></li>
-											<li><a class="dropdown-item" href="#">회계로 임명</a></li>
-											<li><a class="dropdown-item" href="#">서기로 임명</a></li>
-										</ul>
-									</div>
+									<button type="button" class="btn btn-danger">가입 승인</button>
 								</td>
 								<td>
-									<button type="button" class="btn btn-danger">강제 탈퇴</button>
+									<button type="button" class="btn btn-secondary">가입 거절</button>
 								</td>
 							</tr>
 							<tr>
 								<th scope="row">2</th>
 								<td>stud02</td>
 								<td>안요섭</td>
-								<td>일반회원</td>
 								<td>2022-08-22</td>
 								<td>남자</td>
 								<td>
-									<div class="dropdown">
-										<button class="btn btn-secondary dropdown-toggle"
-											type="button" data-bs-toggle="dropdown" aria-expanded="false">
-											직책 임명</button>
-										<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="#">부회장으로 임명</a></li>
-											<li><a class="dropdown-item" href="#">총무로 임명</a></li>
-											<li><a class="dropdown-item" href="#">회계로 임명</a></li>
-											<li><a class="dropdown-item" href="#">서기로 임명</a></li>
-										</ul>
-									</div>
+									<button type="button" class="btn btn-danger">가입 승인</button>
 								</td>
 								<td>
-									<button type="button" class="btn btn-danger">강제 탈퇴</button>
+									<button type="button" class="btn btn-secondary">가입 거절</button>
 								</td>
 							</tr>
 							<tr>
 								<th scope="row">3</th>
 								<td>stud03</td>
 								<td>김찬우</td>
-								<td>일반회원</td>
 								<td>2022-08-22</td>
 								<td>남자</td>
 								<td>
-									<div class="dropdown">
-										<button class="btn btn-secondary dropdown-toggle"
-											type="button" data-bs-toggle="dropdown" aria-expanded="false">
-											직책 임명</button>
-										<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="#">부회장으로 임명</a></li>
-											<li><a class="dropdown-item" href="#">총무로 임명</a></li>
-											<li><a class="dropdown-item" href="#">회계로 임명</a></li>
-											<li><a class="dropdown-item" href="#">서기로 임명</a></li>
-										</ul>
-									</div>
+									<button type="button" class="btn btn-danger">가입 승인</button>
 								</td>
 								<td>
-									<button type="button" class="btn btn-danger">강제 탈퇴</button>
+									<button type="button" class="btn btn-secondary">가입 거절</button>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				
-					<div class="row my-5">
-						<div class="col">
-							<h6
-								style="font-size: 15px; color: #333; font-weight: bold; margin-top: 20px;">검색어</h6>
-						</div>
-
-						<div class="col">
-							<div class="form-floating">
-								<select name="searchType" class="form-select"
-									id="floatingSelect" aria-label="Floating label select example"
-									style="font-size: 15px; color: #333; font-weight: bold; padding: 10px;">
-									<option selected value="title">이름</option>
-									<option value="content">아이디</option>
-									<option value="content">직책</option>
-									<option value="content">가입일</option>
-									<option value="content">성별</option>
-									<option value="content">직책</option>
-								</select>
-							</div>
-						</div>
-
-						<div class="col-6">
-							<div class="form-floating">
-								<textarea name="searchWord" class="form-control"
-									placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-								<label for="floatingTextarea" style="font-size: 15px;">검색어를
-									입력해주세요.</label>
-							</div>
-						</div>
-
-						<div class="col">
-							<button type="submit" class="btn btn-primary btn-lg"
-								style="height: 60px; font-size: 15px;">
-								<i class="bi bi-search">검색</i>
-							</button>
-						</div>
-						
-					</div>
-
 						<div class="row my-5">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-center pagination-lg">
