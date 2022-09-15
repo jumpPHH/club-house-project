@@ -9,6 +9,6 @@ public class staff_ApprovalController {
 
 	@RequestMapping("staff_WriteDraftPage")
 	public String writeDraftPage () {
-		return "./staff_WriteDraftPage";
+		return "/staff/approval/staff_WriteDraftPage";
 	}
 }
