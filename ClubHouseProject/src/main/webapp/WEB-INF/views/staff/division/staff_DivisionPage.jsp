@@ -22,6 +22,7 @@ var data = new Array();
 function save(){
 	var count = document.getElementsByClassName("newRow").length;
 	var totalCount = document.getElementsByClassName("contentRow").length;
+	var TABLE = $("#TABLE").val();
 	
 	
 	for(let i = 0 ; i < totalCount ; i++){
@@ -32,9 +33,8 @@ function save(){
 		}	
 	}
 	
-	
+	if(TABLE != "동아리카테고리"){
 	for(let i = 0 ; i < count ; i++){
-		var TABLE = $("#TABLE").val();
 		var NAME = $(".newRow").children(".NAME:eq("+i+")").text();
 		var STATE = $(".newRow").children(".stateCheck").children(".STATE:eq("+i+")").val()
 		var jsonObj = {
@@ -45,6 +45,25 @@ function save(){
 		}
 		data.push(jsonObj)
 	}
+	}else{
+		for(let i = 0 ; i < count ; i++){
+			var NAME = $(".newRow").children(".NAME:eq("+i+")").text();
+			var STATE = $(".newRow").children(".stateCheck").children(".STATE:eq("+i+")").val()
+			var DESCRIPTION = $(".newRow").children(".DESCRIPTION:eq("+i+")").text();
+			var jsonObj = {
+				"TABLE" : TABLE,
+				"DIV": "신규",
+				"NAME":NAME,
+				"DESCRIPTION" : DESCRIPTION,
+				"STATE":STATE
+			}
+			data.push(jsonObj)
+		}
+		
+		
+		
+	}
+	
 	
 	if(data.length == 0){
 		alert("수정된부분이 없습니다.")
@@ -69,6 +88,9 @@ function save(){
 
 
 function getDivisionList(table,e){
+	if(data.length != 0){
+		alert("구분이동시 저장하지않은 항목은 적용되지 않습니다.")
+	}
 	$("#TABLE").val(table);
 	$(".divisionTab").removeClass("table-active");
 	if(e){
@@ -80,11 +102,58 @@ function getDivisionList(table,e){
 	 xhr.onreadystatechange = function () {
 	if(xhr.readyState == 4 && xhr.status == 200){
 	var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-
+	if(table != '동아리카테고리'){
 		$("#contentCount").text(result.count +"건");
+		
+		var codeContentHead = document.getElementById("codeContentHead")
+		codeContentHead.innerHTML= "";
+		
+		var headTh1 = document.createElement("th");
+		headTh1.classList.add("col-1");
+		codeContentHead.appendChild(headTh1);
+		
+		var headTh1Input = document.createElement("input");
+		headTh1Input.classList.add("form-check-input");
+		headTh1Input.setAttribute("onclick","totalCheck()")
+		headTh1Input.setAttribute("type","checkbox")
+		headTh1.appendChild(headTh1Input);
+		
+		
+		var headTh2 = document.createElement("th");
+		headTh2.classList.add("col-1");
+		headTh2.innerText = "코드"
+		codeContentHead.appendChild(headTh2);
+		
+		
+		var headTh3 = document.createElement("th");
+		headTh3.classList.add("col-3");
+		headTh3.innerText = "코드명(국문)"
+		codeContentHead.appendChild(headTh3);
+		
+		
+		var headTh4 = document.createElement("th");
+		headTh4.classList.add("col-3");
+		headTh4.innerText = "코드명(영문)"
+		codeContentHead.appendChild(headTh4);
+		
+		
+		var headTh5 = document.createElement("th");
+		headTh5.classList.add("col-3");
+		headTh5.innerText = "약어명"
+		codeContentHead.appendChild(headTh5);
+		
+		
+		var headTh6 = document.createElement("th");
+		headTh6.classList.add("col-1");
+		headTh6.innerText = "사용여부"
+		codeContentHead.appendChild(headTh6);
+		
+		
+		
 		var codeBody = document.getElementById("codeBody")
 		codeBody.innerHTML = "";
 	
+		
 		for(var data of result.data){
 			
 			var contentRow = document.createElement("tr");
@@ -156,7 +225,130 @@ function getDivisionList(table,e){
 			
 		}
 	
+	}else if(table == '동아리카테고리'){
+		
+		$("#contentCount").text(result.count +"건");
+		var codeContentHead = document.getElementById("codeContentHead")
+		codeContentHead.innerHTML= "";
+		
+		var headTh1 = document.createElement("th");
+		headTh1.classList.add("col-1");
+		codeContentHead.appendChild(headTh1);
+		
+		var headTh1Input = document.createElement("input");
+		headTh1Input.classList.add("form-check-input");
+		headTh1Input.setAttribute("onclick","totalCheck()")
+		headTh1Input.setAttribute("type","checkbox")
+		headTh1.appendChild(headTh1Input);
+		
+		
+		var headTh2 = document.createElement("th");
+		headTh2.classList.add("col-1");
+		headTh2.innerText = "코드"
+		codeContentHead.appendChild(headTh2);
+		
+		
+		var headTh3 = document.createElement("th");
+		headTh3.classList.add("col-3");
+		headTh3.innerText = "코드명(국문)"
+		codeContentHead.appendChild(headTh3);
+		
+		
+		var headTh4 = document.createElement("th");
+		headTh4.classList.add("col-2");
+		headTh4.innerText = "코드명(영문)"
+		codeContentHead.appendChild(headTh4);
+		
+		
+		var headTh5 = document.createElement("th");
+		headTh5.classList.add("col-4");
+		headTh5.innerText = "설명"
+		codeContentHead.appendChild(headTh5);
+		
+		
+		var headTh6 = document.createElement("th");
+		headTh6.classList.add("col-1");
+		headTh6.innerText = "사용여부"
+		codeContentHead.appendChild(headTh6);
+		
+		var codeBody = document.getElementById("codeBody")
+		codeBody.innerHTML = "";
 	
+		for(var data of result.data){
+		
+		var tr = document.createElement("tr");
+		tr.classList.add("text-center");
+		tr.classList.add("contentRow");
+		codeBody.appendChild(tr);
+		
+		var td1 = document.createElement("td");
+		td1.classList.add("col-1");
+		tr.appendChild(td1);
+		
+		var tdInput =  document.createElement("input");
+		tdInput.classList.add("check");
+		tdInput.setAttribute("onclick","deleteValuetoggle(this)")
+		tdInput.setAttribute("type","checkbox")
+		tdInput.classList.add("form-check-input");
+		td1.appendChild(tdInput);
+		
+		
+		var th2 = document.createElement("th");
+		th2.classList.add("col-1");
+		th2.classList.add("NO");
+		th2.innerText = data.NO
+		tr.appendChild(th2);
+
+		
+		var td3 = document.createElement("td");
+		td3.classList.add("col-3");
+		td3.classList.add("NAME");
+		td3.setAttribute("ondblclick","inputBox(this)")
+		td3.innerText = data.NAME
+		tr.appendChild(td3);
+		
+		var td4 = document.createElement("td");
+		td4.classList.add("col-2");
+		td4.setAttribute("ondblclick","inputBox(this)")
+		tr.appendChild(td4);
+		
+		
+		var td5 = document.createElement("td");
+		td5.classList.add("col-4");
+		td5.classList.add("DESCRIPTION");
+		td5.setAttribute("ondblclick","inputBox(this)")
+		td5.innerText=data.DESCRIPTION
+		tr.appendChild(td5);
+	
+		var td6 = document.createElement("td");
+		td6.classList.add("col-1");
+		td6.classList.add("stateCheck");
+		td6.classList.add("text-center");
+		tr.appendChild(td6);
+		
+		if(data.STATE == 1){
+			var td6Input =  document.createElement("input");
+			td6Input.classList.add("STATE");
+			td6Input.classList.add("form-check-input");
+			td6Input.setAttribute("onclick","stateCheck(this)")
+			td6Input.setAttribute("type","checkbox")
+			td6Input.setAttribute("value","1")
+			td6Input.setAttribute("checked","checked")
+			td6.appendChild(td6Input);
+		}else{
+			var td6Input =  document.createElement("input");
+			td6Input.classList.add("STATE");
+			td6Input.classList.add("form-check-input");
+			td6Input.setAttribute("onclick","stateCheck(this)")
+			td6Input.setAttribute("type","checkbox")
+			td6Input.setAttribute("value","2")
+			td6.appendChild(td6Input);
+		}
+		
+		
+		
+	}
+	}
 		}      
 	}	
 	xhr.open("post","../restDivision/getDivisionList",false);
@@ -175,11 +367,14 @@ function codeClick(e) {
 		var codeName = e.innerText;
 		var codeTextView = document.getElementById("codeSelectBox")
 		codeTextView.innerText = codeName
-
+		
 	}
 	
 	function plusCode(){
+		var TABLE = $("#TABLE").val();
 		var codeBody = $('#codeBody')[0]
+		
+		if(TABLE != "동아리카테고리"){
 		
 		var tr = document.createElement("tr");
 		tr.classList.add("text-center");
@@ -189,7 +384,6 @@ function codeClick(e) {
 		
 		var tdd = document.createElement("th");
 		tdd.classList.add("col-1");
-		tdd.classList.add("NO");
 		tr.appendChild(tdd);
 		
 		var inputCheck = document.createElement("input")
@@ -200,6 +394,7 @@ function codeClick(e) {
 		tdd.appendChild(inputCheck);
 		
 		var th = document.createElement("th");
+		th.classList.add("NO");
 		th.classList.add("col-1");
 		tr.appendChild(th);
 		
@@ -214,8 +409,6 @@ function codeClick(e) {
 		td2.classList.add("col-3");
 		td2.setAttribute("ondblclick","inputBox(this)")
 		tr.appendChild(td2);
-		
-	
 		
 		var td3 = document.createElement("td");
 		td3.classList.add("col-3");
@@ -238,27 +431,107 @@ function codeClick(e) {
 		checkBox.setAttribute("checked","checked")
 		td4.appendChild(checkBox);
 		
-	
+		}else{
+			var tr = document.createElement("tr");
+			tr.classList.add("text-center");
+			tr.classList.add("newRow");
+			tr.classList.add("contentRow");
+			codeBody.appendChild(tr);
+			
+			var tdd = document.createElement("td");
+			tdd.classList.add("col-1");
+			tr.appendChild(tdd);
+			
+			var inputCheck = document.createElement("input")
+			inputCheck.classList.add("form-check-input");
+			inputCheck.classList.add("check");
+			inputCheck.setAttribute("onclick","deleteValuetoggle(this)")
+			inputCheck.setAttribute("type","checkBox")
+			tdd.appendChild(inputCheck);
+			
+			var th = document.createElement("th");
+			th.classList.add("NO");
+			th.classList.add("col-1");
+			tr.appendChild(th);
+			
+			var td1 = document.createElement("td");
+			td1.classList.add("col-3");
+			td1.classList.add("NAME");
+			td1.setAttribute("ondblclick","inputBox(this)")
+			tr.appendChild(td1);
+			
+			var td2 = document.createElement("td");
+			td2.classList.add("col-2");
+			td2.setAttribute("ondblclick","inputBox(this)")
+			tr.appendChild(td2);
+			
+			var td3 = document.createElement("td");
+			td3.classList.add("col-4");
+			td3.classList.add("DESCRIPTION");
+			td3.setAttribute("ondblclick","inputBox(this)")
+			tr.appendChild(td3);
+			
+			var td4 = document.createElement("td");
+			td4.classList.add("stateCheck");
+			td4.classList.add("col-1");
+			tr.appendChild(td4);
+			
+			var checkBox = document.createElement("input")
+			checkBox.classList.add("form-check-input");
+			checkBox.classList.add("STATE");
+			checkBox.setAttribute("type","checkBox")
+			checkBox.setAttribute("value","1")
+			checkBox.setAttribute("onclick","stateCheck(this)")
+			checkBox.setAttribute("checked","checked")
+			td4.appendChild(checkBox);
+		}
 	}
 	
 function innerTextPlus(e){
 	var text = $("#edit").val()
 	var TABLE = $("#TABLE").val();
+	var NAME;
+	var DESCRIPTION;
 	var NO = $("#edit").closest(".contentRow").children(".NO").text()
-	var NAME = text
+	if($("#edit").parent().hasClass("NAME")){
+		NAME = text
+		if($("#edit").closest(".contentRow").children(".DESCRIPTION").text()){
+			DESCRIPTION = $("#edit").closest(".contentRow").children(".DESCRIPTION").text()
+		}
+	}else if($("#edit").parent().hasClass("DESCRIPTION")){
+		DESCRIPTION = text
+		if($("#edit").closest(".contentRow").children(".NAME").text()){
+			NAME = $("#edit").closest(".contentRow").children(".NAME").text();
+		}
+	}
 	var STATE = $("#edit").closest(".contentRow").children(".stateCheck").children(".STATE").val();
 	
 	if(NO){
-	var jsonObj = {
-			"TABLE" : TABLE,
-			"DIV": "수정",
-			"NO":NO,
-			"NAME":NAME,
-			"STATE":STATE
-		}
-	data.push(jsonObj)
+		if(TABLE != "동아리카테고리"){
+		var jsonObj = {
+				"TABLE" : TABLE,
+				"DIV": "수정",
+				"NO":NO,
+				"NAME":NAME,
+				"STATE":STATE
+			}
+		data.push(jsonObj)
 	
-	$("#edit").parent().text(text);
+		$("#edit").parent().text(text);
+		}else{
+			var jsonObj = {
+					"TABLE" : TABLE,
+					"DIV": "수정",
+					"NO":NO,
+					"NAME":NAME,
+					"DESCRIPTION": DESCRIPTION,
+					"STATE":STATE
+				}
+			data.push(jsonObj)
+		
+			$("#edit").parent().text(text);
+		}
+	
 	}else{
 		$("#edit").parent().text(text);
 		return;
@@ -274,16 +547,34 @@ function stateCheck(e){
 	var TABLE = $("#TABLE").val();
 	var NO = e.closest(".contentRow").querySelector(".NO").innerText;
 	var NAME = e.closest(".contentRow").querySelector(".NAME").innerText;
+	if(e.closest(".contentRow").querySelector(".DESCRIPTION")){
+	var DESCRIPTION = e.closest(".contentRow").querySelector(".DESCRIPTION").innerText;
+	}
 	var STATE = e.value;
 	if(NO){
-	var jsonObj = {
-			"TABLE":TABLE,
-			"DIV": "수정",
-			"NO":NO,
-			"NAME":NAME,
-			"STATE":STATE
+		if(TABLE != "동아리카테고리"){
+			console.log("안들어옴?")
+			var jsonObj = {
+				"TABLE":TABLE,
+				"DIV": "수정",
+				"NO":NO,
+				"NAME":NAME,
+				"STATE":STATE
+			}
+			data.push(jsonObj)
+		}else{
+			var jsonObj = {
+					"TABLE":TABLE,
+					"DIV": "수정",
+					"NO":NO,
+					"DESCRIPTION" : DESCRIPTION,
+					"NAME":NAME,
+					"STATE":STATE
+				}
+			data.push(jsonObj)
 		}
-	data.push(jsonObj)
+	
+	
 	}else{
 		return;
 	}
@@ -328,7 +619,6 @@ function stateCheck(e){
  		for(var i = 0 ; i < count ; i++){
  			var NO = $(".checkedDelte").closest(".contentRow").children(".NO:eq("+i+")").text();
  			if(NO != 0){
- 				console.log("몇번")
  	 			var jsonObj = {
  	 					"TABLE":TABLE,
  	 					"DIV": "삭제",
@@ -338,6 +628,7 @@ function stateCheck(e){
  	 			data.push(jsonObj)
  	 			
  	 		}else{
+ 	 		
  	 		}	
  			
  		}
@@ -351,9 +642,27 @@ function stateCheck(e){
  		$(".check").click();
  		
  	}
- 	
+ 	function search(){
+ 		var searchDiv = $("#codeSelectBox").text();
+ 		if(searchDiv == "공지"){
+ 			$("#noti").click()
+ 		}else if(searchDiv == "봉사"){
+ 			$("#vlntr").click()
+ 		}else if(searchDiv == "직책"){
+ 			$("#pstn").click()
+ 		}else if(searchDiv == "결재"){
+ 			$("#apv").click()
+ 		}else if(searchDiv == "알람"){
+ 			$("#alarm").click()
+ 		}else if(searchDiv == "동아리"){
+ 			$("#clubDivision").click()
+ 		}else if(searchDiv == "동아리카테고리"){
+ 			$("#clubDeptCategory").click()
+ 		}
+ 		
+ 	}
  	window.addEventListener('DOMContentLoaded', function(){
- 		$("#index").click();
+		$("#noti").click();
 	   });
 </script>
 </head>
@@ -385,9 +694,8 @@ function stateCheck(e){
 											<button id="codeSelectBox"
 												class="btn btn-secondary btn-sm dropdown-toggle"
 												type="button" data-bs-toggle="dropdown"
-												aria-expanded="false">전체</button>
+												aria-expanded="false">검색</button>
 											<ul class="dropdown-menu">
-												<li class="dropdown-item" onclick="codeClick(this)">전체</li>
 												<li class="dropdown-item" onclick="codeClick(this)">공지</li>
 												<li class="dropdown-item" onclick="codeClick(this)">봉사</li>
 												<li class="dropdown-item" onclick="codeClick(this)">직책</li>
@@ -397,7 +705,7 @@ function stateCheck(e){
 												<li class="dropdown-item" onclick="codeClick(this)">동아리카테고리</li>
 											</ul>
 										</div>
-										<input type="text" class="form-control"
+										<input type="text" onKeypress="javascript:if(event.keyCode==13) {search()}" class="form-control"
 											aria-label="Sizing example input"
 											aria-describedby="inputGroup-sizing-sm">
 									</div>
@@ -424,31 +732,31 @@ function stateCheck(e){
 											</tr>
 										</thead>
 										<tbody class="text-center">
-											<tr id="index"class="table-active divisionTab" onclick="getDivisionList('공지',this)">
+											<tr style="cursor: pointer;" id="noti"class="table-active divisionTab" onclick="getDivisionList('공지',this)">
 												<th scope="row" class="text-center">SS0010</th>
 												<td>공지구분</td>
 											</tr>
-											<tr class="divisionTab" onclick="getDivisionList('봉사',this)">
+											<tr style="cursor: pointer;" id="vlntr" class="divisionTab" onclick="getDivisionList('봉사',this)">
 												<th scope="row" class="text-center">SS0020</th>
 												<td>봉사구분</td>
 											</tr>
-											<tr class="divisionTab" onclick="getDivisionList('직책',this)">
+											<tr style="cursor: pointer;" id="pstn" class="divisionTab" onclick="getDivisionList('직책',this)">
 												<th scope="row" class="text-center">SS0030</th>
 												<td colspan="2">직책구분</td>
 											</tr>
-											<tr class="divisionTab" onclick="getDivisionList('결재',this)">
+											<tr style="cursor: pointer;" id="apv" class="divisionTab" onclick="getDivisionList('결재',this)">
 												<th scope="row" class="text-center">SS0040</th>
 												<td colspan="2">결재구분</td>
 											</tr>
-											<tr class="divisionTab" onclick="getDivisionList('알람',this)">
+											<tr style="cursor: pointer;" id="alarm" class="divisionTab" onclick="getDivisionList('알람',this)">
 												<th scope="row" class="text-center">SS0050</th>
 												<td colspan="2">알람구분</td>
 											</tr>
-											<tr class="divisionTab" onclick="getDivisionList('동아리',this)">
+											<tr style="cursor: pointer;" id="clubDivision" class="divisionTab" onclick="getDivisionList('동아리',this)">
 												<th scope="row" class="text-center">SS0060</th>
 												<td colspan="2">동아리구분</td>
 											</tr>
-											<tr class="divisionTab" onclick="getDivisionList('동아리카테고리',this)">
+											<tr style="cursor: pointer;" id="clubDeptCategory" class="divisionTab" onclick="getDivisionList('동아리카테고리',this)">
 												<th scope="row" class="text-center">SS0070</th>
 												<td colspan="2">동아리카테고리</td>
 											</tr>
@@ -459,24 +767,17 @@ function stateCheck(e){
 
 								</div>
 								<div class="col px-0" style="height: 75vh; border: 1px solid;">
-	<input id="TABLE" type="hidden" value="공지">
+								<input id="TABLE" type="hidden" value="공지">
 									<table class="table table-hover caption-top table-sm">
 										<caption>
 											코드내역 <span id="contentCount"></span>
 										</caption>
 										<thead>
-											<tr class="text-center">
-											<th class="col-1"><input onclick="totalCheck()" type="checkbox" class="form-check-input"></th>
-												<th class="col-1">코드</th>
-												<th class="col-3">코드명(국문)</th>
-												<th class="col-3">약어명(국문)</th>
-												<th class="col-3">코드명(영문)</th>
-												<th class="col-1">사용여부</th>
+											<tr id="codeContentHead" class="text-center">
 											</tr>
 										</thead>
 										
 										<tbody id="codeBody">
-
 										</tbody>
 									</table>
 

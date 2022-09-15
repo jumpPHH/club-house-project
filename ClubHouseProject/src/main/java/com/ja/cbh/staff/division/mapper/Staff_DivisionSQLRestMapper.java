@@ -86,7 +86,7 @@ public interface Staff_DivisionSQLRestMapper {
 	//동아리카테고리구분 등록
 	public void insertClubDeptCategory(HashMap<String, Object> pram);
 	//동아리카테고리구분 수정(전체)
-	public void updateClubDeptCategoryNameByClubDeptCategoryNo(HashMap<String, Object> pram);
+	public void updateClubDeptCategoryByClubDeptCategoryNo(HashMap<String, Object> pram);
 	//동아리카테고리구분 사용여부 수정(삭제)
 	public void updateClubDeptCategoryStateByClubDeptCategoryNo(HashMap<String, Object> pram);
 	//동아리카테리고리구분 호출

@@ -240,13 +240,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(
 		CBH_CLUB_DEPT_CATEGORY_seq.nextval,
 		#{NAME},
-		#{DESCCRIPTION},
+		#{DESCRIPTION},
 		NULL,
-		#{STATE});
+		#{STATE}
+		)
 	</insert>
 	<!--동아리카테리고리구분 호출 -->
 	<select id="selectClubDeptCategoryList" resultType="HashMap">
-		SELECT *
+		SELECT CLUB_CATEGORY_NO AS NO, 
+		CLUB_CATEGORY_NAME AS NAME, 
+		CLUB_CATEGORY_DESCRIPTION AS DESCRIPTION, 
+		CLUB_CATEGORY_STATE AS STATE
 		FROM CBH_CLUB_DEPT_CATEGORY
 		WHERE NOT CLUB_CATEGORY_STATE = 3
 	</select>
@@ -257,9 +261,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE NOT CLUB_CATEGORY_STATE = 3
 	</select>
 	<update
-		id="updateClubDeptCategoryNameByClubDeptCategoryNo"></update>
+		id="updateClubDeptCategoryByClubDeptCategoryNo">
+		UPDATE CBH_CLUB_DEPT_CATEGORY  SET
+		CLUB_CATEGORY_NAME  = #{NAME},
+		CLUB_CATEGORY_DESCRIPTION = #{DESCRIPTION},
+		CLUB_CATEGORY_STATE = #{STATE}
+		WHERE CLUB_CATEGORY_NO  = #{NO}
+	</update>
 	<update
-		id="updateClubDeptCategoryStateByClubDeptCategoryNo"></update>
+		id="updateClubDeptCategoryStateByClubDeptCategoryNo">
+		UPDATE CBH_CLUB_DEPT_CATEGORY  SET
+		CLUB_CATEGORY_STATE = #{STATE}
+		WHERE CLUB_CATEGORY_NO = #{NO}
+	</update>
 
 
 </mapper>

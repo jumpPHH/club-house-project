@@ -29,7 +29,6 @@ public class Staff_DivisionRestController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 			String table = (String)data2.get(0).get("TABLE");
 			for(HashMap<String, Object> maps : data2) {
-				
 				if(maps.get("DIV").equals("신규")) {
 					staff_DivisionRestService.inputDivision(maps);
 				}else if(maps.get("DIV").equals("수정")) {
@@ -48,8 +47,6 @@ public class Staff_DivisionRestController {
 	@RequestMapping("/getDivisionList")
 	public HashMap<String, Object> getDivisionList (String table){
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-		
 		
 		map.put("data", staff_DivisionRestService.getDivisionList(table));
 		map.put("count", staff_DivisionRestService.getCountDivision(table));

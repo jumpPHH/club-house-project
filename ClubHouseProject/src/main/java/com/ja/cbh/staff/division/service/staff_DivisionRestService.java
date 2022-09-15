@@ -28,7 +28,7 @@ public class staff_DivisionRestService {
 		}else if(pram.get("TABLE").equals("동아리")) {
 			staff_DivisionSQLRestMapper.insertClubDivision(pram);
 		}else if(pram.get("TABLE").equals("동아리카테고리")) {
-
+			staff_DivisionSQLRestMapper.insertClubDeptCategory(pram);
 		}
 		
 	}
@@ -48,7 +48,7 @@ public class staff_DivisionRestService {
 		}else if(pram.get("TABLE").equals("동아리")) {
 			staff_DivisionSQLRestMapper.updateClubDivisionByClubDivisionNo(pram);
 		}else if(pram.get("TABLE").equals("동아리카테고리")) {
-
+			staff_DivisionSQLRestMapper.updateClubDeptCategoryByClubDeptCategoryNo(pram);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class staff_DivisionRestService {
 		}else if(pram.get("TABLE").equals("동아리")) {
 			staff_DivisionSQLRestMapper.updateClubDivisionStateByClubDivisionNo(pram);
 		}else if(pram.get("TABLE").equals("동아리카테고리")) {
-
+			staff_DivisionSQLRestMapper.updateClubDeptCategoryStateByClubDeptCategoryNo(pram);
 		}
 		
 	}
