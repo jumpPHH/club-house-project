@@ -33,7 +33,7 @@ public class Student_LoginController {
 		}else {
 	
 			session.setAttribute("sessionUserInfo", sessionUserInfo);
-			return "redirect:../../student/main/student_MainPage";
+			return "redirect:../../student/index/student_IndexPage";
 		}
 	}
 	

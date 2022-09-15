@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<img style="position:absolute; left:.5%; top:3%; height: 8vh" src="../../resources/logo.png">
+<img style="position:absolute; left:.5%; top:3%; height: 8vh" src="/cbh/resources/img/header/logo.png">
 
 	<div class="container-fluid">
 		<div class="row" style="height: 7vh;">
