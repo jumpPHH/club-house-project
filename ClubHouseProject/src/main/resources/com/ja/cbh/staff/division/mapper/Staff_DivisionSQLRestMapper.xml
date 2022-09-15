@@ -3,5 +3,239 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ja.cbh.staff.division.mapper.Staff_DivisionSQLRestMapper">
+<mapper
+	namespace="com.ja.cbh.staff.division.mapper.Staff_DivisionSQLRestMapper">
+
+	<!-- 공지구분 -->
+	<!--공지구분 등록 -->
+	<insert id="insertNotiDiv">
+		INSERT INTO CBH_NOTI_DIV
+		VALUES(
+		CBH_NOTI_DIV_seq.nextval,
+		#{NAME},
+		#{STATE}
+		)
+	</insert>
+	<!--공지구분리스트 호출 -->
+	<select id="selectNotiDivList" resultType="HashMap">
+		SELECT * FROM
+		CBH_NOTI_DIV
+	</select>
+	<!--공지구분리스트 개수 호출 -->
+	<select id="selectCountNotiDiv" resultType="int">
+		SELECT count(*) FROM
+		CBH_NOTI_DIV
+	</select>
+	<!--공지 사용여부 수정(사용, 미사용) -->
+	<update id="updateNotiDivNameByNotiDivNo">
+		UPDATE CBH_NOTI_DIV SET
+		NOTI_DIV_NAME = #{NAME}
+		WHERE NOTI_DIV_NO = #{NO}
+	</update>
+	<!--공지 사용여부 수정(삭제) -->
+	<update id="updateNotiDivStateByNotiDivNo">
+		UPDATE CBH_NOTI_DIV SET
+		NOTI_DIV_STATE  = #{STATE}
+		WHERE NOTI_DIV_NO = #{NO}
+	</update>
+
+
+
+	<!-- 봉사구분 -->
+	<!--봉사구분 등록 -->
+	<insert id="insertVlntrDiv">
+		INSERT INTO CBH_VLNTR_DIV
+		VALUES(
+		CBH_VLNTR_DIV_seq.nextval,
+		#{NAME},
+		#{STATE}
+		)
+	</insert>
+	<!--봉사구분리스트 호출 -->
+	<select id="selectVlntrDivList" resultType="HashMap">
+		SELECT * FROM
+		CBH_VLNTR_DIV
+	</select>
+	<!--봉사구분리스트 개수 호출 -->
+	<select id="selectCountVlntrDiv" resultType="int">
+		SELECT COUNT(*) FROM
+		CBH_VLNTR_DIV
+	</select>
+	<!--봉사구분 사용여부 수정(사용, 미사용) -->
+	<update id="updateVlntrDivNameByVlntrDivNo">
+		UPDATE CBH_VLNTR_DIV SET
+		VLNTR_DIV_NAME = #{NAME}
+		WHERE VLNTR_DIV_NO = #{NO}
+	</update>
+	<!--봉사구분 사용여부 수정(삭제) -->
+	<update id="updateVlntrDivStateByVlntrDivNo">
+		UPDATE CBH_VLNTR_DIV SET 
+		VLNTR_DIV_STATE = #{STATE}
+		WHERE VLNTR_DIV_NO = #{NO}
+	</update>
+
+
+
+	<!-- 직책구분 -->
+	<!--직책구분 등록 -->
+	<insert id="insertPstnDiv">
+		INSERT INTO CBH_PSTN_DIV
+		VALUES(
+		CBH_PSTN_DIV_seq.nextval,
+		#{NAME},
+		#{STATE}
+		)
+	</insert>
+	<!--직책구분리스트 호출 -->
+	<select id="selectPstnDivList" resultType="HashMap">
+		SELECT * FROM
+		CBH_PSTN_DIV
+	</select>
+	<!--직책구분리스트 개수 호출 -->
+	<select id="selectCountPstnDiv" resultType="int">
+		SELECT COUNT(*) FROM
+		CBH_PSTN_DIV
+	</select>
+	<!--봉사구분 사용여부 수정(사용, 미사용) -->
+	<update id="updatePstnDivNameByPstnDivNo">
+		UPDATE CBH_PSTN_DIV SET
+		PSTN_DIV_NAME = #{NAME}
+		WHERE PSTN_DIV_NO = #{NO}
+	</update>
+	<update id="updatePstnDivStateByPstnDivNo">
+		UPDATE CBH_PSTN_DIV SET
+		PSTN_DIV_STATE  = #{STATE}
+		WHERE PSTN_DIV_NO = #{NO}
+	</update>
+
+
+
+	<!-- 결재구분 -->
+	<!--결재구분 등록 -->
+	<insert id="insertApvDiv">
+		INSERT INTO CBH_APV_DIV
+		VALUES(
+		CBH_APV_DIV_seq.nextval,
+		#{NAME},
+		#{STATE}
+		)
+	</insert>
+	<!--결재구분리스트 호출 -->
+	<select id="selectApvDivList" resultType="HashMap">
+		SELECT * FROM
+		CBH_APV_DIV
+	</select>
+	<!--결재구분리스트 개수 호출 -->
+	<select id="selectCountApvDiv" resultType="int">
+		SELECT COUNT(*) FROM
+		CBH_APV_DIV
+	</select>
+	<!--봉사구분 사용여부 수정(사용, 미사용) -->
+	<update id="updateApvDivNameByApvDivNo">
+		UPDATE CBH_APV_DIV SET
+		APV_DIV_NAME = #{NAME}
+		WHERE APV_DIV_NO = #{NO}
+	</update>
+	<update id="updateApvDivStateByApvDivNo">
+		UPDATE CBH_APV_DIV SET
+		APV_DIV_STATE  = #{STATE}
+		WHERE APV_DIV_NO = #{NO}
+	</update>
+
+
+
+	<!-- 알람구분 -->
+	<!--알람구분 등록 -->
+	<insert id="insertAlarmDiv">
+		INSERT INTO CBH_ALARM_DIV
+		VALUES(
+		CBH_ALARM_DIV_seq.nextval,
+		#{NAME},
+		#{STATE}
+		)
+	</insert>
+	<!--알람구분리스트 호출 -->
+	<select id="selectAlarmDivList" resultType="HashMap">
+		SELECT * FROM
+		CBH_ALARM_DIV
+	</select>
+	<!--알람구분리스트 개수 호출 -->
+	<select id="selectCountAlarmDiv" resultType="int">
+		SELECT COUNT(*) FROM
+		CBH_ALARM_DIV
+	</select>
+	<!--봉사구분 사용여부 수정(사용, 미사용) -->
+	<update id="updateAlarmDivNameByAlarmDivNo">
+		UPDATE CBH_ALARM_DIV SET
+		ALARM_DIV_NAME = #{NAME}
+		WHERE ALARM_DIV_NO = #{NO}
+	</update>
+	<update id="updateAlarmDivStateByAlarmDivNo">
+		UPDATE CBH_ALARM_DIV SET
+		ALARM_DIV_STATE  = #{STATE}
+		WHERE ALARM_DIV_NO = #{NO}
+	</update>
+
+
+	<!-- 동아리구분 -->
+	<!--동아리구분 등록 -->
+	<insert id="insertClubDivisionDiv">
+		INSERT INTO CBH_CLUB_DIVISION
+		VALUES(
+		CBH_CLUB_DIVISION_seq.nextval,
+		#{NAME},
+		#{STATE}
+		)
+	</insert>
+	<!--동아리구분리스트 호출 -->
+	<select id="selectClubDivisionList" resultType="HashMap">
+		SELECT * FROM
+		CBH_CLUB_DIVISION
+	</select>
+	<!--동아리구분리스트 개수 호출 -->
+	<select id="selectCountClubDivision" resultType="int">
+		SELECT
+		COUNT(*) FROM CBH_CLUB_DIVISION
+	</select>
+	<!--봉사구분 사용여부 수정(사용, 미사용) -->
+	<update id="updateClubDivisionNameByClubDivisionNo">
+		UPDATE CBH_CLUB_DIVISION SET
+		CLUB_DIVISION_NAME = #{NAME}
+		WHERE CLUB_DIVISION_NO = #{NO}
+	</update>
+	<update id="updateClubDivisionStateByClubDivisionNo">
+		UPDATE CBH_CLUB_DIVISION SET
+		CLUB_DIVISIONV_STATE  = #{STATE}
+		WHERE CLUB_DIVISION_NO = #{NO}
+	</update>
+
+
+
+	<!-- 동아리카테고리구분 -->
+	<!--동아리카테고리구분 등록 -->
+	<insert id="insertClubDeptCategory">
+		INSERT INTO CBH_CLUB_DEPT_CATEGORY
+		VALUES(
+		CBH_CLUB_DEPT_CATEGORY_seq.nextval,
+		#{NAME},
+		#{DESCCRIPTION},
+		NULL,
+		#{STATE});
+	</insert>
+	<!--동아리카테리고리구분 호출 -->
+	<select id="selectClubDeptCategoryList" resultType="HashMap">
+		SELECT *
+		FROM CBH_CLUB_DEPT_CATEGORY
+	</select>
+	<!--동아리카테고리구분 개수 호출 -->
+	<select id="selectCountDeptCategory" resultType="int">
+		SELECT
+		COUNT(*) FROM CBH_CLUB_DEPT_CATEGORY
+	</select>
+	<update
+		id="updateClubDeptCategoryNameByClubDeptCategoryNo"></update>
+	<update
+		id="updateClubDeptCategoryStateByClubDeptCategoryNo"></update>
+
+
 </mapper>

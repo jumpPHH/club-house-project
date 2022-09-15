@@ -18,13 +18,19 @@ import com.ja.cbh.vo.StaffVO;
 public class Staff_DivisionRestController {
 
 	
-	@RequestMapping("/test")
-	public HashMap<String, Object> test (@RequestBody List<Map<String, Object>> data2){
+	@RequestMapping("/saveAndList")
+	public HashMap<String, Object> saveAndList (@RequestBody List<Map<String, Object>> data2){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 			
 			for(Map<String, Object> maps : data2) {
-				System.out.println(maps.get("staff_id"));
+				
+				System.out.println("테이블 " + maps.get("TABLE"));
+				System.out.println("분류 " + maps.get("DIV"));
+				System.out.println("넘버 " + maps.get("NO"));
+				System.out.println("코드명 " + maps.get("NAME"));
+				System.out.println("상태 " + maps.get("STATE"));
 			}
+			
 		return map; 
 	}
 }

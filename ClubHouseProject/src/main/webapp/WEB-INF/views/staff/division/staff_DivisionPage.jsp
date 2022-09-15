@@ -24,7 +24,7 @@ function temp(){
 	var totalCount = document.getElementsByClassName("contentRow").length;
 	
 	for(let i = 0 ; i < totalCount ; i++){
-		if($(".contentRow").children(".NOTI_DIV_NAME:eq("+i+")").text() != 0){
+		if($(".contentRow").children(".NAME:eq("+i+")").text() != 0){
 		}else{
 			alert("코드명은 필수 사항입니다.")
 			return;
@@ -33,44 +33,41 @@ function temp(){
 	
 	
 	for(let i = 0 ; i < count ; i++){
-		var NOTI_DIV_NAME = $(".newRow").children(".NOTI_DIV_NAME:eq("+i+")").text();
-		var NOTI_DIV_STATE = $(".newRow").children(".stateCheck").children("input").val()
-		console.log(NOTI_DIV_NAME)
+		var TABLE = $("#TABLE").val();
+		var NAME = $(".newRow").children(".NAME:eq("+i+")").text();
+		var STATE = $(".newRow").children(".stateCheck").children(".STATE:eq("+i+")").val()
 		var jsonObj = {
+			"TABLE" : TABLE,
 			"DIV": "신규",
-			"NOTI_DIV_NAME":NOTI_DIV_NAME,
-			"NOTI_DIV_STATE":NOTI_DIV_STATE
+			"NAME":NAME,
+			"STATE":STATE
 		}
 		data.push(jsonObj)
 	}
 	
+	var data2 = JSON.stringify(data);
 	
-	
-	
-}
+	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+		 xhr.onreadystatechange = function () {
+	if(xhr.readyState == 4 && xhr.status == 200){
+    var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+	data = [];
 
-
-function test(){
 	
-	
-	
-	
-var data2 = JSON.stringify(data);
-console.log(data2)
-		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-   		 xhr.onreadystatechange = function () {
-     	if(xhr.readyState == 4 && xhr.status == 200){
-         var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-		
 		}      
-    }	
-	xhr.open("post","../restDivision/test",false);
+	}	
+	xhr.open("post","../restDivision/saveAndList",false);
 	xhr.setRequestHeader("Content-type","application/json");
 	xhr.send(data2); 
-		
+}
+
+
 
 	
-}
+	
+	
+	
+
 
 
 
@@ -92,6 +89,7 @@ function codeClick(e) {
 		
 		var tdd = document.createElement("th");
 		tdd.classList.add("col-1");
+		tdd.classList.add("NO");
 		tr.appendChild(tdd);
 		
 		var inputCheck = document.createElement("input")
@@ -107,7 +105,7 @@ function codeClick(e) {
 		
 		var td1 = document.createElement("td");
 		td1.classList.add("col-3");
-		td1.classList.add("NOTI_DIV_NAME");
+		td1.classList.add("NAME");
 		td1.setAttribute("ondblclick","inputBox(this)")
 		tr.appendChild(td1);
 		
@@ -133,8 +131,10 @@ function codeClick(e) {
 		
 		var checkBox = document.createElement("input")
 		checkBox.classList.add("form-check-input");
+		checkBox.classList.add("STATE");
 		checkBox.setAttribute("type","checkBox")
 		checkBox.setAttribute("value","1")
+		checkBox.setAttribute("onclick","stateCheck(this)")
 		checkBox.setAttribute("checked","checked")
 		td4.appendChild(checkBox);
 		
@@ -143,18 +143,26 @@ function codeClick(e) {
 	
 function innerTextPlus(e){
 	var text = $("#edit").val()
-	var NOTI_DIV_NO = $("#edit").closest(".contentRow").children(".NOTI_DIV_NO").text()
-	var NOTI_DIV_NAME = text
-	var NOTI_DIV_STATE = $("#edit").closest(".contentRow").children(".stateCheck").children("input").val();
+	var TABLE = $("#TABLE").val();
+	var NO = $("#edit").closest(".contentRow").children(".NO").text()
+	var NAME = text
+	var STATE = $("#edit").closest(".contentRow").children(".stateCheck").children(".STATE").val();
+	
+	if(NO){
 	var jsonObj = {
+			"TABLE" : TABLE,
 			"DIV": "수정",
-			"NOTI_DIV_NO":NOTI_DIV_NO,
-			"NOTI_DIV_NAME":NOTI_DIV_NAME,
-			"NOTI_DIV_STATE":NOTI_DIV_STATE
+			"NO":NO,
+			"NAME":NAME,
+			"STATE":STATE
 		}
 	data.push(jsonObj)
 	
 	$("#edit").parent().text(text);
+	}else{
+		$("#edit").parent().text(text);
+		return;
+	}
 }
 
 function stateCheck(e){
@@ -163,17 +171,22 @@ function stateCheck(e){
 	}else{
 		e.setAttribute("value","1")
 	}
-	var NOTI_DIV_NO = e.closest(".contentRow").querySelector(".NOTI_DIV_NO").innerText;
-	var NOTI_DIV_NAME = e.closest(".contentRow").querySelector(".NOTI_DIV_NAME").innerText;
-	var NOTI_DIV_STATE = e.value;
+	var TABLE = $("#TABLE").val();
+	var NO = e.closest(".contentRow").querySelector(".NO").innerText;
+	var NAME = e.closest(".contentRow").querySelector(".NAME").innerText;
+	var STATE = e.value;
+	if(NO){
 	var jsonObj = {
+			"TABLE":TABLE,
 			"DIV": "수정",
-			"NOTI_DIV_NO":NOTI_DIV_NO,
-			"NOTI_DIV_NAME":NOTI_DIV_NAME,
-			"NOTI_DIV_STATE":NOTI_DIV_STATE
+			"NO":NO,
+			"NAME":NAME,
+			"STATE":STATE
 		}
 	data.push(jsonObj)
-	
+	}else{
+		return;
+	}
 }
 
 	function inputBox(e){
@@ -211,22 +224,22 @@ function stateCheck(e){
 	
  	function deleteRow(){
  		var count = document.getElementsByClassName("checkedDelte").length;
- 		
+ 		var TABLE = $("#TABLE").val();
  		for(var i = 0 ; i < count ; i++){
- 			var NOTI_DIV_NO = $(".checkedDelte").closest(".contentRow").children(".NOTI_DIV_NO:eq("+i+")").text();
- 	 		var NOTI_DIV_NAME = $(".checkedDelte").closest(".contentRow").children(".NOTI_DIV_NAME:eq("+i+")").text()
- 	 		var NOTI_DIV_STATE = $(".checkedDelte").closest(".contentRow").children(".stateCheck:eq("+i+")").children("input").val();
- 	 		if(NOTI_DIV_NO){
+ 			var NO = $(".checkedDelte").closest(".contentRow").children(".NO:eq("+i+")").text();
+ 	 		var NAME = $(".checkedDelte").closest(".contentRow").children(".NAME:eq("+i+")").text()
+ 	 		var STATE = $(".checkedDelte").closest(".contentRow").children(".stateCheck:eq("+i+")").children("input").val();
+ 	 		if(NO){
  	 			var jsonObj = {
+ 	 					"TABLE":TABLE,
  	 					"DIV": "삭제",
- 	 					"NOTI_DIV_NO":NOTI_DIV_NO,
- 	 					"NOTI_DIV_NAME":NOTI_DIV_NAME,
- 	 					"NOTI_DIV_STATE":NOTI_DIV_STATE
+ 	 					"NO":NO,
+ 	 					"NAME":NAME,
+ 	 					"STATE":STATE
  	 				}
  	 			data.push(jsonObj)
  	 			
  	 			$(".checkedDelte").closest(".contentRow").remove();		
- 	 			
  	 		}else{
  	 			$(".checkedDelte").closest(".contentRow").remove();
  	 		}	
@@ -296,6 +309,7 @@ function stateCheck(e){
 
 							</div>
 							<div class="row">
+							
 								<div class="col-2 me-3 px-0"
 									style="height: 75vh; border: 1px solid;">
 									<table class="table table-hover caption-top table-sm">
@@ -344,7 +358,7 @@ function stateCheck(e){
 
 								</div>
 								<div class="col px-0" style="height: 75vh; border: 1px solid;">
-
+	<input id="TABLE" type="hidden" value="공지">
 									<table class="table table-hover caption-top table-sm">
 										<caption>
 											코드내역 <span>0 건</span>
@@ -362,20 +376,20 @@ function stateCheck(e){
 										
 										<tbody id="codeBody">
 											<c:forEach items="${data }" var="data">
-										
 												<tr class="text-center contentRow">
-												<td class="col-1"><input class="check form-check-input" onclick="deleteValuetoggle(this)" type="checkbox"  class="form-check-input"> </td>
-													<th class="col-1 NOTI_DIV_NO"  >${data.NOTI_DIV_NO }</th>
-													<td class="col-3 NOTI_DIV_NAME" ondblclick="inputBox(this)">${data.NOTI_DIV_NAME }</td>
+													
+													<td  class="col-1"><input class="check form-check-input" onclick="deleteValuetoggle(this)" type="checkbox"  class="form-check-input"> </td>
+													<th class="col-1 NO"  >${data.NOTI_DIV_NO }</th>
+													<td class="col-3 NAME" ondblclick="inputBox(this)">${data.NOTI_DIV_NAME }</td>
 													<td class="col-3" ondblclick="inputBox(this)"></td>
 													<td class="col-3" ondblclick="inputBox(this)"></td>
 													<td class="col-1 stateCheck" class="text-center"><c:choose>
 															<c:when test="${data.NOTI_DIV_STATE eq '1' }">
-																<input onclick="stateCheck(this)" value="1" class="NOTI_DIV_STATE form-check-input" type="checkbox" 
+																<input onclick="stateCheck(this)" value="1" class="STATE form-check-input" type="checkbox" 
 																	checked="checked">
 															</c:when>
 															<c:otherwise>
-																<input onclick="stateCheck(this)" value="2" class="NOTI_DIV_STATE form-check-input" type="checkbox">
+																<input onclick="stateCheck(this)" value="2" class="STATE form-check-input" type="checkbox">
 															</c:otherwise>
 														</c:choose></td>
 												</tr>
