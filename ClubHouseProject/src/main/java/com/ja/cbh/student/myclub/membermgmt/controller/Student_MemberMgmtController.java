@@ -14,13 +14,4 @@ public class Student_MemberMgmtController {
 		
 		return "student/myclub/membermgmt/student_MemberMgmtPage";
 	}
-	
-	
-	@RequestMapping("student_MemberJoinMgmtPage")
-	public String student_MemberJoinMgmtPage() {
-		
-		
-		return "student/myclub/membermgmt/student_MemberJoinMgmtPage";
-	}
-	
 }
