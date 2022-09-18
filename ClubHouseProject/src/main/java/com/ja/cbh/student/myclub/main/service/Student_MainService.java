@@ -21,7 +21,6 @@ public class Student_MainService {
 
 	public HashMap<String, Object> student_MainData(String stud_id) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-
 		// '일반회원'의 정보가 있는가? 없는가? -> (지금 접속한 유저가 일반회원인지 아닌지 알기 위한 로직)
 		map.put("IsNormalMember", student_MainSQLMapper.selectNormalMemberIs(stud_id));
 
@@ -32,7 +31,7 @@ public class Student_MainService {
 
 			Club_StudVO club_StudVO = student_MainSQLMapper.selectNormalMemberIs(stud_id);
 
-			// 내가 속해있는 'CLUB_NO'추출
+			// 내가 속해있는 'CLUB_NO'추출___
 			int club_no = club_StudVO.getClub_no();
 			// 내가 속해있는 동아리의 대표 정보를 가져오는 로직.
 			club_StudVO = student_MainSQLMapper.selectClubBossMemberInfo(club_no);
@@ -46,7 +45,6 @@ public class Student_MainService {
 			map.put("MyClubInfo", student_MainSQLMapper.selectClubInfo(club_no));
 
 		} else {
-
 			// '대표'의 정보가 있는가? 없는가? -> (지금 접속한 유저가 대표인지 아닌지 알기 위한 로직)
 			map.put("IsBoss", student_MainSQLMapper.selectBossMemberIs(stud_id));
 			// 동아리 장 정보를 가져오는 로직
@@ -69,7 +67,7 @@ public class Student_MainService {
 
 			// 동아리에 들가어가 있으면 동아리 넘버가 있으는지? 없는지?
 			int clubNoCount = student_MainSQLMapper.selectClubNoCount(club_no);
-			
+
 			if (clubNoCount > 0) {
 				// 자유 게시판 목록을 출력하는 로직..
 				ArrayList<Club_BoardVO> club_BoardVoList = student_MainSQLMapper.selectClubBoardInfo(club_no);

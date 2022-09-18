@@ -21,8 +21,8 @@ public class Student_MainController {
 	public String student_MainPage(HttpSession session,Model model) {
 		StudVO sessionUserInfo = (StudVO)session.getAttribute("sessionUserInfo");
 		String stud_id = sessionUserInfo.getStud_id();		
-		
-		model.addAttribute("MainData",mainService.student_MainData(stud_id)); 
+	
+		model.addAttribute("MainData",mainService.student_MainData(stud_id));
 		model.addAttribute("MainBoardData",mainService.student_MainBoardData(stud_id));
 		model.addAttribute("MainActData",mainService.student_MainActData(stud_id));
 		
