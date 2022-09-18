@@ -8,6 +8,7 @@ public class Club_StudVO {
 	private String stud_id; //학생 아이디 (외부키)
 	private int club_no; //동아리 정보 (외부키)
 	private String club_stud_grade; //동아리 회원 등급
+	private Date club_stud_appl_date; //동아리 가입 신청 일자
 	private Date club_stud_join_date; //동아리 가입 일자
 	private Date club_stud_drop_date; //동아리 탈퇴 일자
 	private String club_stud_etc; //기타사항 
@@ -17,13 +18,14 @@ public class Club_StudVO {
 		super();
 	}
 
-	public Club_StudVO(int club_stud_no, String stud_id, int club_no, String club_stud_grade, Date club_stud_join_date,
-			Date club_stud_drop_date, String club_stud_etc, String club_stud_state) {
+	public Club_StudVO(int club_stud_no, String stud_id, int club_no, String club_stud_grade, Date club_stud_appl_date,
+			Date club_stud_join_date, Date club_stud_drop_date, String club_stud_etc, String club_stud_state) {
 		super();
 		this.club_stud_no = club_stud_no;
 		this.stud_id = stud_id;
 		this.club_no = club_no;
 		this.club_stud_grade = club_stud_grade;
+		this.club_stud_appl_date = club_stud_appl_date;
 		this.club_stud_join_date = club_stud_join_date;
 		this.club_stud_drop_date = club_stud_drop_date;
 		this.club_stud_etc = club_stud_etc;
@@ -62,6 +64,14 @@ public class Club_StudVO {
 		this.club_stud_grade = club_stud_grade;
 	}
 
+	public Date getClub_stud_appl_date() {
+		return club_stud_appl_date;
+	}
+
+	public void setClub_stud_appl_date(Date club_stud_appl_date) {
+		this.club_stud_appl_date = club_stud_appl_date;
+	}
+
 	public Date getClub_stud_join_date() {
 		return club_stud_join_date;
 	}
@@ -94,5 +104,4 @@ public class Club_StudVO {
 		this.club_stud_state = club_stud_state;
 	}
 
-	
 }

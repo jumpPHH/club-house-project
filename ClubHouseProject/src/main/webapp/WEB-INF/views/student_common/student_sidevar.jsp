@@ -44,7 +44,7 @@ a:hover {
 				<li>
 					<div>공지사항</div>
 					<ul>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>공지사항</div></li>
+						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="/cbh/student/notice/student_NoticeListPage">공지사항</a></div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>봉사공고</div></li>
 					</ul>
 				</li>

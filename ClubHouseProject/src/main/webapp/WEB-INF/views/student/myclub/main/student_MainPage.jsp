@@ -57,7 +57,7 @@
 						<div class="col">
 							<div class="row my-5">
 								<img style="width: 100%; height: 400px;"
-									src="../../resources/img/student/myclub/main/IsMember.png">
+									src="/cbh/resources/img/student/myclub/main/IsMember.png">
 							</div>
 						</div>
 					</div>
