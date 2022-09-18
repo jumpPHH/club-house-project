@@ -35,4 +35,6 @@ public class staff_ApprovalService {
 	public String createApvPk() {
 		return staff_ApprovalSQLMapper.createApvPk();
 	}
+	
+
 }

@@ -42,4 +42,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{APV_ATTACH_FILE_LINK}
 		)
 	</insert>
+	
+	<select id="selectApvBystaffId" resultType="HashMap">
+		SELECT * FROM CBH_APV 
+		WHERE STAFF_ID = #{STAFF_ID}
+	</select>
 </mapper>
