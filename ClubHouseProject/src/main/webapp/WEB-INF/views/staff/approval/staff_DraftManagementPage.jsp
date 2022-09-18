@@ -115,8 +115,16 @@
 		if(xhr.readyState == 4 && xhr.status == 200){
  		 var result = JSON.parse(xhr.responseText);
 		
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
  		tinymce.init({
  			  selector: '#modalBody',  // change this value according to your HTML
+ 			 toolbar: false,
+ 			statusbar: false,
+ 			menubar: false,
  			  readonly: true
  			});
 		var modalBody = document.getElementById("modalBody")
@@ -268,6 +276,43 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+  		<div class="row">
+  			<div class="col">
+  			
+  			</div>
+  			<div class="col">
+  			 	<div class="row">
+  			 		<div class="col">기안자</div>
+  			 	</div>
+  			 	<div class="row">
+  			 		<div class="col">싸인</div>
+  			 	</div>
+  			</div>
+  			 			<div class="col">
+  			 	<div class="row">
+  			 		<div class="col">직급</div>
+  			 	</div>
+  			 	<div class="row">
+  			 		<div class="col">싸인</div>
+  			 	</div>
+  			</div>
+  			 			<div class="col">
+  			 	<div class="row">
+  			 		<div class="col">직급</div>
+  			 	</div>
+  			 	<div class="row">
+  			 		<div class="col">싸인</div>
+  			 	</div>
+  			</div>
+  		</div>
+  		<div class="row">
+  			<div id="apvNo"class="col">
+  				기안번호
+  			</div>
+  			<div id="apvContent"class="col">
+  				제목
+  			</div>
+  		</div>
   		<div class="row">
   			<div class="col" id="modalBody">
   			
