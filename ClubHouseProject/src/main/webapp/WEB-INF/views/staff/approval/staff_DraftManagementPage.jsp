@@ -73,12 +73,18 @@
 											</tr>
 										</thead>
 										<tbody class="text-center">
-											<c:forEach items="${ApvDiv }" var="ApvDiv">
 												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvDiv(this)">
-													<td>${ApvDiv.APV_DIV_NAME }<span class="no" style="display: none;">${ApvDiv.APV_DIV_NO }</span> </td>
+													<td>나의 기안서</td>
 												</tr>
-											</c:forEach>
-
+												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvDiv(this)">
+													<td>진행중 기안서</td>
+												</tr>
+												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvDiv(this)">
+													<td>결재완료 기안서</td>
+												</tr>
+												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvDiv(this)">
+													<td>반려 기안서</td>
+												</tr>
 										</tbody>
 									</table>
 								</div>
