@@ -19,26 +19,126 @@
 	src="https://cdn.tiny.cloud/1/bdorzubong3byjkwg9kl0ayxl92mhi8e0f24djie6ukepumt/tinymce/6/tinymce.min.js"
 	referrerpolicy="origin"></script>
 <script type="text/javascript">
-	function doSubmit(){
-		if(document.getElementById("STAFF_FNL_ID_select").value){
-		}else{
-			alert("최종결재자는 필수입니다.")
-			return;
-		}
+
+	function selectApvType(type,e){
 		
-		var APV_FORM =document.getElementById("APV_FORM");
-		APV_FORM.submit();
-		
-	}
-	
-	function selectApvDiv(e){
-		var selectAPV_DIV_NO = e.querySelector(".no").innerText
-		var APV_DIV_NO = document.getElementById("APV_DIV_NO");
-		APV_DIV_NO.setAttribute("value",selectAPV_DIV_NO);
+		$("#type").val(type)
 		$(".divisionTab").removeClass("table-active");
 		if(e){
 			e.classList.add("table-active")
 		}
+		
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+		 xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200){
+  		 var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+			
+			var ApvBody = document.getElementById("ApvBody");
+  		 	ApvBody.innerHTML="";
+  		 
+  		 	for(var Apv of result.ApvList){
+  		 		
+  		 		var tr = document.createElement("tr");
+  		 		tr.classList.add("text-center");
+  		 		ApvBody.appendChild(tr);
+  		 		
+  		 		
+  		 		var td1 = document.createElement("td");
+  		 		td1.classList.add("col-1");
+  		 		td1.innerText = Apv.APV_NO
+  		 		tr.appendChild(td1);
+  		 		
+  		 		
+  		 		var td2 = document.createElement("td");
+  		 		td2.classList.add("col-1");
+  		 		td2.innerText = Apv.APV_DIV_NAME
+  		 		tr.appendChild(td2);
+  		 		
+  		 		
+  		 		var td3 = document.createElement("td");
+  		 		td3.classList.add("col-7");
+  		 		td3.classList.add("text-start");
+  		 		td3.innerText = Apv.APV_TITLE
+  		 		tr.appendChild(td3);
+  		 		
+  		 		if(Apv.STAFF_MID_NAME != undefined && Apv.APV_MID_DATE == undefined ){
+  		 			var td4 = document.createElement("td");
+  	  		 		td4.classList.add("col-1");
+  	  		 		td4.innerText = Apv.STAFF_MID_NAME;
+  	  		 		tr.appendChild(td4);	
+  		 			console.log("1")
+  		 		}else if(Apv.STAFF_MID_NAME == undefined){
+  		 			var td4 = document.createElement("td");
+  		 			td4.classList.add("col-1");
+  		 			td4.innerText = Apv.STAFF_FNL_NAME;
+  		 			tr.appendChild(td4);
+  		 			console.log("2")
+  		 		}else if(Apv.STAFF_MID_NAME != undefined && Apv.APV_MID_DATE != undefined){
+  		 			var td4 = document.createElement("td");
+  		 			td4.classList.add("col-1");
+  		 			td4.innerText = Apv.STAFF_FNL_NAME;
+  		 			tr.appendChild(td4);
+  		 		}
+  		 		if(Apv.APV_FNL_DATE == undefined){
+  		 		var td5 = document.createElement("td");
+  		 		td5.classList.add("col-1");
+  		 		td5.innerText = "진행중"
+  		 		tr.appendChild(td5);
+  		 		}else{
+  		 			var td5 = document.createElement("td");
+  	  		 		td5.classList.add("col-1");
+  	  		 		td5.innerText = "결재완료"
+  	  		 		tr.appendChild(td5);
+  		 		}
+  		 		
+  		 		var td6 = document.createElement("td");
+  		 		td6.classList.add("col-1");
+  		 		td6.setAttribute("onclick","test('"+Apv.APV_NO+"')")
+  		 		td6.innerText = "보기"
+  		 		tr.appendChild(td6);
+  		 	}
+  		 
+			}      
+		}	
+		xhr.open("post","../restApproval/getApvList",false);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send("type=" + type); 
+		
+	}
+	
+	function test(e){
+		var APV_NO = e;
+		var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
+		console.log(APV_NO)
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+		 xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200){
+ 		 var result = JSON.parse(xhr.responseText);
+		
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		tinymce.init({
+ 			  selector: '#modalBody',  // change this value according to your HTML
+ 			 toolbar: false,
+ 			statusbar: false,
+ 			menubar: false,
+ 			  readonly: true
+ 			});
+		var modalBody = document.getElementById("modalBody")
+		modalBody.innerHTML = result.Apv.APV_CONTENT
+		
+		
+		
+		myModal.show();
+			}      
+		}	
+		xhr.open("post","../restApproval/getApv",false);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send("APV_NO=" + APV_NO); 
+		
 	}
 </script>
 
@@ -64,7 +164,7 @@
 						<div class="col">
 							<div class="row">
 							
-								<div class="col-2 me-3 px-0"
+								<div class="col-1 me-3 px-0"
 									style="height: 75vh; border: 1px solid;">
 									<table class="table table-hover caption-top table-sm">
 										<thead>
@@ -73,80 +173,54 @@
 											</tr>
 										</thead>
 										<tbody class="text-center">
-												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvDiv(this)">
-													<td>나의 기안서</td>
+												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvType('나의결재',this)">
+													<td>나의결재</td>
 												</tr>
-												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvDiv(this)">
-													<td>진행중 기안서</td>
+												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvType('전체',this)">
+													<td>전체</td>
 												</tr>
-												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvDiv(this)">
-													<td>결재완료 기안서</td>
+												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvType('진행중',this)">
+													<td>진행중</td>
 												</tr>
-												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvDiv(this)">
-													<td>반려 기안서</td>
+												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvType('결재완료',this)">
+													<td>결재완료</td>
+												</tr>
+												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvType('반려',this)">
+													<td>반려</td>
 												</tr>
 										</tbody>
 									</table>
 								</div>
 							
 								<div class="col" style="height: 75vh; border: 1px solid;">
-									<form id="APV_FORM" action="./WriteDtaftProcess" method="post" enctype="multipart/form-data">
-									<input type="hidden" name="APV_DIV_NO" id="APV_DIV_NO" value="1">
-									<div class="row mt-2">
-										<div class="col">
-											<div class="input-group input-group-sm mb-1">
-												<span class="input-group-text"
-													style="background-color: white" id="inputGroup-sizing-sm">제목</span>
-												<input type="text" name="APV_TITLE"class="form-control"
-													aria-label="Sizing example input"
-													aria-describedby="inputGroup-sizing-sm">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="input-group input-group-sm mb-1">
-											<label class="input-group-text " for="STAFF_MID_ID_select">중간결재자</label>
-											<select class="form-select" name="STAFF_MID_ID" id="STAFF_MID_ID_select">
-												<option selected></option>
-												<c:forEach items="${Staff }" var="Staff">
-													<c:choose>
-														<c:when test="${Staff.STAFF_ID eq staffVO.staff_id }"></c:when>
-														<c:otherwise>
-															<option value="${Staff.STAFF_ID }">${Staff.STAFF_NAME }</option>
-														</c:otherwise>
-													</c:choose>
-														
-												
-												
-												</c:forEach>
-											</select> <label class="input-group-text" for="STAFF_FNL_ID_select">최종결재자</label>
-											<select name="STAFF_FNL_ID" class="form-select" id="STAFF_FNL_ID_select">
-												<option selected></option>
-												<c:forEach items="${Staff }" var="Staff">
-												<c:choose>
-														<c:when test="${Staff.STAFF_ID eq staffVO.staff_id }"></c:when>
-														<c:otherwise>
-															<option value="${Staff.STAFF_ID }">${Staff.STAFF_NAME }</option>
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-											</select>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-											<div class="input-group-sm mb-1">
-												<input name="FILES" type="file" class="form-control" multiple >
-											</div>
-										</div>
-									</div>
-									<div class="row" >
-										<div class="col">
-											<textarea id="basic-example" name="APV_CONTENT"></textarea>
-											<button class="btn"type="button" onclick="doSubmit()">결재</button>
-										</div>
-									</div>
-								</form>
+									<input id="type" type="hidden" value="전체">
+									<table class="table table-hover caption-top table-sm">
+										<caption>
+											결재내역 <span id="contentCount"></span>
+										</caption>
+										<thead>
+											<tr id="ApvHead" class="text-center">
+												<th class="col-1">기안번호</th>
+												<th class="col-1">구분</th>
+												<th class="col-7">제목</th>
+												<th class="col-1">결재자</th>
+												<th class="col-1">상태</th>
+												<th class="col-1">상세</th>
+											</tr>
+										</thead>
+										<tbody id="ApvBody">
+											<tr class="text-center">
+												<td class="col-1">2022/09/18-1</td>
+												<td class="col-1">지출결의서</td>
+												<td class="col-7 text-start">누구누구의 지출결의서</td>
+												<td class="col-1">테스트부장</td>
+												<td class="col-1">진행중</td>
+												<td class="col-1"  onclick="test()">보기</td>
+											</tr>
+										</tbody>
+									</table>
+						
+						
 								</div>
 
 
@@ -193,6 +267,63 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+  		<div class="row">
+  			<div class="col">
+  			
+  			</div>
+  			<div class="col">
+  			 	<div class="row">
+  			 		<div class="col">기안자</div>
+  			 	</div>
+  			 	<div class="row">
+  			 		<div class="col">싸인</div>
+  			 	</div>
+  			</div>
+  			 			<div class="col">
+  			 	<div class="row">
+  			 		<div class="col">직급</div>
+  			 	</div>
+  			 	<div class="row">
+  			 		<div class="col">싸인</div>
+  			 	</div>
+  			</div>
+  			 			<div class="col">
+  			 	<div class="row">
+  			 		<div class="col">직급</div>
+  			 	</div>
+  			 	<div class="row">
+  			 		<div class="col">싸인</div>
+  			 	</div>
+  			</div>
+  		</div>
+  		<div class="row">
+  			<div id="apvNo"class="col">
+  				기안번호
+  			</div>
+  			<div id="apvContent"class="col">
+  				제목
+  			</div>
+  		</div>
+  		<div class="row">
+  			<div class="col" id="modalBody">
+  			
+  			</div>
+  		</div>
+      
+      
+      </div>
+    </div>
+  </div>
+</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-webcomponent@2/dist/tinymce-webcomponent.min.js"></script>
 	<script type="text/javascript"

@@ -28,7 +28,7 @@
 					<div>전자결재</div>
 					<ul>
 						<li><div onclick="location.href='/cbh/staff/approval/staff_WriteDraftPage'" style="cursor: pointer;"><i class="bi bi-dot"></i>기안서작성</div></li>
-						<li><div onclick="location.href=''" style="cursor: pointer;"><i class="bi bi-dot"></i>기안서통합관리</div></li>
+						<li><div onclick="location.href='/cbh/staff/approval/staff_DraftManagementPage'" style="cursor: pointer;"><i class="bi bi-dot"></i>기안서통합관리</div></li>
 					</ul>
 				</li>
 				<li>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.staff.approval.mapper.staff_ApprovalRestSQLMapper">
+
+
+	<select id="selectApvBystaffId" resultType="HashMap">
+		SELECT 
+			APV_NO, 
+			APV_DIV_NAME, 
+			APV_TITLE, 
+			APV_CONTENT, 
+			STAFF_MID_NAME,
+			APV_MID_DATE,
+			STAFF_NAME AS STAFF_FNL_NAME, 
+			APV_FNL_DATE, 
+			APV_REJECT_RSN,
+			APV_REJECT_DATE,
+			APV_WRITEDATE 
+		FROM CBH_STAFF cs2,(SELECT 
+								APV_NO, 
+								APV_DIV_NAME, 
+								APV_TITLE, 
+								APV_CONTENT, 
+								STAFF_NAME AS STAFF_MID_NAME,
+								APV_MID_DATE, 
+								STAFF_FNL_ID, 
+								APV_FNL_DATE, 
+								APV_REJECT_RSN,
+								APV_REJECT_DATE,
+								APV_WRITEDATE 
+							FROM CBH_STAFF cs RIGHT OUTER JOIN (SELECT 
+																	APV_NO, 
+																	APV_DIV_NAME, 
+																	APV_TITLE, 
+																	APV_CONTENT, 
+																	STAFF_MID_ID,
+																	APV_MID_DATE, 
+																	STAFF_FNL_ID, 
+																	APV_FNL_DATE, 
+																	APV_REJECT_RSN,
+																	APV_REJECT_DATE,
+																	APV_WRITEDATE
+																FROM CBH_APV ch,CBH_APV_DIV cad  
+																WHERE ch.APV_DIV_NO = cad.APV_DIV_NO AND ch.STAFF_ID LIKE #{STAFF_ID}) t1 
+							ON cs.STAFF_ID = t1.STAFF_MID_ID) t2 
+		WHERE cs2.STAFF_ID = t2.STAFF_FNL_ID
+	</select>
+	
+	<select id="selectApvByApvNo" resultType="HashMap">
+		SELECT * FROM CBH_APV WHERE APV_NO LIKE #{APV_NO}
+	</select>
+</mapper>

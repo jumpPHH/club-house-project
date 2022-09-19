@@ -38,6 +38,11 @@ public class staff_ApprovalController {
 		return "/staff/approval/staff_WriteDraftPage";
 	}
 	
+	@RequestMapping("staff_DraftManagementPage")
+	public String staff_DraftManagementPage() {
+		return "/staff/approval/staff_DraftManagementPage";
+	}
+	
 	@RequestMapping("WriteDtaftProcess")
 	public String WriteDtaftProcess(
 			int APV_DIV_NO,
@@ -101,10 +106,6 @@ public class staff_ApprovalController {
 			staff_ApprovalService.inputApvAttachFile(fileParam);
 			}
 		}
-		
-		
-		
-		
 		
 		return "redirect: ./staff_WriteDraftPage";
 	}

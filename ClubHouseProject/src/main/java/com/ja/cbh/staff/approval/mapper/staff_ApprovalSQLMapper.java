@@ -14,4 +14,7 @@ public interface staff_ApprovalSQLMapper {
 	public void insertApvAttachFile(HashMap<String, Object> param);
 	
 	public String createApvPk();
+	
+	
+
 }
