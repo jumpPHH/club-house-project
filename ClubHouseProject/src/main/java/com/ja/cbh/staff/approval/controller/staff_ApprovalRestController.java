@@ -21,19 +21,13 @@ public class staff_ApprovalRestController {
 	@RequestMapping("getApvList")
 	public HashMap<String, Object> getApvList(String type,HttpSession session){
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, Object> param = new HashMap<String, Object>();
 		
 		StaffVO staffVo = (StaffVO)session.getAttribute("sessionUserInfo");
-		if(type.equals("나의결재")) {
-			map.put("ApvList", staff_ApprovalRestService.getApvList(staffVo.getStaff_id()));
-		}else if(type.equals("전체")) {
+		param.put("TYPE", type);
+		param.put("STAFF_ID", staffVo.getStaff_id());
+		map.put("ApvList", staff_ApprovalRestService.getApvList(param));
 			
-		}else if(type.equals("진행중")) {
-			
-		}else if(type.equals("결재완료")) {
-			
-		}else if(type.equals("반려")) {
-			
-		}
 		
 		return map;
 	}	

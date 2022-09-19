@@ -66,13 +66,11 @@
   	  		 		td4.classList.add("col-1");
   	  		 		td4.innerText = Apv.STAFF_MID_NAME;
   	  		 		tr.appendChild(td4);	
-  		 			console.log("1")
   		 		}else if(Apv.STAFF_MID_NAME == undefined){
   		 			var td4 = document.createElement("td");
   		 			td4.classList.add("col-1");
   		 			td4.innerText = Apv.STAFF_FNL_NAME;
   		 			tr.appendChild(td4);
-  		 			console.log("2")
   		 		}else if(Apv.STAFF_MID_NAME != undefined && Apv.APV_MID_DATE != undefined){
   		 			var td4 = document.createElement("td");
   		 			td4.classList.add("col-1");
@@ -125,15 +123,211 @@
  		 var apvContent = document.getElementById("apvContent");
  		 apvContent.innerText = result.Apv.APV_TITLE;
  		 
- 		var APV_WRITEDATE = document.getElementById("APV_WRITEDATE");
- 		APV_WRITEDATE.innerText = moment(result.Apv.APV_WRITEDATE).format('YYYY/MM/DD')
- 		
  		var APPROVAL_NAMES = document.getElementById("APPROVAL_NAMES");
+ 		APPROVAL_NAMES.innerHTML = "";
  		var APPROVAL_IMG = document.getElementById("APPROVAL_IMG");
+ 		APPROVAL_IMG.innerHTML = "";
  		var APPROVAL_DATE = document.getElementById("APPROVAL_DATE");
+ 		APPROVAL_DATE.innerHTML = "";
  		
+ 		var STAFF_FIS_NAME = document.createElement("div");
+ 		STAFF_FIS_NAME.classList.add("col-2");
+ 		STAFF_FIS_NAME.classList.add("border");
+ 		STAFF_FIS_NAME.classList.add("text-center");
+ 		STAFF_FIS_NAME.setAttribute("style","width:5rem;")
+		STAFF_FIS_NAME.innerText = "기안자";
+		APPROVAL_NAMES.appendChild(STAFF_FIS_NAME);
+ 		
+		var APV_FIS_IMG_DIV = document.createElement("div") 
+		APV_FIS_IMG_DIV.classList.add("col-2");
+		APV_FIS_IMG_DIV.classList.add("py-1");
+		APV_FIS_IMG_DIV.classList.add("border");
+		APV_FIS_IMG_DIV.classList.add("text-center");
+		APV_FIS_IMG_DIV.setAttribute("style","width:5rem;");
+		APPROVAL_IMG.appendChild(APV_FIS_IMG_DIV);
+			
+		var APV_FIS_IMG = document.createElement("img");
+		APV_FIS_IMG.classList.add("img-fluid");
+		APV_FIS_IMG.setAttribute("src","/cbh/resources/img/staff/approval.png");
+		APV_FIS_IMG_DIV.appendChild(APV_FIS_IMG);
+ 		
+		var APV_FIS_DATE = document.createElement("div")
+		APV_FIS_DATE.classList.add("col-2");
+		APV_FIS_DATE.classList.add("border");
+		APV_FIS_DATE.classList.add("text-center");
+		APV_FIS_DATE.setAttribute("style","width:5rem;");
+		APV_FIS_DATE.innerText = moment(result.Apv.APV_WRITEDATE).format('YYYY/MM/DD')
+		APPROVAL_DATE.appendChild(APV_FIS_DATE);
+		
+		
  		if(result.Apv.STAFF_MID_NAME != undefined){
+ 			var STAFF_MID_NAME = document.createElement("div");
+ 			STAFF_MID_NAME.classList.add("col-2");
+ 			STAFF_MID_NAME.classList.add("border");
+ 			STAFF_MID_NAME.classList.add("text-center");
+ 			STAFF_MID_NAME.setAttribute("style","width:5rem;")
+ 			STAFF_MID_NAME.innerText = result.Apv.STAFF_MID_NAME;
+ 			APPROVAL_NAMES.appendChild(STAFF_MID_NAME);
+ 			if(result.Apv.APV_MID_DATE != undefined){
+ 				var APV_MID_IMG_DIV = document.createElement("div") 
+ 				APV_MID_IMG_DIV.classList.add("col-2");
+ 				APV_MID_IMG_DIV.classList.add("py-1");
+ 				APV_MID_IMG_DIV.classList.add("border");
+ 				APV_MID_IMG_DIV.classList.add("text-center");
+ 				APV_MID_IMG_DIV.setAttribute("style","width:5rem;");
+ 				APPROVAL_IMG.appendChild(APV_MID_IMG_DIV);
+ 				
+ 				var APV_MID_IMG = document.createElement("img");
+ 				APV_MID_IMG.classList.add("img-fluid");
+ 				APV_MID_IMG.setAttribute("src","/cbh/resources/img/staff/approval.png");
+ 				APV_MID_IMG_DIV.appendChild(APV_MID_IMG);
  			
+ 				var APV_MID_DATE = document.createElement("div")
+ 				APV_MID_DATE.classList.add("col-2");
+ 				APV_MID_DATE.classList.add("border");
+ 				APV_MID_DATE.classList.add("text-center");
+ 				APV_MID_DATE.setAttribute("style","width:5rem;");
+ 				APV_MID_DATE.innerText= moment(result.Apv.APV_MID_DATE).format('YYYY/MM/DD')
+ 				APPROVAL_DATE.appendChild(APV_MID_DATE);
+ 				
+ 				if(result.Apv.APV_FNL_DATE != undefined){
+ 					var STAFF_FNL_NAME = document.createElement("div");
+ 					STAFF_FNL_NAME.classList.add("col-2");
+ 					STAFF_FNL_NAME.classList.add("border");
+ 					STAFF_FNL_NAME.classList.add("text-center");
+ 					STAFF_FNL_NAME.setAttribute("style","width:5rem;")
+ 		 			STAFF_FNL_NAME.innerText = result.Apv.STAFF_FNL_NAME;
+ 		 			APPROVAL_NAMES.appendChild(STAFF_FNL_NAME);
+ 					
+ 					var APV_FML_IMG_DIV = document.createElement("div") 
+ 	 				APV_FML_IMG_DIV.classList.add("col-2");
+ 					APV_FML_IMG_DIV.classList.add("py-1");
+ 					APV_FML_IMG_DIV.classList.add("border");
+ 					APV_FML_IMG_DIV.classList.add("text-center");
+ 					APV_FML_IMG_DIV.setAttribute("style","width:5rem;");
+ 	 				APPROVAL_IMG.appendChild(APV_FML_IMG_DIV);
+ 	 				
+ 	 				var APV_FML_IMG = document.createElement("img");
+ 	 				APV_FML_IMG.classList.add("img-fluid");
+ 	 				APV_FML_IMG.setAttribute("src","/cbh/resources/img/staff/approval.png");
+ 	 				APV_FML_IMG_DIV.appendChild(APV_FML_IMG);
+ 	 			
+ 	 				var APV_FNL_DATE = document.createElement("div")
+ 	 				APV_FNL_DATE.classList.add("col-2");
+ 	 				APV_FNL_DATE.classList.add("border");
+ 	 				APV_FNL_DATE.classList.add("text-center");
+ 	 				APV_FNL_DATE.setAttribute("style","width:5rem;");
+ 	 				APV_FNL_DATE.innerText= moment(result.Apv.APV_FNL_DATE).format('YYYY/MM/DD')
+ 	 				APPROVAL_DATE.appendChild(APV_FNL_DATE);
+ 				}else{
+ 					var STAFF_FNL_NAME = document.createElement("div");
+ 					STAFF_FNL_NAME.classList.add("col-2");
+ 					STAFF_FNL_NAME.classList.add("border");
+ 					STAFF_FNL_NAME.classList.add("text-center");
+ 					STAFF_FNL_NAME.setAttribute("style","width:5rem;")
+ 		 			STAFF_FNL_NAME.innerText = result.Apv.STAFF_FNL_NAME;
+ 		 			APPROVAL_NAMES.appendChild(STAFF_FNL_NAME);
+ 					
+ 					var APV_FML_IMG_DIV = document.createElement("div") 
+ 	 				APV_FML_IMG_DIV.classList.add("col-2");
+ 					APV_FML_IMG_DIV.classList.add("py-1");
+ 					APV_FML_IMG_DIV.classList.add("border");
+ 					APV_FML_IMG_DIV.classList.add("text-center");
+ 					APV_FML_IMG_DIV.setAttribute("style","width:5rem;");
+ 	 				APPROVAL_IMG.appendChild(APV_FML_IMG_DIV);
+ 	 				
+ 	 				var APV_FNL_DATE = document.createElement("div")
+ 	 				APV_FNL_DATE.classList.add("col-2");
+ 	 				APV_FNL_DATE.classList.add("border");
+ 	 				APV_FNL_DATE.classList.add("text-center");
+ 	 				APV_FNL_DATE.setAttribute("style","width:5rem;");
+ 	 				APPROVAL_DATE.appendChild(APV_FNL_DATE);
+ 				}
+ 			}else{
+ 				var APV_MID_IMG_DIV = document.createElement("div") 
+ 				APV_MID_IMG_DIV.classList.add("col-2");
+ 				APV_MID_IMG_DIV.classList.add("py-1");
+ 				APV_MID_IMG_DIV.classList.add("border");
+ 				APV_MID_IMG_DIV.classList.add("text-center");
+ 				APV_MID_IMG_DIV.setAttribute("style","width:5rem;");
+ 				APPROVAL_IMG.appendChild(APV_MID_IMG_DIV);
+ 			
+ 				var APV_MID_DATE = document.createElement("div")
+ 				APV_MID_DATE.classList.add("col-2");
+ 				APV_MID_DATE.classList.add("border");
+ 				APV_MID_DATE.classList.add("text-center");
+ 				APV_MID_DATE.setAttribute("style","width:5rem;");
+ 				APPROVAL_DATE.appendChild(APV_MID_DATE);
+ 			
+ 				var STAFF_FNL_NAME = document.createElement("div");
+				STAFF_FNL_NAME.classList.add("col-2");
+				STAFF_FNL_NAME.classList.add("border");
+				STAFF_FNL_NAME.classList.add("text-center");
+				STAFF_FNL_NAME.setAttribute("style","width:5rem;")
+		 		STAFF_FNL_NAME.innerText = result.Apv.STAFF_FNL_NAME;
+		 		APPROVAL_NAMES.appendChild(STAFF_FNL_NAME);
+					
+				var APV_FML_IMG_DIV = document.createElement("div") 
+ 				APV_FML_IMG_DIV.classList.add("col-2");
+				APV_FML_IMG_DIV.classList.add("py-1");
+				APV_FML_IMG_DIV.classList.add("border");
+				APV_FML_IMG_DIV.classList.add("text-center");
+				APV_FML_IMG_DIV.setAttribute("style","width:5rem;");
+ 				APPROVAL_IMG.appendChild(APV_FML_IMG_DIV);
+ 				
+ 				var APV_FNL_DATE = document.createElement("div")
+ 				APV_FNL_DATE.classList.add("col-2");
+ 				APV_FNL_DATE.classList.add("border");
+ 				APV_FNL_DATE.classList.add("text-center");
+ 				APV_FNL_DATE.setAttribute("style","width:5rem;");
+ 				APPROVAL_DATE.appendChild(APV_FNL_DATE);
+ 			}
+ 		}else {
+ 			var STAFF_FNL_NAME = document.createElement("div");
+ 			STAFF_FNL_NAME.classList.add("col-2");
+ 			STAFF_FNL_NAME.classList.add("border");
+ 			STAFF_FNL_NAME.classList.add("text-center");
+ 			STAFF_FNL_NAME.setAttribute("style","width:5rem;")
+ 			STAFF_FNL_NAME.innerText = result.Apv.STAFF_FNL_NAME;
+ 			APPROVAL_NAMES.appendChild(STAFF_FNL_NAME);
+ 			
+ 			if(result.Apv.APV_FNL_DATE != undefined){
+ 				var APV_FML_IMG_DIV = document.createElement("div") 
+ 				APV_FML_IMG_DIV.classList.add("col-2");
+				APV_FML_IMG_DIV.classList.add("py-1");
+				APV_FML_IMG_DIV.classList.add("border");
+				APV_FML_IMG_DIV.classList.add("text-center");
+				APV_FML_IMG_DIV.setAttribute("style","width:5rem;");
+ 				APPROVAL_IMG.appendChild(APV_FML_IMG_DIV);
+ 				
+ 				var APV_FML_IMG = document.createElement("img");
+ 				APV_FML_IMG.classList.add("img-fluid");
+ 				APV_FML_IMG.setAttribute("src","/cbh/resources/img/staff/approval.png");
+ 				APV_MID_IMG_DIV.appendChild(APV_FML_IMG);
+ 			
+ 				var APV_FNL_DATE = document.createElement("div")
+ 				APV_FNL_DATE.classList.add("col-2");
+ 				APV_FNL_DATE.classList.add("border");
+ 				APV_FNL_DATE.classList.add("text-center");
+ 				APV_FNL_DATE.setAttribute("style","width:5rem;");
+ 				APV_FNL_DATE.innerText= moment(result.Apv.APV_FNL_DATE).format('YYYY/MM/DD')
+ 				APPROVAL_DATE.appendChild(APV_FNL_DATE);
+ 			}else{
+ 				var APV_FML_IMG_DIV = document.createElement("div") 
+ 				APV_FML_IMG_DIV.classList.add("col-2");
+				APV_FML_IMG_DIV.classList.add("py-1");
+				APV_FML_IMG_DIV.classList.add("border");
+				APV_FML_IMG_DIV.classList.add("text-center");
+				APV_FML_IMG_DIV.setAttribute("style","width:5rem;");
+ 				APPROVAL_IMG.appendChild(APV_FML_IMG_DIV);
+ 				
+ 				var APV_FNL_DATE = document.createElement("div")
+ 				APV_FNL_DATE.classList.add("col-2");
+ 				APV_FNL_DATE.classList.add("border");
+ 				APV_FNL_DATE.classList.add("text-center");
+ 				APV_FNL_DATE.setAttribute("style","width:5rem;");
+ 				APPROVAL_DATE.appendChild(APV_FNL_DATE);
+ 			}
  		}
  		
  		
@@ -281,39 +475,22 @@
 				<div class="modal-body">
 					<div id="APPROVAL_NAMES"class="row justify-content-end"
 						style="height: 3.5%; font-size: 0.9rem">
-						<div id="STAFF_FIS_NAME" class="col-2 border text-center" style="width: 5rem">
-							기안자</div>
-						<div class="col-2 border text-center" style="width: 5rem">
-							직급</div>
-						<div class="col-2 border text-center" style="width: 5rem">
-							직급</div>
+	
 					</div>
 					<div id="APPROVAL_IMG" class="row justify-content-end" style="height: 8.5%;">
-						<div class="col-2 py-1 border text-center" style="width: 5rem">
-							<img class="img-fluid"
-								src="/cbh/resources/img/staff/approval.png">
-						</div>
-						<div class="col-2 py-1 border text-center" style="width: 5rem">
-						</div>
-						<div class="col-2 py-1 border text-center" style="width: 5rem">
-						</div>
+			
 					</div>
 					<div id="APPROVAL_DATE"class="row justify-content-end"
 						style="height: 2.5%; font-size: 0.5rem">
-						<div id="APV_WRITEDATE"class="col-2 border text-center" style="width: 5rem">
-							</div>
-						<div class="col-2 border text-center" style="width: 5rem">
-							날짜</div>
-						<div class="col-2 border text-center" style="width: 5rem">
-							날짜</div>
+			
 					</div>
-					<div class="row" style="height: 3%">
+					<div class="row my-1" style="height: 3%">
 						<div class="col-auto">기안번호</div>
 						<div id="apvNo" class="col-2"></div>
 						<div class="col-1">제목</div>
 						<div id="apvContent" class="col"></div>
 					</div>
-					<div id="modalBodyRow" class="row" style="height: 85%">
+					<div id="modalBodyRow" class="row" style="height: 82%">
 						<div class="col">
 							<textarea style="height: 100%" id="modalBody"></textarea>
 						</div>

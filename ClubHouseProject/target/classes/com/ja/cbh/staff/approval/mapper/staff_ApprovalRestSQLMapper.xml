@@ -47,6 +47,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 																WHERE ch.APV_DIV_NO = cad.APV_DIV_NO AND ch.STAFF_ID LIKE #{STAFF_ID}) t1 
 							ON cs.STAFF_ID = t1.STAFF_MID_ID) t2 
 		WHERE cs2.STAFF_ID = t2.STAFF_FNL_ID
+		<if test="TYPE !='null'">
+		<choose>
+			<when test="TYPE =='전체'">
+				
+			</when>
+			<when test="TYPE =='진행중'">
+				AND t2.APV_FNL_DATE IS NULL
+			</when>
+			<when test="TYPE =='결재완료'">
+				AND t2.APV_FNL_DATE IS NOT NULL
+			</when>
+			<when test="TYPE =='반려'">
+				AND t2.APV_REJECT_DATE IS NOT NULL
+			</when>
+		</choose> 
+		</if>
+		 ORDER BY APV_NO DESC
 	</select>
 	
 	<select id="selectApvByApvNo" resultType="HashMap">

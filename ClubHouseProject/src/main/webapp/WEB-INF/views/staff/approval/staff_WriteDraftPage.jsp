@@ -18,11 +18,6 @@
 	src="https://cdn.tiny.cloud/1/bdorzubong3byjkwg9kl0ayxl92mhi8e0f24djie6ukepumt/tinymce/6/tinymce.min.js"
 	referrerpolicy="origin"></script>
 <script type="text/javascript">
-document.addEventListener('focusin', (e) => {
-	  if (e.target.closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root") !== null) {
-	    e.stopImmediatePropagation();
-	  }
-	});
 tinymce.init({
 	selector : 'textarea#basic-example',
 	statusbar : false,
@@ -41,9 +36,27 @@ tinymce.init({
 			+ 'bold italic backcolor | alignleft aligncenter '
 			+ 'alignright alignjustify | bullist numlist outdent indent | '
 			+ 'removeformat table| help',
-	content_style : 'body { font-family: 맑은고딕,Arial,sans-serif; font-size:16px }'
+	content_style : 'body { font-family: 맑은고딕,Arial,sans-serif; font-size:16px }',
+	 setup: (editor) => {
+		    editor.on('init', () => {
+		      editor.getContainer().style.transition='border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out';
+		    });
+		    editor.on('focus', () => {
+		      editor.getContainer().style.boxShadow='0 0 0 .2rem rgba(0, 123, 255, .25)';
+		      editor.getContainer().style.borderColor='#80bdff';
+		    });
+		    editor.on('blur', () => {
+		      editor.getContainer().style.boxShadow='';
+		      editor.getContainer().style.borderColor='';
+		    });
+		  }
 
 });
+document.addEventListener('focusin', (e) => {
+	  if (e.target.closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root") !== null) {
+	    e.stopImmediatePropagation();
+	  }
+	});
 function doSubmit(){
 		if(document.getElementById("STAFF_FNL_ID_select").value){
 		}else{

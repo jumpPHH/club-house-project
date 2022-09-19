@@ -14,8 +14,8 @@ public class staff_ApprovalRestService {
 	@Autowired
 	private staff_ApprovalRestSQLMapper staff_ApprovalRestSQLMapper;
 	
-	public ArrayList<HashMap<String, Object>> getApvList(String STAFF_ID){
-		return staff_ApprovalRestSQLMapper.selectApvBystaffId(STAFF_ID);
+	public ArrayList<HashMap<String, Object>> getApvList(HashMap<String, Object> param){
+		return staff_ApprovalRestSQLMapper.selectApvBystaffId(param);
 	}
 	
 	public HashMap<String, Object> getApv(String APV_NO){
