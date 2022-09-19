@@ -66,9 +66,10 @@ public class staff_ApprovalController {
 		param.put("STAFF_FNL_ID", STAFF_FNL_ID);
 		staff_ApprovalService.inputApv(param);
 
-		if(FILES.length != 0) {
 			for(MultipartFile file : FILES) {
-		
+			if(file.isEmpty()) {
+					continue;
+			}
 			String rootFilePath = "C:/uploadFiles/";
 			String getOriginalFilename= file.getOriginalFilename();
 			
@@ -105,7 +106,7 @@ public class staff_ApprovalController {
 			
 			staff_ApprovalService.inputApvAttachFile(fileParam);
 			}
-		}
+		
 		
 		return "redirect: ./staff_WriteDraftPage";
 	}

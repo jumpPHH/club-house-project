@@ -12,14 +12,39 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="/cbh/resources/summernote/css/asdasdasd_style.css">
+
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
 <script
 	src="https://cdn.tiny.cloud/1/bdorzubong3byjkwg9kl0ayxl92mhi8e0f24djie6ukepumt/tinymce/6/tinymce.min.js"
 	referrerpolicy="origin"></script>
 <script type="text/javascript">
-	function doSubmit(){
+document.addEventListener('focusin', (e) => {
+	  if (e.target.closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root") !== null) {
+	    e.stopImmediatePropagation();
+	  }
+	});
+tinymce.init({
+	selector : 'textarea#basic-example',
+	statusbar : false,
+	language : 'ko_KR',
+	skin: 'bootstrap',
+	icons: 'bootstrap',
+	font_family_formats : '맑은고딕=맑은고딕; 궁서체=궁서체;',
+	plugins : [ 'advlist', 'autolink', 'lists',
+			'link', 'image', 'charmap',
+			'preview', 'anchor',
+			'searchreplace', 'visualblocks',
+			'code', 'fullscreen',
+			'insertdatetime', 'media', 'table',
+			'help', 'wordcount' ],
+	toolbar : ' | blocks fontfamily| '
+			+ 'bold italic backcolor | alignleft aligncenter '
+			+ 'alignright alignjustify | bullist numlist outdent indent | '
+			+ 'removeformat table| help',
+	content_style : 'body { font-family: 맑은고딕,Arial,sans-serif; font-size:16px }'
+
+});
+function doSubmit(){
 		if(document.getElementById("STAFF_FNL_ID_select").value){
 		}else{
 			alert("최종결재자는 필수입니다.")
@@ -136,7 +161,12 @@
 									</div>
 									<div class="row" >
 										<div class="col">
-											<textarea id="basic-example" name="APV_CONTENT"></textarea>
+											<textarea style="height: 58vh" id="basic-example" name="APV_CONTENT"></textarea>
+											
+
+											
+											
+											
 											<button class="btn"type="button" onclick="doSubmit()">결재</button>
 										</div>
 									</div>
@@ -155,31 +185,7 @@
 
 
 
-					<script type="text/javascript">
-						tinymce.init({
-									selector : 'textarea#basic-example',
-									statusbar : false,
-									language : 'ko_KR',
-									 skin: 'bootstrap',
-									  icons: 'bootstrap',
-									height : 650,
-									font_family_formats : '맑은고딕=맑은고딕; 궁서체=궁서체;',
-									plugins : [ 'advlist', 'autolink', 'lists',
-											'link', 'image', 'charmap',
-											'preview', 'anchor',
-											'searchreplace', 'visualblocks',
-											'code', 'fullscreen',
-											'insertdatetime', 'media', 'table',
-											'help', 'wordcount' ],
-									toolbar : ' | blocks fontfamily| '
-											+ 'bold italic backcolor | alignleft aligncenter '
-											+ 'alignright alignjustify | bullist numlist outdent indent | '
-											+ 'removeformat table| help',
-									content_style : 'body { font-family: 맑은고딕,Arial,sans-serif; font-size:16px }'
-
-								});
-					</script>
-
+					
 
 					<!-- 여기다 작성하세요 -->
 

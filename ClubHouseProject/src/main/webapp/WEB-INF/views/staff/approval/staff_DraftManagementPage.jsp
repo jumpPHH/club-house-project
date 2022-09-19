@@ -12,12 +12,12 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="/cbh/resources/summernote/css/asdasdasd_style.css">
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
 <script
 	src="https://cdn.tiny.cloud/1/bdorzubong3byjkwg9kl0ayxl92mhi8e0f24djie6ukepumt/tinymce/6/tinymce.min.js"
 	referrerpolicy="origin"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script type="text/javascript">
 
 	function selectApvType(type,e){
@@ -84,10 +84,15 @@
   		 		td5.classList.add("col-1");
   		 		td5.innerText = "진행중"
   		 		tr.appendChild(td5);
-  		 		}else{
+  		 		}else if(Apv.APV_FNL_DATE != undefined){
   		 			var td5 = document.createElement("td");
   	  		 		td5.classList.add("col-1");
   	  		 		td5.innerText = "결재완료"
+  	  		 		tr.appendChild(td5);
+  		 		}else if(Apv.APV_REJECT_DATE != undefined){
+  		 			var td5 = document.createElement("td");
+  	  		 		td5.classList.add("col-1");
+  	  		 		td5.innerText = "반려"
   	  		 		tr.appendChild(td5);
   		 		}
   		 		
@@ -109,37 +114,57 @@
 	function test(e){
 		var APV_NO = e;
 		var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
-		console.log(APV_NO)
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
 		 xhr.onreadystatechange = function () {
 		if(xhr.readyState == 4 && xhr.status == 200){
  		 var result = JSON.parse(xhr.responseText);
+ 		
+ 		 var apvNo = document.getElementById("apvNo");
+ 		 apvNo.innerText = result.Apv.APV_NO;
+ 		 
+ 		 var apvContent = document.getElementById("apvContent");
+ 		 apvContent.innerText = result.Apv.APV_TITLE;
+ 		 
+ 		var APV_WRITEDATE = document.getElementById("APV_WRITEDATE");
+ 		APV_WRITEDATE.innerText = moment(result.Apv.APV_WRITEDATE).format('YYYY/MM/DD')
+ 		
+ 		var APPROVAL_NAMES = document.getElementById("APPROVAL_NAMES");
+ 		var APPROVAL_IMG = document.getElementById("APPROVAL_IMG");
+ 		var APPROVAL_DATE = document.getElementById("APPROVAL_DATE");
+ 		
+ 		if(result.Apv.STAFF_MID_NAME != undefined){
+ 			
+ 		}
+ 		
+ 		
+ 		
+ 		
+ 		var modalBody = document.getElementById("modalBody")
+ 		tinyMCE.activeEditor.setContent(result.Apv.APV_CONTENT);
+ 		 
 		
- 		 
- 		 
- 		 
- 		 
- 		 
- 		tinymce.init({
- 			  selector: '#modalBody',  // change this value according to your HTML
- 			 toolbar: false,
- 			statusbar: false,
- 			menubar: false,
- 			  readonly: true
- 			});
-		var modalBody = document.getElementById("modalBody")
-		modalBody.innerHTML = result.Apv.APV_CONTENT
-		
-		
-		
+ 		
+ 		
 		myModal.show();
 			}      
 		}	
-		xhr.open("post","../restApproval/getApv",false);
+		xhr.open("post","../restApproval/getApv");
 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhr.send("APV_NO=" + APV_NO); 
 		
 	}
+	
+			tinymce.init({
+ 			selector: 'textarea#modalBody',  // change this value according to your HTML
+ 			toolbar: false,
+ 			statusbar: false,
+ 			language : 'ko_KR',
+ 			skin: 'bootstrap',
+ 			icons: 'bootstrap',
+ 			menubar: false,
+ 			readonly: true
+ 			});
+ 		
 </script>
 
 
@@ -163,7 +188,7 @@
 					<div class="row px-3">
 						<div class="col">
 							<div class="row">
-							
+
 								<div class="col-1 me-3 px-0"
 									style="height: 75vh; border: 1px solid;">
 									<table class="table table-hover caption-top table-sm">
@@ -173,25 +198,30 @@
 											</tr>
 										</thead>
 										<tbody class="text-center">
-												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvType('나의결재',this)">
-													<td>나의결재</td>
-												</tr>
-												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvType('전체',this)">
-													<td>전체</td>
-												</tr>
-												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvType('진행중',this)">
-													<td>진행중</td>
-												</tr>
-												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvType('결재완료',this)">
-													<td>결재완료</td>
-												</tr>
-												<tr class="divisionTab"style="cursor: pointer;"onclick="selectApvType('반려',this)">
-													<td>반려</td>
-												</tr>
+											<tr class="divisionTab" style="cursor: pointer;"
+												onclick="selectApvType('나의결재',this)">
+												<td>나의결재</td>
+											</tr>
+											<tr class="divisionTab" style="cursor: pointer;"
+												onclick="selectApvType('전체',this)">
+												<td>전체</td>
+											</tr>
+											<tr class="divisionTab" style="cursor: pointer;"
+												onclick="selectApvType('진행중',this)">
+												<td>진행중</td>
+											</tr>
+											<tr class="divisionTab" style="cursor: pointer;"
+												onclick="selectApvType('결재완료',this)">
+												<td>결재완료</td>
+											</tr>
+											<tr class="divisionTab" style="cursor: pointer;"
+												onclick="selectApvType('반려',this)">
+												<td>반려</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
-							
+
 								<div class="col" style="height: 75vh; border: 1px solid;">
 									<input id="type" type="hidden" value="전체">
 									<table class="table table-hover caption-top table-sm">
@@ -215,12 +245,12 @@
 												<td class="col-7 text-start">누구누구의 지출결의서</td>
 												<td class="col-1">테스트부장</td>
 												<td class="col-1">진행중</td>
-												<td class="col-1"  onclick="test()">보기</td>
+												<td class="col-1" onclick="test()">보기</td>
 											</tr>
 										</tbody>
 									</table>
-						
-						
+
+
 								</div>
 
 
@@ -231,99 +261,71 @@
 							</div>
 						</div>
 					</div>
-
-
-
-
-					<script type="text/javascript">
-						tinymce.init({
-									selector : 'textarea#basic-example',
-									statusbar : false,
-									language : 'ko_KR',
-									 skin: 'bootstrap',
-									  icons: 'bootstrap',
-									height : 650,
-									font_family_formats : '맑은고딕=맑은고딕; 궁서체=궁서체;',
-									plugins : [ 'advlist', 'autolink', 'lists',
-											'link', 'image', 'charmap',
-											'preview', 'anchor',
-											'searchreplace', 'visualblocks',
-											'code', 'fullscreen',
-											'insertdatetime', 'media', 'table',
-											'help', 'wordcount' ],
-									toolbar : ' | blocks fontfamily| '
-											+ 'bold italic backcolor | alignleft aligncenter '
-											+ 'alignright alignjustify | bullist numlist outdent indent | '
-											+ 'removeformat table| help',
-									content_style : 'body { font-family: 맑은고딕,Arial,sans-serif; font-size:16px }'
-
-								});
-					</script>
-
-
 					<!-- 여기다 작성하세요 -->
 
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-  		<div class="row">
-  			<div class="col">
-  			
-  			</div>
-  			<div class="col">
-  			 	<div class="row">
-  			 		<div class="col">기안자</div>
-  			 	</div>
-  			 	<div class="row">
-  			 		<div class="col">싸인</div>
-  			 	</div>
-  			</div>
-  			 			<div class="col">
-  			 	<div class="row">
-  			 		<div class="col">직급</div>
-  			 	</div>
-  			 	<div class="row">
-  			 		<div class="col">싸인</div>
-  			 	</div>
-  			</div>
-  			 			<div class="col">
-  			 	<div class="row">
-  			 		<div class="col">직급</div>
-  			 	</div>
-  			 	<div class="row">
-  			 		<div class="col">싸인</div>
-  			 	</div>
-  			</div>
-  		</div>
-  		<div class="row">
-  			<div id="apvNo"class="col">
-  				기안번호
-  			</div>
-  			<div id="apvContent"class="col">
-  				제목
-  			</div>
-  		</div>
-  		<div class="row">
-  			<div class="col" id="modalBody">
-  			
-  			</div>
-  		</div>
-      
-      
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content" style="height: 90vh;">
+				<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div id="APPROVAL_NAMES"class="row justify-content-end"
+						style="height: 3.5%; font-size: 0.9rem">
+						<div id="STAFF_FIS_NAME" class="col-2 border text-center" style="width: 5rem">
+							기안자</div>
+						<div class="col-2 border text-center" style="width: 5rem">
+							직급</div>
+						<div class="col-2 border text-center" style="width: 5rem">
+							직급</div>
+					</div>
+					<div id="APPROVAL_IMG" class="row justify-content-end" style="height: 8.5%;">
+						<div class="col-2 py-1 border text-center" style="width: 5rem">
+							<img class="img-fluid"
+								src="/cbh/resources/img/staff/approval.png">
+						</div>
+						<div class="col-2 py-1 border text-center" style="width: 5rem">
+						</div>
+						<div class="col-2 py-1 border text-center" style="width: 5rem">
+						</div>
+					</div>
+					<div id="APPROVAL_DATE"class="row justify-content-end"
+						style="height: 2.5%; font-size: 0.5rem">
+						<div id="APV_WRITEDATE"class="col-2 border text-center" style="width: 5rem">
+							</div>
+						<div class="col-2 border text-center" style="width: 5rem">
+							날짜</div>
+						<div class="col-2 border text-center" style="width: 5rem">
+							날짜</div>
+					</div>
+					<div class="row" style="height: 3%">
+						<div class="col-auto">기안번호</div>
+						<div id="apvNo" class="col-2"></div>
+						<div class="col-1">제목</div>
+						<div id="apvContent" class="col"></div>
+					</div>
+					<div id="modalBodyRow" class="row" style="height: 85%">
+						<div class="col">
+							<textarea style="height: 100%" id="modalBody"></textarea>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-webcomponent@2/dist/tinymce-webcomponent.min.js"></script>
 	<script type="text/javascript"
