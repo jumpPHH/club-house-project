@@ -13,6 +13,8 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
+ <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style>
 a {
 	text-decoration: none;
@@ -28,6 +30,46 @@ a:hover {
 	letter-spacing: 0.05vw;
 }
 </style>
+
+<script type="text/javascript">
+	function updateApprove(target) {
+			
+		var club_stud_no = $(target).parent().children('.club_stud_no').text();
+
+		var xhr = new XMLHttpRequest(); 
+		xhr.onreadystatechange = function () {
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var result = JSON.parse(xhr.responseText);
+				
+			}
+		}
+		
+		xhr.open("get" , "/cbh/student/myclub/membermgmt/updateApprove?club_stud_no=" + club_stud_no);
+		xhr.send();
+		
+		location.reload();
+	}
+	
+	function deleteApprove(target) {
+		
+		var club_stud_no = $(target).parent().children('.club_stud_no').text();
+		
+		alert(club_stud_no);
+		
+		var xhr = new XMLHttpRequest(); 
+		xhr.onreadystatechange = function () {
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var result = JSON.parse(xhr.responseText);
+					
+			}
+		}
+		
+		xhr.open("get" , "/cbh/student/myclub/membermgmt/deleteApprove?club_stud_no=" + club_stud_no); 
+		xhr.send();
+		
+		location.reload();
+	}
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/student_common/student_header.jsp"></jsp:include>
@@ -101,11 +143,12 @@ a:hover {
 													pattern="yy.MM.dd" /></td>
 											<td>${ApplicantMemberDataList[i].ApplicantMemberInfoVO.stud_gender }</td>
 											<td>
-												<button type="button" class="btn btn-danger">가입 승인</button>
+												<input type="text" class="btn btn-secondary" onclick="updateApprove(this)" value="가입 승인">
+												<div hidden="hidden" class="club_stud_no">${ApplicantMemberDataList[i].ApplicantMemberInfoVO.club_stud_no}</div>
 											</td>
 											<td>
-												<button type="button" class="btn btn-secondary">가입
-													거절</button>
+												<input type="text" class="btn btn-danger" onclick="deleteApprove(this)" value="가입 거절">
+												<div hidden="hidden" class="club_stud_no">${ApplicantMemberDataList[i].ApplicantMemberInfoVO.club_stud_no}</div>	
 											</td>
 										</tr>
 

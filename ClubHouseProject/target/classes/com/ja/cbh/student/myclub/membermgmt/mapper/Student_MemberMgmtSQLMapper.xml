@@ -90,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectApplicantMemberInfo" resultType="com.ja.cbh.vo.Club_ApplicantMemberInfoVO">
 		SELECT t2.* FROM(
 		SELECT t1.* , ROWNUM as rnum FROM (
-		SELECT ccs.STUD_ID , cs.STUD_NAME , ccs.CLUB_STUD_APPL_DATE , cs.STUD_GENDER
+		SELECT ccs.CLUB_STUD_NO , ccs.STUD_ID , cs.STUD_NAME , ccs.CLUB_STUD_APPL_DATE , cs.STUD_GENDER
 		FROM CBH_STUD cs , CBH_CLUB_STUD ccs
 		WHERE cs.STUD_ID = ccs.STUD_ID
 		AND ccs.CLUB_NO = #{club_no}

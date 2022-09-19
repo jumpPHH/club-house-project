@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Club_ApplicantMemberInfoVO {
 	
+	private int club_stud_no;
 	private String stud_id;
 	private String stud_name;
 	private Date club_stud_appl_date;
@@ -13,12 +14,22 @@ public class Club_ApplicantMemberInfoVO {
 		super();
 	}
 
-	public Club_ApplicantMemberInfoVO(String stud_id, String stud_name, Date club_stud_appl_date, String stud_gender) {
+	public Club_ApplicantMemberInfoVO(int club_stud_no, String stud_id, String stud_name, Date club_stud_appl_date,
+			String stud_gender) {
 		super();
+		this.club_stud_no = club_stud_no;
 		this.stud_id = stud_id;
 		this.stud_name = stud_name;
 		this.club_stud_appl_date = club_stud_appl_date;
 		this.stud_gender = stud_gender;
+	}
+
+	public int getClub_stud_no() {
+		return club_stud_no;
+	}
+
+	public void setClub_stud_no(int club_stud_no) {
+		this.club_stud_no = club_stud_no;
 	}
 
 	public String getStud_id() {
@@ -52,4 +63,6 @@ public class Club_ApplicantMemberInfoVO {
 	public void setStud_gender(String stud_gender) {
 		this.stud_gender = stud_gender;
 	}
+
+	
 }

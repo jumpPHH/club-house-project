@@ -13,6 +13,8 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style>
 a {
 	text-decoration: none;
@@ -28,6 +30,44 @@ a:hover {
 	letter-spacing: 0.05vw;
 }
 </style>
+
+<script type="text/javascript">
+	function changePosition(target) {
+
+		var club_stud_no = $(target).parent().parent().parent().children('.club_stud_no').text();
+		var club_stud_grade = $(target).val();
+
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var result = JSON.parse(xhr.responseText);
+
+			}
+		}
+
+		xhr.open("post","/cbh/student/myclub/membermgmt/updateClubMemberChangePosition");
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send("club_stud_no=" + club_stud_no + "&club_stud_grade="+ club_stud_grade);
+		location.reload();
+	}
+
+	function deleteMemberInfo(target) {
+
+		var club_stud_no = $(target).parent().children('.club_stud_no').text();
+
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var result = JSON.parse(xhr.responseText);
+
+			}
+		}
+
+		xhr.open("get","/cbh/student/myclub/membermgmt/deleteMemberInfo?club_stud_no="+ club_stud_no);
+		xhr.send();
+		location.reload();
+	}
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/student_common/student_header.jsp"></jsp:include>
@@ -66,8 +106,10 @@ a:hover {
 									href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
 									style="font-size: 19px;">가입 관리</a>
 							</div>
-							<div class="col" style="text-align: center;">[동아리 총 멤버 : ${ActiveMemberCount} 명]</div>
-							<div class="col" style="text-align: center;">[검색 결과 : ${ActiveMemberSelectCount} 명]</div>
+							<div class="col" style="text-align: center;">[동아리 총 멤버 :
+								${ActiveMemberCount} 명]</div>
+							<div class="col" style="text-align: center;">[검색 결과 :
+								${ActiveMemberSelectCount} 명]</div>
 						</div>
 
 						<div class="row">
@@ -85,7 +127,7 @@ a:hover {
 										<th scope="col"></th>
 									</tr>
 								</thead>
-								
+
 								<c:if test="${ActiveMemberDataList.size() == 0}">
 									<tbody>
 										<tr>
@@ -117,20 +159,38 @@ a:hover {
 												<td>${ActiveMemberDataList[i].MemberInfoDyVO.stud_gender}</td>
 												<td>${ActiveMemberDataList[i].MemberInfoDyVO.stud_phone}</td>
 												<td>
+
 													<div class="dropdown">
+
 														<button class="btn btn-secondary dropdown-toggle"
 															type="button" data-bs-toggle="dropdown"
 															aria-expanded="false">직책 임명</button>
+
 														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">부회장으로 임명</a></li>
-															<li><a class="dropdown-item" href="#">총무로 임명</a></li>
-															<li><a class="dropdown-item" href="#">회계로 임명</a></li>
-															<li><a class="dropdown-item" href="#">서기로 임명</a></li>
+															<li><input type="text"
+																class="btn btn-outline-secondary"
+																onclick="changePosition(this)" value="부회장"></li>
+															<li><input type="text"
+																class="btn btn-outline-secondary"
+																onclick="changePosition(this)" value="총무"></li>
+															<li><input type="text"
+																class="btn btn-outline-secondary"
+																onclick="changePosition(this)" value="화계"></li>
+															<li><input type="text"
+																class="btn btn-outline-secondary"
+																onclick="changePosition(this)" value="서기"></li>
+															<li><input type="text"
+																class="btn btn-outline-secondary"
+																onclick="changePosition(this)" value="일반회원"></li>
 														</ul>
+
+														<div hidden="hidden" class="club_stud_no">${ActiveMemberDataList[i].MemberInfoDyVO.club_stud_no}</div>
 													</div>
+
 												</td>
-												<td>
-													<button type="button" class="btn btn-danger">강제 탈퇴</button>
+												<td><input type="text" class="btn btn-danger"
+													onclick="deleteMemberInfo(this)" value="강제 탈퇴">
+													<div hidden="hidden" class="club_stud_no">${ActiveMemberDataList[i].MemberInfoDyVO.club_stud_no}</div>
 												</td>
 											</tr>
 										</tbody>
@@ -138,86 +198,94 @@ a:hover {
 								</c:if>
 							</table>
 						</div>
-					
-					 <form action="/cbh/student/myclub/membermgmt/student_MemberMgmtPage" method="get">
-						<div class="row my-5">
-							<div class="col">
-								<h6
-									style="font-size: 15px; color: #333; font-weight: bold; margin-top: 20px;">검색어</h6>
-							</div>
-						
-							<div class="col">
-								<div class="form-floating">
-									<select name="searchType" class="form-select"
-										id="floatingSelect" aria-label="Floating label select example"
-										style="font-size: 15px; color: #333; font-weight: bold; padding: 10px;">
-										<option selected value="name">이름</option>
-										<option value="id">아이디</option>
-										<option value="phone">번호</option>
-									</select>
+
+						<form
+							action="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
+							method="get">
+							<div class="row my-5">
+								<div class="col">
+									<h6
+										style="font-size: 15px; color: #333; font-weight: bold; margin-top: 20px;">검색어</h6>
+								</div>
+
+								<div class="col">
+									<div class="form-floating">
+										<select name="searchType" class="form-select"
+											id="floatingSelect"
+											aria-label="Floating label select example"
+											style="font-size: 15px; color: #333; font-weight: bold; padding: 10px;">
+											<option selected value="name">이름</option>
+											<option value="id">아이디</option>
+											<option value="phone">번호</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="col-6">
+									<div class="form-floating">
+										<textarea name="searchWord" class="form-control"
+											placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+										<label for="floatingTextarea" style="font-size: 15px;">검색어를
+											입력해주세요.</label>
+									</div>
+								</div>
+
+								<div class="col">
+									<button type="submit" class="btn btn-primary btn-lg"
+										style="height: 60px; font-size: 15px;">
+										<i class="bi bi-search">검색</i>
+									</button>
 								</div>
 							</div>
+						</form>
 
-							<div class="col-6">
-								<div class="form-floating">
-									<textarea name="searchWord" class="form-control"
-										placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-									<label for="floatingTextarea" style="font-size: 15px;">검색어를
-										입력해주세요.</label>
-								</div>
-							</div>
-
-							<div class="col">
-								<button type="submit" class="btn btn-primary btn-lg"
-									style="height: 60px; font-size: 15px;">
-									<i class="bi bi-search">검색</i>
-								</button>
-							</div>
-						</div>
-					</form>	
-										
 						<div class="row my-5">
-						  <nav aria-label="Page navigation example">	
-							<ul class="pagination justify-content-center pagination-lg">
-							<c:choose>
-								<c:when test="${startPage <= 1}">
-									<li class="page-item disabled"><a class="page-link" style="text-decoration-line: none; color: red;">◀</a></li>
-								</c:when>
-								<c:otherwise>
-									<li class="page-item disabled"><a class="page-link" style="text-decoration-line: none; color: black;"
-										href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage?pageNum=${startPage -1}">◀</a></li>
-								</c:otherwise> 
-							</c:choose>
+							<nav aria-label="Page navigation example">
+								<ul class="pagination justify-content-center pagination-lg">
+									<c:choose>
+										<c:when test="${startPage <= 1}">
+											<li class="page-item disabled"><a class="page-link"
+												style="text-decoration-line: none; color: red;">◀</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item disabled"><a class="page-link"
+												style="text-decoration-line: none; color: black;"
+												href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage?pageNum=${startPage -1}">◀</a></li>
+										</c:otherwise>
+									</c:choose>
 
-							<c:forEach begin="${startPage}" end="${endPage}" var="i">
-								<c:choose>
-									<c:when test="${i == currentPageNum}">
-										<li class="page-item"><a class="page-link"
-											style="text-decoration-line: none; color: blue; font-weight: 600;"
-											href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage?pageNum=${i}">${i}</a></li>
-									</c:when>
-									<c:otherwise>
-										<li class="page-item"><a class="page-link" style="text-decoration-line: none; color: black;"
-											href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage?pageNum=${i}">${i}</a></li>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
+									<c:forEach begin="${startPage}" end="${endPage}" var="i">
+										<c:choose>
+											<c:when test="${i == currentPageNum}">
+												<li class="page-item"><a class="page-link"
+													style="text-decoration-line: none; color: blue; font-weight: 600;"
+													href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage?pageNum=${i}">${i}</a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="page-item"><a class="page-link"
+													style="text-decoration-line: none; color: black;"
+													href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage?pageNum=${i}">${i}</a></li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
 
-							<c:choose>
-								<c:when test="${endPage >= totalPageCount }">
-									<li class="page-item"><a class="page-link" style="text-decoration-line: none; color: red;">▶</a></li>
-								</c:when>
-								<c:otherwise>
-									<li class="page-item"><a class="page-link" style="text-decoration-line: none; color: black;"
-										href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage?pageNum=${endPage +1}">▶</a></li>
-								</c:otherwise>
-							</c:choose>
-							
-							</ul>
+									<c:choose>
+										<c:when test="${endPage >= totalPageCount }">
+											<li class="page-item"><a class="page-link"
+												style="text-decoration-line: none; color: red;">▶</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a class="page-link"
+												style="text-decoration-line: none; color: black;"
+												href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage?pageNum=${endPage +1}">▶</a></li>
+										</c:otherwise>
+									</c:choose>
+
+								</ul>
 							</nav>
 						</div>
 					</div>
-					
+
 					<div class="col-1"></div>
 
 				</div>
