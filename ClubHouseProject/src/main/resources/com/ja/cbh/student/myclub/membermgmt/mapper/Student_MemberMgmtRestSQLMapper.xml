@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updateMemberChangePosition">
 		UPDATE CBH_CLUB_STUD  
-		SET CLUB_STUD_GRADE = '일반회원'
+		SET CLUB_STUD_GRADE = #{club_stud_grade}
 		WHERE CLUB_STUD_NO = #{club_stud_no}
 	</update>
 	
@@ -15,5 +15,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM CBH_CLUB_STUD 
 		WHERE CLUB_STUD_NO = #{club_stud_no}
 	</delete>
-
+	
+	<update id="updateApprove">
+		UPDATE CBH_CLUB_STUD 
+		SET 
+		CLUB_STUD_GRADE = '일반회원',
+		CLUB_STUD_STATE = '활동중' 
+		WHERE CLUB_STUD_NO = #{club_stud_no}
+	</update>
+	
+	<delete id="deleteApprove">
+		DELETE FROM CBH_CLUB_STUD 
+		WHERE CLUB_STUD_NO = #{club_stud_no}
+	</delete>
+	
 </mapper>
