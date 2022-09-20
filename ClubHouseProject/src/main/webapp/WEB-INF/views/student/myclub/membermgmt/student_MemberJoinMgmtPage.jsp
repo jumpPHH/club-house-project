@@ -87,7 +87,7 @@ a:hover {
 						<div class="col">
 							<i class="bi bi-person-video3"
 								style="font-size: 40px; color: #EF1B3F;"></i> <span
-								style="font-size: 30px;">동아리원 관리</span>
+								style="font-size: 30px;">동아리원 가입관리</span>
 						</div>
 					</div>
 

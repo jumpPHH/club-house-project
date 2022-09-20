@@ -65,12 +65,12 @@ a:hover {
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>자유게시판</div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>동아리일정</div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage">회원관리</a></div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>경비신청</div></li>
+						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesPage">경비신청</a></div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>경비관리</div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>회비관리</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>동아리소개작성</div></li>
+						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>동아리소개작성</div></li> 
 					</ul>
-				</li>
+				</li> 
 	
 			</ul>
 		</div>	

@@ -12,7 +12,6 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
-
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/student_common/student_header.jsp"></jsp:include>
