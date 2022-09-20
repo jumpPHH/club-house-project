@@ -26,7 +26,7 @@ public class staff_ApprovalRestController {
 		StaffVO staffVo = (StaffVO)session.getAttribute("sessionUserInfo");
 		param.put("TYPE", type);
 		param.put("STAFF_ID", staffVo.getStaff_id());
-		map.put("ApvList", staff_ApprovalRestService.getApvList(param));
+		map.put("ApvList", staff_ApprovalRestService.getMyApvList(param));
 			
 		
 		return map;
