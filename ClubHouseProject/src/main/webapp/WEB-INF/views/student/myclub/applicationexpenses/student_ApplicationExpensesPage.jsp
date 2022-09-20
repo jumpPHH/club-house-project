@@ -125,28 +125,28 @@
 							</div>
 							
 							<div class="row">
-								<div class="col-3 title" style="border-left: 2px solid #302F2F;">회 원 수</div>
-								<div class="col blank" style="border-right: 2px solid #302F2F;">공 백</div>
+								<div class="col-3 title">회 원 수</div>
+								<div class="col blank">공 백</div>
 							</div>
 							
 							<div class="row">
-								<div class="col-3 title" style="border-left: 2px solid #302F2F;">활동내용</div>
-								<div class="col blank" style="border-right: 2px solid #302F2F;">공 백</div>
+								<div class="col-3 title">활동내용</div>
+								<div class="col blank">공 백</div>
 							</div>
 							
 							<div class="row">
-								<div class="col-3 title" style="border-left: 2px solid #302F2F;">경비 요청액</div>
-								<div class="col blank" style="border-right: 2px solid #302F2F;">공 백</div>
+								<div class="col-3 title">경비 요청액</div>
+								<div class="col blank">공 백</div>
 							</div>
 							
 							<div class="row">
-								<div class="col-3 title" style="border-left: 2px solid #302F2F;">사용목적</div>
-								<div class="col blank" style="border-right: 2px solid #302F2F;">공 백</div>
+								<div class="col-3 title">사용목적</div>
+								<div class="col blank">공 백</div>
 							</div>
 							
 							<div class="row">
-								<div class="col-3 title" style="border-left: 2px solid #302F2F;">경비 사용기간</div>
-								<div class="col blank" style="border-right: 2px solid #302F2F;">공 백</div>
+								<div class="col-3 title">경비 사용기간</div>
+								<div class="col blank">공 백</div>
 							</div>
 							
 						<div class="row my-5">
