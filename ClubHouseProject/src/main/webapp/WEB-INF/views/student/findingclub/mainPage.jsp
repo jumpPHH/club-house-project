@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, intial-scale=1.0" charset="UTF-8">
 <title>학생메인 페이지</title>
 <link rel="stylesheet"
    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
@@ -19,6 +19,7 @@
  <jsp:include page="/WEB-INF/views/student_common/student_header.jsp" flush="false"></jsp:include>
  <jsp:include page="/WEB-INF/views/student_common/student_sidevar.jsp" flush="false"></jsp:include>
    <div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh; overflow-y: auto; word-break: break-all;">
+  	 <div style="min-width : 1200px; margin: 0 auto">
       <div class="container-fluid">
          <div class="row">
 
@@ -58,7 +59,7 @@
 													<div class="row">
 														<div class="col">
 															<!-- 여기에 카테고리 파라미터로 넘겨주는 주소 적어야 함. -->
-															<button class=" button"><a href="./club_Of_CategoryPage?club_category_no=1" style="color:white;">자세히보기</a></button>
+															<button class=" button"><a href="./clubs_Of_CategoryPage?club_category_no=1" style="color:white;">자세히보기</a></button>
 														</div>
 													</div>
 												</div>
@@ -246,6 +247,7 @@
 
 
       </div>
+     </div>
    </div>
    <script type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
