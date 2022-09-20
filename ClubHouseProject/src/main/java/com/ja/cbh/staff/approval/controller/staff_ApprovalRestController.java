@@ -18,14 +18,15 @@ public class staff_ApprovalRestController {
 	@Autowired
 	private staff_ApprovalRestService staff_ApprovalRestService;
 
-	@RequestMapping("getApvList")
+	@RequestMapping("getMyApvList")
 	public HashMap<String, Object> getApvList(String type,HttpSession session){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		
-		StaffVO staffVo = (StaffVO)session.getAttribute("sessionUserInfo");
+		StaffVO staffVO = (StaffVO)session.getAttribute("sessionUserInfo");
 		param.put("TYPE", type);
-		param.put("STAFF_ID", staffVo.getStaff_id());
+		param.put("STAFF_ID", staffVO.getStaff_id());
+		
 		map.put("ApvList", staff_ApprovalRestService.getMyApvList(param));
 			
 		
@@ -37,6 +38,20 @@ public class staff_ApprovalRestController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("Apv", staff_ApprovalRestService.getApv(APV_NO));
+		
+		return map;
+	}
+	
+	@RequestMapping("getRequestedApvList")
+	public HashMap<String, Object> getRequestedApvList(String type, HttpSession session){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		
+		StaffVO staffVO = (StaffVO)session.getAttribute("sessionUserInfo");
+		param.put("TYPE", type);
+		param.put("STAFF_ID", staffVO.getStaff_id());
+	
+		map.put("ApvList", staff_ApprovalRestService.getRequestedApvList(param));
 		
 		return map;
 	}
