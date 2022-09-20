@@ -5,17 +5,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.ja.cbh.student.findingclub.mapper.FindingClubSQLMapper">
 
+	<!-- 모든 클럽카테고리 정보를 갖고오기. -->
 	<select id="selectAllClubCategory" resultType="com.ja.cbh.vo.Club_Dept_CategoryVO">
 		SELECT * FROM CBH_CLUB_DEPT_CATEGORY
 	</select>
 	
+	<!-- 클럽카테고리 no(club_dept_category의 프라이머리키)에 해당하는 클럽카테고리의 정보 갖고 오기. -->
 	<select id="selectClubCategoryByNo" resultType="com.ja.cbh.vo.Club_Dept_CategoryVO">
 		SELECT * FROM CBH_CLUB_DEPT_CATEGORY
 		WHERE CLUB_CATEGORY_NO = #{clubCategoryNo}
 	</select>
 	
-	<select id="selectAllClubOfCategory" resultType="com.ja.cbh.vo.ClubVO">
-		SELECT * FROM CBH_CLUB
+	<!-- 어떤 카테고리에 해당하는 모든 클럽 가져오기 -->
+	<select id="selectAllClubsOfCategory" resultType="com.ja.cbh.vo.ClubVO">
+		SELECT * FROM CBH_CLUB 
 		WHERE CLUB_CATEGORY_NO = #{clubCategoryNo}
+		<if test="searchWord != null">
+			AND CLUB_NAME LIKE '%' || #{searchWord} || '%'
+		</if>
 	</select>
+	
+	<select id="selectClubByNo" resultType="com.ja.cbh.vo.ClubVO">
+		SELECT * FROM CBH_CLUB
+		WHERE CLUB_NO = #{clubNo}
+	</select>
+	
+	<insert id="insertClubStud">
+		INSERT INTO CBH_CLUB_STUD VALUES(
+			CBH_CLUB_STUD_seq.nextval,
+			#{stud_id},
+			#{club_no},
+			'1',
+			'2011-11-11',
+			'2011-11-11',
+			'기타사항',
+			'이건 괜찮니'
+		)
+	</insert>
+	
 </mapper> 
