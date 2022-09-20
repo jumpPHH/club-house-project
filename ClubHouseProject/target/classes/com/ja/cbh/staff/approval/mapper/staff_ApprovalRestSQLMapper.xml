@@ -107,4 +107,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							WHERE cs.STAFF_ID = t1.STAFF_ID) t2 ON cs2.STAFF_ID = t2.STAFF_MID_ID) t3 
 		WHERE cs3.STAFF_ID = t3. STAFF_FNL_ID
 	</select>
+	
+	<select id="selectApvByStaffMidIdAndStaffFnlId" resultType="HashMap">
+		SELECT 
+			APV_NO, 
+			STAFF_NAME, 
+			APV_TITLE, 
+			APV_FNL_DATE, 
+			APV_WRITEDATE 
+		FROM CBH_STAFF cs , (SELECT * 
+							FROM CBH_APV_DIV cad , (SELECT * 
+													FROM CBH_APV 
+													WHERE STAFF_MID_ID LIKE #{STAFF_ID} 
+													OR STAFF_FNL_ID LIKE #{STAFF_ID}) t1 
+							WHERE cad.APV_DIV_NO = t1.APV_DIV_NO) t2 
+		WHERE cs.STAFF_ID = t2.STAFF_ID
+	</select>
 </mapper>

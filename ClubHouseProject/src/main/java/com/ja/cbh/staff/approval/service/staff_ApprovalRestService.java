@@ -14,12 +14,19 @@ public class staff_ApprovalRestService {
 	@Autowired
 	private staff_ApprovalRestSQLMapper staff_ApprovalRestSQLMapper;
 	
-	public ArrayList<HashMap<String, Object>> getApvList(HashMap<String, Object> param){
+	public ArrayList<HashMap<String, Object>> getMyApvList(HashMap<String, Object> param){
 		return staff_ApprovalRestSQLMapper.selectApvBystaffId(param);
+	}
+	
+	public ArrayList<HashMap<String, Object>> getRequestedApvList(HashMap<String, Object> param){
+		
+		return staff_ApprovalRestSQLMapper.selectApvByStaffMidIdAndStaffFnlId(param);
 	}
 	
 	public HashMap<String, Object> getApv(String APV_NO){
 		
 		return staff_ApprovalRestSQLMapper.selectApvByApvNo(APV_NO);
 	}
+	
+	
 }
