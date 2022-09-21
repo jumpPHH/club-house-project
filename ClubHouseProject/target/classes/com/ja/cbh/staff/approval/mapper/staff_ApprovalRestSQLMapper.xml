@@ -112,9 +112,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT 
 			APV_NO, 
 			STAFF_NAME, 
-			APV_TITLE, 
+			APV_TITLE,
+			STAFF_MID_ID,
+			APV_MID_DATE,
+			STAFF_FNL_ID,
+			APV_REJECT_DATE
 			APV_FNL_DATE, 
-			APV_WRITEDATE 
+			APV_WRITEDATE
 		FROM CBH_STAFF cs , (SELECT * 
 							FROM CBH_APV_DIV cad , (SELECT * 
 													FROM CBH_APV 
