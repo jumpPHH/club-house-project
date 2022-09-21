@@ -4,6 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ja.cbh.student.myclub.main.mapper.Student_MainSQLMapper">
+	<select id="selectBossIsCount" resultType="int">
+		SELECT COUNT(*)
+		FROM CBH_CLUB_STUD
+		WHERE CLUB_STUD_GRADE = '대표'
+		AND STUD_ID = #{stud_id}
+	</select>
+	
 	
 	<select id="selectBossMemberIs" resultType="com.ja.cbh.vo.Club_StudVO">
 		SELECT *
