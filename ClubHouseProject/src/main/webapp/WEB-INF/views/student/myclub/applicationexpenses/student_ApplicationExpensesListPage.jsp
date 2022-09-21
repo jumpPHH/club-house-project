@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/student_common/student_header.jsp"></jsp:include>
@@ -26,7 +27,7 @@
 				
 					<div class="row my-5">
 						<div class="col">
-							<i class="bi bi-chat-left-text-fill"
+							<i class="bi bi-cash-coin"
 								style="font-size: 40px; color: #EF1B3F;"></i> <span
 								style="font-size: 30px;">경비신청 내역 관리</span>
 						</div>
@@ -43,10 +44,175 @@
 								href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesListPage"
 								style="font-size: 19px;">신청 내역</a>
 						</div>
+						
+						<div class="col" style="text-align: center;">[검색 결과 : ${ExpnsApplySelectCount }명]</div>
 					</div>
 					
-					
+						<div class="row">
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col">사용 목적</th>
+										<th scope="col">경비 요청액</th>
+										<th scope="col">신청 일자</th>
+										<th scope="col">상태</th>
+										<th scope="col">기타</th>
+									</tr>
+								</thead>
 
+								<c:if test="${ClubExpnsApplyVO.size() == 0}">
+									<tbody>
+										<tr>
+											<th scope="row"></th>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</c:if>
+
+								<c:if test="${ClubExpnsApplyVO.size() > 0}">
+									<c:forEach begin="0" end="${ClubExpnsApplyVO.size() -1}"
+										var="i">
+										<tbody>
+											<tr>
+												<th scope="row">${ClubExpnsApplyVO[i].ClubExpnsApplyVO.club_expns_apply_no}</th>
+												<td>${ClubExpnsApplyVO[i].ClubExpnsApplyVO.club_expns_apply_purpose_use}</td>
+												<td>${ClubExpnsApplyVO[i].ExpnsApplyGrants} 원</td>
+												<td><fmt:formatDate
+														value="${ClubExpnsApplyVO[i].ClubExpnsApplyVO.club_expns_apply_date}"
+														pattern="yy.MM.dd" /></td>
+												<td>${ClubExpnsApplyVO[i].ClubExpnsApplyVO.club_expns_apply_state }</td>
+												<td>
+												<c:if
+													test="${ClubExpnsApplyVO[i].ClubExpnsApplyVO.club_expns_apply_state == '반려'}">
+													<!-- Button trigger modal -->
+													<button type="button" class="btn btn-secondary"
+														data-bs-toggle="modal" data-bs-target="#exampleModal"
+														 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+														>사유보기</button>
+
+													<!-- Modal -->
+													<div class="modal fade" id="exampleModal" tabindex="-1"
+														aria-labelledby="exampleModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLabel">반려 사유</h5>
+																	<button type="button" class="btn-close"
+																		data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+																<div class="modal-body">
+																	${ClubExpnsApplyVO[i].ClubExpnsApplyVO.club_expns_apply_reject_reason }
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary"
+																		data-bs-dismiss="modal">Close</button>
+																</div>
+															</div>
+														</div>
+													</div>
+
+												</c:if>
+
+											</td>	
+											</tr>
+										</tbody>
+									</c:forEach>
+								</c:if>
+							</table>
+						</div>
+
+						<form
+							action="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesListPage"
+							method="get">
+							<div class="row my-5">
+								<div class="col">
+									<h6
+										style="font-size: 15px; color: #333; font-weight: bold; margin-top: 20px;">검색어</h6>
+								</div>
+
+								<div class="col">
+									<div class="form-floating">
+										<select name="searchType" class="form-select"
+											id="floatingSelect"
+											aria-label="Floating label select example"
+											style="font-size: 15px; color: #333; font-weight: bold; padding: 10px;">
+											<option selected value="content">내용</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="col-6">
+									<div class="form-floating">
+										<textarea name="searchWord" class="form-control"
+											placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+										<label for="floatingTextarea" style="font-size: 15px;">검색어를
+											입력해주세요.</label>
+									</div>
+								</div>
+
+								<div class="col">
+									<button type="submit" class="btn btn-primary btn-lg"
+										style="height: 60px; font-size: 15px;">
+										<i class="bi bi-search">검색</i>
+									</button>
+								</div>
+							</div>
+						</form>
+
+						<div class="row my-5">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination justify-content-center pagination-lg">
+									<c:choose>
+										<c:when test="${startPage <= 1}">
+											<li class="page-item disabled"><a class="page-link"
+												style="text-decoration-line: none; color: red;">◀</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item disabled"><a class="page-link"
+												style="text-decoration-line: none; color: black;"
+												href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesListPage?pageNum=${startPage -1}">◀</a></li>
+										</c:otherwise>
+									</c:choose>
+
+									<c:forEach begin="${startPage}" end="${endPage}" var="i">
+										<c:choose>
+											<c:when test="${i == currentPageNum}">
+												<li class="page-item"><a class="page-link"
+													style="text-decoration-line: none; color: blue; font-weight: 600;"
+													href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesListPage?pageNum=${i}">${i}</a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="page-item"><a class="page-link"
+													style="text-decoration-line: none; color: black;"
+													href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesListPage?pageNum=${i}">${i}</a></li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+
+									<c:choose>
+										<c:when test="${endPage >= totalPageCount }">
+											<li class="page-item"><a class="page-link"
+												style="text-decoration-line: none; color: red;">▶</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a class="page-link"
+												style="text-decoration-line: none; color: black;"
+												href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesListPage?pageNum=${endPage +1}">▶</a></li>
+										</c:otherwise>
+									</c:choose>
+
+								</ul>
+							</nav>
+						</div>
+						
 				</div>
 				<div class="col-1"></div>
 			</div>

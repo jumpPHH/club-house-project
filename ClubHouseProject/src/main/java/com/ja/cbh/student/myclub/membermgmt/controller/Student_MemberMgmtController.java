@@ -35,9 +35,9 @@ public class Student_MemberMgmtController {
 		
 		model.addAttribute("MainData",mainService.student_MainData(stud_id));
 		
-		ArrayList<HashMap<String, Object>> freepReviewDataList = memberMgmtService.getActiveMemberData(stud_id,searchType,searchWord,pageNum);
+		ArrayList<HashMap<String, Object>> activeMemberDataList = memberMgmtService.getActiveMemberData(stud_id,searchType,searchWord,pageNum);
 		
-		model.addAttribute("ActiveMemberDataList", freepReviewDataList);
+		model.addAttribute("ActiveMemberDataList", activeMemberDataList);
 		
 		int activeMemberCount = memberMgmtService.getActiveMemberCount(stud_id);
 		
