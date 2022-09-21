@@ -64,7 +64,84 @@
   		 	th6.innerText="상세"
   		 	ApvHead.appendChild(th6);
   		 		 
- 				 
+  		 	var ApvBody = document.getElementById("ApvBody");
+  		 	ApvBody.innerHTML="";
+  		 
+  		 	for(var Apv of result.ApvList){
+  		 		
+  		 		var tr = document.createElement("tr");
+  		 		tr.classList.add("text-center");
+  		 		ApvBody.appendChild(tr);
+  		 		
+  		 		
+  		 		var td1 = document.createElement("td");
+  		 		td1.classList.add("col-1");
+  		 		td1.innerText = Apv.APV_NO
+  		 		tr.appendChild(td1);
+  		 		
+  		 		
+  		 		var td2 = document.createElement("td");
+  		 		td2.classList.add("col-1");
+  		 		td2.innerText = Apv.APV_DIV_NAME
+  		 		tr.appendChild(td2);
+  		 		
+  		 		
+  		 		var td3 = document.createElement("td");
+  		 		td3.classList.add("col-7");
+  		 		td3.classList.add("text-start");
+  		 		td3.innerText = Apv.APV_TITLE
+  		 		tr.appendChild(td3);
+  		 		
+	 			var td4 = document.createElement("td");
+  		 		td4.classList.add("col-1");
+  		 		td4.innerText = Apv.STAFF_NAME;
+  		 		tr.appendChild(td4);	
+  		 		if(Apv.STAFF_MID_ID == result.staffVO.staff_id){
+  		 			if((Apv.APV_MID_DATE == undefined) && (Apv.APV_REJECT_DATE == undefined)){
+  		 				var td5 = document.createElement("td");
+  		  		 		td5.classList.add("col-1");
+  		  		 		td5.innerText = "미결재"
+  		  		 		tr.appendChild(td5);
+  		 				
+  		 			}else if((Apv.APV_MID_DATE == undefined) && (Apv.APV_REJECT_DATE != undefined)){
+  		 				var td5 = document.createElement("td");
+  		  		 		td5.classList.add("col-1");
+  		  		 		td5.innerText = "반려"
+  		  		 		tr.appendChild(td5);
+  		 			}else if(Apv.APV_MID_DATE != undefined){
+  		 				var td5 = document.createElement("td");
+  		  		 		td5.classList.add("col-1");
+  		  		 		td5.innerText = "결재"
+  		  		 		tr.appendChild(td5);
+  		 			}
+  		 			
+  		 		}else if(Apv.STAFF_FNL_ID == result.staffVO.staff_id){
+  		 			if((Apv.APV_FNL_DATE == undefined) && (Apv.APV_REJECT_DATE == undefined)){
+  		 				var td5 = document.createElement("td");
+  		  		 		td5.classList.add("col-1");
+  		  		 		td5.innerText = "미결재"
+  		  		 		tr.appendChild(td5);
+  		 				
+  		 			}else if((Apv.APV_FNL_DATE == undefined) && (Apv.APV_REJECT_DATE != undefined)){
+  		 				var td5 = document.createElement("td");
+  		  		 		td5.classList.add("col-1");
+  		  		 		td5.innerText = "반려"
+  		  		 		tr.appendChild(td5);
+  		 			}else if(Apv.APV_FNL_DATE != undefined){
+  		 				var td5 = document.createElement("td");
+  		  		 		td5.classList.add("col-1");
+  		  		 		td5.innerText = "결재"
+  		  		 		tr.appendChild(td5);
+  		 			}
+  		 			
+  		 		}
+  		 		
+  		 		var td6 = document.createElement("td");
+  		 		td6.classList.add("col-1");
+  		 		td6.setAttribute("onclick","getApv('"+Apv.APV_NO+"')")
+  		 		td6.innerText = "보기"
+  		 		tr.appendChild(td6);
+  		 	}	 
 		}      
 			}	
 		xhr.open("post","../restApproval/getRequestedApvList",false);
@@ -184,7 +261,7 @@
   		 		
   		 		var td6 = document.createElement("td");
   		 		td6.classList.add("col-1");
-  		 		td6.setAttribute("onclick","test('"+Apv.APV_NO+"')")
+  		 		td6.setAttribute("onclick","getApv('"+Apv.APV_NO+"')")
   		 		td6.innerText = "보기"
   		 		tr.appendChild(td6);
   		 	}
@@ -197,7 +274,7 @@
 		
 	}
 	
-	function test(e){
+	function getApv(e){
 		var APV_NO = e;
 		var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
@@ -481,23 +558,19 @@
 										</thead>
 										<tbody class="text-center">
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getMyApvList('나의결재',this)">
-												<td>요청된결재</td>
-											</tr>
-											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getMyApvList('전체',this)">
+												onclick="getMyApvList('나의전체',this)">
 												<td>전체</td>
 											</tr>
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getMyApvList('진행중',this)">
+												onclick="getMyApvList('나의진행중',this)">
 												<td>진행중</td>
 											</tr>
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getMyApvList('결재완료',this)">
+												onclick="getMyApvList('나의결재완료',this)">
 												<td>결재완료</td>
 											</tr>
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getMyApvList('반려',this)">
+												onclick="getMyApvList('나의반려',this)">
 												<td>반려</td>
 											</tr>
 											<tr style="height: 30px">
@@ -511,19 +584,19 @@
 										</thead>
 										<tbody class="text-center">
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getRequestedApvList('나의결재',this)">
+												onclick="getRequestedApvList('요청전체',this)">
 												<td>전체</td>
 											</tr>
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getRequestedApvList('전체',this)">
+												onclick="getRequestedApvList('요청미결재',this)">
 												<td>미결재</td>
 											</tr>
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getRequestedApvList('진행중',this)">
+												onclick="getRequestedApvList('요청결재',this)">
 												<td>결재</td>
 											</tr>
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getRequestedApvList('반려',this)">
+												onclick="getRequestedApvList('요청반려',this)">
 												<td>반려</td>
 											</tr>
 
