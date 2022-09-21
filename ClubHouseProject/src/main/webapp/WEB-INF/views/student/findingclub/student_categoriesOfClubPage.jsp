@@ -132,78 +132,9 @@
 </head>
 <body>
 
-<img style="position:absolute; left:.5%; top:3%; height: 8vh" src="../../resources/logo.png">
+<jsp:include page="/WEB-INF/views/student_common/student_header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/student_common/student_sidevar.jsp"></jsp:include>
 
-	<div class="container-fluid">
-		<div class="row" style="height: 7vh;">
-			<div class="col text-end">
-		
-				<span style="cursor: pointer; font-size: 1.8vh" onclick="location.href='/cbh/staff/login/staff_LogoutProcess'">로그아웃</span>
-		
-			</div>
-		</div>
-	</div>
-
-<div style="background: black; position:absolute; height: 3.5vh; width: 100vw; top: 10.5%"></div>
-         
-               
-<div style="position: absolute; top: 10.5%; left: 1.5%; height: 89.5vh; width: 12vw;">
-
-		<div class="text-center pe-0 mx-0"
-		    style="background-color: #C4073D; height: 9vh; color: white; display: flex; align-items: center; justify-content: center;">
-		    <p class="mb-0" id="bigMenuText" style="font-weight: bold">Club Activity 까불지말자</p>
-		</div>
-		
-		<div style="border:1px solid #d9d9d9; background-color: #f8f9fa" id="sideBar">
-			<ul style="list-style: none;">
-				<li style="margin-top: 1vh; margin-bottom: 1vh">
-					<!-- 아래 div 내부 전부 복사 -->
-					<div style="background:linear-gradient( to right, #d95d84 , #e8d8dd ); margin-right: 1.0vw; padding-left:1vw; border-radius: 5vh; color:white; font-weight: bold;">동아리관리</div>
-					<ul>
-						<li>
-							<!-- div태그 style 아래랑 교환, i태그도 교환 -->
-							<div style="font-weight: bold;color: #bf1f51;letter-spacing: 0;"onclick="location.href='/cbh/student/findingclub/mainPage'" ><i class="bi bi-check-lg"></i> 동아리찾기</div>
-						</li>
-					</ul>
-				</li>
-<!-- 				<li class="border-top my-2" style="padding: 0"></li> -->
-				
-				<li>
-					<div>공지사항</div>
-					<ul>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>공지사항</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>봉사공고</div></li>
-					</ul>
-				</li>
-<!-- 				<li class="border-top my-2" style="padding: 0"></li> -->
-				<li>
-					<div>동아리 개설 신청</div>
-					<ul>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>신청서작성</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>동아리신청상태</div></li>
-					</ul>
-				</li>
-<!-- 				<li class="border-top my-2" style="padding: 0"></li> -->
-				<li>
-					<div>내 동아리</div>
-					<ul>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>메인</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>확동계획서작성</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>자유게시판</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>동아리일정</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>회원관리</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>경비신청</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>경비관리</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>회비관리</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>동아리소개작성</div></li>
-					</ul>
-				</li>
-
-				
-				
-			</ul>
-		</div>	
-</div>
 
 <div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh;overflow-y: auto">
 	<div class="container-fluid">
@@ -222,7 +153,7 @@
 										class="page_title_image"></span> <span>동아리 찾기</span>
 								</div>
 								<div class="col-3 text_align_right">
-									<button type="button" onclick="location.href='/cbh/student/findingclub/mainPage'" style="background-color: #C4073D; color: white; border-radius: 5px; border: none; width:9em; height:4vh">
+									<button type="button" onclick="location.href='/cbh/student/findingclub/student_indexPage'" style="background-color: #C4073D; color: white; border-radius: 5px; border: none; width:9em; height:4vh">
 										카테고리로 이동
 									</button>
 								</div>

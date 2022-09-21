@@ -27,14 +27,14 @@ public class FindingClubController {
 	
 	
 	
-	@RequestMapping("mainPage")
-	public String mainPage(Model model) {
+	@RequestMapping("student_indexPage")
+	public String student_indexPage(Model model) {
 		System.out.println("안들어오지?");
-		return "student/findingclub/mainPage";
+		return "student/findingclub/student_indexPage";
 	}
 	
-	@RequestMapping("clubs_Of_CategoryPage")
-	public String club_Of_CategoryPage(Model model, @Param("club_category_no") String club_category_no, @Param("searchWord") String searchWord) {
+	@RequestMapping("student_clubsOfCategoryPage")
+	public String student_clubsOfCategoryPage(Model model, @Param("club_category_no") String club_category_no, @Param("searchWord") String searchWord) {
 		int clubCategoryNo = Integer.parseInt(club_category_no);
 		
 		Club_Dept_CategoryVO clubCategoryInfo = findingClubService.getClubCategoryByNo(clubCategoryNo);
@@ -44,24 +44,24 @@ public class FindingClubController {
 		model.addAttribute("clubCategoryInfo", clubCategoryInfo);
 		model.addAttribute("clubCategoryNo", clubCategoryNo);
 		
-		return "student/findingclub/clubs_Of_CategoryPage";
+		return "student/findingclub/student_clubsOfCategoryPage";
 	
 	}
 	
-	@RequestMapping("club_IntroducingPage")
-	public String club_introducingPage(Model model, String club_no) {
+	@RequestMapping("student_clubIntroducingPage")
+	public String student_clubIntroducingPage(Model model, String club_no) {
 		int clubNo = Integer.parseInt(club_no);
 		
 		ClubVO clubData = findingClubService.getClubByNo(clubNo);
 		model.addAttribute("clubData", clubData);
 		
-		return "student/findingclub/club_IntroducingPage";
+		return "student/findingclub/student_clubIntroducingPage";
 	}
 	
 	
 	// 클럽 가입신청 완료 페이지. 페이지 이동과 동시에 동아리 회원에 club_no와 stud_id를 포함한 상태로 insert됨
-	@RequestMapping("club_requestJoinProcess")
-	public String club_requestJoinCompletePage(String club_no, HttpSession session, HttpServletResponse response, String msg) {
+	@RequestMapping("student_clubRequestJoinProcess")
+	public String student_clubRequestJoinProcess(String club_no, HttpSession session, HttpServletResponse response, String msg) {
 		
 		if((StudVO)session.getAttribute("sessionUserInfo")==null) {
 			 try {
@@ -100,7 +100,7 @@ public class FindingClubController {
 		
 		findingClubService.inputClubStud(club_StudVO);
 		
-		return "student/findingclub/club_requestJoinCompletePage";
+		return "student/findingclub/student_clubRequestJoinCompletePage";
 		}
 	}
 	

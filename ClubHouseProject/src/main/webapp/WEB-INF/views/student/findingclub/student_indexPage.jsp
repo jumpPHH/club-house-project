@@ -59,7 +59,7 @@
 													<div class="row">
 														<div class="col">
 															<!-- 여기에 카테고리 파라미터로 넘겨주는 주소 적어야 함. -->
-															<button class=" button"><a href="./clubs_Of_CategoryPage?club_category_no=1" style="color:white;">자세히보기</a></button>
+															<button class=" button"><a href="./student_clubsOfCategoryPage?club_category_no=1" style="color:white;">자세히보기</a></button>
 														</div>
 													</div>
 												</div>
