@@ -19,8 +19,60 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script type="text/javascript">
+	function getRequestedApvList(type,e){
+		$("#type").val(type)
+		$(".divisionTab").removeClass("table-active");
+		if(e){
+			e.classList.add("table-active")
+		}
+		
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+		 xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200){
+ 		 var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON
+		
+			var ApvHead = document.getElementById("ApvHead");
+			ApvHead.innerHTML =""
+			
+  		 	var th1 =  document.createElement("th");
+  		 	th1.classList.add("col-1");
+  		 	th1.innerText="기안번호"
+  		 	ApvHead.appendChild(th1);
 
-	function selectApvType(type,e){
+  		 	var th2 =  document.createElement("th");
+  		 	th2.classList.add("col-1");
+  		 	th2.innerText="구분"
+  		 	ApvHead.appendChild(th2);
+  
+  		 	var th3 =  document.createElement("th");
+  		 	th3.classList.add("col-7");
+  		 	th3.innerText="제목"
+  		 	ApvHead.appendChild(th3);
+
+  		 	var th4 =  document.createElement("th");
+  		 	th4.classList.add("col-1");
+  		 	th4.innerText="기안자"
+  		 	ApvHead.appendChild(th4);
+  		 
+  		 	var th5 =  document.createElement("th");
+  		 	th5.classList.add("col-1");
+  		 	th5.innerText="상태"
+  		 	ApvHead.appendChild(th5);
+  		 
+  		 	var th6 =  document.createElement("th");
+  		 	th6.classList.add("col-1");
+  		 	th6.innerText="상세"
+  		 	ApvHead.appendChild(th6);
+  		 		 
+ 				 
+		}      
+			}	
+		xhr.open("post","../restApproval/getRequestedApvList",false);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send("type=" + type);
+	}
+	
+	function getMyApvList(type,e){
 		
 		$("#type").val(type)
 		$(".divisionTab").removeClass("table-active");
@@ -32,7 +84,43 @@
 		 xhr.onreadystatechange = function () {
 		if(xhr.readyState == 4 && xhr.status == 200){
   		 var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+			var ApvHead = document.getElementById("ApvHead");
+			ApvHead.innerHTML =""
 			
+  		 	var th1 =  document.createElement("th");
+  		 	th1.classList.add("col-1");
+  		 	th1.innerText="기안번호"
+  		 	ApvHead.appendChild(th1);
+
+  		 	var th2 =  document.createElement("th");
+  		 	th2.classList.add("col-1");
+  		 	th2.innerText="구분"
+  		 	ApvHead.appendChild(th2);
+  
+  		 	var th3 =  document.createElement("th");
+  		 	th3.classList.add("col-7");
+  		 	th3.innerText="제목"
+  		 	ApvHead.appendChild(th3);
+
+  		 	var th4 =  document.createElement("th");
+  		 	th4.classList.add("col-1");
+  		 	th4.innerText="결재자"
+  		 	ApvHead.appendChild(th4);
+  		 
+  		 	var th5 =  document.createElement("th");
+  		 	th5.classList.add("col-1");
+  		 	th5.innerText="상태"
+  		 	ApvHead.appendChild(th5);
+  		 
+  		 	var th6 =  document.createElement("th");
+  		 	th6.classList.add("col-1");
+  		 	th6.innerText="상세"
+  		 	ApvHead.appendChild(th6);
+  		 
+  		 
+  		 
+  		 
+  		 
 			var ApvBody = document.getElementById("ApvBody");
   		 	ApvBody.innerHTML="";
   		 
@@ -103,7 +191,7 @@
   		 
 			}      
 		}	
-		xhr.open("post","../restApproval/getApvList",false);
+		xhr.open("post","../restApproval/getMyApvList",false);
 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhr.send("type=" + type); 
 		
@@ -388,31 +476,59 @@
 									<table class="table table-hover caption-top table-sm">
 										<thead>
 											<tr class="text-center">
-												<th scope="col">결재구분</th>
+												<th scope="col">내결재</th>
 											</tr>
 										</thead>
 										<tbody class="text-center">
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="selectApvType('나의결재',this)">
-												<td>나의결재</td>
+												onclick="getMyApvList('나의결재',this)">
+												<td>요청된결재</td>
 											</tr>
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="selectApvType('전체',this)">
+												onclick="getMyApvList('전체',this)">
 												<td>전체</td>
 											</tr>
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="selectApvType('진행중',this)">
+												onclick="getMyApvList('진행중',this)">
 												<td>진행중</td>
 											</tr>
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="selectApvType('결재완료',this)">
+												onclick="getMyApvList('결재완료',this)">
 												<td>결재완료</td>
 											</tr>
 											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="selectApvType('반려',this)">
+												onclick="getMyApvList('반려',this)">
 												<td>반려</td>
 											</tr>
+											<tr style="height: 30px">
+												<td ></td>
+											</tr>
 										</tbody>
+										<thead>
+											<tr class="text-center">
+												<th scope="col">요청된 결재</th>
+											</tr>
+										</thead>
+										<tbody class="text-center">
+											<tr class="divisionTab" style="cursor: pointer;"
+												onclick="getRequestedApvList('나의결재',this)">
+												<td>전체</td>
+											</tr>
+											<tr class="divisionTab" style="cursor: pointer;"
+												onclick="getRequestedApvList('전체',this)">
+												<td>미결재</td>
+											</tr>
+											<tr class="divisionTab" style="cursor: pointer;"
+												onclick="getRequestedApvList('진행중',this)">
+												<td>결재</td>
+											</tr>
+											<tr class="divisionTab" style="cursor: pointer;"
+												onclick="getRequestedApvList('반려',this)">
+												<td>반려</td>
+											</tr>
+
+										</tbody>
+
 									</table>
 								</div>
 
@@ -427,7 +543,7 @@
 												<th class="col-1">기안번호</th>
 												<th class="col-1">구분</th>
 												<th class="col-7">제목</th>
-												<th class="col-1">결재자</th>
+												<th class="col-1">기안자</th>
 												<th class="col-1">상태</th>
 												<th class="col-1">상세</th>
 											</tr>
@@ -473,17 +589,12 @@
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<div id="APPROVAL_NAMES"class="row justify-content-end"
-						style="height: 3.5%; font-size: 0.9rem">
-	
-					</div>
-					<div id="APPROVAL_IMG" class="row justify-content-end" style="height: 8.5%;">
-			
-					</div>
-					<div id="APPROVAL_DATE"class="row justify-content-end"
-						style="height: 2.5%; font-size: 0.5rem">
-			
-					</div>
+					<div id="APPROVAL_NAMES" class="row justify-content-end"
+						style="height: 3.5%; font-size: 0.9rem"></div>
+					<div id="APPROVAL_IMG" class="row justify-content-end"
+						style="height: 8.5%;"></div>
+					<div id="APPROVAL_DATE" class="row justify-content-end"
+						style="height: 2.5%; font-size: 0.5rem"></div>
 					<div class="row my-1" style="height: 3%">
 						<div class="col-auto">기안번호</div>
 						<div id="apvNo" class="col-2"></div>
