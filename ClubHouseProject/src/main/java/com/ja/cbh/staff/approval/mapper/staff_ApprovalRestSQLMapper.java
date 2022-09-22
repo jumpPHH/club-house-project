@@ -13,4 +13,9 @@ public interface staff_ApprovalRestSQLMapper {
 
 	public HashMap<String, Object> selectApvByApvNo(String APV_NO);
 	
+	public void updateApvRejectRsnAndApvRejectDateByApvNo(HashMap<String, Object> param);
+	
+	public void updateApvMidDateByApvNo(HashMap<String, Object> param);
+	
+	public void updateApvFnlDateByApvNo(HashMap<String, Object> param);
 }
