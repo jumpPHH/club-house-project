@@ -13,7 +13,15 @@
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+body{
+font-family: 'Noto Sans KR', sans-serif;
 
+
+}
+
+</style>
 <script type="text/javascript">
 
 var data = new Array();

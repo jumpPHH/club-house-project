@@ -18,6 +18,17 @@
 	referrerpolicy="origin"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+body{
+font-family: 'Noto Sans KR', sans-serif;
+
+
+}
+
+</style>
+
 <script type="text/javascript">
 	function getRequestedApvList(type,e){
 		$("#type").val(type)

@@ -14,6 +14,15 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+body{
+font-family: 'Noto Sans KR', sans-serif;
+
+
+}
+
+</style>
 <script
 	src="https://cdn.tiny.cloud/1/bdorzubong3byjkwg9kl0ayxl92mhi8e0f24djie6ukepumt/tinymce/6/tinymce.min.js"
 	referrerpolicy="origin"></script>
