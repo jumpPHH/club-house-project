@@ -115,7 +115,7 @@
 							
 							
 							<!-- 신청서 양식 시작 -->
-							<form action="./requestEstablishClubProcess" method="post">
+							<form action="./student_requestEstablishClubProcess" method="post">
 							<div class="row px-4 mt-2" style="border: 1px solid #e2dede; border-radius:5px;">
 								<div class="col" >
 									<!-- 동아리 이름 -->

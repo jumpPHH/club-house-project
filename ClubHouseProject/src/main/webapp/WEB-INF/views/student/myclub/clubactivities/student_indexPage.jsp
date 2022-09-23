@@ -133,47 +133,78 @@
 							<!-- 컨텐트 of 헤더 -->
 							<div class="row page_title">
 								<div class="col-4 page_title_text">
-									<span><img src="../../resources/img/student/establishingclub/contentBox_header2.png"
-									 style="margin-left:0.5em; width:1.1em; height:1.5em"></span> <span style="margin-left:0.3em;">동아리 개설 신청 결과</span>
+									<span><img src="/cbh/resources/img/student/myclub/clubactivities/contentTitleLogo.png"
+									 style="margin-left:0.5em; width:2.1em; height:1.5em"></span> <span style="margin-left:0.3em;">동아리 활동내역</span>
 								</div>
 								<div class="col"></div>
 							</div>
+							<!-- 컨텐트 박스 -->
 							<div class="row">
 								<div class="col">
-									<table class="table">
-									  <thead>
-									    <tr class="table-secondary">
-									      <th scope="col">번호</th>
-									      <th scope="col">제목</th>
-									      <th scope="col">작성자</th>
-									      <th scope="col">날짜</th>
-									      <th scope="col">조회수</th>
-									    </tr>
-									  </thead>
-									  <tbody>
-									  	<c:forEach var="data" items="">
-										  	<tr>
-										      <td></td>
-										      <td></td>
-										      <td>
-										      <c:if test="">
-										      		<c:out value="심사중"></c:out>
-									      	  </c:if> 
-									      	   
-										      </td>
-										      <td></td>
-										      <td><fmt:formatDate value="" pattern="yyyy.MM.dd"/></td>
-										    </tr>
-									  	</c:forEach>
-									  </tbody>
-									</table>
+									<!-- 데이터 테이블 자리 -->
+									<div class="row">
+										<div class="col">
+											<table class="table align-middle">
+											  <thead>
+											    <tr class="table-secondary">
+											      <th class="col-1 text_align_center">번호</th>
+											      <th class="col-5 text_align_center">제목</th>
+											      <th class="col-2 text_align_center">작성자</th>
+											      <th class="col-2 text_align_center">날짜</th>
+											      <th class="col-2 text_align_center">조회수</th>
+											    </tr>
+											  </thead>
+											  <tbody>
+											  <c:forEach var="clubActivity" items="${clubActivitiesList }">
+												  	<tr>
+												      <th class="col-1 text_align_center">${clubActivity.club_act_no }</th>
+												      <th class="col-5 text_align_center"><a href="./student_clubActivitiesContentPage?club_act_no=${clubActivity.club_act_no }&club_no=${clubActivity.club_no}">${clubActivity.club_act_title }</a></th>
+												      <th class="col-2 text_align_center">동아리 회장</th>
+												      <th class="col-2 text_align_center"><fmt:formatDate value="${clubActivity.club_act_date }" pattern="yyyy-MM-dd"></fmt:formatDate></th>
+												      <th class="col-2 text_align_center">${clubActivity.club_readcount }</th>
+												    </tr>
+											   </c:forEach>
+											  </tbody>
+											</table>
+										</div>
+									</div>
+									
+									<!-- 작성하기 버튼 -->
+									<div class="row mt-3">
+										<div class="col" style="text-align:right;">
+											<button class="btn btn-danger" onclick="location.href='#'">작성하기</button>
+										</div>
+									</div>
+									
+									<!-- 페이징 -->
+									<!-- 나중에 컨트롤러에서 구현해야함. -->
+									<div class="row mt-5">
+										<div class="col">
+											<nav aria-label="Page navigation example">
+											  <ul class="pagination justify-content-center">
+											    <li class="page-item">
+											      <a class="page-link" href="#" aria-label="Previous">
+											        <span aria-hidden="true">&laquo;</span>
+											      </a>
+											    </li>
+											    <li class="page-item"><a class="page-link" href="#">1</a></li>
+											    <li class="page-item"><a class="page-link" href="#">2</a></li>
+											    <li class="page-item"><a class="page-link" href="#">3</a></li>
+											    <li class="page-item">
+											      <a class="page-link" href="#" aria-label="Next">
+											        <span aria-hidden="true">&raquo;</span>
+											      </a>
+											    </li>
+											  </ul>
+											</nav>
+										</div>
+									</div>
 									
 								</div>
 							</div>
-							
 						</div>
 						<div class="col-2"></div>
-						</div>
+					</div>
 				</div>
 			</div>
 		</div>

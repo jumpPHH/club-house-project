@@ -32,14 +32,14 @@ public class EstablishingClubController {
 	@Autowired
 	private FindingClubServiceImpl findingService;
 	
-	@RequestMapping("indexPage")
+	@RequestMapping("student_indexPage")
 	public String applicationFormPage() {
 		
-		return "student/establishingclub/indexPage";
+		return "student/establishingclub/student_indexPage";
 	}
 	
-	@RequestMapping("requestEstablishClubProcess")
-	public String requestEstablishClubProcess(Club_ApplVO clubAppl_vo, HttpSession session, HttpServletResponse response) {
+	@RequestMapping("student_requestEstablishClubProcess")
+	public String student_requestEstablishClubProcess(Club_ApplVO clubAppl_vo, HttpSession session, HttpServletResponse response) {
 		
 			
 		StudVO studInfo = (StudVO)session.getAttribute("sessionUserInfo");
@@ -48,39 +48,39 @@ public class EstablishingClubController {
 		establishingClubService.inputClubAppl(clubAppl_vo);
 		
 		
-		return "student/establishingclub/establishingRequestSuccessPage";
+		return "student/establishingclub/student_establishingRequestSuccessPage";
 	}
 	
-	@RequestMapping("establishingClubResultPage")
-	public String establishingClubResultPage(HttpSession session, Model model) {
+	@RequestMapping("student_establishingClubResultPage")
+	public String student_establishingClubResultPage(HttpSession session, Model model) {
 		
 		StudVO studInfo = (StudVO)session.getAttribute("sessionUserInfo");
 		ArrayList<Club_ApplVO> clubApplDataList = establishingClubService.getAllClubApplByStudId(studInfo.getStud_id());
 	
 		model.addAttribute("clubApplDataList", clubApplDataList);
 		
-		return "student/establishingclub/establishingClubResultPage";
+		return "student/establishingclub/student_establishingClubResultPage";
 	}
 	
-	@RequestMapping("establishingClubRejectReasonPage")
-	public String establishingClubRejectReasonPage() {
+	@RequestMapping("student_establishingClubRejectReasonPage")
+	public String student_establishingClubRejectReasonPage() {
 		
 		//여기다가 반려사유 데이터 갖고와서 model로 쏴줘야함.
 		
 		
-		return "student/establishingclub/establishingClubRejectReasonPage";
+		return "student/establishingclub/student_establishingClubRejectReasonPage";
 	}
 	
-	@RequestMapping("writeClubInfoPage")
-	public String writeClubInfoPage() {
+	@RequestMapping("student_writeClubInfoPage")
+	public String student_writeClubInfoPage() {
 		
 		
 		
-		return "student/establishingclub/writeClubInfoPage";
+		return "student/establishingclub/student_writeClubInfoPage";
 	}
 	
-	@RequestMapping("writeClubInfoProcess")
-	public String writeClubInfoProcess(ClubVO clubVO, Model model, HttpSession session, @Param("title_image")MultipartFile title_image, @Param("club_dscrp_image")MultipartFile dscrp_image) {
+	@RequestMapping("student_writeClubInfoProcess")
+	public String student_writeClubInfoProcess(ClubVO clubVO, Model model, HttpSession session, @Param("title_image")MultipartFile title_image, @Param("club_dscrp_image")MultipartFile dscrp_image) {
 		//ClubVO에 클럽 회장, 동아리 이름 , 동아리 신청 회원수, 동아리 신청일자 넣기
 		System.out.println("들어오지도 못함?");
 		{
@@ -169,7 +169,7 @@ public class EstablishingClubController {
 		
 		establishingClubService.inputClub(clubVO);
 		
-		return"student/establishingclub/insertClubInfoSuccessPage";
+		return"student/establishingclub/student_insertClubInfoSuccessPage";
 	}
 	
 	
