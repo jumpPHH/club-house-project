@@ -19,8 +19,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
 
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
 <style type="text/css">
 .title01 {
 	border-right: 1px solid gray;
@@ -92,47 +92,206 @@
 }
 </style>
 
-<script>
-	$(function () {
+<script type="text/javascript">
+
+var data = new Array();
+var club_no = ${ClubBossAndAccountingMemberIs.club_no};
+var club_stud_no = ${ClubBossAndAccountingMemberIs.club_stud_no};
+
+function save(){
 	
-	    // INITIALIZE DATEPICKER PLUGIN
-	    $('.datepicker').datepicker({
-	        clearBtn: true,
-	        format: "dd/mm/yyyy"
-	    });
+	var count = document.getElementsByClassName("rowBox").length;
+	var TABLE = $("#TABLE").val();
 	
-	
-	    // FOR DEMO PURPOSE
-	    $('#reservationDate').on('change', function () {
-	        var pickedDate = $('input').val();
-	        $('#pickedDate').html(pickedDate);
-	    });
-	});
-	
-	var data = new Array();
-	
-	function save(){
+	for(let i = 0 ; i < count ; i++){
 		
-		var count = document.getElementsByClassName("newContentCol").length;
-		var totalCount = document.getElementsByClassName("contentCol").length;
-		var TABLE = $("#TABLE").val();
+		var CLUB_STUD_NO = club_stud_no;
+		var CLUB_NO = club_no;
+		var CLUB_FEE_USE_DATE = $(".rowBox").children(".dateCheck").children(".CLUB_FEE_USE_DATE:eq("+i+")").val();
+		var CLUB_FEE_DIVISION = $(".rowBox").children(".divisionCheck").children(".CLUB_FEE_DIVISION:eq("+i+")").val();
+		var CLUB_FEE_DETAIL = $(".rowBox").children(".detailCheck").children(".CLUB_FEE_DETAIL:eq("+i+")").val();
+		var CLUB_FEE_INCOME_AMOUNT = $(".rowBox").children(".incomeAmountCheck").children(".CLUB_FEE_INCOME_AMOUNT:eq("+i+")").val();
+		var CLUB_FEE_USING_AMOUNT = $(".rowBox").children(".usingAmountCheck").children(".CLUB_FEE_USING_AMOUNT:eq("+i+")").val();
+		var CLUB_FEE_OTHER_DETAIL = $(".rowBox").children(".otherDetailCheck").children(".CLUB_FEE_OTHER_DETAIL:eq("+i+")").val();
+		var CLUB_FEE_BALANCE = CLUB_FEE_INCOME_AMOUNT - CLUB_FEE_USING_AMOUNT;
 		
-		
-		
+ 		var jsonObj = {
+			"TABLE" : TABLE,
+			"DIV": "저장",
+			"CLUB_STUD_NO":CLUB_STUD_NO,
+			"CLUB_NO":CLUB_NO,
+			"CLUB_FEE_DIVISION":CLUB_FEE_DIVISION,
+			"CLUB_FEE_INCOME_AMOUNT":CLUB_FEE_INCOME_AMOUNT,
+			"CLUB_FEE_USING_AMOUNT":CLUB_FEE_USING_AMOUNT,
+			"CLUB_FEE_BALANCE":CLUB_FEE_BALANCE,
+			"CLUB_FEE_DETAIL":CLUB_FEE_DETAIL,
+			"CLUB_FEE_OTHER_DETAIL":CLUB_FEE_OTHER_DETAIL,
+			"CLUB_FEE_USE_DATE":CLUB_FEE_USE_DATE,
+		}
+		data.push(jsonObj) 
 	}
-/* 	<div class="col-1 blank02">${i}</div>
-	<div class="col-2 blank02"></div>
-	<div class="col-1 blank02"></div>
-	<div class="col-1 blank02"></div>
-	<div class="col-3 blank02"></div>
-	<div class="col-2 blank02"></div>
-	<div class="col blank02-non"></div> 
 	
+	var data2 = JSON.stringify(data);
 	
-	<div class="col blank02">합 계 내 역</div>
-	<div class="col-4 blank02">200,000원</div>
+	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+		 xhr.onreadystatechange = function () {
+	if(xhr.readyState == 4 && xhr.status == 200){
+    var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+
+		}      
+	}	
+	xhr.open("post","/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtRegistration",false);
+	xhr.setRequestHeader("Content-type","application/json");
+	xhr.send(data2); 
 	
-	*/
+	alert("저장됨");
+	window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
+}
+
+function totalCheck(){
+	$(".check").click();
+	
+}
+
+function plusCode(){
+	var TABLE = $("#TABLE").val();
+	var memberShipFeeMgmtBody = $('#memberShipFeeMgmtBody')[0];
+
+	var rowBox = document.createElement("div");
+	rowBox.classList.add("row");
+	rowBox.classList.add("rowBox");
+	rowBox.setAttribute("style","border: 1px solid black; border-top: 0px;");
+	memberShipFeeMgmtBody.appendChild(rowBox);
+	
+	var col1NoBox = document.createElement("div");
+	col1NoBox.classList.add("col-1");
+	col1NoBox.classList.add("blank02");
+	col1NoBox.classList.add("boxCheck");
+	rowBox.appendChild(col1NoBox);
+	
+	var col1CheckBox = document.createElement("input");
+	col1CheckBox.classList.add("form-check-input");
+	col1CheckBox.setAttribute("type","checkbox");
+	col1CheckBox.setAttribute("name","boxCheck");
+	col1NoBox.appendChild(col1CheckBox);
+	
+	var col2DateBox = document.createElement("div");
+	col2DateBox.classList.add("col-2");
+	col2DateBox.classList.add("blank02");
+	col2DateBox.classList.add("dateCheck");
+	col2DateBox.setAttribute("style","padding-top: 15px;");
+	rowBox.appendChild(col2DateBox);
+	
+	var dateInput = document.createElement("input");
+	dateInput.classList.add("CLUB_FEE_USE_DATE");
+	dateInput.setAttribute("type","date");
+	dateInput.setAttribute("style","font-size: 13px;");
+	col2DateBox.appendChild(dateInput);
+	
+	var col1DivisionBox = document.createElement("div");
+	col1DivisionBox.classList.add("col-1");
+	col1DivisionBox.classList.add("blank02");
+	col1DivisionBox.classList.add("divisionCheck");
+	col1DivisionBox.setAttribute("style","padding-top: 15px;");
+	rowBox.appendChild(col1DivisionBox);
+	
+	var divisionSelect = document.createElement("select");
+	divisionSelect.classList.add("form-select");
+	divisionSelect.classList.add("CLUB_FEE_DIVISION");
+	divisionSelect.setAttribute("aria-label","Default select example");
+	divisionSelect.setAttribute("style","font-size: 10px;");
+	col1DivisionBox.appendChild(divisionSelect);
+	
+	var optionSeleted = document.createElement("option");
+	optionSeleted.setAttribute("selected","selected");
+	optionSeleted.innerText = "구분";
+	divisionSelect.appendChild(optionSeleted);
+	
+	var option1= document.createElement("option");
+	option1.setAttribute("value","경조사비");
+	option1.innerText="경조사비";
+	divisionSelect.appendChild(option1);
+	
+	var option2= document.createElement("option");
+	option2.setAttribute("value","회식비");
+	option2.innerText="회식비";
+	divisionSelect.appendChild(option2);
+	
+	var option3= document.createElement("option");
+	option3.setAttribute("value","회비");
+	option3.innerText="회비";
+	divisionSelect.appendChild(option3);
+	
+	var option4= document.createElement("option");
+	option4.setAttribute("value","가입비");
+	option4.innerText="가입비";
+	divisionSelect.appendChild(option4);
+
+	var col3DetailBox = document.createElement("div");
+	col3DetailBox.classList.add("col-3");
+	col3DetailBox.classList.add("blank02");
+	col3DetailBox.classList.add("detailCheck");
+	rowBox.appendChild(col3DetailBox);
+	
+	var detailInput = document.createElement("input");
+	detailInput.setAttribute("type","text");
+	detailInput.classList.add("form-control");
+	detailInput.classList.add("CLUB_FEE_DETAIL");
+	col3DetailBox.appendChild(detailInput);
+	
+	var col1IncomeAmountBox = document.createElement("div");
+	col1IncomeAmountBox.classList.add("col-1");
+	col1IncomeAmountBox.classList.add("blank02");
+	col1IncomeAmountBox.classList.add("incomeAmountCheck");
+	rowBox.appendChild(col1IncomeAmountBox);
+	
+	var incomeAmountInput = document.createElement("input");
+	incomeAmountInput.setAttribute("type","text");
+	incomeAmountInput.classList.add("form-control");
+	incomeAmountInput.classList.add("CLUB_FEE_INCOME_AMOUNT");
+	col1IncomeAmountBox.appendChild(incomeAmountInput);
+	
+	var col1UsingAmountBox = document.createElement("div");
+	col1UsingAmountBox.classList.add("col-1");
+	col1UsingAmountBox.classList.add("blank02");
+	col1UsingAmountBox.classList.add("usingAmountCheck");
+	rowBox.appendChild(col1UsingAmountBox);
+	
+	var usingAmountInput = document.createElement("input");
+	usingAmountInput.setAttribute("type","text");
+	usingAmountInput.classList.add("form-control");
+	usingAmountInput.classList.add("CLUB_FEE_USING_AMOUNT");
+	col1UsingAmountBox.appendChild(usingAmountInput);
+	
+	var colOtherDetailBox = document.createElement("div");
+	colOtherDetailBox.classList.add("col");
+	colOtherDetailBox.classList.add("blank02-non");
+	colOtherDetailBox.classList.add("otherDetailCheck");
+	rowBox.appendChild(colOtherDetailBox);
+	
+	var otherDetailInput = document.createElement("input");
+	otherDetailInput.setAttribute("type","text");
+	otherDetailInput.classList.add("form-control");
+	otherDetailInput.classList.add("CLUB_FEE_OTHER_DETAIL");
+	colOtherDetailBox.appendChild(otherDetailInput);
+}
+
+function deleteRow() {
+	    // 체크한 데이터를 담을 배열 선언
+	    const arr = [];
+	    // Name이 boxCheck인 속성 취득
+	    const boxCheck = document.getElementsByName("boxCheck");
+	    // 취득한 속성 만큼 루프
+	    for (let i = 0; i < boxCheck.length; i++) {
+	      // 속성중에 체크 된 항목이 있을 경우
+	      if (boxCheck[i].checked == true) {
+	      	arr.push(boxCheck[i].value);
+	      	
+	      	$(".rowBox")[i].remove();
+	      }
+	    }
+	}
+
 	
 </script>
 </head>
@@ -157,8 +316,8 @@
 
 					<div class="row">
 						<div class="col-2" style="text-align: center;">
-							<div onclick="MemberShipFeeMgmtClick(this)"
-								style="font-size: 19px;">회비 내역 작성</div>
+							<a href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtPage"
+								style="font-size: 19px;">회비 내역 작성</a>
 						</div>
 						<div class="col-1" style="text-align: center;">|</div>
 						<div class="col-2" style="text-align: center;">
@@ -172,12 +331,12 @@
 				<div class="col-1"></div>
 			</div>
 				
-			<c:if test="${empty ClubBossInfo.IsBoss }">
-				관리자만 이용가능한 페이지입니다.
+			<c:if test="${empty ClubBossAndAccountingMemberIs }">
+				관계자만 이용가능한 페이지입니다.
 			</c:if>
 			
 			
-			<c:if test="${not empty ClubBossInfo.IsBoss }">
+			<c:if test="${not empty ClubBossAndAccountingMemberIs }">
 			
 			<div class="row">
 			
@@ -191,13 +350,13 @@
 					<div class="row my-5">
 						<div class="col-8"></div>
 						<div class="col">
-							<button onclick="plusCol()" type="button" class="btn btn-outline-primary buttonClick">추가</button>
+							<button onclick="plusCode()" type="button" class="btn btn-outline-primary buttonClick">추가</button>
 						</div>
 						
 						<div class="col">
-							<button onclick="deleteCol()" type="button" class="btn btn-outline-danger buttonClick">삭제</button>
-						</div>
-							
+							<button onclick="deleteRow()" type="button" class="btn btn-outline-danger buttonClick">삭제</button>
+						</div>	
+						
 						<div class="col">
 							<button onclick="save()" type="button" class="btn btn-outline-secondary buttonClick">저장</button>
 						</div>
@@ -207,11 +366,11 @@
 						<div class="col title01-right">작성일</div>
 						<div class="col-2 blank01"> <%= sf.format(nowTime) %></div>
 						<div class="col title01">동아리명</div>
-						<div class="col-2 blank01">${ClubBossInfo.GetClubBossClubInfo.club_name }</div>
+						<div class="col-2 blank01">${ClubBossAndAccountingMemberIs.club_name }</div>
 						<div class="col title01">직책</div>
-						<div class="col blank01">${ClubBossInfo.IsBoss.club_stud_grade }</div>						
+						<div class="col blank01">${ClubBossAndAccountingMemberIs.club_stud_grade }</div>						
 						<div class="col title01">성명</div>
-						<div class="col blank01">${ClubBossInfo.GetClubBoss.stud_name }</div>						
+						<div class="col blank01">${ClubBossAndAccountingMemberIs.stud_name }</div>						
 					</div>
 				</div>
 						
@@ -229,23 +388,16 @@
 						<div class="col-1 title02-right">#</div>
 						<div class="col-2 title02">날 짜</div>
 						<div class="col-1 title02">구 분</div>
-						<div class="col-1 title02">성 명</div>
 						<div class="col-3 title02">내 역</div>
-						<div class="col-2 title02">금 액</div>
+						<div class="col-1 title02">수 입</div>
+						<div class="col-1 title02">지 출</div>
 						<div class="col title02-non">비 고</div>
 					</div>
-				
-							<input id="TABLE" type="hidden" value="회비내역관리">
-						<div id="content" class="row" style="border: 1px solid black; border-top: 0px;">
-							
-									
-						</div>
-				
-					
-						<div id="total" class="row" style="border: 1px solid black; border-top: 0px;">
+						<input id="TABLE" type="hidden" value="회비내역관리">
+						<div id="memberShipFeeMgmtBody">
 
 						</div>
-					
+			
 				</div>
 						
 				<div class="col-1"></div>	

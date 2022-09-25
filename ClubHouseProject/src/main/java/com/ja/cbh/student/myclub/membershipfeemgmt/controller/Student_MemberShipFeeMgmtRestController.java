@@ -18,22 +18,16 @@ public class Student_MemberShipFeeMgmtRestController {
 	private Student_MemberShipFeeMgmtRestService memberShipFeeMgmtRestService;
 	
 	@RequestMapping("student_MemberShipFeeMgmtRegistration")
-	public HashMap<String, Object> student_MemberShipFeeMgmtRegistration(@RequestBody ArrayList<HashMap<String, Object>> data , int club_no){
+	public HashMap<String, Object> student_MemberShipFeeMgmtRegistration(@RequestBody ArrayList<HashMap<String, Object>> data2){
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		String table = (String)data.get(0).get("TABLE");
-		
-		for(HashMap<String, Object> maps : data) {
-			if(maps.get("DIV").equals("신규")) {
+		String table = (String)data2.get(0).get("TABLE");
+		for(HashMap<String, Object> maps : data2) {
+			if(maps.get("DIV").equals("저장")) {
 				memberShipFeeMgmtRestService.inputMemberShipFeeMgmt(maps);
-			}else if(maps.get("DIV").equals("수정")) {
-				memberShipFeeMgmtRestService.updateMemberShipFeeMgmt(maps);
-			}else if(maps.get("DIV").equals("삭제")) { 
-				memberShipFeeMgmtRestService.deleteMemberShipFeeMgmt(maps);
 			}
 		}
-		
-		map.put("data", memberShipFeeMgmtRestService.getMemberShipFeeMgmtList(table,club_no));
-		
 		return map;
 	}
+	
+	
 }

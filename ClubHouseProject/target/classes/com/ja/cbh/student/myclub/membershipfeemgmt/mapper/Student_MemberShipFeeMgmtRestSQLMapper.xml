@@ -10,12 +10,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			CBH_CLUB_FEE_seq.nextval,
 			#{CLUB_STUD_NO},
 			#{CLUB_NO},
-			#{CLUB_FEE_USING_AMOUNT},
-			#{CLUB_FEE_INCOME_AMOUNT},
-			SYSDATE,
+			#{CLUB_FEE_DIVISION}, 
+			#{CLUB_FEE_INCOME_AMOUNT}, 
+			#{CLUB_FEE_USING_AMOUNT}, 
 			#{CLUB_FEE_BALANCE},
-			#{CLUB_FEE_DETAIL},
-			#{CLUB_FEE_OTHER_DETAILS}
+			#{CLUB_FEE_DETAIL}, 
+			#{CLUB_FEE_OTHER_DETAIL}, 
+			#{CLUB_FEE_USE_DATE}, 
+			SYSDATE
 		)
 	</insert>
 	

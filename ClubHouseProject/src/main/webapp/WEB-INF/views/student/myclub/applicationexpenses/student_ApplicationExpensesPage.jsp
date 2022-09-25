@@ -136,7 +136,14 @@ input.form-control::placeholder {
 	<div
 		style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height: 86vh; overflow-y: auto; word-break: break-all;">
 		<div class="container-fluid">
-			<div class="row">
+		
+		<c:if test="${empty ClubBossInfo.IsBoss }">
+			관리자만 이용가능한 페이지입니다.
+		</c:if>
+				
+		<c:if test="${not empty ClubBossInfo.IsBoss }">
+		
+		<div class="row">
 				<div class="col-1"></div>
 				<div class="col">
 				
@@ -173,12 +180,6 @@ input.form-control::placeholder {
 				</div>
 				<div class="col-1"></div>
 			</div>
-			
-		<c:if test="${empty ClubBossInfo.IsBoss }">
-			관리자만 이용가능한 페이지입니다.
-		</c:if>
-		
-		<c:if test="${not empty ClubBossInfo.IsBoss }">
 		
 		<form action="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesRegistrationProcess" method="post">
 			<div hidden="hidden">

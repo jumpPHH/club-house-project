@@ -14,5 +14,5 @@ public interface Student_MemberShipFeeMgmtRestSQLMapper {
 	//회비내역 삭제
 	public void deleteMemberShipFeeMgmt(HashMap<String, Object> pram);
 	//회비내역 리스트 호출
-	public ArrayList<HashMap<String, Object>> selectMemberShipFeeMgmtList(int club_no);
+	public ArrayList<HashMap<String, Object>> selectMemberShipFeeMgmtList();
 }

@@ -20,22 +20,10 @@ public class Student_MemberShipFeeMgmtRestService {
 		}
 	}
 	
-	public void updateMemberShipFeeMgmt(HashMap<String, Object> pram) {
-		if(pram.get("TABLE").equals("회비내역관리")) {
-			memberShipFeeMgmtRestSQLMapper.updateMemberShipFeeMgmt(pram);
-		}
-	}
-	
-	public void deleteMemberShipFeeMgmt(HashMap<String, Object> pram) {
-		if(pram.get("TABLE").equals("회비내역관리")) {
-			memberShipFeeMgmtRestSQLMapper.deleteMemberShipFeeMgmt(pram);
-		}
-	}
-	
-	public ArrayList<HashMap<String, Object>> getMemberShipFeeMgmtList(String table ,int club_no){
+	public ArrayList<HashMap<String, Object>> getMemberShipFeeMgmtList(String table){
 			
 			if(table.equals("회비내역관리")) {
-				return memberShipFeeMgmtRestSQLMapper.selectMemberShipFeeMgmtList(club_no);
+				return memberShipFeeMgmtRestSQLMapper.selectMemberShipFeeMgmtList();
 			}
 			return null;
 	}	

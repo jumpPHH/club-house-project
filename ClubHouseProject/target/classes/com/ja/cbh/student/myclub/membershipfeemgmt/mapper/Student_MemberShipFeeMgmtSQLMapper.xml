@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.myclub.membershipfeemgmt.mapper.Student_MemberShipFeeMgmtSQLMapper">
+	
+	<select id="selectClubBossAndAccountingMemberIs" resultType="com.ja.cbh.vo.Club_BossAndAccountingMemberVO">
+		SELECT cc.CLUB_NAME, ccs.STUD_ID, cs.STUD_NAME ,
+		ccs.CLUB_STUD_GRADE , ccs.CLUB_NO, ccs.CLUB_STUD_NO  
+		FROM CBH_STUD cs  , CBH_CLUB_STUD ccs  , CBH_CLUB cc 
+		WHERE ccs.CLUB_NO = cc.CLUB_NO
+		AND cs.STUD_ID = ccs.STUD_ID 
+		AND CLUB_STUD_STATE = '활동중'
+		AND ccs.STUD_ID = #{stud_id}
+		AND (ccs.CLUB_STUD_GRADE = '대표' OR ccs.CLUB_STUD_GRADE = '화계')
+	</select>
+	
+</mapper>
