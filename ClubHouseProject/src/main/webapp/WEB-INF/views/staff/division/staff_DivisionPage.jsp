@@ -20,7 +20,14 @@ font-family: 'Noto Sans KR', sans-serif;
 
 
 }
-
+   main>div>div>div{
+      margin:2vh;
+      border: 0px solid black;
+      border-radius: 20px 20px 20px 20px;
+      padding: 17px;
+       background-color: white
+/*       background-color:#EBF7FF; */
+   }
 </style>
 <script type="text/javascript">
 
@@ -99,6 +106,7 @@ function getDivisionList(table,e){
 	if(data.length != 0){
 		alert("구분이동시 저장하지않은 항목은 적용되지 않습니다.")
 	}
+		data = [];
 	$("#TABLE").val(table);
 	$(".divisionTab").removeClass("table-active");
 	if(e){
@@ -674,16 +682,14 @@ function stateCheck(e){
 	   });
 </script>
 </head>
+
 <body>
-	<jsp:include page="/WEB-INF/views/staff_common/staff_header.jsp"></jsp:include>
+<div class="container-fluid">
+
 	<jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
 
-	<div
-		style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height: 86vh; overflow-y: auto; word-break: break-all">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col">
 
+<main>
 					<!-- 여기다 작성하세요 -->
 					<div class="row mt-1 mb-3">
 						<div class="col"
@@ -729,7 +735,7 @@ function stateCheck(e){
 							
 								<div class="col-2 me-3 px-0"
 									style="height: 75vh; border: 1px solid;">
-									<table class="table table-hover caption-top table-sm">
+									<table class="table  table-bordered table-hover caption-top table-sm">
 										<caption>
 											코드정보 <span >7 건</span>
 										</caption>
@@ -776,7 +782,7 @@ function stateCheck(e){
 								</div>
 								<div class="col px-0" style="height: 75vh; border: 1px solid;">
 								<input id="TABLE" type="hidden" value="공지">
-									<table class="table table-hover caption-top table-sm">
+									<table class="table  table-bordered table-hover caption-top table-sm">
 										<caption>
 											코드내역 <span id="contentCount"></span>
 										</caption>
@@ -798,13 +804,10 @@ function stateCheck(e){
 
 					<!-- 여기다 작성하세요 -->
 
+</main>
 
+</div>
 
-
-				</div>
-			</div>
-		</div>
-	</div>
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

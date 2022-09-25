@@ -26,7 +26,14 @@ font-family: 'Noto Sans KR', sans-serif;
 
 
 }
-
+   main>div>div>div{
+      margin:2vh;
+      border: 0px solid black;
+      border-radius: 20px 20px 20px 20px;
+      padding: 17px;
+       background-color: white
+/*       background-color:#EBF7FF; */
+   }
 </style>
 
 <script type="text/javascript">
@@ -1430,14 +1437,9 @@ font-family: 'Noto Sans KR', sans-serif;
 
 </head>
 <body>
-	<jsp:include page="../../staff_common/staff_header.jsp"></jsp:include>
 	<jsp:include page="../../staff_common/staff_sidevar.jsp"></jsp:include>
 
-	<div
-		style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height: 86vh; overflow-y: auto">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col">
+<main>
 
 					<!-- 여기다 작성하세요 -->
 					<div class="row mt-1 mb-3">
@@ -1547,10 +1549,7 @@ font-family: 'Noto Sans KR', sans-serif;
 					</div>
 					<!-- 여기다 작성하세요 -->
 
-				</div>
-			</div>
-		</div>
-	</div>
+</main>
 
 	<!-- Modal -->
 	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
