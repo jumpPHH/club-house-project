@@ -9,9 +9,10 @@
 
 
   header{
-    background-color: rgb(87, 111, 208);
+    background-color: white;
     height: 50px;
-    color:white;
+    color: black;
+    border-bottom:2px soild lightgray ;
     font-size: 14px;
     padding:0;
     position:fixed;

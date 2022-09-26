@@ -104,11 +104,6 @@ function doSubmit(){
 <main>
 
 					<!-- 여기다 작성하세요 -->
-					<div class="row mt-1 mb-3">
-						<div class="col"
-							style="font-size: 1.6em; font-weight: bold; color: #C4073D">기안서작성
-						</div>
-					</div>
 					<div class="row px-3">
 						<div class="col">
 							<div class="row">
