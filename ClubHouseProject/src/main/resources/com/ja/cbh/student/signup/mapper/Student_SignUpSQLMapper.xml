@@ -23,4 +23,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			'재직중'
 		)
 	</insert>
+	
+	<!-- 회원조회에 필요한 정보 -->
+	<select id="selectByStudentId" resultType="com.ja.cbh.vo.StudVO">
+		SELECT * FROM CBH_STUD 
+		WHERE STUD_ID = #{stud_id}
+	</select>
+	
+	<select id="selectStudentAll" resultType="com.ja.cbh.vo.StudVO">
+		SELECT * FROM CBH_STUD ORDER BY CBH_STUD DESC
+	</select>
+	
+		<!-- 학생 숫자 -->
+	<select id="countTotalStudentById" resultType="int">
+		SELECT COUNT(*) FROM CBH_STUD
+		WHERE STUD_ID = #{stud_id}
+	</select>
+	
+	
+	
 </mapper>  

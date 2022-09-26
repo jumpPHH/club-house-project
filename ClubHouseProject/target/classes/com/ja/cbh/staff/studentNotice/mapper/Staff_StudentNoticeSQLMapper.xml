@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.staff.studentNotice.mapper.Staff_StudentNoticeSQLMapper">
+
+	<select id="createNoticePk" resultType="int">
+		SELECT CBH_NOTI_seq.nextval FROM Dual
+	</select>
+
+	<insert id="insertNotice">
+		INSERT INTO CBH_NOTI VALUES(
+			#{noti_no},
+			#{noti_div_no},
+			#{staff_id},
+			#{noti_title},
+			#{noti_content},
+			#{noti_readcount},
+			SYSDATE
+		)
+		
+	</insert>
+	
+		<!-- paging -->
+	<select id="selectAll" resultType="com.ja.cbh.vo.NoticeVO">
+		SELECT t2.* FROM (
+			SELECT t1.* , ROWNUM as rnum FROM (
+				SELECT * FROM CBH_NOTI
+				<if test="searchWord != null">
+					<choose>
+						<when test="noti_div_no == 0">
+							WHERE NOTI_DIV_NO = 0
+							AND NOTI_TITLE LIKE '%' || #{searchWord} || '%'
+						</when>
+
+						<when test="noti_div_no == 1">
+							WHERE NOTI_DIV_NO = 1
+							AND NOTI_TITLE LIKE '%' || #{searchWord} || '%'
+						</when>
+					</choose>
+				</if>
+				ORDER BY NOTI_NO DESC
+			)t1
+		)t2
+		<![CDATA[
+		WHERE t2.rnum >= (#{pageNum}-1)*10+1 AND t2.rnum <= #{pageNum}*10
+		]]>		
+	</select>
+	
+	<select id="noticeCount" resultType="int">
+			SELECT COUNT(*) 
+			FROM CBH_NOTI
+			<if test="searchWord != null">
+				<choose>
+					<when test="noti_div_no == 0">
+						WHERE NOTI_DIV_NO = 0
+						AND NOTI_TITLE LIKE '%' || #{searchWord} || '%'
+					</when>
+					<when test="noti_div_no == 1">
+						WHERE NOTI_DIV_NO = 1
+						AND NOTI_TITLE LIKE '%' || #{searchWord} || '%'
+					</when>
+				</choose>
+			</if>
+	</select>	
+	<select id="countNoticeNum" resultType="com.ja.cbh.vo.NoticeVO">
+		SELECT COUNT(*) FROM CBH_NOTI
+	</select>			
+
+	<select id="selectByNo" resultType="com.ja.cbh.vo.NoticeVO">
+		SELECT * FROM CBH_NOTI
+		WHERE NOTI_NO = #{noticeNo}
+	</select>
+
+	<update id="increaseReadCount">
+		UPDATE CBH_NOTI 
+		SET NOTI_READCOUNT = noti_readcount + 1 
+		WHERE NOTI_NO = #{noticeNo}
+	</update>
+		
+	<delete id="deleteByNo">
+		DELETE FROM  CBH_NOTI 
+		WHERE NOTI_NO = #{noticeNo}
+	</delete>
+	
+	<update id="updateDivTilteAndContent">
+		UPDATE CBH_NOTI
+		SET NOTI_DIV_NO = #{noti_div_no}, NOTI_TITLE = #{noti_title} , NOTI_CONTENT = #{noti_content}
+		WHERE NOTI_NO = #{noti_no}
+	</update>
+	
+	
+	<!-- rest -->
+	
+	<delete id="delNotiByNo">
+		DELETE FROM CBH_NOTI
+		WHERE NOTI_NO = #{noticeNo}
+	</delete>
+	
+</mapper>
