@@ -99,7 +99,7 @@ $(function() {
         <p class="font-weight-light text-muted mb-0">과장</p>
       </div> 
       <span style="cursor: pointer; font-size: 1.3vh" class="ms-4 font-weight-bold btn btn-light bg-white rounded-pill shadow-sm" 
-      onclick="location.href='/cbh/student/login/student_LogoutProcess'">로그아웃</span>
+      onclick="location.href='/cbh/staff/login/staff_LogoutProcess'">로그아웃</span>
     </div>
   </div>
 
