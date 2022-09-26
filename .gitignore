@@ -74,7 +74,7 @@ local.properties
 #MF#
 .properties
 #xml#
-.xml
+root-context.xml
 #properties#
 .MF
 
