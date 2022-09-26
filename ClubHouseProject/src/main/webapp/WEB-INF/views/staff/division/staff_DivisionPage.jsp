@@ -10,26 +10,8 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<style type="text/css">
-@import
-	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap')
-	;
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
-body {
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
-main>div>div>div {
-	margin: 2vh;
-	border: 0px solid black;
-	border-radius: 0.7rem;
-	padding: 17px;
-	background-color: white /*       background-color:#EBF7FF; */
-}
-</style>
 <script type="text/javascript">
 
 var data = new Array();
@@ -685,19 +667,24 @@ function stateCheck(e){
 </head>
 
 <body>
-	<div class="container-fluid">
-
-		<jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
-
-
-		<main>
+	<jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
+		
+	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
+	<div class="page-content p-5 pt-4" id="content">
+	  <!-- 토글 버튼 -->
+		<button id="sidebarCollapse" type="button"
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
+			<i class="fa fa-bars mr-2"></i><small
+				class="text-uppercase font-weight-bold">MENU</small>
+		</button>
+		
 			<!-- 여기다 작성하세요 -->
 
 
 
 			<div class="row px-3 mt-4">
 				<div class="col">
-					<div class="row ps-1">
+					<div class="row ps-1 p-2 mb-2 box">
 						<div id="noti" class="col text-center" style="cursor: pointer;"
 							onclick="getDivisionList('공지',this)">공지구분</div>
 						<div id="vlntr" class="col text-center" style="cursor: pointer;"
@@ -716,7 +703,7 @@ function stateCheck(e){
 							onclick="getDivisionList('동아리카테고리',this)">동아리카테고리</div>
 					</div>
 
-					<div class="row"style="height: 78vh;">
+					<div class="row box p-3"style="height: 73vh;">
 
 						<div class="col px-0" >
 							<input id="TABLE" type="hidden" value="공지">
@@ -777,8 +764,6 @@ function stateCheck(e){
 			</div>
 
 			<!-- 여기다 작성하세요 -->
-
-		</main>
 
 	</div>
 
