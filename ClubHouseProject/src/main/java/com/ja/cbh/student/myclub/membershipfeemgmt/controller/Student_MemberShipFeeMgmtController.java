@@ -32,6 +32,7 @@ public class Student_MemberShipFeeMgmtController {
 	@RequestMapping("student_MemberShipFeeMgmtListPage")
 	public String student_MemberShipFeeMgmtListPage() {
 		
+		
 		return "student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage";
 	}
 }
