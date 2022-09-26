@@ -147,10 +147,11 @@
       <li class="menu"><a href="/cbh/staff/approval/staff_WriteDraftPage">기안서작성</a></li>
       <li class="menu"><a href="/cbh/staff/approval/staff_DraftManagementPage">기안서통합관리</a></li>
       <div class="title">학생</div>
-      <li class="menu"><a href="#">학생조회</a></li>
-      <li class="menu"><a href="#">학생공지사항</a></li>
+      <li class="menu"><a href="/cbh/staff/studentSearch/staff_StudentSearchPage">학생조회</a></li>
+      <li class="menu"><a href="/cbh/staff/studentNotice/staff_StudentNoticePage">학생공지사항</a></li>
+      <li class="menu"><a href="/cbh/staff/applyClub/applyClubPage">동아리신청</a></li>
       <div class="title">동아리</div>
-      <li class="menu"><a href="#">동아리관리</a></li>
+      <li class="menu"><a href="/cbh/staff/clubManage/clubManagePage">동아리관리</a></li>
       <li class="menu"><a href="#">동아리맴버관리</a></li>
       <li class="menu"><a href="#">동아리경비관리</a></li>
       <li class="menu"><a href="#">동아리경비내역</a></li>

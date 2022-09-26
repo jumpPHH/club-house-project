@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/staff/applyClub/*")
-public class Staff_ApplyClub {
+public class Staff_ApplyClubController {
 	
 	@RequestMapping("applyClubPage")
 	public String applyClubPage() {

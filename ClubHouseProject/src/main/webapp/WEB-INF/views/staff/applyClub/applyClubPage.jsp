@@ -119,8 +119,8 @@
 			</div>
 			<div class="col">
 				<select name="noti_div_no">
-					<option selected value="0">일반공지</option>
-					<option value="1">긴급공지</option>					
+					<option selected value="0">자바동아리</option>
+					<option value="1">파이썬동아리</option>					
 				</select>
 			</div>
 			<div class="col">
