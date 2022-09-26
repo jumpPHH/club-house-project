@@ -1,6 +1,5 @@
 package com.ja.cbh.student.myclub.membershipfeemgmt.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +19,4 @@ public class Student_MemberShipFeeMgmtRestService {
 		}
 	}
 	
-	public ArrayList<HashMap<String, Object>> getMemberShipFeeMgmtList(String table){
-			
-			if(table.equals("회비내역관리")) {
-				return memberShipFeeMgmtRestSQLMapper.selectMemberShipFeeMgmtList();
-			}
-			return null;
-	}	
 }
