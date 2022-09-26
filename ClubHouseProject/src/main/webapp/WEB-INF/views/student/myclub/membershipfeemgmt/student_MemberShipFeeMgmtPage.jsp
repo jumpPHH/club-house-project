@@ -17,7 +17,6 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
@@ -147,11 +146,7 @@ function save(){
 	alert("저장됨");
 	window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
 }
-
-function totalCheck(){
-	$(".check").click();
-	
-}
+hn               
 
 function plusCode(){
 	var TABLE = $("#TABLE").val();
@@ -296,120 +291,130 @@ function deleteRow() {
 </script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/student_common/student_header.jsp"></jsp:include>
-	<jsp:include page="/WEB-INF/views/student_common/student_sidevar.jsp"></jsp:include>
-
-	<div
-		style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height: 86vh; overflow-y: auto; word-break: break-all;">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-1"></div>
-
-				<div class="col">
-					<div class="row my-5">
-						<div class="col">
-							<i class="bi bi-cash-coin"
-								style="font-size: 40px; color: #EF1B3F;"></i> <span
-								style="font-size: 30px;">회비 내역 관리</span>
+	<jsp:include page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
+		
+	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
+	<div class="page-content p-5" id="content">
+	  <!-- 토글 버튼 -->
+		<button id="sidebarCollapse" type="button"
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
+			<i class="fa fa-bars mr-2"></i><small
+				class="text-uppercase font-weight-bold">Toggle</small>
+		</button>
+		
+		<div class="card" style="width:100%; height:80rem; border-radius:2%;">
+			<div class="dashboard-card-bottom" >
+					<!-- 실제 내용 -->
+									
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-1"></div>
+			
+							<div class="col">
+								<div class="row my-5">
+									<div class="col">
+										<i class="bi bi-cash-coin"
+											style="font-size: 40px; color: #EF1B3F;"></i> <span
+											style="font-size: 30px;">회비 내역 관리</span>
+									</div>
+								</div>
+			
+								<div class="row">
+									<div class="col-2" style="text-align: center;">
+										<a href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtPage"
+											style="font-size: 19px;">회비 내역 작성</a>
+									</div>
+									<div class="col-1" style="text-align: center;">|</div>
+									<div class="col-2" style="text-align: center;">
+										<a
+											href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage"
+											style="font-size: 19px;">회비 내역</a>
+									</div>
+								</div>
+			
+							</div>
+							<div class="col-1"></div>
 						</div>
+							
+						<c:if test="${empty ClubBossAndAccountingMemberIs }">
+							관계자만 이용가능한 페이지입니다.
+						</c:if>
+						
+						
+						<c:if test="${not empty ClubBossAndAccountingMemberIs }">
+						
+						<div class="row">
+						
+							<div class="col-1"></div>
+							
+							<div class="col">
+								<div class="row my-5">
+									<div class="col" style="font-size: 23px; font-weight: bold; text-align: center;">회비 내역 작성</div>
+								</div>
+								
+								<div class="row my-5">
+									<div class="col-8"></div>
+									<div class="col">
+										<button onclick="plusCode()" type="button" class="btn btn-outline-primary buttonClick">추가</button>
+									</div>
+									
+									<div class="col">
+										<button onclick="deleteRow()" type="button" class="btn btn-outline-danger buttonClick">삭제</button>
+									</div>	
+									
+									<div class="col">
+										<button onclick="save()" type="button" class="btn btn-outline-secondary buttonClick">저장</button>
+									</div>
+								</div>
+								
+								<div class="row" style="border: 1px solid black;">
+									<div class="col title01-right">작성일</div>
+									<div class="col-2 blank01"> <%= sf.format(nowTime) %></div>
+									<div class="col title01">동아리명</div>
+									<div class="col-2 blank01">${ClubBossAndAccountingMemberIs.club_name }</div>
+									<div class="col title01">직책</div>
+									<div class="col blank01">${ClubBossAndAccountingMemberIs.club_stud_grade }</div>						
+									<div class="col title01">성명</div>
+									<div class="col blank01">${ClubBossAndAccountingMemberIs.stud_name }</div>						
+								</div>
+							</div>
+									
+							<div class="col-1"></div>	
+							
+					   </div>
+					   
+					   	<div class="row my-2">
+						
+							<div class="col-1"></div>
+							
+							<div class="col">
+								
+								<div class="row" style="border: 1px solid black;">
+									<div class="col-1 title02-right">#</div>
+									<div class="col-2 title02">날 짜</div>
+									<div class="col-1 title02">구 분</div>
+									<div class="col-3 title02">내 역</div>
+									<div class="col-1 title02">수 입</div>
+									<div class="col-1 title02">지 출</div>
+									<div class="col title02-non">비 고</div>
+								</div>
+									<input id="TABLE" type="hidden" value="회비내역관리">
+									<div id="memberShipFeeMgmtBody">
+			
+									</div>
+						
+							</div>
+									
+							<div class="col-1"></div>	
+							
+					   </div>
+					   </c:if>
+					   
+					   <div class="row my-5"></div>
+			
 					</div>
-
-					<div class="row">
-						<div class="col-2" style="text-align: center;">
-							<a href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtPage"
-								style="font-size: 19px;">회비 내역 작성</a>
-						</div>
-						<div class="col-1" style="text-align: center;">|</div>
-						<div class="col-2" style="text-align: center;">
-							<a
-								href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage"
-								style="font-size: 19px;">회비 내역</a>
-						</div>
-					</div>
-
 				</div>
-				<div class="col-1"></div>
 			</div>
-				
-			<c:if test="${empty ClubBossAndAccountingMemberIs }">
-				관계자만 이용가능한 페이지입니다.
-			</c:if>
-			
-			
-			<c:if test="${not empty ClubBossAndAccountingMemberIs }">
-			
-			<div class="row">
-			
-				<div class="col-1"></div>
-				
-				<div class="col">
-					<div class="row my-5">
-						<div class="col" style="font-size: 23px; font-weight: bold; text-align: center;">회비 내역 작성</div>
-					</div>
-					
-					<div class="row my-5">
-						<div class="col-8"></div>
-						<div class="col">
-							<button onclick="plusCode()" type="button" class="btn btn-outline-primary buttonClick">추가</button>
-						</div>
-						
-						<div class="col">
-							<button onclick="deleteRow()" type="button" class="btn btn-outline-danger buttonClick">삭제</button>
-						</div>	
-						
-						<div class="col">
-							<button onclick="save()" type="button" class="btn btn-outline-secondary buttonClick">저장</button>
-						</div>
-					</div>
-					
-					<div class="row" style="border: 1px solid black;">
-						<div class="col title01-right">작성일</div>
-						<div class="col-2 blank01"> <%= sf.format(nowTime) %></div>
-						<div class="col title01">동아리명</div>
-						<div class="col-2 blank01">${ClubBossAndAccountingMemberIs.club_name }</div>
-						<div class="col title01">직책</div>
-						<div class="col blank01">${ClubBossAndAccountingMemberIs.club_stud_grade }</div>						
-						<div class="col title01">성명</div>
-						<div class="col blank01">${ClubBossAndAccountingMemberIs.stud_name }</div>						
-					</div>
-				</div>
-						
-				<div class="col-1"></div>	
-				
-		   </div>
-		   
-		   	<div class="row my-2">
-			
-				<div class="col-1"></div>
-				
-				<div class="col">
-					
-					<div class="row" style="border: 1px solid black;">
-						<div class="col-1 title02-right">#</div>
-						<div class="col-2 title02">날 짜</div>
-						<div class="col-1 title02">구 분</div>
-						<div class="col-3 title02">내 역</div>
-						<div class="col-1 title02">수 입</div>
-						<div class="col-1 title02">지 출</div>
-						<div class="col title02-non">비 고</div>
-					</div>
-						<input id="TABLE" type="hidden" value="회비내역관리">
-						<div id="memberShipFeeMgmtBody">
-
-						</div>
-			
-				</div>
-						
-				<div class="col-1"></div>	
-				
-		   </div>
-		   </c:if>
-		   
-		   <div class="row my-5"></div>
-
-		</div>
-	</div>
-	<script type="text/javascript"
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+	  	</div>
 </body>
 </html>
