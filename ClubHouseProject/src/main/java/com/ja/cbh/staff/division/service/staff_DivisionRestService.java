@@ -91,7 +91,7 @@ public class staff_DivisionRestService {
 		}else if(table.equals("동아리카테고리")) {
 			return staff_DivisionSQLRestMapper.selectClubDeptCategoryList();
 		}
-	return staff_DivisionSQLRestMapper.selectClubDeptCategoryList();
+		return staff_DivisionSQLRestMapper.selectClubDeptCategoryList();
 	}
 	
 	public int getCountDivision(String table) {

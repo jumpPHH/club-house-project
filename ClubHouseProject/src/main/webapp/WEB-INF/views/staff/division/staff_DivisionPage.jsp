@@ -13,7 +13,23 @@
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+<style type="text/css">
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap')
+	;
 
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+main>div>div>div {
+	margin: 2vh;
+	border: 0px solid black;
+	border-radius: 0.7rem;
+	padding: 17px;
+	background-color: white /*       background-color:#EBF7FF; */
+}
+</style>
 <script type="text/javascript">
 
 var data = new Array();
@@ -91,6 +107,7 @@ function getDivisionList(table,e){
 	if(data.length != 0){
 		alert("구분이동시 저장하지않은 항목은 적용되지 않습니다.")
 	}
+		data = [];
 	$("#TABLE").val(table);
 	$(".divisionTab").removeClass("table-active");
 	if(e){
@@ -666,29 +683,45 @@ function stateCheck(e){
 	   });
 </script>
 </head>
+
 <body>
-	<jsp:include page="/WEB-INF/views/staff_common/staff_header.jsp"></jsp:include>
-	<jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
+	<div class="container-fluid">
 
-	<div
-		style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height: 86vh; overflow-y: auto; word-break: break-all">
-		<div class="container-fluid">
-			<div class="row">
+		<jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
+
+
+		<main>
+			<!-- 여기다 작성하세요 -->
+
+
+
+			<div class="row px-3 mt-4">
 				<div class="col">
-
-					<!-- 여기다 작성하세요 -->
-					<div class="row mt-1 mb-3">
-						<div class="col"
-							style="font-size: 1.6em; font-weight: bold; color: #C4073D">코드관리</div>
-
+					<div class="row ps-1">
+						<div id="noti" class="col text-center" style="cursor: pointer;"
+							onclick="getDivisionList('공지',this)">공지구분</div>
+						<div id="vlntr" class="col text-center" style="cursor: pointer;"
+							onclick="getDivisionList('봉사',this)">봉사구분</div>
+						<div id="pstn" class="col text-center" style="cursor: pointer;"
+							onclick="getDivisionList('직책',this)">직책구분</div>
+						<div id="apv" class="col text-center" style="cursor: pointer;"
+							onclick="getDivisionList('결재',this)">결재구분</div>
+						<div id="alarm" class="col text-center" style="cursor: pointer;"
+							onclick="getDivisionList('알람',this)">알람구분</div>
+						<div id="clubDivision" class="col text-center"
+							style="cursor: pointer;" onclick="getDivisionList('동아리',this)">
+							동아리구분</div>
+						<div id="clubDeptCategory" class="col text-center"
+							style="cursor: pointer;"
+							onclick="getDivisionList('동아리카테고리',this)">동아리카테고리</div>
 					</div>
 
+					<div class="row"style="height: 78vh;">
 
-					<div class="row px-3">
-						<div class="col">
-
-							<div class="row justify-content-between mb-2">
-								<div class="col-auto ps-0">
+						<div class="col px-0" >
+							<input id="TABLE" type="hidden" value="공지">
+							<div class="row justify-content-between">
+								<div class="col-auto">
 									<div class="input-group input-group-sm">
 										<div class="btn-group">
 											<button id="codeSelectBox"
@@ -705,98 +738,50 @@ function stateCheck(e){
 												<li class="dropdown-item" onclick="codeClick(this)">동아리카테고리</li>
 											</ul>
 										</div>
-										<input type="text" onKeypress="javascript:if(event.keyCode==13) {search()}" class="form-control"
-											aria-label="Sizing example input"
+										<input type="text"
+											onKeypress="javascript:if(event.keyCode==13) {search()}"
+											class="form-control" aria-label="Sizing example input"
 											aria-describedby="inputGroup-sizing-sm">
 									</div>
 								</div>
-								<div class="col-auto pe-0">
-									<button onclick="plusCode()" type="button" class="btn btn-sm">추가</button>
+								<div class="col-auto">
+									<button onclick="plusCode()" type="button"
+										class="btn btn-sm">추가</button>
 									<button onclick="deleteRow()" type="button" class="btn btn-sm">삭제</button>
 									<button onclick="save()" type="button" class="btn btn-sm">저장</button>
 								</div>
 
 							</div>
+
 							<div class="row">
-							
-								<div class="col-2 me-3 px-0"
-									style="height: 75vh; border: 1px solid;">
+								<div class="col">
 									<table class="table table-hover caption-top table-sm">
-										<caption>
-											코드정보 <span >7 건</span>
-										</caption>
-										<thead>
-											<tr class="text-center">
-												<th scope="col">코드구분</th>
-												<th scope="col">코드명</th>
-											</tr>
-										</thead>
-										<tbody class="text-center">
-											<tr style="cursor: pointer;" id="noti"class="table-active divisionTab" onclick="getDivisionList('공지',this)">
-												<th scope="row" class="text-center">SS0010</th>
-												<td>공지구분</td>
-											</tr>
-											<tr style="cursor: pointer;" id="vlntr" class="divisionTab" onclick="getDivisionList('봉사',this)">
-												<th scope="row" class="text-center">SS0020</th>
-												<td>봉사구분</td>
-											</tr>
-											<tr style="cursor: pointer;" id="pstn" class="divisionTab" onclick="getDivisionList('직책',this)">
-												<th scope="row" class="text-center">SS0030</th>
-												<td colspan="2">직책구분</td>
-											</tr>
-											<tr style="cursor: pointer;" id="apv" class="divisionTab" onclick="getDivisionList('결재',this)">
-												<th scope="row" class="text-center">SS0040</th>
-												<td colspan="2">결재구분</td>
-											</tr>
-											<tr style="cursor: pointer;" id="alarm" class="divisionTab" onclick="getDivisionList('알람',this)">
-												<th scope="row" class="text-center">SS0050</th>
-												<td colspan="2">알람구분</td>
-											</tr>
-											<tr style="cursor: pointer;" id="clubDivision" class="divisionTab" onclick="getDivisionList('동아리',this)">
-												<th scope="row" class="text-center">SS0060</th>
-												<td colspan="2">동아리구분</td>
-											</tr>
-											<tr style="cursor: pointer;" id="clubDeptCategory" class="divisionTab" onclick="getDivisionList('동아리카테고리',this)">
-												<th scope="row" class="text-center">SS0070</th>
-												<td colspan="2">동아리카테고리</td>
-											</tr>
-
-
-										</tbody>
-									</table>
-
-								</div>
-								<div class="col px-0" style="height: 75vh; border: 1px solid;">
-								<input id="TABLE" type="hidden" value="공지">
-									<table class="table table-hover caption-top table-sm">
-										<caption>
+										<caption class="ps-2" style="font-size: 0.8rem;">
 											코드내역 <span id="contentCount"></span>
 										</caption>
 										<thead>
 											<tr id="codeContentHead" class="text-center">
 											</tr>
 										</thead>
-										
+
 										<tbody id="codeBody">
 										</tbody>
 									</table>
-
-
 								</div>
-
 							</div>
+
 						</div>
+
 					</div>
-
-					<!-- 여기다 작성하세요 -->
-
-
-
-
 				</div>
 			</div>
-		</div>
+
+			<!-- 여기다 작성하세요 -->
+
+		</main>
+
 	</div>
+
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

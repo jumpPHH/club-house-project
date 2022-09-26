@@ -87,14 +87,14 @@ a:hover {
 						<div class="col">
 							<i class="bi bi-person-video3"
 								style="font-size: 40px; color: #EF1B3F;"></i> <span
-								style="font-size: 30px;">동아리원 가입관리</span>
+								style="font-size: 30px;">회원 가입 관리</span>
 						</div>
 					</div>
 
 					<div class="row my-5">
 						<div class="col-2" style="text-align: center;">
 							<a href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
-								style="font-size: 19px;">전체 멤버 관리</a>
+								style="font-size: 19px;">전체 회원 관리</a>
 						</div>
 						<div class="col-1" style="text-align: center;">|</div>
 						<div class="col-2" style="text-align: center;">

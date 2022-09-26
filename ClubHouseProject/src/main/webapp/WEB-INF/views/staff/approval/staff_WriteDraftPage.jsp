@@ -14,6 +14,22 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+body{
+font-family: 'Noto Sans KR', sans-serif;
+
+
+}
+   main>div>div>div{
+      margin:2vh;
+      border: 0px solid black;
+      border-radius: 20px 20px 20px 20px;
+      padding: 17px;
+       background-color: white
+/*       background-color:#EBF7FF; */
+   }
+</style>
 <script
 	src="https://cdn.tiny.cloud/1/bdorzubong3byjkwg9kl0ayxl92mhi8e0f24djie6ukepumt/tinymce/6/tinymce.min.js"
 	referrerpolicy="origin"></script>
@@ -83,27 +99,17 @@ function doSubmit(){
 
 </head>
 <body>
-	<jsp:include page="../../staff_common/staff_header.jsp"></jsp:include>
 	<jsp:include page="../../staff_common/staff_sidevar.jsp"></jsp:include>
 
-	<div
-		style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height: 86vh; overflow-y: auto">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col">
+<main>
 
 					<!-- 여기다 작성하세요 -->
-					<div class="row mt-1 mb-3">
-						<div class="col"
-							style="font-size: 1.6em; font-weight: bold; color: #C4073D">기안서작성
-						</div>
-					</div>
 					<div class="row px-3">
 						<div class="col">
 							<div class="row">
 							
 								<div class="col-2 me-3 px-0"
-									style="height: 75vh; border: 1px solid;">
+									style="height: 75vh;">
 									<table class="table table-hover caption-top table-sm">
 										<thead>
 											<tr class="text-center">
@@ -121,14 +127,14 @@ function doSubmit(){
 									</table>
 								</div>
 							
-								<div class="col" style="height: 75vh; border: 1px solid;">
+								<div class="col" style="height: 75vh; ">
 									<form id="APV_FORM" action="./WriteDtaftProcess" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="APV_DIV_NO" id="APV_DIV_NO" value="1">
 									<div class="row mt-2">
 										<div class="col">
 											<div class="input-group input-group-sm mb-1">
 												<span class="input-group-text"
-													style="background-color: white" id="inputGroup-sizing-sm">제목</span>
+													 id="inputGroup-sizing-sm">제목</span>
 												<input type="text" name="APV_TITLE"class="form-control"
 													aria-label="Sizing example input"
 													aria-describedby="inputGroup-sizing-sm">
@@ -137,7 +143,7 @@ function doSubmit(){
 									</div>
 									<div class="row">
 										<div class="input-group input-group-sm mb-1">
-											<label class="input-group-text " for="STAFF_MID_ID_select">중간결재자</label>
+											<label style="background-color: white"  class="input-group-text " for="STAFF_MID_ID_select">중간결재자</label>
 											<select class="form-select" name="STAFF_MID_ID" id="STAFF_MID_ID_select">
 												<option selected></option>
 												<c:forEach items="${Staff }" var="Staff">
@@ -167,8 +173,8 @@ function doSubmit(){
 									</div>
 									<div class="row">
 										<div class="col">
-											<div class="input-group-sm mb-1">
-												<input name="FILES" type="file" class="form-control" multiple >
+											<div  class="input-group-sm mb-1">
+												<input  name="FILES" type="file" class="form-control" multiple >
 											</div>
 										</div>
 									</div>
@@ -201,11 +207,7 @@ function doSubmit(){
 					
 
 					<!-- 여기다 작성하세요 -->
-
-				</div>
-			</div>
-		</div>
-	</div>
+</main>
 	<script
 		src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-webcomponent@2/dist/tinymce-webcomponent.min.js"></script>
 	<script type="text/javascript"

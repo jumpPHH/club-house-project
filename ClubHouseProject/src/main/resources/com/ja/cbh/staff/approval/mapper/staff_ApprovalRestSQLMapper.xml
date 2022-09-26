@@ -49,16 +49,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE cs2.STAFF_ID = t2.STAFF_FNL_ID
 		<if test="TYPE !='null'">
 		<choose>
-			<when test="TYPE =='전체'">
+			<when test="TYPE =='나의전체'">
 				
 			</when>
-			<when test="TYPE =='진행중'">
-				AND t2.APV_FNL_DATE IS NULL
+			<when test="TYPE =='나의진행중'">
+				AND t2.APV_FNL_DATE IS NULL AND t2.APV_REJECT_DATE IS NULL
 			</when>
-			<when test="TYPE =='결재완료'">
+			<when test="TYPE =='나의결재완료'">
 				AND t2.APV_FNL_DATE IS NOT NULL
 			</when>
-			<when test="TYPE =='반려'">
+			<when test="TYPE =='나의반려'">
 				AND t2.APV_REJECT_DATE IS NOT NULL
 			</when>
 		</choose> 
@@ -71,20 +71,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			APV_NO, 
 			STAFF_FIS_NAME, 
 			APV_TITLE, 
-			APV_CONTENT, 
+			APV_CONTENT,
+			STAFF_MID_ID, 
 			STAFF_MID_NAME, 
-			APV_MID_DATE, 
+			APV_MID_DATE,
+			STAFF_FNL_ID, 
 			STAFF_NAME AS STAFF_FNL_NAME, 
-			APV_FNL_DATE, APV_REJECT_RSN, 
+			APV_FNL_DATE, 
+			APV_REJECT_RSN, 
 			APV_REJECT_DATE,
 			APV_WRITEDATE
 		FROM CBH_STAFF cs3 , (SELECT 
 								APV_NO, 
 								STAFF_FIS_NAME, 
 								APV_TITLE, 
-								APV_CONTENT, 
+								APV_CONTENT,
+								STAFF_MID_ID,
 								STAFF_NAME AS STAFF_MID_NAME, 
-								APV_MID_DATE, 
+								APV_MID_DATE,
 								STAFF_FNL_ID, 
 								APV_FNL_DATE, 
 								APV_REJECT_RSN, 
@@ -109,18 +113,68 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectApvByStaffMidIdAndStaffFnlId" resultType="HashMap">
-		SELECT 
-			APV_NO, 
-			STAFF_NAME, 
-			APV_TITLE, 
-			APV_FNL_DATE, 
-			APV_WRITEDATE 
-		FROM CBH_STAFF cs , (SELECT * 
-							FROM CBH_APV_DIV cad , (SELECT * 
-													FROM CBH_APV 
-													WHERE STAFF_MID_ID LIKE #{STAFF_ID} 
-													OR STAFF_FNL_ID LIKE #{STAFF_ID}) t1 
-							WHERE cad.APV_DIV_NO = t1.APV_DIV_NO) t2 
-		WHERE cs.STAFF_ID = t2.STAFF_ID
+		SELECT  APV_NO, 
+				APV_DIV_NAME,
+				APV_TITLE,
+				STAFF_NAME,
+				STAFF_MID_ID,
+				APV_MID_DATE,
+				STAFF_FNL_ID,
+				APV_REJECT_DATE,
+				APV_FNL_DATE, 
+				APV_WRITEDATE 
+		FROM CBH_STAFF cs2, (SELECT DISTINCT (APV_NO),
+									APV_DIV_NAME,
+									APV_TITLE,
+									t2.STAFF_ID,
+									STAFF_MID_ID,
+									APV_MID_DATE,
+									STAFF_FNL_ID,
+									APV_REJECT_DATE,
+									APV_FNL_DATE, 
+									APV_WRITEDATE
+							FROM CBH_STAFF cs , (SELECT * 
+												FROM CBH_APV_DIV cad , (SELECT * 
+																		FROM CBH_APV 
+																		WHERE STAFF_MID_ID LIKE #{STAFF_ID} 
+																		OR STAFF_FNL_ID LIKE #{STAFF_ID}) t1 
+												WHERE cad.APV_DIV_NO = t1.APV_DIV_NO) t2 
+							WHERE cs.STAFF_ID = t2.STAFF_ID 
+							<if test="TYPE !='null'">
+								<choose>
+									<when test="TYPE =='요청전체'">
+									)t3
+									</when>
+									<when test="TYPE =='요청미결재'">
+										AND (STAFF_MID_ID = #{STAFF_ID} AND APV_MID_DATE IS NULL AND APV_REJECT_DATE IS NULL) OR (STAFF_FNL_ID = #{STAFF_ID} AND APV_FNL_DATE IS NULL AND APV_REJECT_DATE IS NULL)) t3
+									</when>
+									<when test="TYPE =='요청결재'">
+										AND (STAFF_MID_ID = #{STAFF_ID} AND APV_MID_DATE IS NOT NULL AND APV_REJECT_DATE IS NULL) OR (STAFF_FNL_ID = #{STAFF_ID} AND APV_FNL_DATE IS NOT NULL AND APV_REJECT_DATE IS NULL)) t3
+									</when>
+									<when test="TYPE =='요청반려'">
+										AND (STAFF_MID_ID = #{STAFF_ID} AND APV_MID_DATE IS NULL AND APV_REJECT_DATE IS NOT NULL) OR (STAFF_FNL_ID = #{STAFF_ID} AND APV_FNL_DATE IS NULL AND APV_REJECT_DATE IS NOT NULL)) t3
+									</when>
+								</choose> 
+							</if>
+							
+		WHERE cs2.STAFF_ID = t3.STAFF_ID ORDER BY APV_NO DESC
 	</select>
+	
+	<update id="updateApvRejectRsnAndApvRejectDateByApvNo">
+		UPDATE CBH_APV SET 
+		<if test="CONTENT != null">
+			APV_REJECT_RSN = #{CONTENT},
+		</if>
+		APV_REJECT_DATE = SYSDATE WHERE APV_NO = #{APV_NO}
+	</update>
+	
+	<update id="updateApvMidDateByApvNo">
+		UPDATE CBH_APV SET APV_MID_DATE = SYSDATE WHERE APV_NO = #{APV_NO}
+	</update>
+	
+	<update id="updateApvFnlDateByApvNo">
+	 	UPDATE CBH_APV SET APV_FNL_DATE = SYSDATE WHERE APV_NO = #{APV_NO}
+	</update>
+	
+	
 </mapper>
