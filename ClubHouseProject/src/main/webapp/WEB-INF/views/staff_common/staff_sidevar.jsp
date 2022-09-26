@@ -1,166 +1,217 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8"%>
 
 <style>
-  body{
-    background-color: #edeef0;
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap')
+	;
+
+.box{
+	background-color: white;
+	border-radius: 1rem;
+	box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+.vertical-nav {
+  min-width: 17rem;
+  width: 17rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+}
+
+.page-content {
+  width: calc(100% - 17rem);
+  margin-left: 17rem;
+  transition: all 0.4s;
+}
+
+/* for toggle behavior */
+
+#sidebar.active {
+  margin-left: -17rem;
+}
+
+#content.active {
+  width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -17rem;
   }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #content {
+    width: 100%;
+    margin: 0;
+  }
+  #content.active {
+    margin-left: 17rem;
+    width: calc(100% - 17rem);
+  }
+}
 
 
-  header{
-    background-color: white;
-    height: 50px;
-    color: black;
-    border-bottom:2px soild lightgray ;
-    font-size: 14px;
-    padding:0;
-    position:fixed;
-    width:100%;
-    left:0;
-    top:0;
-  }
+body {
+  background: #ededed;
+  background: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
+  background: linear-gradient(to right, #599fd9);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Noto Sans KR', sans-serif;
+}
 
-  nav{
-    width: 250px;
-    height: 100%;
-    position: fixed;
-    top: 50px;
-    /* left: 0; */
-    border-right: #edeef0 solid;
-    background-color: white;
-  }
+.separator {
+  margin: 3rem 0;
+  border-bottom: 1px dashed #fff;
+}
 
-  main{
-    margin-left: 250px;
-    margin-top:40px;
-    height: 100%;
-    padding: 20px;
-  }
+.text-uppercase {
+  letter-spacing: 0.1em;
+}
 
-  nav ul li a{
-    display: block;
-    padding: 8px 45px;
-    color: #495057;
-    font-size: 14px;
-    text-decoration: none;
-    list-style: none;
-  }
+.text-gray {
+  color: #aaa;
+}
 
-  nav ul li a:hover,
-  nav ul li a.active{
-      font-weight: bold;
-      color: rgb(87, 111, 208);
-      background: rgb(244, 244, 244);
-      border-right: rgb(87, 111, 208) solid 2px;
-  }
- 
-  ul{
-    padding: 0;
-  }
-  
-  li{
-  list-style: none;
-  }
-
-  .title{
-    padding:10px 30px;
-    font-size: 13px;
-    color: #6c757d;
-  }
-
-  #profile-img{
-    width: 30px;
-  }
-
-  .clicked-menu{
-    background: rgb(244, 244, 244);
-    font-weight: bold;
-    border-right: rgb(87, 111, 208) solid 2px;
-    color: rgb(87, 111, 208);
-  }
-  
-  .container-fluid{
-  	padding:0;
-  }
 
 </style>
-
-<script>
-	/* document.addEventListener("DOMContentLoaded", function(){
-
-	  function menuActive(e){
-	    var clickedMenu = document.getElementsByClassName('clicked-menu')[0];
-	    clickedMenu.classList.remove('clicked-menu');
-	    e.target.classList.add('clicked-menu');
-	  }
-	  
-	  var menuList = document.getElementsByClassName("menu");
-	  Array.from(menuList).forEach(menu=> {
-	  menu.addEventListener("click", menuActive);
+<script type="text/javascript">
+$(function() {
+	  // Sidebar toggle behavior
+	  $('#sidebarCollapse').on('click', function() {
+	    $('#sidebar, #content').toggleClass('active');
 	  });
-
-	});*/
-	
-	
- 	/* document.addEventListener("DOMContentLoaded", function () {
-     var menuList = document.getElementsByClassName('menu');
-     var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
-     
-     for(elm of menuList){
-        if(elm.getAttribute("onClick")=="location.href=''"){
-           return;
-        } 
-        if( elm.getAttribute("href").split('/')[4].replace("'",".jsp") == nowPage){
-           elm.classlist.add('clicked-menu');
-           elm.parentNode.parentNode.previousElementSibling.className="menu";
-        }
-        
-     }
-  }); */
-
-
+	});
 </script>
 
-
-  <header>
-    <div class="row px-3">
-      <div class="col mx-2 fs-3">
-        <img class="img-fluid" style="width:30px" src="../../resources/img/free-icon-revit-1379267.png" >
-        Club
-      </div>
-      <div class="col-5 text-end mt-2">
-      	<span><button onclick="location.href='/cbh/staff/login/staff_LogoutProcess'">로그아웃</button></span>
-        <span><input type="text" style="border: none;"></span>
-        <span class="fs-5 px-2"><i class="bi bi-bell-fill"></i></span>
-        <span class="px-2"><img id="profile-img" class="img-fluid rounded-circle" src="../../resources/img/none.gif"></span>
-        <span>닉네임</span>
-      </div>
+<!-- 사이드바 시작 -->
+<div class="vertical-nav bg-white" id="sidebar">
+  <div class="py-3 px-3 mb-2 bg-light">
+    <div class="media d-flex align-items-center"><img src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+      <div class="media-body ps-2">
+        <h4 class="m-0">박한희</h4>
+        <p class="font-weight-light text-muted mb-0">과장</p>
+      </div> 
+      <span style="cursor: pointer; font-size: 1.3vh" class="ms-4 font-weight-bold btn btn-light bg-white rounded-pill shadow-sm" 
+      onclick="location.href='/cbh/student/login/student_LogoutProcess'">로그아웃</span>
     </div>
-  </header>
+  </div>
 
-  <nav class="pt-3">
-    <ul>
-      <div class="title">기준정보관리</div>
-      <li class="menu"><a href="/cbh/staff/division/staff_DivisionPage">코드관리</a></li>
-      <div class="title">전자결재</div>
-      <li class="menu"><a href="/cbh/staff/approval/staff_WriteDraftPage">기안서작성</a></li>
-      <li class="menu"><a href="/cbh/staff/approval/staff_DraftManagementPage">기안서통합관리</a></li>
-      <div class="title">학생</div>
-      <li class="menu"><a href="/cbh/staff/studentSearch/staff_StudentSearchPage">학생조회</a></li>
-      <li class="menu"><a href="/cbh/staff/studentNotice/staff_StudentNoticePage">학생공지사항</a></li>
-      <li class="menu"><a href="/cbh/staff/applyClub/applyClubPage">동아리신청</a></li>
-      <div class="title">동아리</div>
-      <li class="menu"><a href="/cbh/staff/clubManage/clubManagePage">동아리관리</a></li>
-      <li class="menu"><a href="#">동아리맴버관리</a></li>
-      <li class="menu"><a href="#">동아리경비관리</a></li>
-      <li class="menu"><a href="#">동아리경비내역</a></li>
-      <li class="menu"><a href="#">동아리경비접수</a></li>
-      <li class="menu"><a href="#">동아리경비검수</a></li>
-      <div class="title">봉사관리</div>
-      <li class="menu"><a href="#">봉사공고작성</a></li>
-      <li class="menu"><a href="#">봉사시간관리</a></li>
-    </ul>
-  </nav>
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">기준정보관리</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item ps-1">
+      <a href="/cbh/staff/division/staff_DivisionPage" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-upc mr-3 text-primary fa-fw"></i>
+                코드관리
+            </a>
+    </li>
+  </ul>
+
+   <p class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">전자결재</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item ps-1">
+      <a href="/cbh/staff/approval/staff_WriteDraftPage" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i>
+                기안서작성
+            </a>
+    </li>
+     <li class="nav-item ps-1">
+      <a href="/cbh/staff/approval/staff_DraftManagementPage" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi-card-list mr-3 text-primary fa-fw"></i>
+                기안서통합관리
+            </a>
+    </li>
+  </ul>
+
   
- 
+   <p class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">학생</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item ps-1">
+      <a href="/cbh/staff/studentSearch/staff_StudentSearchPage" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i>
+                학생조회
+            </a>
+    </li>
+    
+    <li class="nav-item ps-1">
+      <a href="/cbh/staff/studentNotice/staff_StudentNoticePage" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-ui-checks mr-3 text-primary fa-fw"></i>
+                학생공지사항
+            </a>
+    </li>
+  </ul>
+  
+   <p class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">동아리</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+ <li class="nav-item ps-1">
+      <a href="/cbh/staff/applyClub/applyClubPage" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-house-door-fill mr-3 text-primary fa-fw"></i>
+            	동아리신청
+            </a>
+    </li>
+    <li class="nav-item ps-1">
+      <a href="/cbh/student/myclub/main/student_MainPage" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-house-door-fill mr-3 text-primary fa-fw"></i>
+                동아리관리
+            </a>
+    </li>
+    
+    <li class="nav-item ps-1">
+      <a href="#" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i>
+                동아리맴버관리
+            </a>
+    </li>
+    
+    <li class="nav-item ps-1">
+      <a href="#" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-journal-text mr-3 text-primary fa-fw"></i>
+                동아리경비관리
+            </a>
+    </li>
+    
+    <li class="nav-item ps-1">
+      <a href="#" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-layout-text-sidebar mr-3 text-primary fa-fw"></i>
+                동아리경비내역
+            </a>
+    </li> 
+    
+    <li class="nav-item ps-1">
+      <a href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-person-square mr-3 text-primary fa-fw"></i>
+                동아리경비접수
+            </a>
+    </li>
+    
+  </ul>
+     <p class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">봉사관리</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item ps-1">
+      <a href="/cbh/staff/volunteer/staff_VlntrNotiPage" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i>
+                봉사공고작성
+            </a>
+    </li>
+    
+    <li class="nav-item ps-1">
+      <a href="/cbh/staff/volunteer/staff_VlntrControlPage" class="nav-link text-dark font-italic bg-light">
+                <i class="fa bi bi-ui-checks mr-3 text-primary fa-fw"></i>
+                봉사시간관리
+            </a>
+    </li>
+  </ul>
+</div>
+<!-- 사이드바 끝 -->
+

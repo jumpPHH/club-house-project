@@ -21,27 +21,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
-	<update id="updateMemberShipFeeMgmt">
-		UPDATE CBH_CLUB_FEE SET
-		CLUB_FEE_USING_AMOUNT = #{CLUB_FEE_USING_AMOUNT},
-		CLUB_FEE_INCOME_AMOUNT = #{CLUB_FEE_INCOME_AMOUNT},
-		CLUB_FEE_BALANCE = #{CLUB_FEE_BALANCE},
-		CLUB_FEE_DETAIL = #{CLUB_FEE_DETAIL},
-		CLUB_FEE_OTHER_DETAILS = #{CLUB_FEE_OTHER_DETAILS}
-	</update>
-	
-	<delete id="deleteMemberShipFeeMgmt">
-		DELETE FROM CBH_CLUB_FEE 
-		WHERE CLUB_FEE_NO = #{CLUB_FEE_NO}
-	</delete>
-	
-	<select id="selectMemberShipFeeMgmtList" resultType="HashMap">
-		SELECT * 
-		FROM CBH_CLUB_FEE ccf , CBH_CLUB cc 
-		WHERE ccf.CLUB_NO = cc.CLUB_NO
-		AND ccf.CLUB_NO = #{club_no}
-	</select>
-	
-	
-	
+
 </mapper>
