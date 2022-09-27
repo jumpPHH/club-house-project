@@ -98,7 +98,7 @@ $(function() {
         <h4 id="name" class="m-0">박한희</h4>
         <p id="position"class="font-weight-light text-muted mb-0">과장</p>
       </div> 
-      <span style="cursor: pointer; font-size: 1.3vh" class="ms-4 font-weight-bold btn btn-light bg-white rounded-pill shadow-sm" 
+      <span style="cursor: pointer; font-size: 1rem; margin-left: auto" class="font-weight-bold btn btn-light bg-white rounded-pill shadow-sm" 
       onclick="location.href='/cbh/staff/login/staff_LogoutProcess'">로그아웃</span>
     </div>
   </div>
