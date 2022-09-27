@@ -4,6 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ja.cbh.student.myclub.main.mapper.Student_MainSQLMapper">
+	<select id="selectBossIsCount" resultType="int">
+		SELECT COUNT(*)
+		FROM CBH_CLUB_STUD
+		WHERE CLUB_STUD_GRADE = '대표'
+		AND STUD_ID = #{stud_id}
+	</select>
+	
 	
 	<select id="selectBossMemberIs" resultType="com.ja.cbh.vo.Club_StudVO">
 		SELECT *
@@ -43,14 +50,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectNormalMemberIsCount" resultType="int">
 		SELECT COUNT(*)
 		FROM CBH_CLUB_STUD
-		WHERE CLUB_STUD_GRADE = '일반회원'
+		WHERE (CLUB_STUD_GRADE = '부회장' OR CLUB_STUD_GRADE = '총무' OR CLUB_STUD_GRADE = '화계' 
+		OR CLUB_STUD_GRADE = '서기' OR CLUB_STUD_GRADE = '일반회원')
 		AND STUD_ID = #{stud_id}
 	</select>
 	
 	<select id="selectNormalMemberIs" resultType="com.ja.cbh.vo.Club_StudVO">
 		SELECT *
 		FROM CBH_CLUB_STUD
-		WHERE CLUB_STUD_GRADE = '일반회원'
+		WHERE (CLUB_STUD_GRADE = '부회장' OR CLUB_STUD_GRADE = '총무' OR CLUB_STUD_GRADE = '화계' 
+		OR CLUB_STUD_GRADE = '서기' OR CLUB_STUD_GRADE = '일반회원')
 		AND STUD_ID = #{stud_id}
 	</select>
 	

@@ -28,5 +28,15 @@ public class staff_ApprovalRestService {
 		return staff_ApprovalRestSQLMapper.selectApvByApvNo(APV_NO);
 	}
 	
+	public void modifyApvRejectRsnAndRejectDate (HashMap<String, Object> param) {
+		staff_ApprovalRestSQLMapper.updateApvRejectRsnAndApvRejectDateByApvNo(param);
+	}
 	
+	public void modifyApvMidDate (HashMap<String, Object> param) {
+		staff_ApprovalRestSQLMapper.updateApvMidDateByApvNo(param);
+	}
+	
+	public void modifyApvFnlDate(HashMap<String, Object> param) {
+		staff_ApprovalRestSQLMapper.updateApvFnlDateByApvNo(param);
+	}
 }

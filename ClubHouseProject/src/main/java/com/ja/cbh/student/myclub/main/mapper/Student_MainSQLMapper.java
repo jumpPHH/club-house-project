@@ -10,6 +10,8 @@ import com.ja.cbh.vo.StudVO;
 
 public interface Student_MainSQLMapper {
 	
+	//'대표'의 정보가 있으면 1, 아니면 0 구분자 역활
+	public int selectBossIsCount(String stud_id);
 	//'대표'의 정보가 있는가? 없는가? -> (지금 접속한 유저가 대표인지 알기 위한)
 	public Club_StudVO selectBossMemberIs(String stud_id);
 	//동아리 장 정보를 가져오는 쿼리 (실제 가입 절차를 걸쳐 승인이 떨어진 활동중인 동아리 대표 정보)
