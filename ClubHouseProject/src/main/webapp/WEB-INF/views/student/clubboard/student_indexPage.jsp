@@ -147,9 +147,9 @@
 							<div class="row page_title">
 								<div class="col-4 page_title_text">
 									<span><img
-										src="/cbh/resources/img/student/myclub/clubactivities/contentTitleLogo.png"
-										style="margin-left: 0.5em; width: 2.1em; height: 1.5em"></span>
-									<span style="margin-left: 0.3em;">동아리 활동내역</span>
+										src="/cbh/resources/img/student/clubboard/titleLogo.png"
+										style="margin-left: 0.5em; width: 1.5em; height: 1.5em"></span>
+									<span style="margin-left: 0.3em;">자유게시판</span>
 								</div>
 								<div class="col"></div>
 							</div>
@@ -182,17 +182,16 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="clubActivity"
-														items="${clubActivitiesList }">
+													<c:forEach var="clubBoard" items="${clubBoardList }">
 														<tr>
-															<th class="col-1 text_align_center">${clubActivity.club_act_no }</th>
+															<th class="col-1 text_align_center">${clubBoard.boardData.club_board_no }</th>
 															<th class="col-5 text_align_center"><a
-																href="./student_clubActivitiesContentPage?club_act_no=${clubActivity.club_act_no }&club_no=${clubActivity.club_no}">${clubActivity.club_act_title }</a></th>
-															<th class="col-2 text_align_center">동아리 회장</th>
+																href="./student_clubBoardContentPage?club_board_no=${clubBoard.boardData.club_board_no }&club_no=${clubBoard.boardData.club_no}">${clubBoard.boardData.club_board_title }</a></th>
+															<th class="col-2 text_align_center">${clubBoard.writerName}</th>
 															<th class="col-2 text_align_center"><fmt:formatDate
-																	value="${clubActivity.club_act_date }"
+																	value="${clubBoard.boardData.club_board_writedate }"
 																	pattern="yyyy-MM-dd"></fmt:formatDate></th>
-															<th class="col-2 text_align_center">${clubActivity.club_readcount }</th>
+															<th class="col-2 text_align_center">${clubBoard.boardData.club_board_readcount }</th>
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -203,7 +202,7 @@
 									<!-- 작성하기 버튼 -->
 									<div class="row mt-3">
 										<div class="col" style="text-align: right;">
-											<button class="btn btn-danger" onclick="location.href='./student_writeClubActPage?club_no=${clubNo}'">작성하기</button>
+											<button class="btn btn-danger" onclick="location.href='./student_writeClubBoardPage?club_no=${clubNo}'">작성하기</button>
 										</div>
 									</div>
 

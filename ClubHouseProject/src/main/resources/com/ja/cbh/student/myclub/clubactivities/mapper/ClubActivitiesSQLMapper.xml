@@ -6,9 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ja.cbh.student.myclub.clubactivities.mapper.ClubActivitiesSQLMapper">
 	
 	<!-- 모든 글 가져오기 -->
-	<select id="selectClubActivitiesList" resultType="com.ja.cbh.vo.Club_ActVO">
+	<select id="selectClubActivitiesListByClubNo" resultType="com.ja.cbh.vo.Club_ActVO">
 		SELECT * FROM CBH_CLUB_ACT
 		WHERE CLUB_NO = #{clubNo}
+		<if test="searchWord != null">
+			AND CLUB_ACT_TITLE LIKE '%' || #{searchWord} || '%'
+		</if>
 	</select>
 	
 	<!-- 특정 글의 데이터 가져오기 -->
@@ -26,8 +29,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 컨텐트 페이지에서 이전 글 앞의글 데이터 따기 위한 것  -->
-	<select id="selectClubActivitiesListForContentPage" resultType="com.ja.cbh.vo.Club_ActVO">
+	<select id="selectClubActivitiesListForContentPageByClubActNo" resultType="com.ja.cbh.vo.Club_ActVO">
 		SELECT * FROM CBH_CLUB_ACT
-		WHERE CLUB_NO = #{clubActNo}
+		WHERE CLUB_ACT_NO = #{clubActNo}
 	</select>
+	
+	<select id="selectClubActivitiesCountByClubNoAndSearchWord" resultType="int">
+		SELECT count(*) FROM CBH_CLUB_ACT
+		WHERE club_no = #{clubNo}
+		<if test="searchWord != null">
+			AND club_act_title like '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	
+	<!-- 작성하기 -->
+	<insert id="insertClubActivityByClubActVO">
+		INSERT INTO CBH_CLUB_ACT VALUES(
+		CBH_CLUB_ACT_seq.nextval,
+		#{clubActVO.club_no},
+		#{clubActVO.stud_id},
+		#{clubActVO.club_act_content},
+		SYSDATE,
+		#{clubActVO.club_act_title},
+		0
+		)
+	</insert>
+	
+	<!-- 활동 내역 수정 -->
+	<update id="updateClubActivityByClubNoAndClubActNo">
+		UPDATE CBH_CLUB_ACT
+		SET CLUB_ACT_CONTENT = #{clubActVO.club_act_content}, 
+		    CLUB_ACT_TITLE = #{clubActVO.club_act_title}
+		WHERE CLUB_NO = #{clubActVO.club_no}
+		AND CLUB_ACT_NO = #{clubActVO.club_act_no}
+	</update>
+	
+	<!-- 활동 내역 삭제 -->
+	<delete id="deleteClubActivityByClubNoAndClubActNo">
+		DELETE FROM CBH_CLUB_ACT
+		WHERE CLUB_ACT_NO = #{clubActVO.club_act_no}
+		AND CLUB_NO = #{clubActVO.club_no}
+	</delete>
 </mapper>

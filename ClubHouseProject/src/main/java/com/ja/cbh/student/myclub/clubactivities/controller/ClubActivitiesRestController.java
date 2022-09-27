@@ -23,11 +23,12 @@ public class ClubActivitiesRestController {
 	@Autowired
 	private FindingClubServiceImpl findingClubService;
 	
+	//모든 클럽의 리스트 가져오기.
 	@RequestMapping("getClubActList")
-	public HashMap<String, Object> getClubActList(String club_no) {
+	public HashMap<String, Object> getClubActList(@RequestParam(value="club_no") String club_no, @RequestParam(value="searchWord") String searchWord) {
 		int clubNo = Integer.parseInt(club_no);
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		ArrayList<Club_ActVO> data = clubActivitiesService.getClubActivitiesList(clubNo); 
+		ArrayList<Club_ActVO> data = clubActivitiesService.getClubActivitiesList(clubNo, searchWord); 
 		
 		map.put("result", "success");
 		map.put("data", data);
@@ -47,4 +48,5 @@ public class ClubActivitiesRestController {
 		
 		return map;
 	}
+	
 }

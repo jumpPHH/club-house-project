@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-   
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +15,6 @@
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
         crossorigin="anonymous">
 </script>
-
-
-
 
 <style type="text/css">
 .tab {
@@ -92,43 +86,6 @@
 }
 </style>
 
-<script type="text/javascript">
-	
-	
-
-	function seeTheReason(){
-// 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-// 		xhr.onreadystatechange = function () {
-			
-// 			if(xhr.readyState == 4 && xhr.status == 200){
-// 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-				
-				
-// 			}
-// 		}
-		
-// 		xhr.open("get" , "./getReject); //리퀘스트 세팅..
-// 		//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
-// 		xhr.send(); //AJAX로 리퀘스트함..
-
-		var popUrl = "./establishingClubRejectReasonPage";
-	    var popOption = "top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no, scrollbars=no";
-	    window.open(popUrl, popOption);
-	}
-	
-	
-	
-	
-	window.addEventListener("DOMContentLoaded" , function (){
-		//사실상 처음 실행하는 코드 모음...
-		
-		//setInterval(refreshCommentList , 3000); //폴링 방식의 실시간... 화면 갱신...
-		
-	});
-	
-	
-</script>
-
 
 <title>Insert title here</title>
 </head>
@@ -145,46 +102,77 @@
 				<!-- 여기다 작성하세요 -->
 				<div class="row">
 					<div class="col" id="content">
-							<!-- 컨텐트 위에 헤더 -->
+							<!-- 컨텐트 of 헤더 -->
 							<div class="row page_title">
 								<div class="col-4 page_title_text">
-									<span>
-										<i class="bi bi-pencil"  style="margin-left:0.5em; width:2.1em; height:1.5em; color:#c4073d"></i>
-									</span> 
-									<span style="margin-left:0.3em;">동아리 활동내역 작성</span>
+									<span><img src="/cbh/resources/img/student/myclub/clubactivities/contentTitleLogo.png/"
+									 style="margin-left: 0.5em; width: 2.1em; height: 1.5em"></span> <span style="margin-left:0.3em;">활동내역 작성</span>
 								</div>
-								<div class="col"></div>
+								<div class="col text_align_left pt-2" style="color:red">
+									* 표시가 있는 항목들은 필수 입력항목입니다.
+								</div>
 							</div>
-							<!-- 컨텐트 박스 -->
-							<form action="./student_modifyClubActProcess">
-							<div class="row">
-								<div class="col">
-									<!-- 글 제목 입력 칸 -->
-									<div class="row mt-5">
+							
+							
+							<!-- 신청서 양식 시작 -->
+							<form action="./student_writeClubActProcess" method="post">
+							<div class="row px-4 mt-2" style="border: 1px solid #e2dede; border-radius:5px;">
+								<div class="col" >
+									<!-- 작성자 -->
+									<div class="row p-3 mt-2">
+										<div class="col-3 pt-2">
+											<span style="color:red;">*</span> 작성자
+										</div>
+										<div class="col pt-2">
+											동아리 회장
+										</div>
+									</div>
+									<hr style="height:1px; color:#adb5bd">
+									<!-- 활동내역 제목. -->
+									<div class="row p-3 mt-2">
+										<div class="col-3 pt-2">
+											<span style="color:red;">*</span> 제목
+										</div>
 										<div class="col">
-											<input type="text" placeholder="제목을 입력해주세요" class="form-control" name="club_act_title">
+											<input type="text" class="form-control" name="club_act_title">
 										</div>
 									</div>
-									<!-- 글 내용 입력 칸 -->
-									<div class="row mt-3">
-										<div class="col" style="text-align:center">
-											<textarea name="club_act_content" placeholder="내용을 입력해주세요" style="width:100%"></textarea>
+									<hr style="height:1px; color:#adb5bd">
+									
+									<!-- 동아리 설명 -->
+									<div class="row p-3">
+										<div class="col-3">
+											<span style="color:red;">*</span> 동아리 설명
 										</div>
-										<input type="hidden" name="club_no" value="${clubNo }">
-										<input type="hidden" name="club_act_no" value="${clubActNo }">
-									</div>
-									<div class="row mt-3">
-										<div class="col" style="text-align:right">
-											<button class="btn btn-secondary mr-3">취소</button>
-											<button class="btn btn-danger">제출</button>
+										<div class="col">
+											<div class="row">
+												<div class="col text_align_left">
+													<textarea class="form-control" style="height:15vh" name="club_act_content"></textarea>
+												</div>
+											</div>
 										</div>
 									</div>
+								</div>
+							</div>
+							<input type="hidden" value="${clubNo }" name="club_no">
+							
+							<div class="row mt-5">
+								<div class="col text_align_right">
+									<button class="btn" style="background-color:gray; color:white; width:15em; height:3em;">뻐튼</button>
+								</div>
+								<div class="col">
+									<button type="submit" class="btn" style="background-color:#c4073d; color:white; width:15em; height:3em;">제출하기</button>
 								</div>
 							</div>
 							</form>
+							<hr class="mt-3 hrSetting">
+							<div class="row">
+								<div class="col text_align_right">
+								
+								</div>
+							</div>							
 						</div>
-						<div class="col-2">
-						</div>
+						<div class="col-2"></div>
 						</div>
 				</div>
 			</div>
