@@ -685,25 +685,31 @@ function stateCheck(e){
 			<div class="row px-3 mt-4">
 				<div class="col">
 					<div class="row ps-1 p-2 mb-2 box">
-						<div id="noti" class="col text-center" style="cursor: pointer;"
+						<div id="noti" class="col text-center" style="cursor: pointer; border-right: 2px solid #ededed;
+}"
 							onclick="getDivisionList('공지',this)">공지구분</div>
-						<div id="vlntr" class="col text-center" style="cursor: pointer;"
+						<div id="vlntr" class="col text-center" style="cursor: pointer;border-right: 2px solid #ededed;
+}"
 							onclick="getDivisionList('봉사',this)">봉사구분</div>
-						<div id="pstn" class="col text-center" style="cursor: pointer;"
+						<div id="pstn" class="col text-center" style="cursor: pointer;border-right: 2px solid #ededed;
+}"
 							onclick="getDivisionList('직책',this)">직책구분</div>
-						<div id="apv" class="col text-center" style="cursor: pointer;"
+						<div id="apv" class="col text-center" style="cursor: pointer;border-right: 2px solid #ededed;
+}"
 							onclick="getDivisionList('결재',this)">결재구분</div>
-						<div id="alarm" class="col text-center" style="cursor: pointer;"
+						<div id="alarm" class="col text-center" style="cursor: pointer;border-right: 2px solid #ededed;
+}"
 							onclick="getDivisionList('알람',this)">알람구분</div>
 						<div id="clubDivision" class="col text-center"
-							style="cursor: pointer;" onclick="getDivisionList('동아리',this)">
+							style="cursor: pointer; border-right: 2px solid #ededed;
+}" onclick="getDivisionList('동아리',this)">
 							동아리구분</div>
 						<div id="clubDeptCategory" class="col text-center"
 							style="cursor: pointer;"
 							onclick="getDivisionList('동아리카테고리',this)">동아리카테고리</div>
 					</div>
 
-					<div class="row box p-3"style="height: 73vh;">
+					<div class="row box p-3"style="height: 77vh;">
 
 						<div class="col px-0" >
 							<input id="TABLE" type="hidden" value="공지">
@@ -733,9 +739,9 @@ function stateCheck(e){
 								</div>
 								<div class="col-auto">
 									<button onclick="plusCode()" type="button"
-										class="btn btn-sm">추가</button>
-									<button onclick="deleteRow()" type="button" class="btn btn-sm">삭제</button>
-									<button onclick="save()" type="button" class="btn btn-sm">저장</button>
+										class="btn btn-sm border-0">추가</button>
+									<button onclick="deleteRow()" type="button" class="btn btn-sm border-0">삭제</button>
+									<button onclick="save()" type="button" class="btn btn-sm border-0">저장</button>
 								</div>
 
 							</div>

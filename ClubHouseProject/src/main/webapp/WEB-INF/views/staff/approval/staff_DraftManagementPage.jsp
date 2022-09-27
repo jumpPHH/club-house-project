@@ -19,23 +19,6 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-<style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-body{
-font-family: 'Noto Sans KR', sans-serif;
-
-
-}
-   main>div>div>div{
-      margin:2vh;
-      border: 0px solid black;
-      border-radius: 20px 20px 20px 20px;
-      padding: 17px;
-       background-color: white
-/*       background-color:#EBF7FF; */
-   }
-</style>
-
 <script type="text/javascript">
 	function getRequestedApvList(type,e){
 		$("#type").val(type)
@@ -63,7 +46,7 @@ font-family: 'Noto Sans KR', sans-serif;
   		 	ApvHead.appendChild(th2);
   
   		 	var th3 =  document.createElement("th");
-  		 	th3.classList.add("col-7");
+  		 	th3.classList.add("col-6");
   		 	th3.innerText="제목"
   		 	ApvHead.appendChild(th3);
 
@@ -107,7 +90,7 @@ font-family: 'Noto Sans KR', sans-serif;
   		 		
   		 		
   		 		var td3 = document.createElement("td");
-  		 		td3.classList.add("col-7");
+  		 		td3.classList.add("col-6");
   		 		td3.classList.add("text-start");
   		 		td3.innerText = Apv.APV_TITLE
   		 		tr.appendChild(td3);
@@ -195,7 +178,7 @@ font-family: 'Noto Sans KR', sans-serif;
   		 	ApvHead.appendChild(th2);
   
   		 	var th3 =  document.createElement("th");
-  		 	th3.classList.add("col-7");
+  		 	th3.classList.add("col-6");
   		 	th3.innerText="제목"
   		 	ApvHead.appendChild(th3);
 
@@ -241,7 +224,7 @@ font-family: 'Noto Sans KR', sans-serif;
   		 		
   		 		
   		 		var td3 = document.createElement("td");
-  		 		td3.classList.add("col-7");
+  		 		td3.classList.add("col-6");
   		 		td3.classList.add("text-start");
   		 		td3.innerText = Apv.APV_TITLE
   		 		tr.appendChild(td3);
@@ -1437,88 +1420,67 @@ font-family: 'Noto Sans KR', sans-serif;
 
 </head>
 <body>
-	<jsp:include page="../../staff_common/staff_sidevar.jsp"></jsp:include>
-
-<main>
+	<jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
+		
+	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
+	<div class="page-content p-5 pt-4" id="content">
+	  <!-- 토글 버튼 -->
+		<button id="sidebarCollapse" type="button"
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
+			<small
+				class="text-uppercase font-weight-bold">MENU</small>
+		</button>
 
 					<!-- 여기다 작성하세요 -->
-					<div class="row mt-1 mb-3">
-						<div class="col"
-							style="font-size: 1.6em; font-weight: bold; color: #C4073D">기안서작성
+					<div class="row p-2 pb-1 mb-1">
+						<div class="col-2 text-center box p-2 me-2">
+						<span>내결재:</span>
 						</div>
+						<div class="col box p-2">
+						<div class="row ps-3">
+												<div class="col-auto" style="cursor: pointer;"
+												onclick="getMyApvList('나의전체',this)">전체</div>
+						<div class="col-auto" style="cursor: pointer;"
+												onclick="getMyApvList('나의진행중',this)">진행중</div>
+						<div class="col-auto" style="cursor: pointer;"
+												onclick="getMyApvList('나의결재완료',this)">결재완료</div>
+						<div class="col-auto" style="cursor: pointer;"
+												onclick="getMyApvList('나의반려',this)">반려</div>
+						</div>
+						</div>
+						
 					</div>
-					<div class="row px-3">
+					
+					<div class="row p-2 mb-2 pt-1">
+						<div class="col-2 text-center box p-2 me-2">
+						<span>요청된 결재:</span>	
+						</div>
+						<div class="col box p-2 ">
+							<div class="row ps-3">
+							<div class="col-auto" style="cursor: pointer;"
+												onclick="getRequestedApvList('요청전체',this)">전체</div>
+						<div class="col-auto" style="cursor: pointer;"
+												onclick="getRequestedApvList('요청미결재',this)">미결재</div>
+						<div class="col-auto" style="cursor: pointer;"
+												onclick="getRequestedApvList('요청결재',this)">결재</div>
+						<div class="col-auto" style="cursor: pointer;"
+												onclick="getRequestedApvList('요청반려',this)">반려</div>
+							
+							</div>
+						</div>
+						
+					</div>
+					<div class="row px-3 box p-3">
 						<div class="col">
 							<div class="row">
-
-								<div class="col-1 me-3 px-0"
-									style="height: 75vh; border: 1px solid;">
-									<table class="table table-hover caption-top table-sm">
-										<thead>
-											<tr class="text-center">
-												<th scope="col">내결재</th>
-											</tr>
-										</thead>
-										<tbody class="text-center">
-											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getMyApvList('나의전체',this)">
-												<td>전체</td>
-											</tr>
-											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getMyApvList('나의진행중',this)">
-												<td>진행중</td>
-											</tr>
-											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getMyApvList('나의결재완료',this)">
-												<td>결재완료</td>
-											</tr>
-											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getMyApvList('나의반려',this)">
-												<td>반려</td>
-											</tr>
-											<tr style="height: 30px">
-												<td></td>
-											</tr>
-										</tbody>
-										<thead>
-											<tr class="text-center">
-												<th scope="col">요청된 결재</th>
-											</tr>
-										</thead>
-										<tbody class="text-center">
-											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getRequestedApvList('요청전체',this)">
-												<td>전체</td>
-											</tr>
-											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getRequestedApvList('요청미결재',this)">
-												<td>미결재</td>
-											</tr>
-											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getRequestedApvList('요청결재',this)">
-												<td>결재</td>
-											</tr>
-											<tr class="divisionTab" style="cursor: pointer;"
-												onclick="getRequestedApvList('요청반려',this)">
-												<td>반려</td>
-											</tr>
-
-										</tbody>
-
-									</table>
-								</div>
-
-								<div class="col" style="height: 75vh; border: 1px solid;">
+								<div class="col" style="height: 70vh;">
 									<input id="type" type="hidden" value="전체">
 									<table class="table table-hover caption-top table-sm">
-										<caption>
-											결재내역 <span id="contentCount"></span>
-										</caption>
 										<thead>
 											<tr id="ApvHead" class="text-center">
 												<th class="col-1">기안번호</th>
 												<th class="col-1">구분</th>
-												<th class="col-7">제목</th>
+												<th class="col-6">제목</th>
 												<th class="col-1">기안자</th>
 												<th class="col-1">상태</th>
 												<th class="col-1">상세</th>
@@ -1528,7 +1490,7 @@ font-family: 'Noto Sans KR', sans-serif;
 											<tr class="text-center">
 												<td class="col-1">2022/09/18-1</td>
 												<td class="col-1">지출결의서</td>
-												<td class="col-7 text-start">누구누구의 지출결의서</td>
+												<td class="col-6 text-start">누구누구의 지출결의서</td>
 												<td class="col-1">테스트부장</td>
 												<td class="col-1">진행중</td>
 												<td class="col-1" onclick="test()">보기</td>
@@ -1549,7 +1511,7 @@ font-family: 'Noto Sans KR', sans-serif;
 					</div>
 					<!-- 여기다 작성하세요 -->
 
-</main>
+</div>
 
 	<!-- Modal -->
 	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
