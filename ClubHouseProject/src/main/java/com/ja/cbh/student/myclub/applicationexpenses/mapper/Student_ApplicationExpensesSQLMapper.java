@@ -19,5 +19,5 @@ public interface Student_ApplicationExpensesSQLMapper {
 			@Param("searchWord")String searchWord ,
 			@Param("pageNum")int pageNum);
 	
-	public void insertClubExpnsApplyRegistration(int club_no);
+	public void insertClubExpnsApplyRegistration(Club_ExpnsApplyVO clubExpnsApplyVO);
 }

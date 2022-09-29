@@ -28,7 +28,7 @@
 		</button>
 
 		<div class="card"
-			style="width: 100%; height: 60rem; border-radius: 2%; box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">
+			style="width: 100%; height: auto; border-radius: 2%; box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">
 			<div class="dashboard-card-bottom">
 				<!-- 실제 내용 -->
 				<div class="container-fluid">
@@ -105,7 +105,7 @@
 													<td><c:if
 															test="${ClubExpnsApplyVO[i].ClubExpnsApplyVO.club_expns_apply_state == '반려'}">
 															<!-- Button trigger modal -->
-															<button type="button" class="btn btn-secondary"
+															<button type="button" class="btn btn-secondary btn-sm"
 																data-bs-toggle="modal" data-bs-target="#exampleModal"
 																style="-bs-btn-padding-y: .25rem; - -bs-btn-padding-x: .5rem; - -bs-btn-font-size: .75rem;">사유보기</button>
 

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ja.cbh.student.myclub.main.service.Student_MainService;
 import com.ja.cbh.student.myclub.membershipfeemgmt.service.Student_MemberShipFeeMgmtService;
 import com.ja.cbh.vo.StudVO;
 
@@ -30,9 +30,39 @@ public class Student_MemberShipFeeMgmtController {
 	}
 	
 	@RequestMapping("student_MemberShipFeeMgmtListPage")
-	public String student_MemberShipFeeMgmtListPage() {
+	public String student_MemberShipFeeMgmtListPage(
+			HttpSession session , Model model ,
+			String searchType , String searchWord ,
+			@RequestParam(value = "pageNum" , defaultValue = "1") int pageNum) {
+		
+		StudVO sessionUserInfo = (StudVO)session.getAttribute("sessionUserInfo");
+		String stud_id = sessionUserInfo.getStud_id();
+
+		model.addAttribute("CLubFeeAllData", memberShipFeeMgmtService.getCLubFeeAllData(
+				stud_id,searchType,searchWord,pageNum));
+		
+		int memberShipFeeSelectCount = memberShipFeeMgmtService.getMemberShipFeeSelectCount(stud_id,searchType,searchWord);
+		
+		model.addAttribute("MemberShipFeeSelectCount",memberShipFeeSelectCount);
+		
+		int totalPageCount = (int)Math.ceil(memberShipFeeSelectCount /10.0);
+		
+		int startPage = ((pageNum - 1) / 5) * 5 + 1;
+		int endPage = ((pageNum - 1) / 5 + 1) * 5;
+		
+		if(endPage > totalPageCount) {
+			endPage = totalPageCount;
+		}
+		
+		model.addAttribute("startPage",startPage);
+		model.addAttribute("endPage",endPage);
+		model.addAttribute("currentPageNum",pageNum); 
+		model.addAttribute("totalPageCount",totalPageCount);	
+		model.addAttribute("AmountTotalResult",memberShipFeeMgmtService.getAmountTotal(stud_id, searchType, searchWord, pageNum));
 		
 		
 		return "student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage";
 	}
+	
+
 }

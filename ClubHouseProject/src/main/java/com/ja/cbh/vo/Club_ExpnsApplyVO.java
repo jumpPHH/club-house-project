@@ -8,7 +8,7 @@ public class Club_ExpnsApplyVO {
 	private int club_no;// 동아리 넘버
 	private int club_expns_apply_grants;// 경비 요청액
 	private String club_expns_apply_period_use;// 경비 사용날짜
-	private int club_expns_number_use;
+	private int club_expns_number_use; // 사용 인원
 	private String club_expns_apply_purpose_use;// 사용 목적
 	private Date club_expns_apply_date;// 신청일자
 	private String club_expns_apply_reject_reason;// 반려사유
