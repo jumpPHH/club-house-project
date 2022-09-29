@@ -35,6 +35,27 @@ public class Student_MemberShipFeeMgmtRestController {
 	}
 	
 	
+	@RequestMapping("student_MemberShipFeeMgmtSave")
+	public HashMap<String, Object> student_MemberShipFeeMgmtSave(@RequestBody ArrayList<HashMap<String, Object>> data2){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		for(HashMap<String, Object> maps : data2) {
+			
+				memberShipFeeMgmtRestService.updateMemberShipFeeMgmtSave(maps);
+			
+		}
+		return map;
+	}
+	
+	@RequestMapping("student_MemberShipFeeMgmtDelete")
+	public HashMap<String, Object> student_MemberShipFeeMgmtDelete(int club_fee_no){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+				memberShipFeeMgmtRestService.deleteMemberShipFeeMgmtDelete(club_fee_no);
+				
+		return map;
+	}
+	
 	@RequestMapping("student_MemberShipFeeMgmtDetail")
 	public HashMap<String, Object> student_MemberShipFeeMgmtDetail(int club_fee_no){
 		HashMap<String, Object> map = new HashMap<String, Object>();

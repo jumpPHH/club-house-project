@@ -13,6 +13,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
 <head>
 <meta charset="UTF-8">
 <title>경비 신청 페이지</title>
+<link rel="stylesheet" href="/cbh/resources/css/student_navbar.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
