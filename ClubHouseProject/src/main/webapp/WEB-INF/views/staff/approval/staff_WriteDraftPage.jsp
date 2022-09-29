@@ -84,11 +84,15 @@ function doSubmit(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 	   	var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
 		
-	   	tinyMCE.activeEditor.setContent(result.ApvDivForm);
-	   	
-			}      
-		}	
+	   	tinyMCE.activeEditor.resetContent()
 		
+		if(result.ApvDivForm == null){
+		}else{
+			tinyMCE.activeEditor.setContent(result.ApvDivForm);
+		}
+	   	
+		}
+		}
 		xhr.open("post","../restApproval/getApvForm");
 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhr.send("NAME=" + NAME); 	

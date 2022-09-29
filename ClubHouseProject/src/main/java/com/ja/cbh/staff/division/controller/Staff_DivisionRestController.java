@@ -30,8 +30,15 @@ public class Staff_DivisionRestController {
 			String table = (String)data2.get(0).get("TABLE");
 			for(HashMap<String, Object> maps : data2) {
 				if(maps.get("DIV").equals("신규")) {
+					System.out.println("테이블 :"+maps.get("TABLE"));
+					System.out.println("넘버 :"+maps.get("NO"));
+					System.out.println("이름 :" +maps.get("NAME"));
+					System.out.println("영어이름 :"+maps.get("ENG"));
+					System.out.println("약어:" + maps.get("ABRVT"));
+					System.out.println("**************************");
 					staff_DivisionRestService.inputDivision(maps);
 				}else if(maps.get("DIV").equals("수정")) {
+					
 					staff_DivisionRestService.modifyDivision(maps);
 				}else if(maps.get("DIV").equals("삭제")) {
 					staff_DivisionRestService.deleteDivision(maps);
@@ -52,5 +59,22 @@ public class Staff_DivisionRestController {
 		map.put("count", staff_DivisionRestService.getCountDivision(table));
 	
 		return map;
+	}
+	
+	@RequestMapping("getApvForm")
+	public HashMap<String, Object> getApvForm(String NO){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("FORM", staff_DivisionRestService.getApvForm(NO));
+		return map;
+	}
+	
+	@RequestMapping("saveApvForm")
+	public HashMap<String, Object> saveApvForm(@RequestBody HashMap<String, Object> param) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		
+		staff_DivisionRestService.modifyApvForm(param);
+	 return map;
 	}
 }
