@@ -607,8 +607,7 @@ function saveApvForm(NO){
 	 xhr.onreadystatechange = function () {
 	if(xhr.readyState == 4 && xhr.status == 200){
 	var result = JSON.parse(xhr.responseText);
-	
-	
+
 	swal("","저장완료.","success")
 		}      
 	}	
@@ -939,7 +938,7 @@ function stateCheck(e){
  		$(".check").click();
  		
  	}
- 
+ 	
  	window.addEventListener('DOMContentLoaded', function(){
 		$("#noti").click();
 	   });
