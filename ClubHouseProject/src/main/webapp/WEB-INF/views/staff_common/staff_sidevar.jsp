@@ -95,10 +95,10 @@ $(function() {
   <div class="py-3 px-3 mb-2 bg-light">
     <div class="media d-flex align-items-center"><img src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
       <div class="media-body ps-2">
-        <h4 class="m-0">박한희</h4>
-        <p class="font-weight-light text-muted mb-0">과장</p>
+        <h4 id="name" class="m-0">박한희</h4>
+        <p id="position"class="font-weight-light text-muted mb-0">과장</p>
       </div> 
-      <span style="cursor: pointer; font-size: 1.3vh" class="ms-4 font-weight-bold btn btn-light bg-white rounded-pill shadow-sm" 
+      <span style="cursor: pointer; font-size: 1rem; margin-left: auto" class="font-weight-bold btn btn-light bg-white rounded-pill shadow-sm" 
       onclick="location.href='/cbh/staff/login/staff_LogoutProcess'">로그아웃</span>
     </div>
   </div>

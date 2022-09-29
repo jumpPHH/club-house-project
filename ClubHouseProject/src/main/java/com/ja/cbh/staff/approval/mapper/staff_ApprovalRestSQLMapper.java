@@ -18,4 +18,6 @@ public interface staff_ApprovalRestSQLMapper {
 	public void updateApvMidDateByApvNo(HashMap<String, Object> param);
 	
 	public void updateApvFnlDateByApvNo(HashMap<String, Object> param);
+	
+	public HashMap<String, Object> selectApvDivFormByApvDivName(String NAME);
 }

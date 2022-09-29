@@ -93,5 +93,11 @@ public class staff_ApprovalRestController {
 		map.put("staffVO", staffVO);
 		return map;
 	}
-
+	@RequestMapping("getApvForm")
+	public HashMap<String, Object> getApvForm(String NAME){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("ApvDivForm", staff_ApprovalRestService.getApvDivForm(NAME));
+		return map;
+	}
 }

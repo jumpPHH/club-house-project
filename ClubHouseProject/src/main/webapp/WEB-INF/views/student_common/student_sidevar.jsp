@@ -35,7 +35,7 @@ a:hover {
 					<ul>
 						<li>
 							<!-- div태그 style 아래랑 교환, i태그도 교환 -->
-							<div style="font-weight: bold;color: #bf1f51;letter-spacing: 0;"onclick="" ><i class="bi bi-check-lg"></i><a href="/cbh/student/findingclub/mainPage">동아리찾기</a></div>
+							<div style="font-weight: bold;color: #bf1f51;letter-spacing: 0;"onclick="" ><i class="bi bi-check-lg"></i><a href="/cbh/student/findingclub/student_indexPage">동아리찾기</a></div>
 						</li>
 					</ul>
 				</li>

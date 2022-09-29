@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+.tab {
+	border: 1px solid white;
+	border-bottom: 0px;
+	background-color: black;
+	color: white;
+	width: auto;
+	align-self: end;
+	flex: 0 0 auto;
+	border-radius: 0.3rem 0.3rem 0% 0%;
+}
+
+.scroll-container {
+	display: flex;
+	flex-wrap: no-wrap;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	align-items: end;
+}
+
+.MP {
+	padding-left: 2.2rem;
+}
+
+#bigMenuText{
+	font-size: 2.5vh;
+}
+#sideBar>ul>li{
+	font-size: 2vh;
+	padding-left: 1.0vw;
+}
+#sideBar>ul>li>div{
+	background:linear-gradient( to right, #d6d6d6 , #ededed );
+	margin-right: 1.0vw;
+	padding-left:1vw;
+	border-radius: 5vh;
+	color:#969696;
+	font-weight: bold;
+}
+#sideBar>ul>li>div{
+	margin-bottom: .2vh;
+	margin-right: 1.0vw;
+	padding-left:1vw;
+	border-radius: 5vh;
+}
+#sideBar li ul li{
+	font-size: 1.8vh;
+	list-style-type: disc;
+	list-style: none;
+	margin-bottom: .5vh;
+	color: #828282;
+}
+#sideBar li ul li:hover{
+	font-weight: bold;
+	color: #bf1f51;
+	letter-spacing: 0.05vw;
+}
+#sideBar ul{
+	margin-bottom: 1.5vh;
+	padding-left: 0;
+}
+#sideBar li ul{
+	padding-left: 1vw;
+	margin-bottom: 2.2vh;
+}
+.bi-chevron-right{
+	
+}
+
+a{
+	text-decoration: none;
+}

@@ -1433,18 +1433,18 @@
 
 					<!-- 여기다 작성하세요 -->
 					<div class="row p-2 pb-1 mb-1">
-						<div class="col-2 text-center box p-2 me-2">
-						<span>내결재:</span>
+						<div class="col-auto text-center box p-2 me-2 ps-3" style="background-color: #e3c5bf; color: white; font-size: 1.1rem">
+						<span>내결재&nbsp:</span>
 						</div>
 						<div class="col box p-2">
 						<div class="row ps-3">
-												<div class="col-auto" style="cursor: pointer;"
+												<div class="col-auto" style="cursor: pointer; border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의전체',this)">전체</div>
-						<div class="col-auto" style="cursor: pointer;"
+						<div class="col-auto" style="cursor: pointer; border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의진행중',this)">진행중</div>
-						<div class="col-auto" style="cursor: pointer;"
+						<div class="col-auto" style="cursor: pointer; border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의결재완료',this)">결재완료</div>
-						<div class="col-auto" style="cursor: pointer;"
+						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의반려',this)">반려</div>
 						</div>
 						</div>
@@ -1452,26 +1452,26 @@
 					</div>
 					
 					<div class="row p-2 mb-2 pt-1">
-						<div class="col-2 text-center box p-2 me-2">
-						<span>요청된 결재:</span>	
+						<div class="col-auto text-center box p-2 ps-3 me-2" style="background-color: #e3c5bf; color: white; font-size: 1.1rem">
+						<span>요청된 결재&nbsp:</span>	
 						</div>
 						<div class="col box p-2 ">
 							<div class="row ps-3">
-							<div class="col-auto" style="cursor: pointer;"
+							<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청전체',this)">전체</div>
-						<div class="col-auto" style="cursor: pointer;"
+						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청미결재',this)">미결재</div>
-						<div class="col-auto" style="cursor: pointer;"
+						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청결재',this)">결재</div>
-						<div class="col-auto" style="cursor: pointer;"
+						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청반려',this)">반려</div>
 							
 							</div>
 						</div>
 						
 					</div>
-					<div class="row px-3 box p-3">
-						<div class="col">
+					<div class="row p-2">
+						<div class="col box py-2">
 							<div class="row">
 								<div class="col" style="height: 70vh;">
 									<input id="type" type="hidden" value="전체">

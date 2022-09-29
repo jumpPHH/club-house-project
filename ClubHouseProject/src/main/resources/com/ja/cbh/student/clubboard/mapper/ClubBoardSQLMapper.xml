@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper	namespace="com.ja.cbh.student.clubboard.mapper.ClubBoardSQLMapper">
+	<select id="selectClubBoardListByClubNo"  resultType="com.ja.cbh.vo.ClubBoardVO">
+		SELECT * FROM CBH_CLUB_BOARD
+		WHERE CLUB_NO = #{clubNo}
+		<if test="searchWord != null">
+			AND CLUB_BOARD_TITLE LIKE '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	
+	<!-- 특정 글의 데이터 가져오기 -->
+	<select id="selectClubBoardByClubBoardNoAndClubNo" resultType="com.ja.cbh.vo.ClubBoardVO">
+		SELECT * FROM CBH_CLUB_BOARD
+		WHERE CLUB_BOARD_NO = #{clubBoardNo}
+		AND CLUB_NO = #{clubNo}
+	</select>
+	
+	<!-- 컨텐트 페이지에서 이전 글 앞의글 데이터 따기 위한 것  -->
+	<select id="selectClubBoardListForContentPageByClubNo" resultType="com.ja.cbh.vo.ClubBoardVO">
+		SELECT * FROM CBH_CLUB_BOARD
+		WHERE CLUB_NO = #{clubNo}
+	</select>
+	
+	<select id="selectClubBoardCountByClubNoAndSearchWord" resultType="int">
+		SELECT count(*) FROM CBH_CLUB_BOARD
+		WHERE club_no = #{clubNo}
+		<if test="searchWord != null">
+			AND club_board_title like '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	
+	<!-- 조회수 늘리기 -->
+	<update id="updateClubBoardReadcountByClubBoardNo">
+		UPDATE CBH_CLUB_BOARD
+		SET CLUB_BOARD_READCOUNT = 1 + (SELECT CLUB_BOARD_READCOUNT FROM CBH_CLUB_BOARD WHERE CLUB_BOARD_NO = #{clubBoardNo})
+		WHERE CLUB_Board_NO = #{clubBoardNo}
+	</update>
+	
+	
+	
+	<!-- 작성하기 -->
+	<insert id="insertClubBoardByClubBoardVO">
+		INSERT INTO CBH_CLUB_Board VALUES(
+		CBH_CLUB_Board_seq.nextval,
+		#{clubBoardVO.club_stud_no},
+		#{clubBoardVO.club_no},
+		#{clubBoardVO.club_board_title},
+		#{clubBoardVO.club_board_content},
+		0,
+		SYSDATE
+		)
+	</insert>
+	
+	<!-- 활동 내역 수정 -->
+	<update id="updateClubBoardByClubNoAndClubBoardNo">
+		UPDATE CBH_CLUB_BOARD
+		SET CLUB_board_CONTENT = #{clubBoardVO.club_board_content}, 
+		    CLUB_board_TITLE = #{clubBoardVO.club_board_title}
+		WHERE CLUB_NO = #{clubBoardVO.club_no}
+		AND CLUB_board_NO = #{clubBoardVO.club_board_no}
+	</update>
+	
+	<!-- 활동 내역 삭제 -->
+	<delete id="deleteClubBoardByClubNoAndClubBoardNo">
+		DELETE FROM CBH_CLUB_Board
+		WHERE CLUB_BOARD_NO = #{clubBoardVO.club_board_no}
+		AND CLUB_NO = #{clubBoardVO.club_no}
+	</delete>
+	
+	<!-- clubStudNo가져오기 -->
+	<select id="selectClubStudNoByStudId" resultType="int">
+		SELECT CLUB_STUD_NO FROM CBH_CLUB_STUD
+		WHERE STUD_ID = #{studId}
+	</select>
+	
+	<!-- 학생정보 가져오기 -->
+	<select id="selectStudByStudId" resultType="com.ja.cbh.vo.StudVO">
+		SELECT * FROM CBH_STUD
+		WHERE STUD_ID = #{studId}
+	</select>
+	
+	<!-- 동아리 회원 정보 가져오기 -->
+	<select id="selectClubStudByClubStudNo" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT * FROM CBH_CLUB_STUD
+		WHERE ClUB_STUD_NO = #{clubStudNo}
+	</select>
+</mapper>
