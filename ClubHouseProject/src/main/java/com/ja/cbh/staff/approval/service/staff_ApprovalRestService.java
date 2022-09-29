@@ -21,19 +21,7 @@ public class staff_ApprovalRestService {
 	public ArrayList<HashMap<String, Object>> getMyApvList(HashMap<String, Object> param){
 		ArrayList<HashMap<String, Object>> MyApvList = staff_ApprovalRestSQLMapper.selectApvBystaffId(param);
 		
-		for(HashMap<String, Object> map : MyApvList) {
-			
-			if(map.get("APV_CONTENT") != null) {
-			Clob Content = (Clob)map.get("APV_CONTENT");
-			try {
-				String parsingContent = clobToString(Content);
-				map.put("APV_CONTENT", parsingContent);
-			} catch (Exception e) {
-				System.out.println(e);
-			}
-	
-			}
-		}
+
 		
 		
 		
@@ -42,19 +30,7 @@ public class staff_ApprovalRestService {
 	
 	public ArrayList<HashMap<String, Object>> getRequestedApvList(HashMap<String, Object> param){
 		ArrayList<HashMap<String, Object>> RequestedApvList = staff_ApprovalRestSQLMapper.selectApvByStaffMidIdAndStaffFnlId(param);
-		for(HashMap<String, Object> map : RequestedApvList) {
-			
-			if(map.get("APV_CONTENT") != null) {
-			Clob Content = (Clob)map.get("APV_CONTENT");
-			try {
-				String parsingContent = clobToString(Content);
-				map.put("APV_CONTENT", parsingContent);
-			} catch (Exception e) {
-				System.out.println(e);
-			}
-			}
-			
-		}
+		
 		
 		
 		
@@ -64,15 +40,6 @@ public class staff_ApprovalRestService {
 	public HashMap<String, Object> getApv(String APV_NO){
 		HashMap<String, Object> Apv = staff_ApprovalRestSQLMapper.selectApvByApvNo(APV_NO);
 		
-		if(Apv.get("APV_CONTENT") !=null) {
-		Clob Content = (Clob)Apv.get("APV_CONTENT");
-		try {
-			String parsingContent = clobToString(Content);
-			Apv.put("APV_CONTENT", parsingContent);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		}
 		return Apv;
 	}
 	
@@ -90,22 +57,22 @@ public class staff_ApprovalRestService {
 	
 	public String getApvDivForm(String NAME){
 		String ApvDivForm = new String(); 
-		HashMap<String, Object> FormMap = staff_ApprovalRestSQLMapper.selectApvDivFormByApvDivName(NAME);
+		Object ApvFormObj = staff_ApprovalRestSQLMapper.selectApvDivFormByApvDivName(NAME);
 		
-		if(FormMap.get("APV_DIV_FORM") != null) {
-		Clob Form = (Clob)FormMap.get("APV_DIV_FORM");
-		try {
-			ApvDivForm = clobToString(Form);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		}
+		if((Clob)ApvFormObj != null) {
+			try {
+				ApvDivForm = clobToString((Clob)ApvFormObj);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			}
 		return ApvDivForm;
 	}
 	
 	
 	private static String clobToString(Clob clob) throws IOException, SQLException{
 	    String result = new String();
+	    System.out.println("여기");
 	    if (clob.length() != 0){
 	        StringBuffer strBuffer = new StringBuffer();
 	        BufferedReader reader = new BufferedReader(clob.getCharacterStream());

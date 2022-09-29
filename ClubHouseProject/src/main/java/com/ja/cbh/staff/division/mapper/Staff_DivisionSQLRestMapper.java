@@ -2,6 +2,7 @@ package com.ja.cbh.staff.division.mapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public interface Staff_DivisionSQLRestMapper {
 
@@ -55,7 +56,10 @@ public interface Staff_DivisionSQLRestMapper {
 	public ArrayList<HashMap<String, Object>> selectApvDivList();
 	//결재구분리스트 개수 호출
 	public int selectCountApvDiv();
-
+	//결재양식 호출
+	public Object selectApvDivFormByApvDivNo(String NO);
+	//결재양식 등록
+	public void updateApvDivFormByApvDivNo(HashMap<String, Object> pram);
 //알람구분
 	//알람구분 등록
 	public void insertAlarmDiv(HashMap<String, Object> pram);

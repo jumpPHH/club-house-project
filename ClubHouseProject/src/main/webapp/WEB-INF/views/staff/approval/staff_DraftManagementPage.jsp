@@ -1407,7 +1407,7 @@
  			selector: 'textarea#modalBody',  // change this value according to your HTML
  			toolbar: false,
  			statusbar: false,
- 			height: 500,
+ 			height : 1000,
  			language : 'ko_KR',
  			skin: 'bootstrap',
  			icons: 'bootstrap',
@@ -1538,7 +1538,7 @@
 					</div>
 					<div id="modalBodyRow" class="row">
 						<div class="col">
-							<textarea style="height: 100%" id="modalBody"></textarea>
+							<textarea  id="modalBody"></textarea>
 						</div>
 					</div>
 					<div class="row">

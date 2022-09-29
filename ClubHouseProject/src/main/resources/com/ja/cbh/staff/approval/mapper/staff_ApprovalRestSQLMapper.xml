@@ -176,7 +176,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	UPDATE CBH_APV SET APV_FNL_DATE = SYSDATE WHERE APV_NO = #{APV_NO}
 	</update>
 	
-	<select id="selectApvDivFormByApvDivName" resultType="HashMap">
+	<select id="selectApvDivFormByApvDivName" resultType="Object">
 		SELECT APV_DIV_FORM FROM CBH_APV_DIV WHERE APV_DIV_NAME LIKE #{NAME}
 	</select>
 </mapper>
