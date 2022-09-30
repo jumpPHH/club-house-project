@@ -229,6 +229,7 @@
   		 		td3.innerText = Apv.APV_TITLE
   		 		tr.appendChild(td3);
   		 		
+  		 		
   		 		if((Apv.STAFF_MID_NAME != undefined) && (Apv.APV_MID_DATE == undefined) ){
   		 			var td4 = document.createElement("td");
   	  		 		td4.classList.add("col-1");
@@ -246,51 +247,33 @@
   		 			tr.appendChild(td4);
   		 		}
   		 		
-  				if(Apv.STAFF_MID_NAME != undefined){
-  		 			if((Apv.APV_MID_DATE == undefined) && (Apv.APV_REJECT_DATE == undefined)){
-  		  		 		var td5 = document.createElement("td");
-  		  		 		td5.classList.add("col-1");
-  		  		 		td5.innerText = "진행중"
-  		  		 		tr.appendChild(td5);
-  		  		 	}else if((Apv.APV_MID_DATE != undefined) && (Apv.APV_REJECT_DATE == undefined)){
-  		  		 			var td5 = document.createElement("td");
-  		  	  		 		td5.classList.add("col-1");
-  		  	  		 		td5.innerText = "결재완료"
-  		  	  		 		tr.appendChild(td5);
-  		  		 	}else if((Apv.APV_MID_DATE == undefined) && (Apv.APV_REJECT_DATE != undefined)){
-  		  		 			var td5 = document.createElement("td");
-  		  	  		 		td5.classList.add("col-1");
-  		  	  		 		td5.innerText = "반려"
-  		  	  		 		tr.appendChild(td5);
-  		  		 	}
+  				if(Apv.APV_REJECT_DATE != undefined){
+  					var td5 = document.createElement("td");
+	  	  		 		td5.classList.add("col-1");
+	  	  		 		td5.innerText = "반려"
+	  	  		 		tr.appendChild(td5);
+  				}else if(Apv.APV_FNL_DATE != undefined){
+  					var td5 = document.createElement("td");
+  	  		 		td5.classList.add("col-1");
+  	  		 		td5.innerText = "결재완료"
+  	  		 		tr.appendChild(td5);
+  				}else{
+  					var td5 = document.createElement("td");
+		  		 		td5.classList.add("col-1");
+		  		 		td5.innerText = "진행중"
+		  		 		tr.appendChild(td5);
+  				}
+  					
   		 			
-  		 		}else if(Apv.STAFF_FNL_NAME != undefined){
-  		 			if((Apv.APV_FNL_DATE == undefined) && (Apv.APV_REJECT_DATE == undefined)){
-  		  		 		var td5 = document.createElement("td");
-  		  		 		td5.classList.add("col-1");
-  		  		 		td5.innerText = "진행중"
-  		  		 		tr.appendChild(td5);
-  		  		 	}else if((Apv.APV_FNL_DATE != undefined) && (Apv.APV_REJECT_DATE == undefined)){
-  		  		 			var td5 = document.createElement("td");
-  		  	  		 		td5.classList.add("col-1");
-  		  	  		 		td5.innerText = "결재완료"
-  		  	  		 		tr.appendChild(td5);
-  		  		 	}else if((Apv.APV_FNL_DATE == undefined) && (Apv.APV_REJECT_DATE != undefined)){
-  		  		 			var td5 = document.createElement("td");
-  		  	  		 		td5.classList.add("col-1");
-  		  	  		 		td5.innerText = "반려"
-  		  	  		 		tr.appendChild(td5);
-  		  		 	}
-  		 			
-  		 		}
+  		 		
   		 		
   		 		var td6 = document.createElement("td");
   		 		td6.classList.add("col-1");
   		 		td6.setAttribute("onclick","getApv('"+Apv.APV_NO+"','My')")
   		 		td6.innerText = "보기"
   		 		tr.appendChild(td6);
+		
   		 	}
-  		 
 			}      
 		}	
 		xhr.open("post","../restApproval/getMyApvList",false);
