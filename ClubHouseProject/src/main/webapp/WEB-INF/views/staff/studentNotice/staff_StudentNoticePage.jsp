@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>학생조회 페이지</title>
+<title>학생공지 페이지</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
@@ -100,21 +100,22 @@
 </script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/staff_common/staff_header.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
-
-<div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh;overflow-y: auto; word-break: break-all">
-	<div class="container-fluid" style="background-color: aqua">
-		<div class="row" >
-			<div class="col" id="title">
-				학생공지사항
-			</div>
-		</div>
+	<jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
+	
+		
+	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
+	<div class="page-content p-5 pt-4" id="content">
+	  <!-- 토글 버튼 -->
+		<button id="sidebarCollapse" type="button"
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
+			<i class="fa fa-bars mr-2"></i><small
+				class="text-uppercase font-weight-bold">MENU</small>
+		</button>
 		
 		<br>
 		<form action="./staff_StudentNoticePage" method="get">
-		<div class="row" >
-			<div class="col">
+		<div class="row mt-4 box p-4"  style="border-color: grey" >
+			<div class="col-1">
 				공지구분
 			</div>
 			<div class="col">
@@ -123,8 +124,11 @@
 					<option value="1">긴급공지</option>					
 				</select>
 			</div>
+			<div class="col-1">
+				제목
+			</div>
 			<div class="col">
-				제목:<input name="searchWord" type="text">
+				<input name="searchWord" type="text">
 			</div>
 			<div class="col" style="">
 				<button class="btn btn-primary" type="submit">조회</button>
@@ -138,20 +142,19 @@
 			</div>			
 		</div>
 		</form>
-		<br>
-		
-		<div class="row">
+
+		<div class="row mt-4 box p-4">
 				<div class="col">
-					<table class="table">
+					<table class="table table hover caption-top table-sm" >
 						<thead>
 							<tr>
-								<th scope="col"><input id="checkAll" onclick="checkAll()" type="checkbox" class="form-check-input" value="전체체크"></th>
-								<th scope="col">번호</th>
-								<th scope="col">작성자</th>
-								<th scope="col">제목</th>
-								<th scope="col">공지구분</th>
-								<th scope="col">작성일</th>
-								<th scope="col">조회수</th>								
+								<th class="col-1"><input id="checkAll" onclick="checkAll()" type="checkbox" class="form-check-input" value="전체체크"></th>
+								<th class="col-1">번호</th>
+								<th class="col-1">작성자</th>
+								<th class="col-4">제목</th>
+								<th class="col-2">공지구분</th>
+								<th class="col-2">작성일</th>
+								<th class="col-1">조회수</th>								
 							</tr>
 						</thead>
 						<tbody>
@@ -224,7 +227,6 @@
 				</div>
 			</div>
 		
-	</div>
 </div>
 
 	<script type="text/javascript"
