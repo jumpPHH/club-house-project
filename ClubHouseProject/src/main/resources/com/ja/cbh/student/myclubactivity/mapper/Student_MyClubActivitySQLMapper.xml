@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.myclubactivity.mapper.Student_MyClubActivitySQLMapper">
+	
+	<!-- 동아리 활동내역 -->
+	<insert id="insertMyClubActivity">
+
+	INSERT INTO CBH_CLUB_ACT VALUES(
+		CBH_CLUB_ACT_seq.nextval,
+		#{club_no},
+		#{stud_id},
+		#{club_act_title},
+		#{club_act_content},
+		#{club_readcount},
+		SYSDATE
+	)
+	</insert>
+	
+	<!-- 리스트 -->
+	<select id="selectAll" resultType="com.ja.cbh.vo.Club_ActVO">
+		SELECT * FROM CBH_CLUB_ACT ORDER BY CLUB_ACT_NO DESC
+	</select>
+	
+	<!-- 상세글 보기 -->
+	<select id="selectMyClubActivityByNo" resultType="com.ja.cbh.vo.Club_ActVO">
+		SELECT * 
+		FROM CBH_CLUB_ACT
+		WHERE CLUB_ACT_NO = #{actNo}
+	</select>
+
+	<!-- 조회수 증가 -->
+	<update id="increaseReadCount">
+		UPDATE CBH_CLUB_ACT 
+		SET club_readcount = club_readcount + 1 
+		WHERE CLUB_ACT_NO = #{actNo}
+	</update>
+
+	<!-- 글 삭제 -->
+	<delete id="deleteMyClubActivityByNo">
+		DELETE FROM CBH_CLUB_ACT WHERE CLUB_ACT_NO = #{actNo}	
+	</delete>
+	
+	<!-- 글 수정 -->
+	<update id="updateMyClubActivityTitleAndContent">
+		UPDATE CBH_CLUB_ACT
+		SET club_act_title = #{club_act_title}, club_act_content = #{club_act_content}
+		WHERE CLUB_ACT_NO = #{CLUB_ACT_NO}
+	
+	</update>
+
+</mapper>

@@ -11,7 +11,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
+<link rel="stylesheet" href="/cbh/resources/css/student_navbar.css">
 
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -38,6 +38,7 @@
 					
 					var rowBox = document.createElement("div");
 					rowBox.classList.add("row");
+					rowBox.classList.add("rowBox");
 					modalBody.appendChild(rowBox);
 
 					var col1Start = document.createElement("div");
@@ -46,10 +47,12 @@
 
 					var col = document.createElement("div");
 					col.classList.add("col");
+					col.classList.add("colBox");
 					rowBox.appendChild(col);
 
 					var divisionBox = document.createElement("div");
 					divisionBox.classList.add("mb-1");
+					divisionBox.classList.add("divisionCheck");
 					col.appendChild(divisionBox);
 
 					var divisionLabel = document.createElement("label");
@@ -60,6 +63,7 @@
 
 					var divisionSelect = document.createElement("select");
 					divisionSelect.classList.add("form-select");
+					divisionSelect.classList.add("CLUB_FEE_DIVISION");
 					divisionSelect.setAttribute("aria-label","Default select example");
 					divisionBox.appendChild(divisionSelect);
 
@@ -90,6 +94,7 @@
 					
 					var detailBox = document.createElement("div");
 					detailBox.classList.add("mb-1");
+					detailBox.classList.add("detailCheck");
 					col.appendChild(detailBox);
 
 					var detailLabel = document.createElement("label");
@@ -102,10 +107,12 @@
 					detailInput.setAttribute("type","text");
 					detailInput.setAttribute("value",memberShipFeeMgmtDetail.club_fee_detail);
 					detailInput.classList.add("form-control");
+					detailInput.classList.add("CLUB_FEE_DETAIL");
 					detailBox.appendChild(detailInput);
 
 					var incomeAmountBox = document.createElement("div");
 					incomeAmountBox.classList.add("mb-1");
+					incomeAmountBox.classList.add("incomeAmountCheck");
 					col.appendChild(incomeAmountBox);
 
 					var incomeAmountLabel = document.createElement("label");
@@ -118,10 +125,12 @@
 					incomeAmountInput.setAttribute("type","text");
 					incomeAmountInput.setAttribute("value",income_amount);
 					incomeAmountInput.classList.add("form-control");
+					incomeAmountInput.classList.add("CLUB_FEE_INCOME_AMOUNT");
 					incomeAmountBox.appendChild(incomeAmountInput);
 
 					var usingAmountBox = document.createElement("div");
 					usingAmountBox.classList.add("mb-1");
+					usingAmountBox.classList.add("usingAmountCheck");
 					col.appendChild(usingAmountBox);
 
 					var usingAmountLabel = document.createElement("label");
@@ -134,10 +143,12 @@
 					usingAmountInput.setAttribute("type","text");
 					usingAmountInput.setAttribute("value",using_amount);
 					usingAmountInput.classList.add("form-control");
+					usingAmountInput.classList.add("CLUB_FEE_USING_AMOUNT");
 					usingAmountBox.appendChild(usingAmountInput);
 
 					var useDateBox = document.createElement("div");
 					useDateBox.classList.add("mb-1");
+					useDateBox.classList.add("dateCheck");
 					col.appendChild(useDateBox);
 
 					var useDateLabel = document.createElement("label");
@@ -150,22 +161,25 @@
 					useDateInput.setAttribute("type","date");
 					useDateInput.setAttribute("value",club_fee_use_date);
 					useDateInput.classList.add("form-control");
+					useDateInput.classList.add("CLUB_FEE_USE_DATE");
 					useDateBox.appendChild(useDateInput);
 
 					var otherDetailBox = document.createElement("div");
 					otherDetailBox.classList.add("mb-1");
+					otherDetailBox.classList.add("otherDetailCheck");
 					col.appendChild(otherDetailBox);
 
 					var otherDetailLabel = document.createElement("label");
 					otherDetailLabel.setAttribute("for","message-text");
 					otherDetailLabel.classList.add("col-form-label");
-					otherDetailLabel.innerText = "사용 날짜";
+					otherDetailLabel.innerText = "비 고";
 					otherDetailBox.appendChild(otherDetailLabel);	
 
 					var otherDetailInput = document.createElement("input");
 					otherDetailInput.setAttribute("type","text");
 					otherDetailInput.setAttribute("value",memberShipFeeMgmtDetail.club_fee_other_detail);
 					otherDetailInput.classList.add("form-control");
+					otherDetailInput.classList.add("CLUB_FEE_OTHER_DETAIL");
 					otherDetailBox.appendChild(otherDetailInput);
 
 					var col1End = document.createElement("div");
@@ -184,14 +198,14 @@
 					modalFooter.appendChild(closeButton);
 
 					var saveButton = document.createElement("button");
-					saveButton.setAttribute("onclick","saveButton(club_fee_no)");
+					saveButton.setAttribute("onclick","saveButton("+memberShipFeeMgmtDetail.club_fee_no+")");
 					saveButton.classList.add("btn");
 					saveButton.classList.add("btn-primary");
 					saveButton.innerText = "저장";
 					modalFooter.appendChild(saveButton);
 
 					var deleteButton = document.createElement("button");
-					deleteButton.setAttribute("onclick","deleteButton(club_fee_no)");
+					deleteButton.setAttribute("onclick","deleteButton("+memberShipFeeMgmtDetail.club_fee_no+")");
 					deleteButton.classList.add("btn");
 					deleteButton.classList.add("btn-danger");
 					deleteButton.innerText = "삭제";
@@ -203,7 +217,70 @@
 		//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 		xhr.send(); //AJAX로 리퀘스트함..
 	}
+	
+	function saveButton(taget){
+		
+		var data = new Array();
+		
+		var CLUB_FEE_NO = taget;
+		var CLUB_FEE_DIVISION = $(".colBox").children(".divisionCheck").children(".CLUB_FEE_DIVISION").val();
+		var CLUB_FEE_DETAIL = $(".colBox").children(".detailCheck").children(".CLUB_FEE_DETAIL").val();
+		var CLUB_FEE_INCOME_AMOUNT = $(".colBox").children(".incomeAmountCheck").children(".CLUB_FEE_INCOME_AMOUNT").val();
+		var CLUB_FEE_USING_AMOUNT = $(".colBox").children(".usingAmountCheck").children(".CLUB_FEE_USING_AMOUNT").val();
+		var CLUB_FEE_USE_DATE = $(".colBox").children(".dateCheck").children(".CLUB_FEE_USE_DATE").val();
+		var CLUB_FEE_OTHER_DETAIL = $(".colBox").children(".otherDetailCheck").children(".CLUB_FEE_OTHER_DETAIL").val();
 
+		var jsonObj = {
+				"CLUB_FEE_NO":CLUB_FEE_NO,
+				"CLUB_FEE_DIVISION":CLUB_FEE_DIVISION,
+				"CLUB_FEE_DETAIL":CLUB_FEE_DETAIL,
+				"CLUB_FEE_INCOME_AMOUNT":CLUB_FEE_INCOME_AMOUNT,
+				"CLUB_FEE_USING_AMOUNT":CLUB_FEE_USING_AMOUNT,
+				"CLUB_FEE_USE_DATE":CLUB_FEE_USE_DATE,
+				"CLUB_FEE_OTHER_DETAIL":CLUB_FEE_OTHER_DETAIL
+			}
+			data.push(jsonObj); 
+			
+			var data2 = JSON.stringify(data);
+		
+		var xhr = new XMLHttpRequest(); 
+		xhr.onreadystatechange = function () {
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var jsonObj = JSON.parse(xhr.responseText);
+				
+					
+				}	
+			}
+		
+		xhr.open("post" , "/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtSave",false); //리퀘스트 세팅..
+		xhr.setRequestHeader("Content-type","application/json");
+		xhr.send(data2); //AJAX로 리퀘스트함..
+		
+		alert("저장됨");
+		window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
+	}
+	
+	function deleteButton(taget) {
+		
+		var club_fee_no = taget;
+		
+		
+		var xhr = new XMLHttpRequest(); 
+		xhr.onreadystatechange = function () {
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var jsonObj = JSON.parse(xhr.responseText);
+				
+					
+				}	
+			}
+		
+		xhr.open("get" , "/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtDelete?club_fee_no=" + club_fee_no); //리퀘스트 세팅..
+		//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+		xhr.send(); //AJAX로 리퀘스트함..
+		
+		alert("삭제됨");
+		window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
+	}
 </script>
 
 </head>

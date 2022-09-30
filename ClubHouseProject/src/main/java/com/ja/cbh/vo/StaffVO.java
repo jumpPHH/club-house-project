@@ -5,7 +5,7 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class StaffVO {
-  
+	
 	private String staff_id; //직원 아이디 (기본키)
 	private int pstn_div_no; //직책 구분 넘버 (외부키)
 	private String staff_name; //이름

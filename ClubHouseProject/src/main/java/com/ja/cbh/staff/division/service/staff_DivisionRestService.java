@@ -1,7 +1,12 @@
 package com.ja.cbh.staff.division.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.sql.Clob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -111,5 +116,36 @@ public class staff_DivisionRestService {
 			return staff_DivisionSQLRestMapper.selectCountDeptCategory();
 		}
 		return 0;
+	}
+
+	public String getApvForm(String No){
+		Object ApvForm = staff_DivisionSQLRestMapper.selectApvDivFormByApvDivNo(No);
+		String parsingContent = new String();
+			
+		if((Clob)ApvForm != null) {
+			try {
+				parsingContent = clobToString((Clob)ApvForm);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			}
+		return parsingContent;
+	}
+
+	public void modifyApvForm(HashMap<String, Object> param) {
+		staff_DivisionSQLRestMapper.updateApvDivFormByApvDivNo(param);
+	}
+	
+	private static String clobToString(Clob clob) throws IOException, SQLException{
+	    String result = new String();
+	    if (clob.length() != 0){
+	        StringBuffer strBuffer = new StringBuffer();
+	        BufferedReader reader = new BufferedReader(clob.getCharacterStream());
+	        while ((result = reader.readLine()) != null){
+	            strBuffer.append(result);
+	        }
+	        result = strBuffer.toString();
+	    }
+	    return result;
 	}
 }

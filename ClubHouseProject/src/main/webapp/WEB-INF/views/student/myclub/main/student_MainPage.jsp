@@ -208,39 +208,6 @@
 						</div>
 					</c:if>
 
-
-					<div class="row">
-						<div id="calendar">
-							<div class="row my-3">
-								<div class="col"></div>
-								<div class="col-3" style="text-align: center;">
-									<h3>8월</h3>
-								</div>
-								<div class="col" style="text-align: right;">
-									<span>전체보기<i class="bi bi-arrow-right-circle-fill"
-										style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i></span>
-								</div>
-							</div>
-
-							<div class="row" style="background-color: #dcdcdc;">
-								<div class="col"
-									style="border: 2px solid #c8c8c8; width: 50px; height: 120px;">25일</div>
-								<div class="col"
-									style="border: 2px solid #c8c8c8; width: 50px; height: 120px;">26일</div>
-								<div class="col"
-									style="border: 2px solid #c8c8c8; width: 50px; height: 120px;">27일</div>
-								<div class="col"
-									style="border: 2px solid #c8c8c8; width: 50px; height: 120px;">28일</div>
-								<div class="col"
-									style="border: 2px solid #c8c8c8; width: 50px; height: 120px;">29일</div>
-								<div class="col"
-									style="border: 2px solid #c8c8c8; width: 50px; height: 120px;">30일</div>
-								<div class="col"
-									style="border: 2px solid #c8c8c8; width: 50px; height: 120px;">31일</div>
-							</div>
-						</div>
-					</div>
-
 					<c:if test="${empty MainBoardData}">
 						<c:if test="${empty MainActData}">
 							<div class="row my-3">

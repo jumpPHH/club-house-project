@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ja.cbh.vo.BoardCommentVO;
+import com.ja.cbh.vo.Club_BoardCommentVO;
 import com.ja.cbh.vo.Club_ActVO;
 
 public interface ClubActivitiesSQLMapper {
