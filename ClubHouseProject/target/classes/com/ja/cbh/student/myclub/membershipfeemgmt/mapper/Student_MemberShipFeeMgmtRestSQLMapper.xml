@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.myclub.membershipfeemgmt.mapper.Student_MemberShipFeeMgmtRestSQLMapper">
+
+	<insert id="inputMemberShipFeeMgmt">
+		INSERT INTO CBH_CLUB_FEE VALUES(
+			CBH_CLUB_FEE_seq.nextval,
+			#{CLUB_STUD_NO},
+			#{CLUB_NO},
+			#{CLUB_FEE_DIVISION}, 
+			#{CLUB_FEE_INCOME_AMOUNT}, 
+			#{CLUB_FEE_USING_AMOUNT}, 
+			#{CLUB_FEE_BALANCE},
+			#{CLUB_FEE_DETAIL}, 
+			#{CLUB_FEE_OTHER_DETAIL}, 
+			#{CLUB_FEE_USE_DATE}, 
+			SYSDATE
+		)
+	</insert>
+		
+	<select id="selectMemberShipFeeMgmtDetail" resultType="com.ja.cbh.vo.Club_Fee">
+		SELECT * 
+		FROM CBH_CLUB_FEE
+		WHERE CLUB_FEE_NO = #{club_fee_no}	
+	</select>	
+		
+	<update id="updateMemberShipFeeMgmtSave">
+		UPDATE CBH_CLUB_FEE 
+		SET
+			CLUB_FEE_DIVISION = #{CLUB_FEE_DIVISION},
+			CLUB_FEE_DETAIL = #{CLUB_FEE_DETAIL},
+			CLUB_FEE_INCOME_AMOUNT = #{CLUB_FEE_INCOME_AMOUNT},
+			CLUB_FEE_USING_AMOUNT = #{CLUB_FEE_USING_AMOUNT},
+			CLUB_FEE_OTHER_DETAIL = #{CLUB_FEE_OTHER_DETAIL}, 
+			CLUB_FEE_USE_DATE = #{CLUB_FEE_USE_DATE}
+		WHERE 
+			CLUB_FEE_NO = #{CLUB_FEE_NO}
+	</update>
+	
+	<delete id="deleteMemberShipFeeMgmtDelete">
+		DELETE FROM CBH_CLUB_FEE 
+		WHERE CLUB_FEE_NO = #{CLUB_FEE_NO}
+	</delete>
+
+</mapper>

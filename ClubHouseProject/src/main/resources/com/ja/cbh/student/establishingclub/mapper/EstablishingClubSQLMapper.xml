@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.establishingclub.mapper.EstablishingClubSQLMapper">
+
+	<insert id="insertClubAppl">
+		INSERT INTO CBH_CLUB_APPL VALUES(
+			CBH_CLUB_APPL_SEQ.nextval,
+			#{stud_id},
+			#{club_name},
+			#{club_appl_people_count},
+			#{club_purpose},
+			SYSDATE,
+			3
+		)	
+	</insert>
+	
+	<insert id="insertClub">
+		INSERT INTO CBH_CLUB VALUES(
+			CBH_CLUB_SEQ.nextval,
+			1,
+			1,
+			#{club_boss},
+			#{club_name},
+			#{club_description},
+			#{club_people_count},
+			1,
+			#{club_title_image},
+			#{club_dscrp_image},
+			SYSDATE,
+			#{club_appl_dt}
+		)
+	</insert>
+	
+	<select id="selectAllEstablishingRequestResultByStudId" resultType="com.ja.cbh.vo.Club_ApplVO">
+		SELECT * FROM CBH_CLUB_APPL
+		WHERE STUD_ID = #{stud_id}
+	</select>
+
+	<select id="selectApprovedClubApplByStudId" resultType="com.ja.cbh.vo.Club_ApplVO">
+		SELECT * FROM CBH_CLUB_APPL
+		WHERE STUD_ID = #{stud_id}
+		AND CLUB_APPL_STATE = 1
+	</select>
+
+</mapper>
+

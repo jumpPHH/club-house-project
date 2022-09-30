@@ -18,11 +18,11 @@ public class FindingClubRestController {
 	private FindingClubServiceImpl findingClubService;
 	
 	@RequestMapping("getCategoryOfClubsAll")
-	public HashMap<String, Object> getCategoryOfClubsAll(int club_category_no){
+	public HashMap<String, Object> getCategoryOfClubsAll(String club_category_no, String searchWord){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		int clubCategoryNo = club_category_no;
-		ArrayList<ClubVO> clubList = findingClubService.getAllClubsOfCertainCategory(clubCategoryNo);
+		int clubCategoryNo = Integer.parseInt(club_category_no);
+		ArrayList<ClubVO> clubList = findingClubService.getAllClubsOfCategory(clubCategoryNo, searchWord);
 		
 		map.put("data", clubList);
 		map.put("result", "success");

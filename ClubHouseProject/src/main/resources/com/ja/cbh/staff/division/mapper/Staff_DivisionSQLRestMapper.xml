@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.ja.cbh.staff.division.mapper.Staff_DivisionSQLRestMapper">
+
+<!-- 공지구분 -->
+	<!--공지구분 등록 -->
+	<insert id="insertNotiDiv">
+		INSERT INTO CBH_NOTI_DIV
+		VALUES(
+		CBH_NOTI_DIV_seq.nextval,
+		#{NAME},
+		<choose>
+			<when test="ENG != null">
+			#{ENG},	
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="ABRVT != null">
+			#{ABRVT},	
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		#{STATE}
+		)
+	</insert>
+	<!--공지구분리스트 호출 -->
+	<select id="selectNotiDivList" resultType="HashMap">
+		SELECT NOTI_DIV_NO AS NO, 
+			   NOTI_DIV_NAME AS NAME,
+			   NOTI_DIV_ENG AS ENG,
+			   NOTI_DIV_ABRVT AS ABRVT, 
+			   NOTI_DIV_STATE AS STATE 
+		FROM
+		CBH_NOTI_DIV
+		WHERE NOT NOTI_DIV_STATE = 3
+	</select>
+	<!--공지구분리스트 개수 호출 -->
+	<select id="selectCountNotiDiv" resultType="int">
+		SELECT count(*) FROM
+		CBH_NOTI_DIV
+		WHERE NOT NOTI_DIV_STATE = 3
+	</select>
+	<!--공지구분 수정(전체) -->
+	<update id="updateNotiDivByNotiDivNo">
+		UPDATE CBH_NOTI_DIV SET
+		NOTI_DIV_NAME = #{NAME},
+		<if test="ENG != null">
+		NOTI_DIV_ENG = #{ENG},
+		</if>
+		<if test="ABRVT != null">
+		NOTI_DIV_ABRVT = #{ABRVT},
+		</if>
+		NOTI_DIV_STATE = #{STATE}
+		WHERE NOTI_DIV_NO = #{NO}
+	</update>
+	<!--공지 사용여부 수정(삭제) -->
+	<update id="updateNotiDivStateByNotiDivNo">
+		UPDATE CBH_NOTI_DIV SET
+		NOTI_DIV_STATE  = #{STATE}
+		WHERE NOTI_DIV_NO = #{NO}
+	</update>
+
+
+
+<!-- 봉사구분 -->
+	<!--봉사구분 등록 -->
+	<insert id="insertVlntrDiv">
+		INSERT INTO CBH_VLNTR_DIV
+		VALUES(
+		CBH_VLNTR_DIV_seq.nextval,
+		#{NAME},
+		<choose>
+			<when test="ENG != null">
+			#{ENG},	
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="ABRVT != null">
+			#{ABRVT},
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		#{STATE}
+		)
+	</insert>
+	<!--봉사구분리스트 호출 -->
+	<select id="selectVlntrDivList" resultType="HashMap">
+		SELECT VLNTR_DIV_NO AS NO,
+			   VLNTR_DIV_NAME AS NAME,
+			   VLNTR_DIV_ENG AS ENG,
+			   VLNTR_DIV_ABRVT AS ABRVT, 
+			   VLNTR_DIV_STATE AS STATE 
+		FROM
+		CBH_VLNTR_DIV
+		WHERE NOT VLNTR_DIV_STATE = 3
+	</select>
+	<!--봉사구분리스트 개수 호출 -->
+	<select id="selectCountVlntrDiv" resultType="int">
+		SELECT COUNT(*) FROM
+		CBH_VLNTR_DIV
+		WHERE NOT VLNTR_DIV_STATE = 3
+	</select>
+	<!--봉사구분 수정(전체) -->
+	<update id="updateVlntrDivByVlntrDivNo" parameterType="java.util.HashMap">
+		UPDATE CBH_VLNTR_DIV SET
+		VLNTR_DIV_NAME = #{NAME},
+		<if test="ENG != null">
+		VLNTR_DIV_ENG = #{ENG},
+		</if>
+		<if test="ABRVT != null">
+		VLNTR_DIV_ABRVT = #{ABRVT},
+		</if>
+		VLNTR_DIV_STATE = #{STATE}
+		WHERE VLNTR_DIV_NO = #{NO}
+	</update>
+	<!--봉사구분 사용여부 수정(삭제) -->
+	<update id="updateVlntrDivStateByVlntrDivNo">
+		UPDATE CBH_VLNTR_DIV SET 
+		VLNTR_DIV_STATE = #{STATE}
+		WHERE VLNTR_DIV_NO = #{NO}
+	</update>
+
+
+
+<!-- 직책구분 -->
+	<!--직책구분 등록 -->
+	<insert id="insertPstnDiv">
+		INSERT INTO CBH_PSTN_DIV
+		VALUES(
+		CBH_PSTN_DIV_seq.nextval,
+		#{NAME},
+		<choose>
+			<when test="ENG != null">
+			#{ENG},	
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="ABRVT != null">
+			#{ABRVT},
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		#{STATE}
+		)
+	</insert>
+	<!--직책구분리스트 호출 -->
+	<select id="selectPstnDivList" resultType="HashMap">
+		SELECT PSTN_DIV_NO AS NO, 
+			   PSTN_DIV_NAME AS NAME,
+			   PSTN_DIV_ENG AS ENG,
+			   PSTN_DIV_ABRVT AS ABRVT,
+			   PSTN_DIV_STATE AS STATE 
+		FROM
+		CBH_PSTN_DIV
+		WHERE NOT PSTN_DIV_STATE = 3
+	</select>
+	<!--직책구분리스트 개수 호출 -->
+	<select id="selectCountPstnDiv" resultType="int">
+		SELECT COUNT(*) FROM
+		CBH_PSTN_DIV
+		WHERE NOT PSTN_DIV_STATE = 3
+	</select>
+	<!--직책구분 수정(전체) -->
+	<update id="updatePstnDivByPstnDivNo">
+		UPDATE CBH_PSTN_DIV SET
+		PSTN_DIV_NAME = #{NAME},
+		<if test="ENG != null">
+		PSTN_DIV_ENG = #{ENG},
+		</if>
+		<if test="ABRVT != null">
+		PSTN_DIV_ABRVT = #{ABRVT},
+		</if>
+		PSTN_DIV_STATE  = #{STATE}
+		WHERE PSTN_DIV_NO = #{NO}
+	</update>
+	<!--직책구분 사용여부 수정(삭제) -->
+	<update id="updatePstnDivStateByPstnDivNo">
+		UPDATE CBH_PSTN_DIV SET
+		PSTN_DIV_STATE  = #{STATE}
+		WHERE PSTN_DIV_NO = #{NO}
+	</update>
+
+
+
+<!-- 결재구분 -->
+	<!--결재구분 등록 -->
+	<insert id="insertApvDiv">
+		INSERT INTO CBH_APV_DIV
+		VALUES(
+		CBH_APV_DIV_seq.nextval,
+		#{NAME},
+		<choose>
+			<when test="ENG != null">
+			#{ENG},	
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="ABRVT != null">
+			#{ABRVT},
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		NULL,
+		#{STATE}
+		)
+	</insert>
+	<!--결재구분리스트 호출 -->
+	<select id="selectApvDivList" resultType="HashMap">
+		SELECT APV_DIV_NO AS NO,
+			   APV_DIV_NAME AS NAME,
+			   APV_DIV_ENG AS ENG,
+			   APV_DIV_ABRVT AS ABRVT,
+			   APV_DIV_STATE AS STATE
+		FROM
+		CBH_APV_DIV
+		WHERE NOT APV_DIV_STATE = 3
+	</select>
+	<!--결재구분리스트 개수 호출 -->
+	<select id="selectCountApvDiv" resultType="int">
+		SELECT COUNT(*) FROM
+		CBH_APV_DIV
+		WHERE NOT APV_DIV_STATE = 3
+	</select>
+	<!--결재구분 수정(전체) -->
+	<update id="updateApvDivByApvDivNo">
+		UPDATE CBH_APV_DIV SET
+		APV_DIV_NAME = #{NAME},
+		<if test="ENG != null">
+		APV_DIV_ENG = #{ENG},
+		</if>
+		<if test="ABRVT != null">
+		APV_DIV_ABRVT = #{ABRVT},
+		</if>
+		APV_DIV_STATE  = #{STATE}
+		WHERE APV_DIV_NO = #{NO}
+	</update>
+	<!--결재구분 사용여부 수정(삭제) -->
+	<update id="updateApvDivStateByApvDivNo">
+		UPDATE CBH_APV_DIV SET
+		APV_DIV_STATE  = #{STATE}
+		WHERE APV_DIV_NO = #{NO}
+	</update>
+	<!-- 결재양식 호출 -->
+	<select id="selectApvDivFormByApvDivNo" resultType="Object">
+		SELECT APV_DIV_FORM FROM CBH_APV_DIV cad WHERE APV_DIV_NO = #{NO}
+	</select>
+	<update id="updateApvDivFormByApvDivNo">
+		UPDATE CBH_APV_DIV
+		SET APV_DIV_FORM = #{FORM}
+		WHERE APV_DIV_NO = #{NO}
+	</update>
+
+
+<!-- 알람구분 -->
+	<!--알람구분 등록 -->
+	<insert id="insertAlarmDiv">
+		INSERT INTO CBH_ALARM_DIV
+		VALUES(
+		CBH_ALARM_DIV_seq.nextval,
+		#{NAME},
+		<choose>
+			<when test="ENG != null">
+			#{ENG},	
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="ABRVT != null">
+			#{ABRVT},
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		#{STATE}
+		)
+	</insert>
+	<!--알람구분리스트 호출 -->
+	<select id="selectAlarmDivList" resultType="HashMap">
+		SELECT ALARM_DIV_NO AS NO, 
+			   ALARM_DIV_NAME AS NAME, 
+			   ALARM_DIV_ENG AS ENG,
+			   ALARM_DIV_ABRVT AS ABRVT,
+			   ALARM_DIV_STATE AS STATE 
+		FROM
+		CBH_ALARM_DIV
+		WHERE NOT ALARM_DIV_STATE = 3
+	</select>
+	<!--알람구분리스트 개수 호출 -->
+	<select id="selectCountAlarmDiv" resultType="int">
+		SELECT COUNT(*) FROM
+		CBH_ALARM_DIV
+		WHERE NOT ALARM_DIV_STATE = 3
+	</select>
+	<!--알람구분 사용여부 수정(사용, 미사용) -->
+	<update id="updateAlarmDivByAlarmDivNo">
+		UPDATE CBH_ALARM_DIV SET
+		ALARM_DIV_NAME = #{NAME},
+		<if test="ENG != null">
+		ALARM_DIV_ENG = #{ENG},
+		</if>
+		<if test="ABRVT != null">
+		ALARM_DIV_ABRVT = #{ABRVT},
+		</if>
+		ALARM_DIV_STATE  = #{STATE}
+		WHERE ALARM_DIV_NO = #{NO}
+	</update>
+	<!--알람구분 사용여부 수정(삭제) -->
+	<update id="updateAlarmDivStateByAlarmDivNo">
+		UPDATE CBH_ALARM_DIV SET
+		ALARM_DIV_STATE  = #{STATE}
+		WHERE ALARM_DIV_NO = #{NO}
+	</update>
+
+
+<!-- 동아리구분 -->
+	<!--동아리구분 등록 -->
+	<insert id="insertClubDivisionDiv">
+		INSERT INTO CBH_CLUB_DIVISION
+		VALUES(
+		CBH_CLUB_DIVISION_seq.nextval,
+		#{NAME},
+		<choose>
+			<when test="ENG != null">
+			#{ENG},	
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="ABRVT != null">
+			#{ABRVT},
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		#{STATE}
+		)
+	</insert>
+	<!--동아리구분리스트 호출 -->
+	<select id="selectClubDivisionList" resultType="HashMap">
+		SELECT CLUB_DIVISION_NO AS NO,
+			   CLUB_DIVISION_NAME AS NAME,
+			   CLUB_DIVISION_ENG AS ENG,
+			   CLUB_DIVISION_ABRVT AS ABRVT,
+			   CLUB_DIVISION_STATE AS STATE 
+		FROM
+		CBH_CLUB_DIVISION
+		WHERE NOT CLUB_DIVISION_STATE = 3
+	</select>
+	<!--동아리구분리스트 개수 호출 -->
+	<select id="selectCountClubDivision" resultType="int">
+		SELECT
+		COUNT(*) FROM CBH_CLUB_DIVISION
+		WHERE NOT CLUB_DIVISION_STATE = 3
+	</select>
+	<!--동아리구분 사용여부 수정(사용, 미사용) -->
+	<update id="updateClubDivisionByClubDivisionNo">
+		UPDATE CBH_CLUB_DIVISION SET
+		CLUB_DIVISION_NAME = #{NAME},
+		<if test="ENG != null">
+		CLUB_DIVISION_ENG = #{ENG},
+		</if>
+		<if test="ABRVT != null">
+		CLUB_DIVISION_ABRVT = #{ABRVT},
+		</if>
+		CLUB_DIVISIONV_STATE  = #{STATE}
+		WHERE CLUB_DIVISION_NO = #{NO}
+	</update>
+	<!--동아리구분 사용여부 수정(삭제) -->
+	<update id="updateClubDivisionStateByClubDivisionNo">
+		UPDATE CBH_CLUB_DIVISION SET
+		CLUB_DIVISIONV_STATE  = #{STATE}
+		WHERE CLUB_DIVISION_NO = #{NO}
+	</update>
+
+
+
+<!-- 동아리카테고리구분 -->
+	<!--동아리카테고리구분 등록 -->
+	<insert id="insertClubDeptCategory">
+		INSERT INTO CBH_CLUB_DEPT_CATEGORY
+		VALUES(
+		CBH_CLUB_DEPT_CATEGORY_seq.nextval,
+		#{NAME},
+		<choose>
+			<when test="ENG != null">
+			#{ENG},
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="DESCRIPTION != null">
+			#{DESCRIPTION},
+			</when>
+			<otherwise>
+			NULL,
+			</otherwise>
+		</choose>
+		NULL,
+		#{STATE}
+		)
+	</insert>
+	<!--동아리카테리고리구분 호출 -->
+	<select id="selectClubDeptCategoryList" resultType="HashMap">
+		SELECT CLUB_CATEGORY_NO AS NO, 
+			   CLUB_CATEGORY_NAME AS NAME,
+			   CLUB_CATEGORY_ENG AS ENG,
+			   CLUB_CATEGORY_DESCRIPTION AS DESCRIPTION, 
+			   CLUB_CATEGORY_STATE AS STATE
+		FROM CBH_CLUB_DEPT_CATEGORY
+		WHERE NOT CLUB_CATEGORY_STATE = 3
+	</select>
+	<!--동아리카테고리구분 개수 호출 -->
+	<select id="selectCountDeptCategory" resultType="int">
+		SELECT
+		COUNT(*) FROM CBH_CLUB_DEPT_CATEGORY
+		WHERE NOT CLUB_CATEGORY_STATE = 3
+	</select>
+	<update
+		id="updateClubDeptCategoryByClubDeptCategoryNo">
+		UPDATE CBH_CLUB_DEPT_CATEGORY  SET
+		CLUB_CATEGORY_NAME  = #{NAME},
+		<if test="ENG != null">
+		CLUB_CATEGORY_ENG = #{ENG},
+		</if>
+		<if test="DESCRIPTION != null">
+		CLUB_CATEGORY_DESCRIPTION = #{DESCRIPTION},
+		</if>
+		CLUB_CATEGORY_STATE = #{STATE}
+		WHERE CLUB_CATEGORY_NO  = #{NO}
+	</update>
+	<update
+		id="updateClubDeptCategoryStateByClubDeptCategoryNo">
+		UPDATE CBH_CLUB_DEPT_CATEGORY  SET
+		CLUB_CATEGORY_STATE = #{STATE}
+		WHERE CLUB_CATEGORY_NO = #{NO}
+	</update>
+
+
+</mapper>

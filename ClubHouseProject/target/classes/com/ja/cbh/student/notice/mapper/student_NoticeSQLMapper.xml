@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.notice.mapper.student_NoticeSQLMapper">
+
+	
+	<select id="selectAll" resultType="com.ja.cbh.vo.Club_NoticeVO">
+		SELECT * FROM CBH_NOTI ORDER BY NOTI_NO DESC
+	</select>
+
+ 	<select id="selectMemberInfo" resultType="com.ja.cbh.vo.StaffVO">
+	
+		SELECT * FROM CBH_STAFF WHERE STAFF_ID=#{staff_id}
+	
+	</select> 
+
+
+</mapper>
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.staff.division.mapper.Staff_DivisionSQLMapper">
+
+	<select id="selectNotiDiv" resultType="HashMap">
+		SELECT CLUB_CATEGORY_NO AS NO, CLUB_CATEGORY_NAME AS NAME, CLUB_CATEGORY_DESCRIPTION AS DESCRIPTION, CLUB_CATEGORY_STATE AS STATE FROM CBH_CLUB_DEPT_CATEGORY WHERE NOT CLUB_CATEGORY_STATE = 3
+	</select>
+
+	<select id="selectCountNotiDiv">
+		SELECT COUNT(*) FROM CBH_CLUB_DEPT_CATEGORY WHERE NOT CLUB_CATEGORY_STATE =3
+	</select>
+
+</mapper>

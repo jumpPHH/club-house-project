@@ -1,14 +1,15 @@
 package com.ja.cbh.student.findingclub.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ja.cbh.student.findingclub.mapper.FindingClubSQLMapper;
 import com.ja.cbh.vo.ClubVO;
 import com.ja.cbh.vo.Club_Dept_CategoryVO;
+import com.ja.cbh.vo.Club_StudVO;
 
 @Service
 public class FindingClubServiceImpl {
@@ -18,9 +19,9 @@ public class FindingClubServiceImpl {
 	private FindingClubSQLMapper findingClubSQLMapper;
 	
 	// 어떤 클럽카테고리에 해당하는 클럽들 갖고오기. 
-	public ArrayList<ClubVO> getAllClubsOfCertainCategory(int clubCategoryNo){
+	public ArrayList<ClubVO> getAllClubsOfCategory(@Param("clubCategoryNo")int clubCategoryNo, @Param("searchWord")String searchWord){
 		
-		ArrayList<ClubVO> clubList = findingClubSQLMapper.selectAllClubOfCategory(clubCategoryNo);
+		ArrayList<ClubVO> clubList = findingClubSQLMapper.selectAllClubsOfCategory(clubCategoryNo, searchWord);
 		return clubList;
 	}
 	
@@ -30,4 +31,18 @@ public class FindingClubServiceImpl {
 		Club_Dept_CategoryVO categoryInfo = findingClubSQLMapper.selectClubCategoryByNo(clubCategoryNo);
 		return categoryInfo;
 	}
+	
+	// 특정 클럽no에 해당하는 클럽 정보 갖고오기
+	public ClubVO getClubByNo(int clubNo) {
+		ClubVO clubInfoByNo = findingClubSQLMapper.selectClubByNo(clubNo);
+		
+		return clubInfoByNo;
+	}
+	
+	// 특정 클럽에 가입신청
+	public void inputClubStud(Club_StudVO club_studVO) {
+		findingClubSQLMapper.insertClubStud(club_studVO);
+		
+	}
+	
 }

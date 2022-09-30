@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.ja.cbh.student.myclub.membermgmt.mapper.Student_MemberMgmtSQLMapper">
+
+	<select id="selectBossMemberCount" resultType="int">
+		SELECT COUNT(*)
+		FROM CBH_CLUB_STUD
+		WHERE CLUB_STUD_GRADE = '대표'
+		AND STUD_ID = #{stud_id}
+	</select>
+
+	<select id="selectBossMemberIs"
+		resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT *
+		FROM CBH_CLUB_STUD
+		WHERE CLUB_STUD_GRADE = '대표'
+		AND
+		STUD_ID = #{stud_id}
+	</select>
+
+	<select id="selectDyClubMemberInfo"
+		resultType="com.ja.cbh.vo.Club_MemberInfoDyVO">
+		SELECT t2.* FROM(
+		SELECT t1.* , ROWNUM as rnum FROM (
+		SELECT
+		ccs.CLUB_STUD_NO,ccs.STUD_ID,cs.STUD_NAME,ccs.CLUB_STUD_GRADE,
+		ccs.CLUB_STUD_JOIN_DATE,cs.STUD_GENDER,cs.STUD_PHONE
+		FROM CBH_STUD cs , CBH_CLUB_STUD ccs , CBH_CLUB cc
+		WHERE cs.STUD_ID = ccs.STUD_ID
+		AND ccs.CLUB_NO = cc.CLUB_NO
+		AND ccs.CLUB_NO = #{club_no}
+		AND ccs.CLUB_STUD_STATE = '활동중'
+		<if test="searchType != null and searchWord != null">
+			<choose>
+				<when test="searchType == 'name'">
+					AND cs.STUD_NAME LIKE '%' || #{searchWord} || '%'
+				</when>
+				<when test="searchType == 'id'">
+					AND cs.STUD_ID LIKE '%' || #{searchWord} || '%'
+				</when>
+				<when test="searchType == 'phone'">
+					AND cs.STUD_PHONE LIKE '%' || #{searchWord} || '%'
+				</when>
+			</choose>
+		</if>
+		ORDER BY ccs.CLUB_STUD_NO DESC
+		) t1
+		) t2
+				<![CDATA[
+				WHERE t2.rnum >= (#{pageNum}-1)*10+1 AND t2.rnum <= #{pageNum}*10
+				]]>
+	</select>
+
+	<select id="selectTotalActiveMemberdCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM CBH_STUD cs , CBH_CLUB_STUD ccs , CBH_CLUB cc
+		WHERE cs.STUD_ID = ccs.STUD_ID
+		AND ccs.CLUB_NO = cc.CLUB_NO
+		AND ccs.CLUB_NO = #{club_no}
+		AND ccs.CLUB_STUD_STATE = '활동중'
+	</select>
+
+	<select id="selectActiveMemberSelectCount" resultType="int">
+		SELECT COUNT(*)
+		FROM CBH_STUD cs , CBH_CLUB_STUD ccs , CBH_CLUB cc
+		WHERE cs.STUD_ID = ccs.STUD_ID
+		AND ccs.CLUB_NO = cc.CLUB_NO
+		AND ccs.CLUB_NO = #{club_no}
+		AND ccs.CLUB_STUD_STATE = '활동중'
+		<if test="searchType != null and searchWord != null">
+			<choose>
+				<when test="searchType == 'name'">
+					AND cs.STUD_NAME LIKE '%' || #{searchWord} || '%'
+				</when>
+				<when test="searchType == 'id'">
+					AND cs.STUD_ID LIKE '%' || #{searchWord} || '%'
+				</when>
+				<when test="searchType == 'phone'">
+					AND cs.STUD_PHONE LIKE '%' || #{searchWord} || '%'
+				</when>
+			</choose>
+		</if>
+	</select>
+
+	<select id="selectApplicantMemberInfo" resultType="com.ja.cbh.vo.Club_ApplicantMemberInfoVO">
+		SELECT t2.* FROM(
+		SELECT t1.* , ROWNUM as rnum FROM (
+		SELECT ccs.CLUB_STUD_NO , ccs.STUD_ID , cs.STUD_NAME , ccs.CLUB_STUD_APPL_DATE , cs.STUD_GENDER
+		FROM CBH_STUD cs , CBH_CLUB_STUD ccs
+		WHERE cs.STUD_ID = ccs.STUD_ID
+		AND ccs.CLUB_NO = #{club_no}
+		AND ccs.CLUB_STUD_STATE = '가입대기중'
+		ORDER BY ccs.CLUB_STUD_NO DESC
+		) t1
+		) t2
+				<![CDATA[
+				WHERE t2.rnum >= (#{pageNum}-1)*10+1 AND t2.rnum <= #{pageNum}*10
+				]]>
+	</select>
+	
+	<select id="selectApplicantMemberCount" resultType="int">
+		SELECT COUNT(*)
+		FROM CBH_STUD cs , CBH_CLUB_STUD ccs
+		WHERE cs.STUD_ID = ccs.STUD_ID
+		AND ccs.CLUB_NO = 1
+		AND ccs.CLUB_STUD_STATE = '가입대기중'
+		ORDER BY ccs.CLUB_STUD_NO DESC
+	</select>
+	
+</mapper>

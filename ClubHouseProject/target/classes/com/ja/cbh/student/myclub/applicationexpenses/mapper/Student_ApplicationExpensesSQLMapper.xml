@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.myclub.applicationexpenses.mapper.Student_ApplicationExpensesSQLMapper">
+	
+	<select id="selectExpnsApplySelectCount" resultType="int">
+		SELECT COUNT(*)
+		FROM CBH_CLUB_EXPNS_APPLY
+		WHERE CLUB_NO = #{club_no}
+		<if test="searchType != null and searchWord != null">
+			<choose>
+				<when test="searchType == 'content'"> 
+					AND CLUB_EXPNS_APPLY_PURPOSE_USE  LIKE '%' || #{searchWord} || '%'
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="selectClubExpnsApplyList" resultType="com.ja.cbh.vo.Club_ExpnsApplyVO">
+		SELECT t2.* FROM(
+		SELECT t1.* , ROWNUM as rnum FROM (
+		SELECT * 
+		FROM CBH_CLUB_EXPNS_APPLY
+		WHERE CLUB_NO = #{club_no}
+		<if test="searchType != null and searchWord != null">
+			<choose>
+				<when test="searchType == 'content'">
+					AND CLUB_EXPNS_APPLY_PURPOSE_USE  LIKE '%' || #{searchWord} || '%'
+				</when>
+			</choose>
+		</if>
+		ORDER BY CLUB_EXPNS_APPLY_NO DESC
+		)t1
+		)t2
+		<![CDATA[
+		WHERE t2.rnum >= (#{pageNum}-1)*10+1 AND t2.rnum <= #{pageNum}*10
+		]]>
+	</select>
+	
+	<insert id="insertClubExpnsApplyRegistration">
+		INSERT INTO CBH_CLUB_EXPNS_APPLY VALUES (
+			CBH_CLUB_EXPNS_APPLY_seq.nextval,
+			#{club_no},
+			#{club_expns_apply_grants},
+			#{club_expns_apply_period_use},
+			#{club_expns_number_use},
+			#{club_expns_apply_purpose_use},
+			SYSDATE,
+			NULL,
+			'검수중'		
+		)
+	</insert>
+
+</mapper>

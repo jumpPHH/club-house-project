@@ -35,7 +35,7 @@ a:hover {
 					<ul>
 						<li>
 							<!-- div태그 style 아래랑 교환, i태그도 교환 -->
-							<div style="font-weight: bold;color: #bf1f51;letter-spacing: 0;"onclick="" ><i class="bi bi-check-lg"></i><a href="/cbh/student/findingclub/mainPage">동아리찾기</a></div>
+							<div style="font-weight: bold;color: #bf1f51;letter-spacing: 0;"onclick="" ><i class="bi bi-check-lg"></i><a href="/cbh/student/findingclub/student_indexPage">동아리찾기</a></div>
 						</li>
 					</ul>
 				</li>
@@ -44,7 +44,11 @@ a:hover {
 				<li>
 					<div>공지사항</div>
 					<ul>
+<<<<<<< HEAD
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="../../student/notice/student_NoticeListPage">공지사항</a></div></li>
+=======
+						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="/cbh/student/notice/student_NoticeListPage">공지사항</a></div></li>
+>>>>>>> 88f7e6bfe5dea58ef033c926f2771e655c9589b3
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>봉사공고</div></li>
 					</ul>
 				</li>
@@ -60,18 +64,21 @@ a:hover {
 				<li>
 					<div>내 동아리</div>
 					<ul>
+<<<<<<< HEAD
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="../../student/myclubmain/student_MyClubMainPage">메인</a></div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="../../student/myclubactivity/student_MyClubActivityListPage">동아리 활동내역</a></div></li>
+=======
+						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="/cbh/student/myclub/main/student_MainPage">메인</a></div></li>
+>>>>>>> 88f7e6bfe5dea58ef033c926f2771e655c9589b3
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>확동계획서작성</div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>자유게시판</div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>동아리일정</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>회원관리</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>경비신청</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>경비관리</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>회비관리</div></li>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>동아리소개작성</div></li>
+						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage">회원관리</a></div></li>
+						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesPage">경비신청</a></div></li>
+						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtPage">회비관리</a></div></li>
+						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>동아리소개작성</div></li> 
 					</ul>
-				</li>
+				</li> 
 	
 			</ul>
 		</div>	

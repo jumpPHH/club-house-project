@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.myclub.membershipfeemgmt.mapper.Student_MemberShipFeeMgmtSQLMapper">
+	
+	<select id="selectClubBossAndAccountingMemberIs" resultType="com.ja.cbh.vo.Club_BossAndAccountingMemberVO">
+		SELECT cc.CLUB_NAME, ccs.STUD_ID, cs.STUD_NAME ,
+		ccs.CLUB_STUD_GRADE , ccs.CLUB_NO, ccs.CLUB_STUD_NO  
+		FROM CBH_STUD cs  , CBH_CLUB_STUD ccs  , CBH_CLUB cc 
+		WHERE ccs.CLUB_NO = cc.CLUB_NO
+		AND cs.STUD_ID = ccs.STUD_ID 
+		AND CLUB_STUD_STATE = '활동중'
+		AND ccs.STUD_ID = #{stud_id}
+		AND (ccs.CLUB_STUD_GRADE = '대표' OR ccs.CLUB_STUD_GRADE = '화계')
+	</select>
+	
+	<select id="selectCLubFeeAllData" resultType="com.ja.cbh.vo.Club_Fee">
+		SELECT t2.* FROM(
+		SELECT t1.* , ROWNUM as rnum FROM (
+			SELECT * 
+			FROM CBH_CLUB_FEE
+			WHERE CLUB_NO = #{club_no}
+				<if test="searchType != null and searchWord != null">
+					<choose>
+						<when test="searchType == 'division'">
+							AND CLUB_FEE_DIVISION LIKE '%' || #{searchWord} || '%'
+						</when>
+						<when test="searchType == 'detail'">
+							AND CLUB_FEE_DETAIL LIKE '%' || #{searchWord} || '%'
+						</when>
+						<when test="searchType == 'otherdetail'">
+							AND CLUB_FEE_OTHER_DETAIL LIKE '%' || #{searchWord} || '%'
+						</when>
+					</choose>
+				</if>
+			ORDER BY CLUB_FEE_NO DESC
+			)t1
+			)t2
+			<![CDATA[
+			WHERE t2.rnum >= (#{pageNum}-1)*10+1 AND t2.rnum <= #{pageNum}*10
+			]]>
+	</select>
+	
+	<select id="selectMemberShipFeeSelectCount" resultType="int">
+		SELECT t2.* FROM(
+		SELECT t1.* , ROWNUM as rnum FROM (
+			SELECT COUNT(*) 
+			FROM CBH_CLUB_FEE
+			WHERE CLUB_NO = #{club_no}
+				<if test="searchType != null and searchWord != null">
+					<choose>
+						<when test="searchType == 'division'">
+							AND CLUB_FEE_DIVISION LIKE '%' || #{searchWord} || '%'
+						</when>
+						<when test="searchType == 'detail'">
+							AND CLUB_FEE_DETAIL LIKE '%' || #{searchWord} || '%'
+						</when>
+						<when test="searchType == 'otherdetail'">
+							AND CLUB_FEE_OTHER_DETAIL LIKE '%' || #{searchWord} || '%'
+						</when>
+					</choose>
+				</if>
+			)t1
+			)t2
+	</select>
+	
+</mapper>

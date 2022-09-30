@@ -2,8 +2,6 @@ package com.ja.cbh.vo;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class StudVO {
 
 	private String stud_id; //학생 아이디 (기본키)
@@ -17,8 +15,8 @@ public class StudVO {
 	private String stud_dept; //학과
 	private String stud_photo_link; //사진
 	private int stud_vlntr_time; //봉사시간
-	private Date stud_reg_dt; //등록일자
-	private String stud_status; //학적상태
+	private Date stud_rest_dt; //등록일자 
+	private String stud_state; //학적상태
 	
 	public StudVO() {
 		super();
@@ -26,7 +24,7 @@ public class StudVO {
 
 	public StudVO(String stud_id, String stud_pw, String stud_name, String stud_phone, String stud_email,
 			String stud_gender, String stud_birth, String stud_grade, String stud_dept, String stud_photo_link,
-			int stud_vlntr_time, Date stud_reg_dt, String stud_status) {
+			int stud_vlntr_time, Date stud_rest_dt, String stud_state) {
 		super();
 		this.stud_id = stud_id;
 		this.stud_pw = stud_pw;
@@ -39,8 +37,8 @@ public class StudVO {
 		this.stud_dept = stud_dept;
 		this.stud_photo_link = stud_photo_link;
 		this.stud_vlntr_time = stud_vlntr_time;
-		this.stud_reg_dt = stud_reg_dt;
-		this.stud_status = stud_status;
+		this.stud_rest_dt = stud_rest_dt;
+		this.stud_state = stud_state;
 	}
 
 	public String getStud_id() {
@@ -131,20 +129,22 @@ public class StudVO {
 		this.stud_vlntr_time = stud_vlntr_time;
 	}
 
-	public Date getStud_reg_dt() {
-		return stud_reg_dt;
+	public Date getStud_rest_dt() {
+		return stud_rest_dt;
 	}
 
-	public void setStud_reg_dt(Date stud_reg_dt) {
-		this.stud_reg_dt = stud_reg_dt;
+	public void setStud_rest_dt(Date stud_rest_dt) {
+		this.stud_rest_dt = stud_rest_dt;
 	}
 
-	public String getStud_status() {
-		return stud_status;
+	public String getStud_state() {
+		return stud_state;
 	}
 
-	public void setStud_status(String stud_status) {
-		this.stud_status = stud_status;
+	public void setStud_state(String stud_state) {
+		this.stud_state = stud_state;
 	}
+
+	
 
 }

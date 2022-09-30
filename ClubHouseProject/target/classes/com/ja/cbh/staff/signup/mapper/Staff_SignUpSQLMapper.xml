@@ -17,4 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			'입사'
 		)
 	</insert>
+	
+	<select id="selectById" resultType="com.ja.cbh.vo.StaffVO">
+		SELECT * FROM CBH_STAFF
+		WHERE STAFF_ID = #{staff_id}
+	</select>
+	
 </mapper>
