@@ -28,7 +28,6 @@ public class Staff_StudentSearchService {
 		map.put("data", studVO);
 		studentDataList.add(map);
 		//System.out.println(student_SignUpSQLMapper.selectStudentAll(stud_id));
-		System.out.println(studVO.getStud_id());
 		return studentDataList;
 	}
 	

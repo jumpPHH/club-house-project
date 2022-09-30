@@ -105,8 +105,10 @@
 							<!-- 컨텐트 of 헤더 -->
 							<div class="row page_title">
 								<div class="col-4 page_title_text">
-									<span><img src="/cbh/resources/img/student/myclub/clubboardivities/contentTitleLogo.png/"
-									 style="margin-left: 0.5em; width: 2.1em; height: 1.5em"></span> <span style="margin-left:0.3em;">활동내역 작성</span>
+									<span><img
+										src="/cbh/resources/img/student/clubboard/titleLogo.png"
+										style="margin-left: 0.5em; width: 1.5em; height: 1.5em"></span>
+									<span style="margin-left: 0.3em;">자유게시판</span>
 								</div>
 								<div class="col text_align_left pt-2" style="color:red">
 									* 표시가 있는 항목들은 필수 입력항목입니다.
@@ -115,7 +117,7 @@
 							
 							
 							<!-- 신청서 양식 시작 -->
-							<form action="./student_writeClubBoardProcess" method="post">
+							<form action="./student_writeClubBoardProcess" method="post" enctype="multipart/form-data">
 							<div class="row px-4 mt-2" style="border: 1px solid #e2dede; border-radius:5px;">
 								<div class="col" >
 									<!-- 작성자 -->
@@ -142,12 +144,25 @@
 									<!-- 동아리 설명 -->
 									<div class="row p-3">
 										<div class="col-3">
-											<span style="color:red;">*</span> 동아리 설명
+											<span style="color:red;">*</span> 내용
 										</div>
 										<div class="col">
 											<div class="row">
 												<div class="col text_align_left">
 													<textarea class="form-control" style="height:15vh" name="club_board_content"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- 파일 입력 박스 -->
+									<div class="row p-3">
+										<div class="col-3">
+											<span>이미지 파일</span>	
+										</div>
+										<div class="col">
+											<div class="row">
+												<div class="col text_align_left">
+													<input type="file" name="club_board_image">
 												</div>
 											</div>
 										</div>

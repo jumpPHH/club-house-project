@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ja.cbh.student.myclub.main.mapper.Student_MainSQLMapper;
+import com.ja.cbh.vo.Club_BoardVO;
 import com.ja.cbh.vo.Club_ActVO;
 import com.ja.cbh.vo.Club_BoardVO;
 import com.ja.cbh.vo.Club_StudVO;

@@ -30,7 +30,6 @@ public class staff_ApprovalController {
 	@RequestMapping("staff_WriteDraftPage")
 	public String writeDraftPage (Model model, HttpSession session) {
 		StaffVO staffVO = (StaffVO)session.getAttribute("sessionUserInfo");
-		System.out.println(staffVO.getStaff_id());
 		model.addAttribute("staffVO", staffVO);
 		model.addAttribute("ApvDiv", staff_ApprovalService.getApvDivList());
 		model.addAttribute("Staff", staff_ApprovalService.getStaffList());
