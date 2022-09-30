@@ -109,4 +109,6 @@ public class staff_ApprovalController {
 		
 		return "redirect: ./staff_WriteDraftPage";
 	}
+	
+
 }

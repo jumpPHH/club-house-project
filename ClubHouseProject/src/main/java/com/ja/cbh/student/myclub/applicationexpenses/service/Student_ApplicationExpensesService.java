@@ -57,8 +57,8 @@ public class Student_ApplicationExpensesService {
 	 }
 	 
 	 
-	 public void insertClubExpnsApplyRegistration(int club_no) {
-		 applicationExpensesSQLMapper.insertClubExpnsApplyRegistration(club_no);
+	 public void insertClubExpnsApplyRegistration(Club_ExpnsApplyVO clubExpnsApplyVO) {
+		 applicationExpensesSQLMapper.insertClubExpnsApplyRegistration(clubExpnsApplyVO);
 	 }
 	 
 	 public int getExpnsApplySelectCount(String stud_id, String searchType , String searchWord) {

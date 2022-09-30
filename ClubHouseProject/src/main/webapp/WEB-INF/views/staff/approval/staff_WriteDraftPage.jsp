@@ -16,6 +16,12 @@
 <script
 	src="https://cdn.tiny.cloud/1/bdorzubong3byjkwg9kl0ayxl92mhi8e0f24djie6ukepumt/tinymce/6/tinymce.min.js"
 	referrerpolicy="origin"></script>
+<style type="text/css">
+.selectDiv{
+background-color: #e3c5bf;
+color: white;
+}
+</style>
 <script type="text/javascript">
 tinymce.init({
 	selector : 'textarea#basic-example',
@@ -68,14 +74,28 @@ function doSubmit(){
 		
 	}
 	
-	function selectApvDiv(e){
-		var selectAPV_DIV_NO = e.querySelector(".no").innerText
-		var APV_DIV_NO = document.getElementById("APV_DIV_NO");
-		APV_DIV_NO.setAttribute("value",selectAPV_DIV_NO);
-		$(".divisionTab").removeClass("table-active");
-		if(e){
-			e.classList.add("table-active")
+	function selectApvDiv(e,NAME){
+		var NAME = NAME;
+		$(".selectDiv").removeClass("selectDiv");
+		e.classList.toggle('selectDiv');
+		
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+		xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200){
+	   	var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+		
+	   	tinyMCE.activeEditor.resetContent()
+		
+		if(result.ApvDivForm == null){
+		}else{
+			tinyMCE.activeEditor.setContent(result.ApvDivForm);
 		}
+	   	
+		}
+		}
+		xhr.open("post","../restApproval/getApvForm");
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send("NAME=" + NAME); 	
 	}
 </script>
 
@@ -101,13 +121,27 @@ function doSubmit(){
 						
 						<c:choose>
 							<c:when test="${!i.last }">
-							<div class="col text-center" style="cursor: pointer; border-right: 2px solid #ededed;" onclick="selectApvDiv(this)">
+							<div class="col text-center" style=" border-right: 2px solid #ededed;">
+							
+								<div class="row" style="justify-content: center">
+								<div class="col-auto px-3" style="cursor: pointer; border-radius: 2rem;" onclick="selectApvDiv(this,'${ApvDiv.APV_DIV_NAME}')">
 							${ApvDiv.APV_DIV_NAME } <span class="no" style="display: none;">${ApvDiv.APV_DIV_NO }</span>
+								</div>
+								</div>
+							
+							
+							
 							</div>
 							</c:when>
 							<c:otherwise>
-							<div class="col text-center" style="cursor: pointer;" onclick="selectApvDiv(this)">
+							<div class="col text-center" >
+							<div class="row" style="justify-content: center">
+								<div class="col-auto px-3" style="cursor: pointer; border-radius: 2rem;" onclick="selectApvDiv(this,'${ApvDiv.APV_DIV_NAME}')">
 							${ApvDiv.APV_DIV_NAME } <span class="no" style="display: none;">${ApvDiv.APV_DIV_NO }</span>
+								
+								</div>
+							</div>
+							
 							</div>
 							</c:otherwise>
 						</c:choose>

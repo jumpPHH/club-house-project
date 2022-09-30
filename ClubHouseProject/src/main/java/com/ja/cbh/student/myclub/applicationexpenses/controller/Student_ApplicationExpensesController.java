@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ja.cbh.student.myclub.applicationexpenses.service.Student_ApplicationExpensesService;
 import com.ja.cbh.student.myclub.main.service.Student_MainService;
+import com.ja.cbh.vo.Club_ExpnsApplyVO;
 import com.ja.cbh.vo.StudVO;
 
 @Controller
@@ -34,9 +35,10 @@ public class Student_ApplicationExpensesController {
 	}
 	
 	@RequestMapping("student_ApplicationExpensesRegistrationProcess")
-	public String student_ApplicationExpensesRegistrationProcess(int club_no) {
-			
-		applicationExpensesService.insertClubExpnsApplyRegistration(club_no);
+	public String student_ApplicationExpensesRegistrationProcess(Club_ExpnsApplyVO clubExpnsApplyVO,int club_no) {
+		clubExpnsApplyVO.setClub_no(club_no);
+		
+		applicationExpensesService.insertClubExpnsApplyRegistration(clubExpnsApplyVO);
 		
 		return "redirect:/student/myclub/applicationexpenses/student_ApplicationExpensesListPage";
 	}
@@ -50,7 +52,6 @@ public class Student_ApplicationExpensesController {
 		String stud_id = sessionUserInfo.getStud_id();	
 		
 		model.addAttribute("ClubExpnsApplyVO", applicationExpensesService.getApplicationExpensesDataList(stud_id,searchType,searchWord,pageNum));
-		
 		
 		int expnsApplySelectCount = applicationExpensesService.getExpnsApplySelectCount(stud_id,searchType,searchWord);
 		

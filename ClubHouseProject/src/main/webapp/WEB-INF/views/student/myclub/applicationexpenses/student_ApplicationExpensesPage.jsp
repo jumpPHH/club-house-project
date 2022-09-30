@@ -13,12 +13,11 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
 <head>
 <meta charset="UTF-8">
 <title>경비 신청 페이지</title>
+<link rel="stylesheet" href="/cbh/resources/css/student_navbar.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
-
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -59,79 +58,8 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
 	padding: 20px;
 	border-bottom: 2px solid #AEA9A9;
 }
-
-/*
-*
-* ==========================================
-* CUSTOM UTIL CLASSES
-* ==========================================
-*
-*/
-.datepicker td, .datepicker th {
-	width: 2.5rem;
-	height: 2.5rem;
-	font-size: 0.85rem;
-}
-
-.datepicker {
-	margin-bottom: 3rem;
-}
-
-/*
-*
-* ==========================================
-* FOR DEMO PURPOSES
-* ==========================================
-*
-*/
-body {
-	min-height: 100vh;
-	background-color: #fafafa;
-}
-
-.input-group {
-	border-radius: 30rem;
-}
-
-input.form-control {
-	border-radius: 30rem 0 0 30rem;
-	border: none;
-}
-
-input.form-control:focus {
-	box-shadow: none;
-}
-
-input.form-control::placeholder {
-	font-style: italic;
-}
-
-.input-group-text {
-	border-radius: 0 30rem 30rem 0;
-	border: none;
-}
-
-.datepicker-dropdown {
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
 </style>
 
-<script>
-	$(function() {
-
-		// INITIALIZE DATEPICKER PLUGIN
-		$('.datepicker').datepicker({
-			clearBtn : true,
-			format : "dd/mm/yyyy"
-		});
-
-		// FOR DEMO PURPOSE
-		$('#reservationDate').on('change', function() {
-			var pickedDate = $('input').val();
-			$('#pickedDate').html(pickedDate);
-		});
-	});
-</script>
 </head>
 <body>
 
@@ -147,7 +75,7 @@ input.form-control::placeholder {
 		</button>
 
 		<div class="card"
-			style="width: 100%; height: 100rem; border-radius: 2%; box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">
+			style="width: 100%; height: auto; border-radius: 2%; box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">
 			<div class="dashboard-card-bottom">
 				<!-- 실제 내용 -->
 				<div class="container-fluid">
@@ -254,7 +182,7 @@ input.form-control::placeholder {
 												<div class="col blank" style="background-color: white;">
 													<input class="form-control" type="text"
 														placeholder="회원수 입력" aria-label="default input example"
-														name="">
+														name="club_expns_number_use">
 												</div>
 											</div>
 
@@ -281,19 +209,8 @@ input.form-control::placeholder {
 													사용날짜</div>
 												<div class="col blank"
 													style="background-color: white; padding-bottom: 0px;">
-													<!-- Date Picker Input -->
-													<div class="form-group">
-														<div class="datepicker date input-group shadow-sm">
-															<input type="text" name="club_expns_apply_period_use"
-																placeholder="날짜 설정" class="form-control"
-																id="reservationDate">
-															<div class="input-group-append">
-																<span class="input-group-text"><i
-																	class="fa fa-clock-o"></i></span>
-															</div>
-														</div>
-													</div>
-													<!-- DEnd ate Picker Input -->
+													<input type="date"  name="club_expns_apply_period_use"
+													class="form-control"  placeholder="날짜 설정">
 												</div>
 											</div>
 
