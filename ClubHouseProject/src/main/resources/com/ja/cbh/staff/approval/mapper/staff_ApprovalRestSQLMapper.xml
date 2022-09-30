@@ -11,7 +11,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			APV_NO, 
 			APV_DIV_NAME, 
 			APV_TITLE, 
-			APV_CONTENT, 
 			STAFF_MID_NAME,
 			APV_MID_DATE,
 			STAFF_NAME AS STAFF_FNL_NAME, 
