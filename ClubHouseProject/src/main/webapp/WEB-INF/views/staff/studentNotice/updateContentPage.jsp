@@ -27,17 +27,14 @@
 <jsp:include page="/WEB-INF/views/staff_common/staff_header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
 
-<div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh;overflow-y: auto; word-break: break-all">
-	<div class="container-fluid" style="background-color: aqua">
-		<div class="row" >
-			<div class="col" id="title">
-				공지수정
-			</div>			
-		</div>
+<div style="position: absolute; left: 20%; width: 80%; top: 14vh; height:86vh;overflow-y: auto; word-break: break-all">
+	<div class="container-fluid" style="background-color: ">
+
 		
 		<form action="./updateContentProcess" method="post">
 		<div class="row" >
-			<div class="col">
+			<div class="col-2"></div>
+			<div class="col-2">
 				공지구분
 			</div>
 			<div class="col">
@@ -49,7 +46,8 @@
 		</div>
 		
 		<div class="row" >
-			<div class="col">
+			<div class="col-2"></div>
+			<div class="col-2">
 				공지제목
 			</div>
 			<div class="col">
@@ -58,7 +56,8 @@
 		</div>
 		
 		<div class="row" >
-			<div class="col">
+			<div class="col-2"></div>
+			<div class="col-2">
 				공지사항
 			</div>
 			<div class="col">
@@ -66,10 +65,20 @@
 				<input type="hidden" name="noti_no" value="${data.noticeVO.noti_no }">
 			</div>
 		</div>
-		<input type="submit" value="확인">
-		<a href="./staff_StudentNoticePage">취소</a>
+		<br>
+		<div class="row">
+			<div class="col-4"></div>
+			<div class="col d-grid">
+		       <a class = "btn btn-danger" href="./staff_StudentNoticePage"> 취소 </a>
+	        </div>
+			<div class="col d-grid">
+		       <button class = "btn btn-primary" type="submit"> 확인 </button>
+			</div>
+			<div class="col-4"></div>
+		</div>
 		</form>
 		
+			
 	</div>
 </div>
 

@@ -37,4 +37,9 @@ public class EstablishingClubServiceImpl {
 	public void inputClub(ClubVO club_vo) {
 		establishingClubSQLMapper.insertClub(club_vo);
 	}
+	
+	
+	
+
+	
 }
