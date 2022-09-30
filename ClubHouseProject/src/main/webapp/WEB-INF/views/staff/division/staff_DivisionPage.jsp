@@ -15,7 +15,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9	.1/font/bootstrap-icons.css">
 <style type="text/css">
 .selectDiv{
 background-color: #e3c5bf;
@@ -455,7 +455,7 @@ function getDivisionList(table,e){
 		
 		
 		var headTh5 = document.createElement("th");
-		headTh5.classList.add("col-2");
+		headTh5.classList.add("col-1");
 		headTh5.innerText = "약어명"
 		codeContentHead.appendChild(headTh5);
 		
@@ -516,7 +516,7 @@ function getDivisionList(table,e){
 		
 		
 		var td5 = document.createElement("td");
-		td5.classList.add("col-2");
+		td5.classList.add("col-1");
 		td5.classList.add("ABRVT");
 		td5.setAttribute("ondblclick","inputBox(this)")
 		if(data.ABRVT){
@@ -525,7 +525,7 @@ function getDivisionList(table,e){
 		tr.appendChild(td5);
 		
 		var td5_1 = document.createElement("td");
-		td5_1.classList.add("col-3");
+		td5_1.classList.add("col-1");
 		td5_1.classList.add("FORMBUTTON");
 		td5_1.setAttribute("style","color:blue")
 		td5_1.setAttribute("onclick","viewForm("+data.NO+",'"+data.NAME+"')")
