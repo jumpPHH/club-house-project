@@ -44,7 +44,7 @@ a:hover {
 				<li>
 					<div>공지사항</div>
 					<ul>
-						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>공지사항</div></li>
+						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="../../student/notice/student_NoticeListPage">공지사항</a></div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>봉사공고</div></li>
 					</ul>
 				</li>
@@ -61,6 +61,7 @@ a:hover {
 					<div>내 동아리</div>
 					<ul>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="../../student/myclubmain/student_MyClubMainPage">메인</a></div></li>
+						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i><a href="../../student/myclubactivity/student_MyClubActivityListPage">동아리 활동내역</a></div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>확동계획서작성</div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>자유게시판</div></li>
 						<li><div style="cursor: pointer;"><i class="bi bi-dot"></i>동아리일정</div></li>
