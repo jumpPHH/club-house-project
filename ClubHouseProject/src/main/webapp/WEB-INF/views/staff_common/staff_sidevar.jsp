@@ -154,7 +154,7 @@ $(function() {
 
   <ul class="nav flex-column bg-white mb-0">
  <li class="nav-item ps-1">
-      <a href="/cbh/staff/applyClub/applyClubPage" class="nav-link text-dark font-italic bg-light">
+      <a href="/cbh/staff/applyClub/staff_applyClubPage" class="nav-link text-dark font-italic bg-light">
                 <i class="fa bi bi-house-door-fill mr-3 text-primary fa-fw"></i>
             	동아리신청
             </a>
