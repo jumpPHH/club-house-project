@@ -16,44 +16,6 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-
-<script type="text/javascript">
-	function changePosition(target) {
-
-		var club_stud_no = $(target).parent().parent().parent().children('.club_stud_no').text();
-		var club_stud_grade = $(target).val();
-
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var result = JSON.parse(xhr.responseText);
-
-			}
-		}
-
-		xhr.open("post","/cbh/student/myclub/membermgmt/updateClubMemberChangePosition");
-		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xhr.send("club_stud_no=" + club_stud_no + "&club_stud_grade="+ club_stud_grade);
-		location.reload();
-	}
-
-	function deleteMemberInfo(target) {
-
-		var club_stud_no = $(target).parent().children('.club_stud_no').text();
-
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var result = JSON.parse(xhr.responseText);
-
-			}
-		}
-
-		xhr.open("get","/cbh/student/myclub/membermgmt/deleteMemberInfo?club_stud_no="+ club_stud_no);
-		xhr.send();
-		location.reload();
-	}
-</script>
 </head>
 <body>
 	<jsp:include
@@ -61,14 +23,14 @@
 	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
 	<div class="page-content p-5" id="content">
 		<!-- 토글 버튼 -->
-		<button id="sidebarCollapse" type="button"
-			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
-			<i class="fa fa-bars mr-2"></i><small
-				class="text-uppercase font-weight-bold" style="box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">Toggle</small>
+		<button id="sidebarCollapse box" type="button"
+			class="btn btn-light bg-white rounded-pill box px-4 mb-4">
+			<small
+				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
 
-		<div class="card" 
-			style="width: 100%; height: auto; border-radius: 2%; box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">
+		<div class="card box" 
+			style="width: 100%; height: auto; border-radius: 2%;">
 			<div class="dashboard-card-bottom">
 				<!-- 실제 내용 -->
 				<div class="container-fluid">
@@ -163,21 +125,62 @@
 
 																<ul class="dropdown-menu">
 																	<li><input type="text"
-																		class="btn btn-outline-secondary"
+																		class="btn btn-outline-secondary alertStart"
 																		onclick="changePosition(this)" value="부회장"></li>
 																	<li><input type="text"
-																		class="btn btn-outline-secondary"
+																		class="btn btn-outline-secondary alertStart"
 																		onclick="changePosition(this)" value="총무"></li>
 																	<li><input type="text"
-																		class="btn btn-outline-secondary"
+																		class="btn btn-outline-secondary alertStart"
 																		onclick="changePosition(this)" value="화계"></li>
 																	<li><input type="text"
-																		class="btn btn-outline-secondary"
+																		class="btn btn-outline-secondary alertStart"
 																		onclick="changePosition(this)" value="서기"></li>
 																	<li><input type="text"
-																		class="btn btn-outline-secondary"
+																		class="btn btn-outline-secondary alertStart"
 																		onclick="changePosition(this)" value="일반회원"></li>
 																</ul>
+																
+																<script type="text/javascript">
+
+																	function changePosition(target) {
+	
+																		var club_stud_no = $(target).parent().parent().parent().children('.club_stud_no').text();
+																		var club_stud_grade = $(target).val();
+													
+																		Swal.fire({
+																		      title:'직책 임명을 하시겠습니까?',
+																		      text: "직책 임명은. 신중하세요.",
+																		      icon: 'warning',
+																		      showCancelButton: true,
+																		      confirmButtonColor: '#3085d6',
+																		      cancelButtonColor: '#d33',
+																		      confirmButtonText: '승인',
+																		      cancelButtonText: '취소',
+																		      reverseButtons: true, // 버튼 순서 거꾸로
+																		      
+																		    }).then((result) => {
+																		      if (result.isConfirmed) {
+
+																		        var xhr = new XMLHttpRequest();
+																				xhr.onreadystatechange = function() {
+																					if (xhr.readyState == 4 && xhr.status == 200) {
+																						var result = JSON.parse(xhr.responseText);
+
+																					}
+																				}
+																		      
+																				xhr.open("post","/cbh/student/myclub/membermgmt/updateClubMemberChangePosition");
+																				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+																				xhr.send("club_stud_no=" + club_stud_no + "&club_stud_grade="+ club_stud_grade);
+																				
+																				location.reload();
+
+																		      }
+																				
+																		    })
+																	}
+																</script>
 
 																<div hidden="hidden" class="club_stud_no">${ActiveMemberDataList[i].MemberInfoDyVO.club_stud_no}</div>
 															</div>
@@ -186,6 +189,42 @@
 														<td><input type="text" class="btn btn-danger"
 															onclick="deleteMemberInfo(this)" value="강제 탈퇴">
 															<div hidden="hidden" class="club_stud_no">${ActiveMemberDataList[i].MemberInfoDyVO.club_stud_no}</div>
+															<script type="text/javascript">
+															function deleteMemberInfo(target) {
+
+																var club_stud_no = $(target).parent().children('.club_stud_no').text();
+														
+																Swal.fire({
+																      title:'강제 탈퇴 시키시겠습니까?',
+																      text: "다시 되돌릴 수 없습니다. 신중하세요.",
+																      icon: 'warning',
+																      showCancelButton: true,
+																      confirmButtonColor: '#3085d6',
+																      cancelButtonColor: '#d33',
+																      confirmButtonText: '승인',
+																      cancelButtonText: '취소',
+																      reverseButtons: true, // 버튼 순서 거꾸로
+																      
+																    }).then((result) => {
+																      if (result.isConfirmed) {
+
+																        var xhr = new XMLHttpRequest();
+																		xhr.onreadystatechange = function() {
+																			if (xhr.readyState == 4 && xhr.status == 200) {
+																				var result = JSON.parse(xhr.responseText);
+
+																			}
+																		}
+																      
+																		xhr.open("get","/cbh/student/myclub/membermgmt/deleteMemberInfo?club_stud_no="+ club_stud_no);
+																		xhr.send();
+																      	
+																		location.reload();
+																      }
+																		
+																    })
+																}	
+															</script>
 														</td>
 													</tr>
 												</tbody>
