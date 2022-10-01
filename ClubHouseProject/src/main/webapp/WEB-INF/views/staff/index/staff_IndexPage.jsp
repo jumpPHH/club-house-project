@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 <jsp:include page="../../staff_common/staff_header.jsp"></jsp:include>
