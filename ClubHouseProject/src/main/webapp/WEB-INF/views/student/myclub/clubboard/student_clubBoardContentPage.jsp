@@ -356,7 +356,13 @@
 													${map.clubBoardData.club_board_content }
 												</div>
 											</div>
-											
+											<div class="row">
+											<c:forEach items="${map.clubBoardImageList }" var="clubBoardImageLink">
+												<div class="col">
+													<img src="${clubBoardImageLink.club_board_image_link }"><br>
+												</div>
+											</c:forEach>
+											</div>
 											<!-- 목록 버튼 칸  -->
 											<div class="row mt-5">
 												<div class="col" id="buttonBox">

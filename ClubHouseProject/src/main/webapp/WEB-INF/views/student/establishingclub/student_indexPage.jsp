@@ -90,11 +90,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/student_common/student_header.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/views/student_common/student_sidevar.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
 
-
-<div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh;overflow-y: auto">
+<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
+<div class="page-content p-5" id="content">
+  <!-- 토글 버튼 -->
+		<button id="sidebarCollapse" type="button"
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
+			<i class="fa fa-bars mr-2"></i><small
+				class="text-uppercase font-weight-bold">Toggle</small>
+		</button>
+		
+		
+		
+			<div class="container-fluid" style="background-color: ">
+				<div class="row" >
+					<div class="col">
+		
+						
+					</div>
+				</div>
+			</div>
+</div>
+		<!-- 실제 내용 -->
+  	<div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh;overflow-y: auto">
 	<div class="container-fluid">
 		<div class="row" >
 			<div class="col">
@@ -181,6 +200,10 @@
 			</div>
 		</div>
 	</div>
+
+
+
+
 					
 </body>
 </html>

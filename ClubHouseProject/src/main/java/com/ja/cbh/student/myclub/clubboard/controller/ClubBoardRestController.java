@@ -1,4 +1,4 @@
-package com.ja.cbh.student.clubboard.controller;
+package com.ja.cbh.student.myclub.clubboard.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ja.cbh.student.clubboard.service.ClubBoardServiceImpl;
+import com.ja.cbh.student.myclub.clubboard.service.ClubBoardServiceImpl;
 import com.ja.cbh.vo.Club_BoardCommentVO;
 import com.ja.cbh.vo.Club_StudVO;
 import com.ja.cbh.vo.StudVO;
 
-@RequestMapping("student/clubboard/restapi/*")
+@RequestMapping("student/myclub/clubboard/restapi/*")
 @RestController
 public class ClubBoardRestController {
 

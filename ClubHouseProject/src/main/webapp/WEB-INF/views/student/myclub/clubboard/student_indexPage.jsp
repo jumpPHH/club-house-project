@@ -56,7 +56,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/student_common/student_sidevar.jsp"></jsp:include>
 
 	<div class="page-content p-5" id="content">
   <!-- 토글 버튼 -->

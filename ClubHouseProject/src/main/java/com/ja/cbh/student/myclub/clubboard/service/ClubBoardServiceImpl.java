@@ -1,4 +1,4 @@
-package com.ja.cbh.student.clubboard.service;
+package com.ja.cbh.student.myclub.clubboard.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ja.cbh.student.clubboard.mapper.ClubBoardSQLMapper;
+import com.ja.cbh.student.myclub.clubboard.mapper.ClubBoardSQLMapper;
 import com.ja.cbh.vo.Club_BoardCommentVO;
 import com.ja.cbh.vo.Club_BoardImageVO;
 import com.ja.cbh.vo.Club_BoardVO;
@@ -50,7 +50,7 @@ public class ClubBoardServiceImpl {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		Club_BoardVO clubBoardData = clubBoardSQLMapper.selectClubBoardByClubBoardNoAndClubNo(clubBoardNo,clubNo);
-		
+		ArrayList<Club_BoardImageVO> clubBoardImageList = clubBoardSQLMapper.selectClubBoardImageByClubBoardNoAndClubNo(clubBoardNo,clubNo);
 		
 		Club_BoardVO[] forPreviousAndNextPost = clubBoardSQLMapper.selectClubBoardListForContentPageByClubNo(clubNo);
 		// 이전 글 다음 글 제목과 club_Board_no를 따기 위한 코드
@@ -106,6 +106,7 @@ public class ClubBoardServiceImpl {
 		clubBoardData.setClub_board_content(content);
 		
 		map.put("clubBoardData", clubBoardData);
+		map.put("clubBoardImageList", clubBoardImageList);
 		clubBoardSQLMapper.updateClubBoardReadcountByClubBoardNo(clubBoardNo);			
 		
 		
@@ -128,18 +129,18 @@ public class ClubBoardServiceImpl {
 		return clubBoardCount; 
 	}
 	
-	// 클럽 활동내역 입력
+	// 동아리 자유게시판글 입력
 	public void inputClubBoardByClubBoardVO(Club_BoardVO clubBoardVO) {
 		clubBoardSQLMapper.insertClubBoardByClubBoardVO(clubBoardVO);
 	}
 	
-	// 클럽 활동내역 수정하기
+	// 자유게시판글 수정하기
 	public void modifyClubBoard(Club_BoardVO clubBoardVO) {
 		clubBoardSQLMapper.updateClubBoardByClubNoAndClubBoardNo(clubBoardVO);
 	}
 	
 	
-	//클럽 게시판 삭제하기
+	//자유게시판글 삭제하기
 	public void deleteClubBoardByClubNoAndClubBoardNo(Club_BoardVO clubBoardVO) {
 		
 		clubBoardSQLMapper.deleteClubBoardByClubNoAndClubBoardNo(clubBoardVO);
