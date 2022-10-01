@@ -16,10 +16,20 @@ $(function() {
 	    $('#sidebar, #content').toggleClass('active');
 	  });
 	});
+	
+function ul(index) {
+	console.log('click!' + index)
+	
+	var underlines = document.querySelectorAll(".underline");
+
+	for (var i = 0; i < underlines.length; i++) {
+		underlines[i].style.transform = 'translate3d(' + index * 100 + '%,0,0)';
+	}
+}
 </script>
 
 <!-- 사이드바 시작 -->
-<div class="vertical-nav bg-white" id="sidebar">
+<div class="vertical-nav bg-white box" id="sidebar">
 	<div class="py-3 px-3 mb-2 bg-light">
 		<div class="media d-flex align-items-center">
 			<img src="/uploadFiles/ClubHouseProject/student/${sessionUserInfo.stud_photo_link}" width="65"
