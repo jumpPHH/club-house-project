@@ -12,7 +12,24 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
+<style type="text/css">
+.selectDiv {
+	background-color: #bfc9e3;
+	color: white;
+}
 
+a:hover {
+	color: white !important;
+	text-decoration: underline;
+}
+</style>
+
+<script type="text/javascript">
+function clickMove(target) {
+	$(".selectDiv").removeClass("selectDiv");
+	target.classList.toggle('selectDiv');
+}
+</script>
 </head>
 <body>
 	<jsp:include
@@ -26,41 +43,65 @@
 			<small
 				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
+		
+			<div class="row card box" style="width: 100%; height: 45px;">
+				<div class="dashboard-card-bottom">
+					<div class="row">
 
-		<div class="card box"
-			style="width: 100%; height: auto; border-radius: 2%;">
+						<div class="col-1"></div>
+
+						<div class="col">
+
+							<div class="row ps-1 p-2 mb-2">
+								<div class="col text-center"
+									style="border-right: 2px solid #ededed;">
+									<div class="row" style="justify-content: center">
+										<a
+											href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesPage"
+											class="col-auto px-3" onmouseover="clickMove(this)"
+											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+											신청서 작성 </a>
+									</div>
+								</div>
+
+								<div class="col text-center" style="border-right: 2px solid #ededed;">
+									<div class="row" style="justify-content: center">
+										<a
+											href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesListPage"
+											class="col-auto px-3" onmouseover="clickMove(this)"
+											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+											신청 내용 </a>
+									</div>
+								</div>
+
+							<div class="col text-center">
+								<div class="row" style="justify-content: center">
+									<div class="col" style="text-align: center;">[검색 결과 :
+										${ExpnsApplySelectCount }명]</div>
+								</div>
+							</div>
+
+						</div>
+
+						</div>
+
+						<div class="col-1"></div>
+
+					</div>
+
+				</div>
+			</div>
+			
+		<div class="row my-3 card box" style="width: 100%; height: auto;">
 			<div class="dashboard-card-bottom">
 				<!-- 실제 내용 -->
 				<div class="container-fluid">
-					<div class="row">
+				
+					<div class="row my-5">					
 						<div class="col-1"></div>
+						
 						<div class="col">
-
-							<div class="row my-5">
-								<div class="col">
-									<i class="bi bi-cash-coin"
-										style="font-size: 40px; color: #EF1B3F;"></i> <span
-										style="font-size: 30px;">경비신청 내역 관리</span>
-								</div>
-							</div>
-
-							<div class="row my-5">
-								<div class="col-2" style="text-align: center;">
-									<a
-										href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesPage"
-										style="font-size: 19px;">신청서 작성</a>
-								</div>
-								<div class="col-1" style="text-align: center;">|</div>
-								<div class="col-2" style="text-align: center;">
-									<a
-										href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesListPage"
-										style="font-size: 19px;">신청 내역</a>
-								</div>
-
-								<div class="col" style="text-align: center;">[검색 결과 :
-									${ExpnsApplySelectCount }명]</div>
-							</div>
-
+						
 							<div class="row">
 								<table class="table">
 									<thead>
@@ -224,6 +265,7 @@
 							</div>
 
 						</div>
+						
 						<div class="col-1"></div>
 					</div>
 				</div>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 동아리 동아리원 관리 페이지</title>
+<title>회원 관리 페이지</title>
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
@@ -15,7 +15,25 @@
 <link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<style type="text/css">
+.selectDiv {
+	background-color: #bfc9e3;
+	color: white;
+}
 
+a:hover {
+	color: white !important;
+	text-decoration: underline;
+}
+</style>
+
+<script type="text/javascript">
+
+function clickMove(target) {
+	$(".selectDiv").removeClass("selectDiv");
+	target.classList.toggle('selectDiv');
+}
+</script>
 </head>
 <body>
 	<jsp:include
@@ -23,52 +41,85 @@
 	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
 	<div class="page-content p-5" id="content">
 		<!-- 토글 버튼 -->
-		<button id="sidebarCollapse box" type="button"
+		<button id="sidebarCollapse" type="button"
 			class="btn btn-light bg-white rounded-pill box px-4 mb-4">
-			<small
-				class="text-uppercase font-weight-bold">MENU</small>
+			<small class="text-uppercase font-weight-bold">MENU</small>
 		</button>
 
-		<div class="card box" 
-			style="width: 100%; height: auto; border-radius: 2%;">
-			<div class="dashboard-card-bottom">
-				<!-- 실제 내용 -->
-				<div class="container-fluid">
-					<c:if test="${empty MainData.IsBoss}">
-					 	관리자만 이용가능한 페이지입니다.
-					 </c:if>
+		<c:if test="${not empty MainData.IsBoss}">
+			<div class="row card box" style="width: 100%; height: 45px;">
+				<div class="dashboard-card-bottom">
+					<div class="row">
 
-					<c:if test="${not empty MainData.IsBoss}">
-						<div class="row">
+						<div class="col-1"></div>
+
+						<div class="col">
+
+							<div class="row ps-1 p-2 mb-2">
+								<div class="col text-center"
+									style="border-right: 2px solid #ededed;">
+									<div class="row" style="justify-content: center">
+										<a
+											href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
+											class="col-auto px-3" onmouseover="clickMove(this)"
+											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+											전체 회원 관리 </a>
+									</div>
+								</div>
+
+								<div class="col text-center"
+									style="border-right: 2px solid #ededed;">
+									<div class="row" style="justify-content: center">
+										<a
+											href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
+											class="col-auto px-3" onmouseover="clickMove(this)"
+											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+											가입 관리 </a>
+									</div>
+								</div>
+
+								<div class="col text-center"
+									style="border-right: 2px solid #ededed;">
+									<div class="row" style="justify-content: center">
+										<div class="col-auto px-3"
+											style="cursor: pointer; border-radius: 2rem;">[동아리 총 멤버
+											: ${ActiveMemberCount} 명]</div>
+									</div>
+								</div>
+
+								<div class="col text-center">
+									<div class="row" style="justify-content: center">
+										<div class="col-auto px-3"
+											style="cursor: pointer; border-radius: 2rem;">[동아리 총 멤버
+											: ${ActiveMemberCount} 명]</div>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="col-1"></div>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row my-3 card box" style="width: 100%; height: auto;">
+				<div class="dashboard-card-bottom">
+					<!-- 실제 내용 -->
+					<div class="container-fluid">
+					
+						<c:if test="${empty MainData.IsBoss}">
+						 	관리자만 이용가능한 페이지입니다.
+						 </c:if>
+					
+						<div class="row my-5">
+
 							<div class="col-1"></div>
 
 							<div class="col">
-								<div class="row my-5">
-									<div class="col">
-										<i class="bi bi-person-video3"
-											style="font-size: 40px; color: #EF1B3F;"></i> <span
-											style="font-size: 30px;">회원 관리</span>
-									</div>
-								</div>
-
-								<div class="row my-5">
-									<div class="col-2" style="text-align: center;">
-										<a
-											href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
-											style="font-size: 19px;">전체 회원 관리</a>
-									</div>
-									<div class="col-1" style="text-align: center;">|</div>
-									<div class="col-2" style="text-align: center;">
-										<a
-											href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
-											style="font-size: 19px;">가입 관리</a>
-									</div>
-									<div class="col" style="text-align: center;">[동아리 총 멤버 :
-										${ActiveMemberCount} 명]</div>
-									<div class="col" style="text-align: center;">[검색 결과 :
-										${ActiveMemberSelectCount} 명]</div>
-								</div>
-
 								<div class="row">
 									<table class="table">
 										<thead>
@@ -140,7 +191,7 @@
 																		class="btn btn-outline-secondary alertStart"
 																		onclick="changePosition(this)" value="일반회원"></li>
 																</ul>
-																
+
 																<script type="text/javascript">
 
 																	function changePosition(target) {
@@ -224,8 +275,7 @@
 																		
 																    })
 																}	
-															</script>
-														</td>
+															</script></td>
 													</tr>
 												</tbody>
 											</c:forEach>
@@ -318,19 +368,17 @@
 										</ul>
 									</nav>
 								</div>
+
 							</div>
 
 							<div class="col-1"></div>
-
 						</div>
-					</c:if>
+					</div>
 				</div>
-
 			</div>
-		</div>
+		</c:if>
 	</div>
-	
-	<script type="text/javascript"
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript"
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
