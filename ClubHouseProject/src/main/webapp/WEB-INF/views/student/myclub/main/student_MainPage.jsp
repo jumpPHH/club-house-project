@@ -22,12 +22,12 @@
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
-			<i class="fa fa-bars mr-2"></i><small
-				class="text-uppercase font-weight-bold" style="box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">Toggle</small>
+			<small
+				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
 
-		<div class="card"
-			style="width: 100%; height: auto; border-radius: 2%; box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">
+		<div class="card box"
+			style="width: 100%; height: auto; border-radius: 2%;">
 			<div class="dashboard-card-bottom">
 				<!-- 실제 내용 -->
 				<div class="container-fluid">
