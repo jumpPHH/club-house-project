@@ -18,7 +18,13 @@
 	referrerpolicy="origin"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
+<style type="text/css">
+.selectDiv{
+color: #FA5858;
+font-size: 1.2rem;
+font-weight: bold;
+}
+</style>
 <script type="text/javascript">
 	function getRequestedApvList(type,e){
 		$("#type").val(type)
@@ -1397,7 +1403,10 @@
  			menubar: false,
  			readonly: true
  			});
- 		
+window.addEventListener('DOMContentLoaded', function(){
+				var navtab = document.getElementById("DraftManagementPage")
+				navtab.setAttribute("style", "border-right: 5px solid #FA5858");
+			   });
 </script>
 
 
@@ -1408,14 +1417,14 @@
 	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
 	<div class="page-content p-5 pt-4" id="content">
 	  <!-- 토글 버튼 -->
-		<button id="sidebarCollapse" type="button"
+		<button id="sidebarCollapse" type="button" style="color: #FA5858"
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
 			<small
 				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
 
 					<!-- 여기다 작성하세요 -->
-					<div class="row p-2 pb-1 mb-1">
+					<div class="row p-2 pb-1 mb-1" style="height: 45px">
 						<div class="col-auto text-center box p-2 me-2 ps-3" style="background-color: #e3c5bf; color: white; font-size: 1.1rem">
 						<span>내결재&nbsp:</span>
 						</div>
@@ -1434,7 +1443,7 @@
 						
 					</div>
 					
-					<div class="row p-2 mb-2 pt-1">
+					<div class="row p-2 mb-2 pt-1" style="height: 45px">
 						<div class="col-auto text-center box p-2 ps-3 me-2" style="background-color: #e3c5bf; color: white; font-size: 1.1rem">
 						<span>요청된 결재&nbsp:</span>	
 						</div>
