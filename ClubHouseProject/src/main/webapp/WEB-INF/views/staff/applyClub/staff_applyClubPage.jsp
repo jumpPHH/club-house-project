@@ -22,7 +22,7 @@
 }
 
 </style>
-<script>
+<script type="text/javascript">
 	
 // 	function checkAll(){
 // 		var chkTotal = document.getElementById("checkAll");
@@ -121,17 +121,17 @@
             class="text-uppercase font-weight-bold">MENU</small>
       </button>
 		
-		<div class="row mt-4 box p-4"  style="border-color: grey" >
+		<div class="row mt-4 box p-4"  style="border-color: gray" >
 			<div class="col-1">
 				동아리
 			</div>
 			<div class="col">
 				<input name="searchWord" type="text">
 			</div>
-			<div class="col" style="">
+			<div class="col-2" style="">
 				<button class="btn btn-primary" type="submit">조회</button>
 			</div>
-			<div class="col" style="">
+			<div class="col-2" style="">
 				<button onclick="deleteNotice()" class="btn btn-danger" type="button">삭제</button>
 			</div>			
 		</div>
