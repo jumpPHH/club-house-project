@@ -22,7 +22,7 @@
 }
 
 </style>
-<script>
+<script type="text/javascript">
 	
 	function checkAll(){
 		var chkTotal = document.getElementById("checkAll");
@@ -114,7 +114,7 @@
 		
 		<br>
 		<form action="./staff_StudentNoticePage" method="get">
-		<div class="row mt-4 box p-4"  style="border-color: grey" >
+		<div class="row mt-4 box p-4"  style="border-color: gray" >
 			<div class="col-1">
 				공지구분
 			</div>
