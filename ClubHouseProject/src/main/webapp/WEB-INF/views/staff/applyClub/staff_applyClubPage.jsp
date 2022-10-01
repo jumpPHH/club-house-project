@@ -24,26 +24,26 @@
 </style>
 <script>
 	
-	function checkAll(){
-		var chkTotal = document.getElementById("checkAll");
-		chkTotal.addEventListener("change", function check1(){
-			var chk = document.getElementsByName("check");
-			for(var i = 0 ; i < chk.length ; i++){
-				chkNo = chk[i].value;			
-			}
-			console.log(chkNo);
-		});
-		//console.log(chkTotal.value);		
-	}
+// 	function checkAll(){
+// 		var chkTotal = document.getElementById("checkAll");
+// 		chkTotal.addEventListener("change", function check1(){
+// 			var chk = document.getElementsByName("check");
+// 			for(var i = 0 ; i < chk.length ; i++){
+// 				chkNo = chk[i].value;			
+// 			}
+// 			console.log(chkNo);
+// 		});
+// 		console.log(chkTotal.value);		
+// 	}
 	
 	//chkTotal.addEventListener("click",
-	function check1(){
-		var chk = document.getElementsByName("check");
-		for(var i = 0 ; i < chk.length ; i++){
-			chkNo = chk[i].value;			
-		}
-		console.log(chkNo);
-	}
+// 	function check1(){
+// 		var chk = document.getElementsByName("check");
+// 		for(var i = 0 ; i < chk.length ; i++){
+// 			chkNo = chk[i].value;			
+// 		}
+// 		console.log(chkNo);
+// 	}
 	
 // 	document.querySelector("input[name=checkAll]").addEventListener("change",
 // 		function (e) {
@@ -96,6 +96,15 @@
 // 	function checkAll(){
 // 		$(".check").click();
 // 	}
+	
+	function checkAll(elm){
+		elm.checked;
+	}
+
+ 	window.addEventListener('DOMContentLoaded' , function checkAll(elm){
+    var checkBox = document.getElementById('check');
+    checkBox.checked;
+ 	}
 
 </script>
 </head>
@@ -144,7 +153,7 @@
 					<!-- paging UI -->
 					<c:forEach items="${clubApplDataList}" var="clubApplData">
 						<tr>
-						  <th><input id="checkAll" onclick="check()" type="checkbox" class="form-check-input" value="${clubApplData.club_appl_no }"></th>
+						  <th><input id="check" onclick="check()" type="checkbox" class="form-check-input" value="${clubApplData.club_appl_no }"></th>
 						  <!-- <td><a href="./staff_readClubRequestPage?=${clubApplData.club_ApplVO.club_appl_no }">${clubApplData.club_ApplVO.club_name }</a></td> -->
 					      <!-- Button trigger modal -->
 					      <td><a data-bs-toggle="modal" data-bs-target="#exampleModal">${clubApplData.club_ApplVO.club_name }</a></td>

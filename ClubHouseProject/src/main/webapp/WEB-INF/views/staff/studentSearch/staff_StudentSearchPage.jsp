@@ -21,11 +21,60 @@
 	color: #bf1f51;
 }
 	
-	
-	
-	
-	
+
 </style>
+<script type="text/javascript">
+	function clubData() {
+	
+		var xhr = new XMLHttpRequest();
+	
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var jsonObj = JSON.parse(xhr.responseText);
+				
+				for(var dd of jsonObj.data){
+				var tbodyBox = document.getElementById("tbody");
+				var tr = document.createElement("tr");
+				var td1 = document.createElement("td");
+				var td2 = document.createElement("td");
+				td1.innerText = dd.club_no;
+				td2.innerText = dd.club_name;
+				tr.appendChild(td1);
+				tr.appendChild(td2);
+				tbodyBox.appendChild(tr);
+				
+				}
+			
+			}
+		}
+	
+		xhr.open("post" , "/cbh/staff/club/clubData"); //리퀘스트 세팅..
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+		xhr.send();
+	}
+	
+	function clubStudData(){
+		
+		var xhr = new XMLHttpRequest();
+		
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var jsonObj = JSON.parse(xhr.responseText);
+				
+				
+			}
+		}
+	
+		xhr.open("post" , "/cbh/staff/club/clubData"); //리퀘스트 세팅..
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+		xhr.send();
+		
+	}
+	
+	window.addEventListener("DOMContentLoaded", function() {
+	clubData();
+});
+</script>
 </head>
 <body>
 
