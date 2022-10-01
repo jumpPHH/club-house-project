@@ -18,8 +18,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <style type="text/css">
 .selectDiv{
-background-color: #e3c5bf;
-color: white;
+color: #FA5858;
+font-size: 1.2rem;
+font-weight: bold;
 }
 </style>
 <script type="text/javascript">
@@ -896,6 +897,8 @@ function stateCheck(e){
  	
  	window.addEventListener('DOMContentLoaded', function(){
 		$("#noti").click();
+		var navtab = document.getElementById("code")
+		navtab.setAttribute("style", "border-right: 5px solid #FA5858");
 	   });
 </script>
 </head>
@@ -907,7 +910,7 @@ function stateCheck(e){
 	<div class="page-content p-5 pt-4" id="content">
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
-			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3" style="color: #FA5858">
 			<i class="fa fa-bars mr-2"></i><small
 				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
@@ -918,7 +921,7 @@ function stateCheck(e){
 
 		<div class="row px-3 mt-4">
 			<div class="col">
-				<div class="row ps-1 p-2 mb-2 box">
+				<div class="row ps-1 p-2 mb-2 box" style="height: 45px; align-items: center">
 					
 					<div  class="col text-center" style="border-right: 2px solid #ededed;">
 						<div class="row" style="justify-content: center">

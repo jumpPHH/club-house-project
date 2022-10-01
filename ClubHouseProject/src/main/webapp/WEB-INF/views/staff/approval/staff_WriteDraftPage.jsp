@@ -97,6 +97,10 @@ function doSubmit(){
 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhr.send("NAME=" + NAME); 	
 	}
+	window.addEventListener('DOMContentLoaded', function(){
+		var navtab = document.getElementById("WriteDraftPage")
+		navtab.setAttribute("style", "border-right: 5px solid #FA5858");
+	   });
 </script>
 
 
@@ -116,7 +120,7 @@ function doSubmit(){
 					<!-- 여기다 작성하세요 -->
 					<div class="row px-3">
 						<div class="col">
-						<div class="row box mb-3 p-2">
+						<div class="row box mb-3 p-2" style="height: 45px">
 						<c:forEach items="${ApvDiv }" var="ApvDiv" varStatus="i" >
 						
 						<c:choose>
