@@ -18,8 +18,9 @@
 	referrerpolicy="origin"></script>
 <style type="text/css">
 .selectDiv{
-background-color: #e3c5bf;
-color: white;
+color: #FA5858;
+font-size: 1.1rem;
+font-weight: bold;
 }
 </style>
 <script type="text/javascript">
@@ -76,8 +77,10 @@ function doSubmit(){
 	
 	function selectApvDiv(e,NAME){
 		var NAME = NAME;
-		$(".selectDiv").removeClass("selectDiv");
-		e.classList.toggle('selectDiv');
+		$(".divisionTab").removeClass("selectDiv");
+		if(e){
+			e.classList.add("selectDiv")
+		}
 		
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
 		xhr.onreadystatechange = function () {
@@ -100,6 +103,9 @@ function doSubmit(){
 	window.addEventListener('DOMContentLoaded', function(){
 		var navtab = document.getElementById("WriteDraftPage")
 		navtab.setAttribute("style", "border-right: 5px solid #FA5858");
+		
+		var start = document.getElementById("start0")
+		start.click();
 	   });
 </script>
 
@@ -112,15 +118,15 @@ function doSubmit(){
 	<div class="page-content p-5 pt-4" id="content">
 	  <!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
-			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3" style="color: #FA5858;">
 			<i class="fa fa-bars mr-2"></i><small
 				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
 
 					<!-- 여기다 작성하세요 -->
 					<div class="row px-3">
-						<div class="col">
-						<div class="row box mb-3 p-2" style="height: 45px">
+						<div class="col mt-3">
+						<div class="row box mb-3 p-2" style="height: 45px;align-content: center;">
 						<c:forEach items="${ApvDiv }" var="ApvDiv" varStatus="i" >
 						
 						<c:choose>
@@ -128,7 +134,7 @@ function doSubmit(){
 							<div class="col text-center" style=" border-right: 2px solid #ededed;">
 							
 								<div class="row" style="justify-content: center">
-								<div class="col-auto px-3" style="cursor: pointer; border-radius: 2rem;" onclick="selectApvDiv(this,'${ApvDiv.APV_DIV_NAME}')">
+								<div id="start${i.index }"class="col-auto px-3 divisionTab" style="cursor: pointer; border-radius: 2rem;" onclick="selectApvDiv(this,'${ApvDiv.APV_DIV_NAME}')">
 							${ApvDiv.APV_DIV_NAME } <span class="no" style="display: none;">${ApvDiv.APV_DIV_NO }</span>
 								</div>
 								</div>
@@ -140,7 +146,7 @@ function doSubmit(){
 							<c:otherwise>
 							<div class="col text-center" >
 							<div class="row" style="justify-content: center">
-								<div class="col-auto px-3" style="cursor: pointer; border-radius: 2rem;" onclick="selectApvDiv(this,'${ApvDiv.APV_DIV_NAME}')">
+								<div class="col-auto px-3 divisionTab" style="cursor: pointer; border-radius: 2rem;" onclick="selectApvDiv(this,'${ApvDiv.APV_DIV_NAME}')">
 							${ApvDiv.APV_DIV_NAME } <span class="no" style="display: none;">${ApvDiv.APV_DIV_NO }</span>
 								
 								</div>
@@ -213,7 +219,7 @@ function doSubmit(){
 											
 											
 											
-											<button class="btn"type="button" onclick="doSubmit()">결재</button>
+											<button class="btn border mt-2" type="button" style="color:#FA5858;" onclick="doSubmit()">기안서 올리기</button>
 										</div>
 									</div>
 								</form>

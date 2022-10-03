@@ -196,8 +196,8 @@ function ul(index) {
             </a>
     </li> 
     
-    <li class="nav-item ps-1">
-      <a href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage" class="nav-link text-dark font-italic">
+    <li id="ClubExpenseApplyListPage"class="nav-item ps-1">
+      <a href="/cbh/staff/clubExpense/staff_ClubExpenseApplyListPage" class="nav-link text-dark font-italic">
                 <i class="bi bi-person-square me-2 " style="color: #FA5858"></i>
                 동아리경비접수
             </a>

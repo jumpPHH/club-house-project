@@ -921,7 +921,7 @@ function stateCheck(e){
 
 		<div class="row px-3 mt-4">
 			<div class="col">
-				<div class="row ps-1 p-2 mb-2 box" style="height: 45px; align-items: center">
+				<div class="row ps-1 p-2 mb-3 box" style="height: 45px; align-items: center">
 					
 					<div  class="col text-center" style="border-right: 2px solid #ededed;">
 						<div class="row" style="justify-content: center">

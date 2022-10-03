@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.staff.clubExpense.mapper.staff_ClubExpenseSQLMapper">
+
+	<select id="selectClubExpnsApplyList" resultType="HashMap">
+		SELECT ccea.*, 
+			   cc.CLUB_NAME, 
+			   cs.STUD_ID , 
+			   cs.STUD_NAME , 
+			   cs.STUD_PHONE , 
+			   cs.STUD_GENDER , 
+			   ROWNUM 
+		FROM CBH_CLUB_EXPNS_APPLY ccea, CBH_CLUB cc, CBH_STUD cs  
+		WHERE ccea.CLUB_NO = cc.CLUB_NO 
+		AND cc.CLUB_BOSS = cs.STUD_ID
+	</select>
+
+
+</mapper>
