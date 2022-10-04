@@ -21,16 +21,16 @@
 <style type="text/css">
 .selectDiv{
 color: #FA5858;
-font-size: 1.2rem;
+font-size: 1.1rem;
 font-weight: bold;
 }
 </style>
 <script type="text/javascript">
 	function getRequestedApvList(type,e){
 		$("#type").val(type)
-		$(".divisionTab").removeClass("table-active");
+		$(".divisionTab").removeClass("selectDiv");
 		if(e){
-			e.classList.add("table-active")
+			e.classList.add("selectDiv")
 		}
 		
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
@@ -161,9 +161,9 @@ font-weight: bold;
 	function getMyApvList(type,e){
 		
 		$("#type").val(type)
-		$(".divisionTab").removeClass("table-active");
+		$(".divisionTab").removeClass("selectDiv");
 		if(e){
-			e.classList.add("table-active")
+			e.classList.add("selectDiv")
 		}
 		
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
@@ -1406,6 +1406,8 @@ font-weight: bold;
 window.addEventListener('DOMContentLoaded', function(){
 				var navtab = document.getElementById("DraftManagementPage")
 				navtab.setAttribute("style", "border-right: 5px solid #FA5858");
+				var start = document.getElementById("start")
+				start.click();
 			   });
 </script>
 
@@ -1424,38 +1426,38 @@ window.addEventListener('DOMContentLoaded', function(){
 		</button>
 
 					<!-- 여기다 작성하세요 -->
-					<div class="row p-2 pb-1 mb-1" style="height: 45px">
-						<div class="col-auto text-center box p-2 me-2 ps-3" style="background-color: #e3c5bf; color: white; font-size: 1.1rem">
+					<div class="row ps-2 pb-1 mb-1" >
+						<div class="col-auto text-center box p-2 me-2 ps-3" style="background-color: #FA5858; color: white; font-size: 1.1rem; height: 45px">
 						<span>내결재&nbsp:</span>
 						</div>
-						<div class="col box p-2">
-						<div class="row ps-3">
-												<div class="col-auto" style="cursor: pointer; border-right: 2px solid #ededed;"
+						<div class="col box" style="height: 45px">
+						<div class="row ps-3"  style="margin-top: 10px;">
+												<div id="start"class="col-auto divisionTab" style="cursor: pointer; border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의전체',this)">전체</div>
-						<div class="col-auto" style="cursor: pointer; border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab" style="cursor: pointer; border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의진행중',this)">진행중</div>
-						<div class="col-auto" style="cursor: pointer; border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab" style="cursor: pointer; border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의결재완료',this)">결재완료</div>
-						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab"  style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의반려',this)">반려</div>
 						</div>
 						</div>
 						
 					</div>
 					
-					<div class="row p-2 mb-2 pt-1" style="height: 45px">
-						<div class="col-auto text-center box p-2 ps-3 me-2" style="background-color: #e3c5bf; color: white; font-size: 1.1rem">
+					<div class="row ps-2 mb-2 pt-1" >
+						<div class="col-auto text-center box p-2 ps-3 me-2" style="background-color: #FA5858; color: white; font-size: 1.1rem;height: 45px">
 						<span>요청된 결재&nbsp:</span>	
 						</div>
-						<div class="col box p-2 ">
-							<div class="row ps-3">
-							<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
+						<div class="col box" style="height: 45px">
+							<div class="row ps-3" style="margin-top: 10px;">
+							<div class="col-auto divisionTab" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청전체',this)">전체</div>
-						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청미결재',this)">미결재</div>
-						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청결재',this)">결재</div>
-						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청반려',this)">반려</div>
 							
 							</div>
