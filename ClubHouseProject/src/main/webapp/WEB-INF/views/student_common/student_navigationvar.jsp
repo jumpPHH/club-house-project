@@ -108,7 +108,7 @@ function ul(index) {
 				class="fa bi bi-journal-text mr-3 text-primary fa-fw"></i> 자유게시판
 		</a></li>
 
-		<li class="nav-item"><a href="#"
+		<li class="nav-item"><a href="/cbh/student/myclub/schedule/student_ClubSchedulePage"
 			class="nav-link text-dark font-italic bg-light"> <i
 				class="fa bi bi-layout-text-sidebar mr-3 text-primary fa-fw"></i>
 				동아리일정

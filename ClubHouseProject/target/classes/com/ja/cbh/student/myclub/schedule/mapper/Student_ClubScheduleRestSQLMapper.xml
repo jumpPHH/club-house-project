@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.myclub.schedule.mapper.Student_ClubScheduleRestSQLMapper">
+
+	<select id="showSchedule" resultType="com.ja.cbh.vo.Club_ScheduleVO">
+		SELECT *
+		FROM CBH_CLUB_SCHEDULE
+		ORDER BY CLUB_SCHEDULE_NO DESC
+	</select>
+	
+	<insert id="addSchedule">
+		INSERT INTO CBH_CLUB_SCHEDULE VALUES(
+			CBH_CLUB_SCHEDULE_seq.nextval,
+			#{club_no},
+			#{club_stud_no},
+			#{subject},
+			#{startdate},
+			#{enddate},
+			#{memo}
+		);
+	</insert>
+
+</mapper>
