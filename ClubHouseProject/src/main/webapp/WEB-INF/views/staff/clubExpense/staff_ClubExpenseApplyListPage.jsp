@@ -91,7 +91,6 @@
 		//changeMonth : 월이 변경되면 호출
 		//changeYear : 년이 변경되는 호출
 		//changeCentury : 한 세기가 변경되면 호출 ex) 20세기에서 21세기가 되는 순간
-		console.log(e);
 		// e.date를 찍어보면 Thu Jun 27 2019 00:00:00 GMT+0900 (한국 표준시) 위와 같은 형태로 보인다.
 	});
 
@@ -101,9 +100,7 @@
 			SEARCHWORD = null;
 		}
 		
-		console.log(SEARCHWORD)
 		var STATE = document.getElementById("STATE").innerText;
-		console.log(STATE);
 		var jsonObj = {
 			"SEARCHWORD" : SEARCHWORD,
 			"STATE" : STATE
@@ -135,7 +132,7 @@
 		
 		var td3 = document.createElement("td");
 		td3.classList.add("text-center");
-		td3.innerText = data.CLUB_EXPNS_APPLY_GRANTS
+		td3.innerText = data.CLUB_EXPNS_APPLY_GRANTS.toLocaleString('ko-KR')
 		tr.appendChild(td3);
 		
 		var td4 = document.createElement("td");
@@ -174,9 +171,20 @@
 	}
 	
 	function updateClubExpenseState(NO,STATE){
+		var REJECT;
+		if(document.getElementById("exampleFormControlTextarea1")){
+			if(document.getElementById("exampleFormControlTextarea1").value){
+			REJECT = document.getElementById("exampleFormControlTextarea1").value 
+			}else{
+			REJECT = null
+			}
+		}else{
+			REJECT = null;
+		}	
 		var jsonObj = {
 			"NO" : NO,
-			"STATE" : STATE
+			"STATE" : STATE,
+			"REJECT" : REJECT
 			}
 		
 		var param = JSON.stringify(jsonObj)
@@ -184,6 +192,7 @@
 		xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var result = JSON.parse(xhr.responseText);
+			
 			var statebtn = document.getElementsByClassName("statebtn");
 			for(var btn of statebtn){
 				if(btn.innerText == result.data.CLUB_EXPNS_APPLY_STATE){
@@ -193,6 +202,64 @@
 				}
 				 
 			}
+			if(document.getElementById("rejectRow")){
+				var rejectRow = document.getElementById("rejectRow")
+				rejectRow.remove();
+			}
+			if(document.getElementById("rejectName")){
+				var rejectName = document.getElementById("rejectName")
+				rejectName.remove();
+			}
+			if(document.getElementById("rejectContent")){
+				var rejectContent = document.getElementById("rejectContent")
+				rejectContent.remove();
+			}
+			
+			var rejectBtn = document.getElementById("rejectBtn")
+			rejectBtn.setAttribute("onclick","rejectPlus("+result.data.CLUB_EXPNS_APPLY_NO+")");
+			rejectBtn.innerText="반려"
+			
+			var statebtn = document.getElementsByClassName("statebtn");
+			for(var btn of statebtn){
+				if(btn.innerText == result.data.CLUB_EXPNS_APPLY_STATE){
+					btn.setAttribute("style","color:#FA5858; font-weight: bold;")
+				}else{
+					btn.removeAttribute("style")
+				}
+				 
+			}
+			console.log(result.data.CLUB_EXPNS_APPLY_STATE)
+			if(result.data.CLUB_EXPNS_APPLY_STATE == "반려"){
+				var modalHead = document.getElementById("modalHead")
+				
+				var rejectName = document.createElement("div");
+				rejectName.classList.add("row");
+				rejectName.classList.add("px-4");
+				rejectName.classList.add("mt-2");
+				rejectName.setAttribute("id","rejectName")
+				modalHead.after(rejectName);
+				
+				var rejectNameCol = document.createElement("div");
+				rejectNameCol.classList.add("col");
+				rejectNameCol.innerText = "반려사유"
+				rejectName.appendChild(rejectNameCol);
+				
+				var rejectRow = document.createElement("div");
+				rejectRow.classList.add("row");
+				rejectRow.setAttribute("id","rejectContent")
+				rejectRow.setAttribute("style","background-color: #F7F7F7; height: 60px;border-radius: 0.5rem;")
+				rejectRow.classList.add("mt-1");
+				rejectRow.classList.add("mx-3");
+				rejectName.after(rejectRow);
+				var rejectCol = document.createElement("div");
+				rejectCol.classList.add("col");
+				if(result.data.CLUB_EXPNS_APPLY_REJECT_REASON){
+				rejectCol.innerText = result.data.CLUB_EXPNS_APPLY_REJECT_REASON;
+				}
+				rejectRow.appendChild(rejectCol);
+				
+			}
+			
 			getClubExpenseList()
 			
 			}
@@ -423,6 +490,7 @@
 		navtab.setAttribute("style", "border-right: 5px solid #FA5858");
 		var start = document.getElementById("start")
 		start.click();
+		console.log(moment().add(-6,"months").format("YYYY-MM-DD"))
 	});
 </script>
 

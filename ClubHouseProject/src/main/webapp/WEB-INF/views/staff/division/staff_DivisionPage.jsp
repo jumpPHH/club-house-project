@@ -528,7 +528,7 @@ function getDivisionList(table,e){
 		var td5_1 = document.createElement("td");
 		td5_1.classList.add("col-1");
 		td5_1.classList.add("FORMBUTTON");
-		td5_1.setAttribute("style","color:blue")
+		td5_1.setAttribute("style","cursor: pointer;color: #FA5858;")
 		td5_1.setAttribute("onclick","viewForm("+data.NO+",'"+data.NAME+"')")
 		td5_1.innerText = "보기"
 		tr.appendChild(td5_1);

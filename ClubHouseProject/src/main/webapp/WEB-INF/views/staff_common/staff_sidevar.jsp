@@ -182,19 +182,6 @@ function ul(index) {
             </a>
     </li>
     
-    <li class="nav-item ps-1">
-      <a href="#" class="nav-link text-dark font-italic">
-                <i class="bi bi-journal-text me-2 " style="color: #FA5858"></i>
-                동아리경비관리
-            </a>
-    </li>
-    
-    <li class="nav-item ps-1">
-      <a href="#" class="nav-link text-dark font-italic">
-                <i class=" bi bi-layout-text-sidebar me-2" style="color: #FA5858"></i>
-                동아리경비내역
-            </a>
-    </li> 
     
     <li id="ClubExpenseApplyListPage"class="nav-item ps-1">
       <a href="/cbh/staff/clubExpense/staff_ClubExpenseApplyListPage" class="nav-link text-dark font-italic">

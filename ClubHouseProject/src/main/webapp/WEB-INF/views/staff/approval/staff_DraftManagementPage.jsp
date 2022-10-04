@@ -1481,14 +1481,6 @@ window.addEventListener('DOMContentLoaded', function(){
 											</tr>
 										</thead>
 										<tbody id="ApvBody">
-											<tr class="text-center">
-												<td class="col-1">2022/09/18-1</td>
-												<td class="col-1">지출결의서</td>
-												<td class="col-6 text-start">누구누구의 지출결의서</td>
-												<td class="col-1">테스트부장</td>
-												<td class="col-1">진행중</td>
-												<td class="col-1" onclick="test()">보기</td>
-											</tr>
 										</tbody>
 									</table>
 
