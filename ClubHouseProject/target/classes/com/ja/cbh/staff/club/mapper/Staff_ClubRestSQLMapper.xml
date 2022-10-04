@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.staff.club.mapper.Staff_ClubRestSQLMapper">
+
+	<select id="selectClubData" resultType="com.ja.cbh.vo.ClubVO">
+		SELECT * FROM CBH_CLUB	
+	</select>
+
+	<select id="selectClubStudByClubNo" resultType="com.ja.cbh.vo.ClubStudVO">
+		SELECT * FROM CBH_CLUB_STUD
+		WHERE CLUB_NO = #{club_no}
+	</select>
+	
+	<select id="selectStudByStudId" resultType="com.ja.cbh.vo.StudVO">
+		SELECT * FROM CBH_STUD
+		WHERE STUD_ID = #{stud_id}
+	</select>
+	
+	<select id="selectAllClubStud" resultType="com.ja.cbh.vo.ClubStudVO">
+		SELECT * FROM CBH_CLUB_STUD
+	</select>
+	
+	<select id="selectSearchClubStudByStudNameAndStudId" resultType="HashMap">
+		SELECT * FROM CBH_CLUB_STUD ccs , CBH_STUD cs 
+		WHERE ccs.STUD_ID = cs.STUD_ID
+		<if test="stud_name != ''">
+		AND cs.STUD_NAME = #{stud_name}
+		</if>
+		<if test="stud_id != ''">
+		AND cs.STUD_ID = #{stud_id}		
+		</if>
+	</select>
+
+
+
+</mapper>
+
+
