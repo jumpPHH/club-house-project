@@ -96,5 +96,14 @@ public class ClubBoardRestController {
 		
 		return map;
 	}
+	
+	@RequestMapping("getClubNo")
+	public HashMap<String, Object> getClubNo(HttpSession session) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		
+		return map;
+		
+	}
 }
  

@@ -293,7 +293,7 @@ function deleteRow() {
 		page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
 
 	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
-	<div class="page-content p-5" id="content">
+	<div class="page-content pl-5" id="content">
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">

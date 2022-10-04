@@ -9,8 +9,7 @@
    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/cbh/resources/css/NewFile.css">
-<link rel="stylesheet" href="/cbh/resources/css/establishingclub.css">
+<link rel="stylesheet" href="/cbh/resources/css/student_navbar.css">
 <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
         crossorigin="anonymous">
@@ -103,23 +102,10 @@
 		
 		
 		
-			<div class="container-fluid" style="background-color: ">
+			<div class="container-fluid" style="background-color: #F1F1F1">
 				<div class="row" >
 					<div class="col">
-		
-						
-					</div>
-				</div>
-			</div>
-</div>
-		<!-- 실제 내용 -->
-  	<div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh;overflow-y: auto">
-	<div class="container-fluid">
-		<div class="row" >
-			<div class="col">
-				
-				<!-- 여기다 작성하세요 -->
-				<div class="row">
+		<div class="row">
 					<div class="col" id="content">
 							<!-- 컨텐트 of 헤더 -->
 							<div class="row page_title">
@@ -199,7 +185,16 @@
 				</div>
 			</div>
 		</div>
-	</div>
+						
+					</div>
+				</div>
+			</div>
+</div>
+		<!-- 실제 내용 -->
+
+				
+				<!-- 여기다 작성하세요 -->
+				
 
 
 

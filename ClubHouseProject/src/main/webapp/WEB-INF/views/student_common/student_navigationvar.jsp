@@ -16,6 +16,28 @@ $(function() {
 	    $('#sidebar, #content').toggleClass('active');
 	  });
 	});
+	
+	
+	
+	function getClubNo() {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if(xhr.status == 200 && xhr.readyState == 4) {
+				var jsonObj = JSON.parse(xhr.responseText);
+				
+				var establigshingClubResultPage = document.querySelector('#establishingClubResultPage');
+				establigshingClubResultPage.setAttribute("href","/cbh/student/myclub/clubboard?clubNo="+jsonObj.clubNo);
+				
+			}
+		}
+		
+		xhr.open('get','./restapi/getClubNo');
+		xhr.send();
+	}
+	
+	window.addEventListener("DOMContentLoaded", function(){
+		getClubNo();
+	});
 </script>
 
 <!-- 사이드바 시작 -->
@@ -39,7 +61,7 @@ $(function() {
 		class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">동아리관리</p>
 
 	<ul class="nav flex-column bg-white mb-0">
-		<li class="nav-item"><a href="/cbh/student/findingclub/mainPage"
+		<li class="nav-item"><a href="/cbh/student/findingclub/student_indexPage"
 			class="nav-link text-dark font-italic bg-light"> <i
 				class="fa bi bi-search mr-3 text-primary fa-fw"></i> 동아리찾기
 		</a></li>
@@ -51,8 +73,8 @@ $(function() {
 	<ul class="nav flex-column bg-white mb-0">
 		<li class="nav-item"><a
 			href="/cbh/student/notice/student_NoticeListPage"
-			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-book-half mr-3 text-primary fa-fw"></i> 공지사항
+			class="nav-link text-dark font-italic bg-light"> 
+			<i class="fa bi bi-book-half mr-3 text-primary fa-fw"></i> 공지사항
 		</a></li>
 
 		<li class="nav-item"><a href="#"
@@ -66,15 +88,18 @@ $(function() {
 		개설 신청</p>
 
 	<ul class="nav flex-column bg-white mb-0">
-		<li class="nav-item"><a href="#"
-			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i> 신청서작성
-		</a></li>
+		<li class="nav-item">
+			<a href="/cbh/student/establishingclub/student_indexPage"
+				class="nav-link text-dark font-italic bg-light"> 
+				<i class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i> 신청서작성
+			</a>
+		</li>
 
-		<li class="nav-item"><a href="#"
-			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-ui-checks mr-3 text-primary fa-fw"></i> 동아리신청상태
-		</a></li>
+		<li class="nav-item">
+			<a id="establigshingClubResultPage" href="/cbh/student/establishingclub/student_establishingClubResultPage"	class="nav-link text-dark font-italic bg-light"> 
+				<i	class="fa bi bi-ui-checks mr-3 text-primary fa-fw"></i> 동아리신청상태
+			</a>
+		</li>
 	</ul>
 
 	<p
@@ -88,12 +113,13 @@ $(function() {
 				class="fa bi bi-house-door-fill mr-3 text-primary fa-fw"></i> 메인
 		</a></li>
 
-		<li class="nav-item"><a href="#"
-			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i> 활동계획서작성
-		</a></li>
+		<li class="nav-item">
+			<a href="/cbh/student/myclub/clubactivities/student_writeClubActPage"	class="nav-link text-dark font-italic bg-light"> 
+				<i	class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i> 활동계획서작성
+			</a>
+		</li>
 
-		<li class="nav-item"><a href="#"
+		<li class="nav-item"><a href="/cbh/student/myclub/clubboard?clubNo="
 			class="nav-link text-dark font-italic bg-light"> <i
 				class="fa bi bi-journal-text mr-3 text-primary fa-fw"></i> 자유게시판
 		</a></li>
