@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">	
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 .tab {
 	border: 1px solid white;
@@ -254,9 +255,11 @@
 		xhr.send();
 	}
 	
-	
+
 	window.addEventListener("DOMContentLoaded", function() {
-	clubData();
+		var navtab = document.getElementById("ClubStudControlPage")
+		navtab.setAttribute("style", "border-right: 5px solid #FA5858");
+		clubData();
 	allClubData();
 });
 </script>
@@ -278,7 +281,7 @@
 			    <label class="col-form-label">학생이름</label>
 			  </div>
 			  <div class="col-auto">
-			    <input id="nameSearchInput" type="text" class="form-control" placeholder="학생이름을 입력해주세요">
+			    <input id="nameSearchInput" type="text" class="form-control" placeholder="학생이름을 입력해주세요" onKeypress="javascript:if(event.keyCode==13) {search()}">
 			  </div>
 			  <div class="col-auto">
 			    <label class="col-form-label">학생아이디</label>

@@ -175,8 +175,8 @@ function ul(index) {
             </a>
     </li>
     
-    <li class="nav-item ps-1">
-      <a href="#" class="nav-link text-dark font-italic">
+    <li id="ClubStudControlPage"class="nav-item ps-1">
+      <a href="/cbh/staff/club/staff_ClubStudControlPage" class="nav-link text-dark font-italic">
                 <i class="bi bi-pencil-square me-2" style="color: #FA5858"></i>
                 동아리맴버관리
             </a>
@@ -194,7 +194,7 @@ function ul(index) {
      <p class="text-gray font-weight-bold text-uppercase ps-3 mt-3 small mb-0">봉사관리</p>
 
   <ul class="nav flex-column ps-3  mb-0">
-    <li class="nav-item ps-1">
+    <li id="VlntrNotiPage" class="nav-item ps-1">
       <a href="/cbh/staff/volunteer/staff_VlntrNotiPage" class="nav-link text-dark font-italic ">
                 <i class=" bi bi-pencil-square me-2 " style="color: #FA5858"></i>
                 봉사공고작성

@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>직원 페이지</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -88,8 +89,16 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
-<div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh;overflow-y: auto;word-break: break-all" >
-	<div class="container-fluid">
+		<div class="page-content p-5 pt-4" id="content">
+			<button id="sidebarCollapse" type="button"
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3" style="color: #FA5858">
+			<i class="fa fa-bars mr-2"></i><small
+				class="text-uppercase font-weight-bold">MENU</small>
+		</button>
+		
+		
+		
+		
 		<div class="row mx-5 mt-4">
 			<!-- 여기다 작성하세요 -->
 			<div class="col">
@@ -390,8 +399,7 @@
 			
 			
 			</div>
-		</div>
-	</div>
+			</div>
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
