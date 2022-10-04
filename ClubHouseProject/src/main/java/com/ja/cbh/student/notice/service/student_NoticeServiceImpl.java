@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ja.cbh.student.notice.mapper.student_NoticeSQLMapper;
 import com.ja.cbh.vo.Club_NoticeVO;
+import com.ja.cbh.vo.NoticeVO;
 import com.ja.cbh.vo.StaffVO;
 
 @Service
@@ -37,6 +38,12 @@ public class student_NoticeServiceImpl {
 			return dataList;
 		}
 		
+		
+		public NoticeVO getNoticeDataByNotiNo(int notiNo) {
+			NoticeVO clubNoticeVO = noticeSQLMapper.selectNoticeByNotiNo(notiNo);
+			
+			return clubNoticeVO;
+		}
 		
 		
 		
