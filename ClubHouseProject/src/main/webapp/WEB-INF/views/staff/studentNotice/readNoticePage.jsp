@@ -27,15 +27,11 @@
 <jsp:include page="/WEB-INF/views/staff_common/staff_header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
 
-<div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh;overflow-y: auto; word-break: break-all">
-	<div class="container-fluid" style="background-color: aqua">
-		<div class="row" >
-			<div class="col" id="title">
-				공지상세
-			</div>
-		</div>
+<div style="position: absolute; left: 20%; width: 80%; top: 14vh; height:86vh;overflow-y: auto; word-break: break-all">
+	<div class="container-fluid" style="">
 		
 		<div class="row" >
+			<div class="col-2"></div>
 			<div class="col">
 				공지구분: <c:choose>
 							<c:when test="${notiData.noticeVO.noti_div_no == 0 }">
@@ -47,23 +43,37 @@
 						</c:choose>
 			</div>
 		</div>
-		
+		<br>
 		<div class="row" >
+			<div class="col-2"></div>
 			<div class="col">
 				공지제목: ${notiData.noticeVO.noti_title } 
 			</div>
 		</div>
-		
+		<br>
 		<div class="row" >
+			<div class="col-2"></div>
 			<div class="col">
 				공지사항: ${notiData.noticeVO.noti_content }
 			</div>
 		</div>
-		<input type="button" value="돌아가기" onclick="location.href='/cbh/staff/studentNotice/staff_StudentNoticePage'">
-		
 		<c:if test="${ !empty sessionUserInfo && sessionUserInfo.staff_id == data.staffVO.staff_id}">session이 안넘어가낭</c:if>
-		<a href="./deleteNoticeProcess?notice_no=${notiData.noticeVO.noti_no }">삭제</a>
-		<a href="./updateContentPage?notice_no=${notiData.noticeVO.noti_no }">수정</a>
+		<br>
+		<div class="row">
+			<div class="col-4"></div>
+			<div class="col d-grid">
+				 <a class = "btn btn-dark" onclick="location.href='/cbh/staff/studentNotice/staff_StudentNoticePage'">돌아가기</a>
+			</div>
+			<div class="col d-grid">
+		       <a class = "btn btn-danger" href="./deleteNoticeProcess?notice_no=${notiData.noticeVO.noti_no }">삭제</a>
+	        </div>
+			<div class="col d-grid">
+		        <a class = "btn btn-success" href="./updateContentPage?notice_no=${notiData.noticeVO.noti_no }">수정</a>
+			</div>
+			<div class="col-4"></div>
+		</div>
+		
+		
 		
 	</div>
 </div>

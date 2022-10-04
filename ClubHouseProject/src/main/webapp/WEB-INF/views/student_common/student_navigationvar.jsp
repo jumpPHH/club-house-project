@@ -16,10 +16,20 @@ $(function() {
 	    $('#sidebar, #content').toggleClass('active');
 	  });
 	});
+	
+function ul(index) {
+	console.log('click!' + index)
+	
+	var underlines = document.querySelectorAll(".underline");
+
+	for (var i = 0; i < underlines.length; i++) {
+		underlines[i].style.transform = 'translate3d(' + index * 100 + '%,0,0)';
+	}
+}
 </script>
 
 <!-- 사이드바 시작 -->
-<div class="vertical-nav bg-white" id="sidebar">
+<div class="vertical-nav bg-white box" id="sidebar">
 	<div class="py-3 px-3 mb-2 bg-light">
 		<div class="media d-flex align-items-center">
 			<img src="/uploadFiles/ClubHouseProject/student/${sessionUserInfo.stud_photo_link}" width="65"
@@ -55,7 +65,7 @@ $(function() {
 				class="fa bi bi-book-half mr-3 text-primary fa-fw"></i> 공지사항
 		</a></li>
 
-		<li class="nav-item"><a href="#"
+		<li class="nav-item"><a href="/cbh/student/volunteer/stud_VlntrApplPage"
 			class="nav-link text-dark font-italic bg-light"> <i
 				class="fa bi bi-signpost-2-fill mr-3 text-primary fa-fw"></i> 봉사공고
 		</a></li>
@@ -98,7 +108,7 @@ $(function() {
 				class="fa bi bi-journal-text mr-3 text-primary fa-fw"></i> 자유게시판
 		</a></li>
 
-		<li class="nav-item"><a href="#"
+		<li class="nav-item"><a href="/cbh/student/myclub/schedule/student_ClubSchedulePage"
 			class="nav-link text-dark font-italic bg-light"> <i
 				class="fa bi bi-layout-text-sidebar mr-3 text-primary fa-fw"></i>
 				동아리일정

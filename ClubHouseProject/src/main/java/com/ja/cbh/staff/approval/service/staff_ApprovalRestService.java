@@ -20,25 +20,26 @@ public class staff_ApprovalRestService {
 	
 	public ArrayList<HashMap<String, Object>> getMyApvList(HashMap<String, Object> param){
 		ArrayList<HashMap<String, Object>> MyApvList = staff_ApprovalRestSQLMapper.selectApvBystaffId(param);
-		
-
-		
-		
-		
 		return MyApvList;
 	}
 	
 	public ArrayList<HashMap<String, Object>> getRequestedApvList(HashMap<String, Object> param){
 		ArrayList<HashMap<String, Object>> RequestedApvList = staff_ApprovalRestSQLMapper.selectApvByStaffMidIdAndStaffFnlId(param);
-		
-		
-		
-		
 		return RequestedApvList;
 	}
 	
 	public HashMap<String, Object> getApv(String APV_NO){
 		HashMap<String, Object> Apv = staff_ApprovalRestSQLMapper.selectApvByApvNo(APV_NO);
+		String ApvContent = new String();
+		
+		if((Clob)Apv.get("APV_CONTENT") != null) {
+			try {
+				ApvContent = clobToString((Clob)Apv.get("APV_CONTENT"));
+				Apv.replace("APV_CONTENT", ApvContent);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			}
 		
 		return Apv;
 	}

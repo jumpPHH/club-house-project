@@ -95,8 +95,10 @@
 <script type="text/javascript">
 	
 	var club_no = ${map.clubBoardData.club_no};
-	var club_act_no = ${map.clubBoardData.club_board_no};
-	console.log(club_no);
+	var club_board_no = ${map.clubBoardData.club_board_no};
+	var club_stud_no = ${map.clubBoardData.club_stud_no};
+	var sessionUserId = "${sessionUserInfo.stud_id}";
+	
 	
 
 	function seeTheReason(){
@@ -127,32 +129,26 @@
 			
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-				var club_bossId = jsonObj.data.stud;
+				var stud_id = jsonObj.data.stud_id;
 				var sessionUserId = "${sessionUserInfo.stud_id}";
 				
-				if(club_bossId == sessionUserId){
+				if(stud_id == sessionUserId){
 					var buttonBoxCol1 = document.querySelector('#buttonBox');
-					
-					var updateButton = document.createElement("button");
-					updateButton.setAttribute("class","btn btn-danger");
-					buttonBoxCol1.appendChild(updateButton);
 					
 					var updateButtonAhref = document.createElement("a");
 					updateButtonAhref.setAttribute("href","./student_modifyClubBoardPage?club_no="+club_no+"&club_board_no="+club_board_no);
-					updateButtonAhref.setAttribute("style","color:white");
+					updateButtonAhref.setAttribute("style","font-size:0.4em");
+					updateButtonAhref.setAttribute("class","mx-1");
 					updateButtonAhref.innerText = "수정";
-					updateButton.appendChild(updateButtonAhref);
+					buttonBoxCol1.appendChild(updateButtonAhref);
 					
-					var deleteButton = document.createElement("button");
-					deleteButton.setAttribute("class","btn btn-primary");
-					deleteButton.setAttribute("style","margin-left:0.5em");
-					buttonBoxCol1.appendChild(deleteButton);
 					
 					var deleteButtonAhref = document.createElement("a");
-					deleteButtonAhref.setAttribute("href","./student_deleteClubActProcess?club_no="+club_no+"&club_act_no="+club_act_no);
-					deleteButtonAhref.setAttribute("style","color:white");
+					deleteButtonAhref.setAttribute("href","./student_deleteClubBoardProcess?club_no="+club_no+"&club_board_no="+club_board_no);
+					deleteButtonAhref.setAttribute("style","font-size:0.4em");
+					deleteButtonAhref.setAttribute("class","mx-1");
 					deleteButtonAhref.innerText = "삭제";
-					deleteButton.appendChild(deleteButtonAhref);
+					buttonBoxCol1.appendChild(deleteButtonAhref);
 				}
 			}
 		}
@@ -162,14 +158,148 @@
 		xhr.send(); //AJAX로 리퀘스트함..
 
 	}
+	function inputClubBoardComment() {
+		var commentContent = document.querySelector('#club_board_comment_content');
+		
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+		xhr.onreadystatechange = function () {
+			
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+				
+				var commentListBox = document.querySelector('#commentListBox');
+				commentListBox.innerHTML = "";
+				var club_board_comment_content = document.querySelector('#club_board_comment_content');
+				club_board_comment_content.value= null;
+				
+				refreshCommentList();
+			}
+		}
+		
+
+		xhr.open("post" , "./restapi/inputClubBoardComment"); //리퀘스트 세팅..
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+		xhr.send("club_board_comment_content="+commentContent.value + "&club_no=${map.clubBoardData.club_no}&club_stud_no="+${sessionClubStudNo}+"&club_board_no="+${map.clubBoardData.club_board_no}); //AJAX로 리퀘스트함..
+	}
+	
+	function refreshCommentList(){
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+		xhr.onreadystatechange = function () {
+			
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+				for(let i = 0 ; i < jsonObj.length ; i++) {
+					
+					function dateFormat(date) {
+						let dateFormat2 = date.getFullYear() +
+							'-' + ( (date.getMonth()+1) < 9 ? "0" + (date.getMonth()+1) : (date.getMonth()+1) )+
+							'-' + ( (date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate()) );
+						return dateFormat2;
+					}
+
+					let date = dateFormat(new Date(jsonObj[i].comment.club_board_comment_date));
+					console.log(date);
+					
+					
+					var clubBoardNo = jsonObj[i].comment.club_board_no;
+					var clubBoardCommentNo = jsonObj[i].comment.club_board_comment_no;
+					var clubNo = jsonObj[i].comment.club_no;
+					var writerName = jsonObj[i].commentWriterInfo.stud_name;
+					var commentContent = jsonObj[i].comment.club_board_comment_content;
+					var commentWriteDate = jsonObj[i].comment.club_board_comment_date;
+					
+					var commentListBox = document.querySelector('#commentListBox');
+					
+					var row1 = document.createElement("div");
+					row1.setAttribute("class", "row");
+					commentListBox.appendChild(row1);
+					
+					var row1_col1 = document.createElement("div");
+					row1_col1.setAttribute("class", "col");
+					row1.appendChild(row1_col1);
+					
+					var row1_col1_row1 = document.createElement("div");
+					row1_col1_row1.setAttribute("class", "row");
+					row1_col1.appendChild(row1_col1_row1);
+					
+					var row1_col1_row1_col1= document.createElement("div");
+					row1_col1_row1_col1.setAttribute("class", "col");
+					row1_col1_row1_col1.setAttribute("style","font-weight:bold; font-size:12px;");
+					row1_col1_row1_col1.innerText = writerName;
+					row1_col1_row1.appendChild(row1_col1_row1_col1);
+					
+					var row1_col1_row1_col2= document.createElement("div");
+					row1_col1_row1_col2.setAttribute("class", "col-1");
+					row1_col1_row1.appendChild(row1_col1_row1_col2);
+					
+					if(${sessionClubStudNo} === jsonObj[i].comment.club_stud_no){
+						var row1_col1_row1_col2_button = document.createElement("a");
+						row1_col1_row1_col2_button.innerText = "삭제";
+						row1_col1_row1_col2_button.setAttribute("href", "deleteComment("+clubBoardNo+","+clubNo+","+clubBoardCommentNo + ")");	// 나중에 delete 함수 만들면 넣어주기.
+						row1_col1_row1_col2_button.setAttribute("style", "background-color:white; color:black; padding:1px; border:none; font-size:10px")
+						row1_col1_row1_col2.appendChild(row1_col1_row1_col2_button);
+					}
+					
+					
+					var row1_col1_row2 = document.createElement("div");
+					row1_col1_row2.setAttribute("class","row");
+					row1_col1.appendChild(row1_col1_row2);
+					
+					var row1_col1_row2_col1 = document.createElement("div");
+					row1_col1_row2_col1.setAttribute("class","col");
+					row1_col1_row2_col1.setAttribute("style", "font-size:13px");
+					row1_col1_row2_col1.innerText = commentContent;
+					row1_col1_row2.appendChild(row1_col1_row2_col1);
+					
+					var row1_col1_row3 = document.createElement("div");
+					row1_col1_row3.setAttribute("class","row");
+					row1_col1.appendChild(row1_col1_row3);
+					
+					var row1_col1_row3_col1 = document.createElement("div");
+					row1_col1_row3_col1.setAttribute("class","col");
+					row1_col1_row3_col1.setAttribute("style", "font-size:10px");
+					row1_col1_row3_col1.innerText = date;
+					row1_col1_row3.appendChild(row1_col1_row3_col1);
+					
+					var hr = document.createElement("hr");
+					hr.setAttribute("style","height:1px; color:#adb5bd; margin-top:2vh;");
+					row1_col1_row3.appendChild(hr);
+				}
+				
+			}
+		}
+		
+		xhr.open("get" , "./restapi/getClubBoardComment?club_board_no=${map.clubBoardData.club_board_no}&club_no=${map.clubBoardData.club_no}"); //리퀘스트 세팅..
+		//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+		xhr.send(); //AJAX로 리퀘스트함..
+	}
+	
+	function deleteComment(clubBoardNo,clubNo,clubBoardCommentNo){
+		console.log("clubBoardCommentNo" + clubBoardCommentNo + "clubNo : " + clubNo);
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var commentListBox = document.querySelector('#commentListBox');
+				commentListBox.innerHTML = "";
+				refreshCommentList();
+			}
+		}
+		xhr.open("get","./restapi/deleteClubBoardComment_By3No?club_board_no="+clubBoardNo+"&club_no="+clubNo+"&club_board_comment_no="+clubBoardCommentNo);
+		xhr.send(); //AJAX로 리퀘스트함..
+	}
+	
+	function updateComment(){
+		
+	}
 	
 	window.addEventListener("DOMContentLoaded" , function (){
 		//사실상 처음 실행하는 코드 모음...
-		activateUpdateAndDeleteButtonIfHeIsClubBoss();
-		
+		activateUpdateAndDeleteButtonIfHeisWriter();
+		refreshCommentList();
 		//setInterval(refreshCommentList , 3000); //폴링 방식의 실시간... 화면 갱신...
 		
 	});
+	
 	
 	
 </script>
@@ -193,8 +323,7 @@
 							<!-- 컨텐트 위에 헤더 -->
 							<div class="row page_title">
 								<div class="col-4 page_title_text">
-									<span><img src="/cbh/resources/img/student/myclub/clubactivities/contentTitleLogo.png"
-									 style="margin-left:0.5em; width:2.1em; height:1.5em"></span> <span style="margin-left:0.3em;">동아리 활동내역</span>
+									<span style="margin-left: 0.3em;">자유게시판</span>
 								</div>
 								<div class="col"></div>
 							</div>
@@ -227,13 +356,31 @@
 													${map.clubBoardData.club_board_content }
 												</div>
 											</div>
-											<hr style="height:1px; color:gray;" class="mt-3">
 											
 											<!-- 목록 버튼 칸  -->
-											<div class="row">
+											<div class="row mt-5">
 												<div class="col" id="buttonBox">
-													<button class="btn btn-secondary">목록</button>
 													
+												</div>
+											</div>
+											<hr style="height:1px; color:gray">
+											
+											
+											<!-- 댓글 리스트 박스 -->
+											<div class="row mt-5">
+												<div class="col" id="commentListBox"  style="border:1px; border-radius:5px; border-color:gray;"><span style="font-weight:bold; font-size:20px">댓글</span>
+												<br> <hr style="height:5px; color:gray; width:8%; margin-bottom:3vh">
+													
+												</div>
+											</div>
+											
+											<!-- 댓글작성박스 -->
+											<div class="row mt-5">
+												<div class="col">
+													<input type="text" id="club_board_comment_content" style="width:100%; height:5vh;  border: solid 2px #adb5bd; border-radius: 8px; ">
+												</div>
+												<div class="col-1">
+													<button class="btn btn-secondary" onclick="inputClubBoardComment()">작성</button>
 												</div>
 											</div>
 											
@@ -265,7 +412,7 @@
 						</div>
 						<div class="col-2">
 							<input type="hidden" id="club_no" value="${map.clubBoardData.club_no }">
-							<input type="hidden" id="club_act_no" value="${map.clubBoardData.club_board_no }">
+							<input type="hidden" id="club_board_no" value="${map.clubBoardData.club_board_no }">
 						</div>
 						</div>
 				</div>

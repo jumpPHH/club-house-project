@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 동아리 동아리원 관리 페이지</title>
+<title>회원 관리 페이지</title>
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
@@ -15,6 +15,17 @@
 <link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<style type="text/css">
+.selectDiv {
+	background-color: #bfc9e3;
+	color: white;
+}
+
+a:hover {
+	color: white !important;
+	text-decoration: underline;
+}
+</style>
 
 <script type="text/javascript">
 	function updateApprove(target) {
@@ -58,6 +69,11 @@
 
 		location.reload();
 	}
+	
+	function clickMove(target) {
+		$(".selectDiv").removeClass("selectDiv");
+		target.classList.toggle('selectDiv');
+	}
 </script>
 </head>
 <body>
@@ -69,41 +85,62 @@
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
-			<i class="fa fa-bars mr-2"></i><small
-				class="text-uppercase font-weight-bold" style="box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">Toggle</small>
+			<small
+				class="text-uppercase font-weight-bold" >MENU</small>
 		</button>
-
-		<div class="card"
-			style="width: 100%; height: auto; border-radius: 2%; box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">
-			<div class="dashboard-card-bottom">
-				<!-- 실제 내용 -->
-				<div class="container-fluid">
+		
+		<div class="row card box" style="width: 100%; height: 45px;">
+				<div class="dashboard-card-bottom">
 					<div class="row">
+
 						<div class="col-1"></div>
 
 						<div class="col">
-							<div class="row my-5">
-								<div class="col">
-									<i class="bi bi-person-video3"
-										style="font-size: 40px; color: #EF1B3F;"></i> <span
-										style="font-size: 30px;">회원 가입 관리</span>
+
+							<div class="row ps-1 p-2 mb-2">
+								<div class="col text-center"
+									style="border-right: 2px solid #ededed;">
+									<div class="row" style="justify-content: center">
+										<a
+											href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
+											class="col-auto px-3" onmouseover="clickMove(this)"
+											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+											전체 회원 관리 </a>
+									</div>
 								</div>
+
+								<div class="col text-center">
+									<div class="row" style="justify-content: center">
+										<a
+											href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
+											class="col-auto px-3" onmouseover="clickMove(this)"
+											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+											가입 관리 </a>
+									</div>
+								</div>
+
 							</div>
 
-							<div class="row my-5">
-								<div class="col-2" style="text-align: center;">
-									<a href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
-										style="font-size: 19px;">전체 회원 관리</a>
-								</div>
-								<div class="col-1" style="text-align: center;">|</div>
-								<div class="col-2" style="text-align: center;">
-									<a
-										href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
-										style="font-size: 19px;">가입 관리</a>
-								</div>
-								<div class="col"></div>
-							</div>
+						</div>
 
+						<div class="col-1"></div>
+
+					</div>
+
+				</div>
+			</div>
+			
+			
+		<div class="row my-3 card box" style="width: 100%; height: auto;">
+			<div class="dashboard-card-bottom">
+				<!-- 실제 내용 -->
+				<div class="container-fluid">
+				
+					<div class="row my-5">
+						<div class="col-1"></div>
+
+						<div class="col">
+						
 							<div class="row">
 								<table class="table">
 									<thead>

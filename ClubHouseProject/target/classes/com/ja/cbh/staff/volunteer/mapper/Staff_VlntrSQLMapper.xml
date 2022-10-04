@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.staff.volunteer.mapper.Staff_VlntrSQLMapper">
+	<insert id="insertVltrNotiByVo">
+		INSERT INTO CBH_VLNTR_NOTI values(
+			CBH_VLNTR_NOTI_seq.nextval,
+			#{staff_id},
+			#{vlntr_div_no},
+			#{vlntr_title},
+			#{vlntr_st_date},
+			#{vlntr_end_date},
+			#{vlntr_mtng_time},
+			#{vlntr_spot},
+			#{vlntr_content},
+			#{vlntr_checker},
+			#{vlntr_org_name},
+			#{vlntr_srvc_time},
+			#{vlntr_fixed_people},
+			#{vlntr_image_link},
+			sysdate,
+			'N',
+			'0'
+		)
+	</insert>
+	
+	<select id="selectVlntrNotiByStSwPn" resultType="com.ja.cbh.vo.VlntrNotiVO">
+		SELECT t2.* FROM (		
+			SELECT t1.* , ROWNUM AS rnum FROM (
+				SELECT cvn.* 
+				FROM CBH_VLNTR_NOTI cvn
+				<if test="searchType != null and searchWord != null">
+					<choose>
+						<when test="searchType == 'title'">
+							WHERE cvn.VLNTR_TITLE LIKE '%' || #{searchWord} || '%'
+						</when>
+						<when test="searchType == 'content'">
+							WHERE cvn.VLNTR_CONTENT LIKE '%' || #{searchWord} || '%'
+						</when>
+						<when test="searchType == 'spot'">
+							WHERE cvn.VLNTR_SPOT LIKE '%' || #{searchWord} || '%'
+						</when>
+					</choose>
+				</if>
+				ORDER BY cvn.VLNTR_NOTI_NO DESC
+			) t1
+		) t2
+		<![CDATA[ 
+		WHERE t2.rnum >= (#{pageNum}-1)*10+1 AND t2.rnum <= #{pageNum} * 10
+		]]>		
+	</select>
+	
+	<select id="selectVlntrNotiCountByStSw" resultType="int">
+		SELECT COUNT(*) 
+			FROM CBH_VLNTR_NOTI cvn
+				<if test="searchType != null and searchWord != null">
+					<choose>
+						<when test="searchType == 'title'">
+							WHERE cvn.VLNTR_TITLE LIKE '%' || #{searchWord} || '%'
+						</when>
+						<when test="searchType == 'content'">
+							WHERE cvn.VLNTR_CONTENT LIKE '%' || #{searchWord} || '%'
+						</when>
+						<when test="searchType == 'spot'">
+							WHERE cvn.VLNTR_SPOT LIKE '%' || #{searchWord} || %'
+						</when>
+					</choose>
+				</if>
+	</select>
+	
+	<update id="updateVlntrNotiByVlntrNotiNo">
+		UPDATE CBH_VLNTR_NOTI
+		SET VLNTR_NOTI_STATE = 'Y'
+		WHERE VLNTR_NOTI_NO = #{vlntr_noti_no}
+	</update>
+
+	<update id="updateVlntrNotiByVlntrNotiVo">
+		UPDATE CBH_VLNTR_NOTI 
+		SET 
+		VLNTR_DIV_NO = #{vlntr_div_no},
+		VLNTR_TITLE = #{vlntr_title},
+		VLNTR_ST_DATE = #{vlntr_st_date},
+		VLNTR_END_DATE = #{vlntr_end_date},
+		VLNTR_FIXED_PEOPLE = #{vlntr_fixed_people},
+		VLNTR_SRVC_TIME = #{vlntr_srvc_time},
+		VLNTR_ORG_NAME = #{vlntr_org_name},
+		VLNTR_CHECKER = #{vlntr_checker},
+		VLNTR_MTNG_TIME = #{vlntr_mtng_time},
+		VLNTR_IMAGE_LINK = #{vlntr_image_link},
+		VLNTR_SPOT = #{vlntr_spot},
+		VLNTR_CONTENT = #{vlntr_content}
+		WHERE VLNTR_NOTI_NO = #{vlntr_noti_no}
+	</update>
+	
+	<delete id="deleteVlntrNotiByVlntrNotiNo">
+		DELETE FROM CBH_VLNTR_NOTI
+		WHERE VLNTR_NOTI_NO = #{vlntr_noti_no}
+	</delete>
+
+	<select id="selectClubStudInfoByStSwPn" resultType="HashMap">
+		SELECT t2.* FROM (
+			SELECT t1.* ,rownum AS rnum FROM (
+				SELECT cs.*, cc.club_name
+				FROM cbh_stud cs, cbh_club_stud ccs, cbh_club cc
+				WHERE cs.stud_id = ccs.stud_id
+				AND ccs.club_no = cc.club_no
+				<if test='club_no != "0"'>
+					And ccs.club_no = #{club_no}
+				</if>
+				<if test="stud_name != ''">
+					And cs.stud_name = #{stud_name}
+				</if>
+				<if test="stud_id != ''">
+					And ccs.stud_id = #{stud_id}
+				</if>
+				ORDER BY ccs.club_stud_no DESC
+			)t1
+		)t2
+		<![CDATA[ 
+		WHERE t2.rnum >= (#{pageNum}-1)*10+1 AND t2.rnum <= #{pageNum} * 10
+		]]>		
+	</select>
+	
+	<select id="selectClubStudCountByCnSnSi" resultType="int">
+		SELECT count(*) FROM (
+			SELECT t1.* ,rownum AS rnum FROM (
+				SELECT cs.*, cc.CLUB_NAME
+				FROM cbh_stud cs, cbh_club_stud ccs, cbh_club cc
+				WHERE cs.stud_id = ccs.stud_id
+				AND ccs.club_no = cc.club_no
+				<if test='club_no != "0"'>
+					And ccs.club_no = #{club_no}
+				</if>
+				<if test="stud_name != ''">
+					And cs.stud_name = #{stud_name}
+				</if>
+				<if test="stud_id != ''">
+					And ccs.stud_id = #{stud_id}
+				</if>
+				ORDER BY ccs.club_stud_no DESC
+			)t1
+		)t2
+	</select>
+
+	<select id="selectClubList" resultType="com.ja.cbh.vo.ClubVO">
+		SELECT * FROM CBH_CLUB
+	</select>
+
+	<update id="updateStudVlntrTimeByStudIdAndVAT">
+		UPDATE CBH_STUD
+		SET stud_vlntr_time = stud_vlntr_time + #{vlntrActivityTime}
+		WHERE stud_id = #{stud_id}
+	</update>
+
+<!-- 	<select id="selectStudInfoByStudId" resultType="com.ja.cbh.vo.StudVO"> -->
+<!-- 		SELECT * FROM CBH_STUD -->
+<!-- 		WHERE stud_id = #{studId} -->
+<!-- 	</select> -->
+
+<!-- 	<select id="selectClubInfoByStudId" resultType="com.ja.cbh.vo.ClubVO"> -->
+<!-- 		SELECT * FROM CBH_CLUB -->
+<!-- 		WHERE stud_id = #{studId} -->
+<!-- 	</select> -->
+
+
+
+</mapper>

@@ -15,6 +15,6 @@ public interface Student_SignUpSQLMapper {
 	public ArrayList<StudVO> selectStudentAll(String studId);
 	
 	//학번으로 학생 수
-	public int countStudentById(String stud_id);
+	public int countStudentById(String studId);
 	
 }

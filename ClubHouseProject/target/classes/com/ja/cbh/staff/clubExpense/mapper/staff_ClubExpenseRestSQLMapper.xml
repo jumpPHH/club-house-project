@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.staff.clubExpense.mapper.staff_ClubExpenseRestSQLMapper">
+
+	<select id="selectClubExpnsApplyList" resultType="HashMap">
+	SELECT ROWNUM, t1.* 
+	FROM (SELECT ccea.*, 
+			   cc.CLUB_NAME, 
+			   cs.STUD_ID , 
+			   cs.STUD_NAME , 
+			   cs.STUD_PHONE , 
+			   cs.STUD_DEPT , 
+			   cs.STUD_GRADE 
+		FROM CBH_CLUB_EXPNS_APPLY ccea, CBH_CLUB cc, CBH_STUD cs  
+		WHERE ccea.CLUB_NO = cc.CLUB_NO 
+		AND cc.CLUB_BOSS = cs.STUD_ID
+		<if test="SEARCHWORD != null">
+			AND cc.CLUB_NAME LIKE '%' || #{SEARCHWORD} || '%' 
+		</if>
+		<if test='STATE == "전체"'>
+		</if>
+		<if test='STATE == "신청"'>
+			AND ccea.CLUB_EXPNS_APPLY_STATE LIKE #{STATE}
+		</if>
+		<if test='STATE == "진행중"'>
+		 	AND ccea.CLUB_EXPNS_APPLY_STATE LIKE #{STATE}
+		</if>
+		<if test='STATE == "승인"'>
+		 	AND ccea.CLUB_EXPNS_APPLY_STATE LIKE #{STATE}
+		</if>
+		<if test='STATE == "반려"'>
+		 	AND ccea.CLUB_EXPNS_APPLY_STATE LIKE #{STATE}
+		</if>
+		ORDER BY ccea.CLUB_EXPNS_APPLY_NO ASC) t1
+		ORDER BY ROWNUM DESC
+	
+	</select>
+
+
+	<select id="selectClubExpnsApplyByClubExpnsApplyNo" resultType="HashMap">
+		SELECT ccea.*, 
+			   cc.CLUB_NAME, 
+			   cs.STUD_ID , 
+			   cs.STUD_NAME , 
+			   cs.STUD_PHONE , 
+			   cs.STUD_DEPT , 
+			   cs.STUD_GRADE , 
+			   ROWNUM
+		FROM CBH_CLUB_EXPNS_APPLY ccea, CBH_CLUB cc, CBH_STUD cs  
+		WHERE ccea.CLUB_NO = cc.CLUB_NO 
+		AND cc.CLUB_BOSS = cs.STUD_ID 
+		AND ccea.CLUB_EXPNS_APPLY_NO = #{NO}
+	</select>
+
+
+	<update id="updateClubExpnsApplyStateByClubExpnsApplyNo">
+		UPDATE CBH_CLUB_EXPNS_APPLY
+		SET CLUB_EXPNS_APPLY_STATE = #{STATE}
+		<if test='STATE == "반려"'>
+			<if test="REJECT != null">
+			, CLUB_EXPNS_APPLY_REJECT_REASON = #{REJECT}
+			</if>
+		</if>
+		WHERE CLUB_EXPNS_APPLY_NO = #{NO}
+	</update>
+</mapper>

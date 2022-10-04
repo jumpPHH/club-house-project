@@ -55,12 +55,12 @@
     width: calc(100% - 17rem);
   }
 }
-
+li:hover{
+	border-right: 5px solid #FA5858;
+}
 
 body {
-  background: #ededed;
-  background: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
-  background: linear-gradient(to right, #599fd9);
+  background-color: #adb5bd12;
   min-height: 100vh;
   overflow-x: hidden;
   font-family: 'Noto Sans KR', sans-serif;
@@ -88,11 +88,20 @@ $(function() {
 	    $('#sidebar, #content').toggleClass('active');
 	  });
 	});
+function ul(index) {
+	console.log('click!' + index)
+	
+	var underlines = document.querySelectorAll(".underline");
+
+	for (var i = 0; i < underlines.length; i++) {
+		underlines[i].style.transform = 'translate3d(' + index * 100 + '%,0,0)';
+	}
+}
 </script>
 
 <!-- 사이드바 시작 -->
 <div class="vertical-nav bg-white" id="sidebar">
-  <div class="py-3 px-3 mb-2 bg-light">
+  <div class="py-4 px-3 mb-2 bg-light">
     <div class="media d-flex align-items-center"><img src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
       <div class="media-body ps-2">
         <h4 id="name" class="m-0">박한희</h4>
@@ -103,111 +112,98 @@ $(function() {
     </div>
   </div>
 
-  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">기준정보관리</p>
+  <p class="text-gray font-weight-bold text-uppercase ps-3 mt-3 small  mb-0">기준정보관리</p>
 
-  <ul class="nav flex-column bg-white mb-0">
-    <li class="nav-item ps-1">
-      <a href="/cbh/staff/division/staff_DivisionPage" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-upc mr-3 text-primary fa-fw"></i>
+  <ul class="nav flex-column ps-3 mb-0">
+    <li class="nav-item ps-1" id="code">
+      <a href="/cbh/staff/division/staff_DivisionPage" class="nav-link text-dark font-italic">
+                <i class="bi bi-upc me-2" style="color: #FA5858"></i>
                 코드관리
             </a>
     </li>
   </ul>
 
-   <p class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">전자결재</p>
+   <p class="text-gray font-weight-bold text-uppercase ps-3 mt-3 small  mb-0">전자결재</p>
 
-  <ul class="nav flex-column bg-white mb-0">
-    <li class="nav-item ps-1">
-      <a href="/cbh/staff/approval/staff_WriteDraftPage" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i>
+  <ul class="nav flex-column ps-3 mb-0">
+    <li class="nav-item ps-1" id="WriteDraftPage">
+      <a href="/cbh/staff/approval/staff_WriteDraftPage" class="nav-link text-dark font-italic">
+                <i class=" bi bi-pencil-square me-2" style="color: #FA5858"></i>
                 기안서작성
             </a>
     </li>
-     <li class="nav-item ps-1">
-      <a href="/cbh/staff/approval/staff_DraftManagementPage" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi-card-list mr-3 text-primary fa-fw"></i>
+     <li class="nav-item ps-1" id="DraftManagementPage">
+      <a href="/cbh/staff/approval/staff_DraftManagementPage" class="nav-link text-dark font-italic">
+                <i class=" bi-card-list me-2" style="color: #FA5858"></i>
                 기안서통합관리
             </a>
     </li>
   </ul>
 
   
-   <p class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">학생</p>
+   <p class="text-gray font-weight-bold text-uppercase ps-3 mt-3 small mb-0">학생</p>
 
-  <ul class="nav flex-column bg-white mb-0">
+  <ul class="nav flex-column ps-3 mb-0">
     <li class="nav-item ps-1">
-      <a href="/cbh/staff/studentSearch/staff_StudentSearchPage" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i>
+      <a href="/cbh/staff/studentSearch/staff_StudentSearchPage" class="nav-link text-dark font-italic">
+                <i class=" bi bi-pencil-square me-2" style="color: #FA5858"></i>
                 학생조회
             </a>
     </li>
     
     <li class="nav-item ps-1">
-      <a href="/cbh/staff/studentNotice/staff_StudentNoticePage" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-ui-checks mr-3 text-primary fa-fw"></i>
+      <a href="/cbh/staff/studentNotice/staff_StudentNoticePage" class="nav-link text-dark font-italic">
+                <i class=" bi bi-ui-checks me-2" style="color: #FA5858"></i>
                 학생공지사항
             </a>
     </li>
   </ul>
   
-   <p class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">동아리</p>
+   <p class="text-gray font-weight-bold text-uppercase ps-3 mt-3 small  mb-0">동아리</p>
 
-  <ul class="nav flex-column bg-white mb-0">
+  <ul class="nav flex-column ps-3 mb-0">
  <li class="nav-item ps-1">
-      <a href="/cbh/staff/applyClub/applyClubPage" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-house-door-fill mr-3 text-primary fa-fw"></i>
+      <a href="/cbh/staff/applyClub/staff_applyClubPage" class="nav-link text-dark font-italic">
+                <i class=" bi bi-house-door-fill me-2" style="color: #FA5858"></i>
             	동아리신청
             </a>
     </li>
     <li class="nav-item ps-1">
-      <a href="/cbh/student/myclub/main/student_MainPage" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-house-door-fill mr-3 text-primary fa-fw"></i>
+      <a href="/cbh/student/myclub/main/student_MainPage" class="nav-link text-dark font-italic">
+                <i class="bi bi-house-door-fill me-2" style="color: #FA5858"></i>
                 동아리관리
             </a>
     </li>
     
-    <li class="nav-item ps-1">
-      <a href="#" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i>
+    <li id="ClubStudControlPage"class="nav-item ps-1">
+      <a href="/cbh/staff/club/staff_ClubStudControlPage" class="nav-link text-dark font-italic">
+                <i class="bi bi-pencil-square me-2" style="color: #FA5858"></i>
                 동아리맴버관리
             </a>
     </li>
     
-    <li class="nav-item ps-1">
-      <a href="#" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-journal-text mr-3 text-primary fa-fw"></i>
-                동아리경비관리
-            </a>
-    </li>
     
-    <li class="nav-item ps-1">
-      <a href="#" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-layout-text-sidebar mr-3 text-primary fa-fw"></i>
-                동아리경비내역
-            </a>
-    </li> 
-    
-    <li class="nav-item ps-1">
-      <a href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-person-square mr-3 text-primary fa-fw"></i>
+    <li id="ClubExpenseApplyListPage"class="nav-item ps-1">
+      <a href="/cbh/staff/clubExpense/staff_ClubExpenseApplyListPage" class="nav-link text-dark font-italic">
+                <i class="bi bi-person-square me-2 " style="color: #FA5858"></i>
                 동아리경비접수
             </a>
     </li>
     
   </ul>
-     <p class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">봉사관리</p>
+     <p class="text-gray font-weight-bold text-uppercase ps-3 mt-3 small mb-0">봉사관리</p>
 
-  <ul class="nav flex-column bg-white mb-0">
-    <li class="nav-item ps-1">
-      <a href="/cbh/staff/volunteer/staff_VlntrNotiPage" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i>
+  <ul class="nav flex-column ps-3  mb-0">
+    <li id="VlntrNotiPage" class="nav-item ps-1">
+      <a href="/cbh/staff/volunteer/staff_VlntrNotiPage" class="nav-link text-dark font-italic ">
+                <i class=" bi bi-pencil-square me-2 " style="color: #FA5858"></i>
                 봉사공고작성
             </a>
     </li>
     
     <li class="nav-item ps-1">
-      <a href="/cbh/staff/volunteer/staff_VlntrControlPage" class="nav-link text-dark font-italic bg-light">
-                <i class="fa bi bi-ui-checks mr-3 text-primary fa-fw"></i>
+      <a href="/cbh/staff/volunteer/staff_VlntrControlPage" class="nav-link text-dark font-italic ">
+                <i class=" bi bi-ui-checks me-2 " style="color: #FA5858"></i>
                 봉사시간관리
             </a>
     </li>

@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ja.cbh.student.clubboard.mapper.ClubBoardSQLMapper;
-import com.ja.cbh.vo.ClubBoardVO;
+import com.ja.cbh.vo.Club_BoardCommentVO;
+import com.ja.cbh.vo.Club_BoardImageVO;
+import com.ja.cbh.vo.Club_BoardVO;
 import com.ja.cbh.vo.Club_StudVO;
 import com.ja.cbh.vo.StudVO;
 
@@ -23,9 +25,9 @@ public class ClubBoardServiceImpl {
 		ArrayList<HashMap<String, Object>> mapList = new ArrayList<HashMap<String, Object>>();
 		
 		
-		ArrayList<ClubBoardVO> clubBoardList = clubBoardSQLMapper.selectClubBoardListByClubNo(clubNo, searchWord);
+		ArrayList<Club_BoardVO> clubBoardList = clubBoardSQLMapper.selectClubBoardListByClubNo(clubNo, searchWord);
 		
-		for(ClubBoardVO boardData : clubBoardList) {
+		for(Club_BoardVO boardData : clubBoardList) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			
 			int clubStudNo = boardData.getClub_stud_no();
@@ -47,15 +49,12 @@ public class ClubBoardServiceImpl {
 	public HashMap<String, Object> getClubBoardByClubBoardNoAndClubNo(@Param(value="clubBoardNo") int clubBoardNo, @Param(value="clubNo") int clubNo) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		ClubBoardVO clubBoardData = clubBoardSQLMapper.selectClubBoardByClubBoardNoAndClubNo(clubBoardNo,clubNo);
+		Club_BoardVO clubBoardData = clubBoardSQLMapper.selectClubBoardByClubBoardNoAndClubNo(clubBoardNo,clubNo);
 		
 		
-		ClubBoardVO[] forPreviousAndNextPost = clubBoardSQLMapper.selectClubBoardListForContentPageByClubNo(clubNo);
+		Club_BoardVO[] forPreviousAndNextPost = clubBoardSQLMapper.selectClubBoardListForContentPageByClubNo(clubNo);
 		// 이전 글 다음 글 제목과 club_Board_no를 따기 위한 코드
 		
-		for(ClubBoardVO data : forPreviousAndNextPost) {
-			System.out.println(data.getClub_board_title());
-		}
 		
 		for(int i = 0 ; i < forPreviousAndNextPost.length ; i++) {
 			if(forPreviousAndNextPost[i].getClub_board_no() == clubBoardNo) {
@@ -66,7 +65,6 @@ public class ClubBoardServiceImpl {
 				}
 				//다음 글만 존재하는 경우 다음 글의 데이터만 해시맵에 넣어주자.
 				if(i == 0 && forPreviousAndNextPost.length > 1) {
-					System.out.println("1번");
 					String NextPostTitle = forPreviousAndNextPost[i+1].getClub_board_title();
 					int NextPostBoardNo = forPreviousAndNextPost[i+1].getClub_board_no();
 					map.put("NextPostTitle", NextPostTitle);
@@ -76,7 +74,6 @@ public class ClubBoardServiceImpl {
 				
 				//이전 글만 존재하는 경우 이전 글의 데이터만 해시맵에 넣어주자
 				if(i > 0 && forPreviousAndNextPost.length - 1 == i) {
-					System.out.println("2번");
 					String PreviousPostTitle = forPreviousAndNextPost[i-1].getClub_board_title();
 					int PreviousPostBoardNo = forPreviousAndNextPost[i-1].getClub_board_no();
 					map.put("PreviousPostTitle", PreviousPostTitle);
@@ -86,7 +83,6 @@ public class ClubBoardServiceImpl {
 				
 				//이전 글 , 다음 글 둘다 존재할 경우 둘의 데이터 해시맵에 다 넣어주기.
 				if(0 < i && i < forPreviousAndNextPost.length - 1) {
-					System.out.println("3번");
 					String PreviousPostTitle = forPreviousAndNextPost[i-1].getClub_board_title();
 					int PreviousPostBoardNo = forPreviousAndNextPost[i-1].getClub_board_no();
 					map.put("PreviousPostTitle", PreviousPostTitle);
@@ -118,9 +114,9 @@ public class ClubBoardServiceImpl {
 	}
 	
 	// 단순하게 특정 클럽게시판 데이터만 가져오기.
-	public ClubBoardVO getClubBoardByClubBoardNoAndClubNoForJustDataUse(int clubBoardNo, int clubNo) {
+	public Club_BoardVO getClubBoardByClubBoardNoAndClubNoForJustDataUse(int clubBoardNo, int clubNo) {
 		
-		ClubBoardVO clubBoardData = clubBoardSQLMapper.selectClubBoardByClubBoardNoAndClubNo(clubBoardNo,clubNo); 
+		Club_BoardVO clubBoardData = clubBoardSQLMapper.selectClubBoardByClubBoardNoAndClubNo(clubBoardNo,clubNo); 
 	
 		return clubBoardData;
 	}
@@ -133,20 +129,25 @@ public class ClubBoardServiceImpl {
 	}
 	
 	// 클럽 활동내역 입력
-	public void inputClubBoardByClubBoardVO(ClubBoardVO clubBoardVO) {
+	public void inputClubBoardByClubBoardVO(Club_BoardVO clubBoardVO) {
 		clubBoardSQLMapper.insertClubBoardByClubBoardVO(clubBoardVO);
 	}
 	
 	// 클럽 활동내역 수정하기
-	public void modifyClubBoard(ClubBoardVO clubBoardVO) {
+	public void modifyClubBoard(Club_BoardVO clubBoardVO) {
 		clubBoardSQLMapper.updateClubBoardByClubNoAndClubBoardNo(clubBoardVO);
 	}
 	
 	
-	//클럽 활동내역 삭제하기
-	public void deleteClubBoardByClubNoAndClubBoardNo(ClubBoardVO clubBoardVO) {
+	//클럽 게시판 삭제하기
+	public void deleteClubBoardByClubNoAndClubBoardNo(Club_BoardVO clubBoardVO) {
 		
 		clubBoardSQLMapper.deleteClubBoardByClubNoAndClubBoardNo(clubBoardVO);
+		
+	}
+	// 클럽 게시판 이미지 삭제하기
+	public void deleteClubBoardImageByBoardNo(int clubBoardNo) {
+		clubBoardSQLMapper.deleteClubBoardimage(clubBoardNo);
 	}
 	
 	//clubStudNo 따오기
@@ -156,10 +157,59 @@ public class ClubBoardServiceImpl {
 		return clubStudNo;
 	}
 	
-	// 
+	// clubStud데이터 가져오기.
 	public Club_StudVO getClubStudByClubStudNo(int clubStudNo) {
 		Club_StudVO clubStudVO = clubBoardSQLMapper.selectClubStudByClubStudNo(clubStudNo);
 		
 		return clubStudVO;
+	}
+	//clubBoardNo 생성 코드
+	public int getClubBoardNo() {
+		int clubBoardNo = clubBoardSQLMapper.createClubBoardNo();
+		return clubBoardNo;
+	}
+	
+	// 이미지 데이터 입력
+	public void inputClubBoardImage(Club_BoardImageVO clubBoardImageVO) {
+		clubBoardSQLMapper.insertClubBoardImage(clubBoardImageVO);
+	}
+	
+	// 댓글 입력
+	public void inputClubBoardComment(Club_BoardCommentVO clubBoardCommentVO) {
+		clubBoardSQLMapper.insertClubBoardComment(clubBoardCommentVO);
+	}
+	
+	// 댓글 가져오기
+	public ArrayList<HashMap<String, Object>> getClubBoardCommentList_ByClubBoardNoAndClubNo(@Param(value="clubBoardNo")int clubBoardNo, 
+																							@Param(value="clubNo") int clubNo){
+		ArrayList<HashMap<String, Object>> mapList = new ArrayList<HashMap<String, Object>>();
+		
+		ArrayList<Club_BoardCommentVO> commentList = clubBoardSQLMapper.selectClubBoardCommentList_ByClubNoAndClubBoardNo(clubBoardNo,clubNo);
+		
+		for(Club_BoardCommentVO comment : commentList ) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			
+			Club_StudVO clubStudVO = clubBoardSQLMapper.selectClubStudByClubStudNo(comment.getClub_stud_no());
+			StudVO studVO = clubBoardSQLMapper.selectStudByStudId(clubStudVO.getStud_id());
+			
+			
+			map.put("commentWriterInfo", studVO);
+			map.put("comment", comment);
+			
+			mapList.add(map);
+			
+		}
+		
+		return mapList;
+	}
+	
+	//댓글 지우기
+	public void deleteCommentBy3No(Club_BoardCommentVO clubBoardCommentVO) {
+		clubBoardSQLMapper.deleteClubBoardCommentBy3No(clubBoardCommentVO);
+	}
+	
+	//댓글 수정하기
+	public void updateCommentBy3No(Club_BoardCommentVO clubBoardCommentVO) {
+		clubBoardSQLMapper.updateClubBoardCommentBy3No(clubBoardCommentVO);
 	}
 }

@@ -148,30 +148,30 @@
 							<!-- 컨텐트 위에 헤더 -->
 							<div class="row page_title">
 								<div class="col-4 page_title_text">
-									<span>
-										<i class="bi bi-pencil"  style="margin-left:0.5em; width:2.1em; height:1.5em; color:#c4073d"></i>
-									</span> 
-									<span style="margin-left:0.3em;">동아리 활동내역 작성</span>
+									<span><img
+										src="/cbh/resources/img/student/clubboard/titleLogo.png"
+										style="margin-left: 0.5em; width: 1.5em; height: 1.5em"></span>
+									<span style="margin-left: 0.3em;">자유게시판</span>
 								</div>
 								<div class="col"></div>
 							</div>
 							<!-- 컨텐트 박스 -->
-							<form action="./student_modifyClubActProcess">
+							<form action="./student_modifyClubBoardProcess">
 							<div class="row">
 								<div class="col">
 									<!-- 글 제목 입력 칸 -->
 									<div class="row mt-5">
 										<div class="col">
-											<input type="text" placeholder="제목을 입력해주세요" class="form-control" name="club_act_title">
+											<input type="text" placeholder="제목을 입력해주세요" class="form-control" name="club_board_title" value="${clubBoardData.club_board_title }">
 										</div>
 									</div>
 									<!-- 글 내용 입력 칸 -->
 									<div class="row mt-3">
 										<div class="col" style="text-align:center">
-											<textarea name="club_act_content" placeholder="내용을 입력해주세요" style="width:100%"></textarea>
+											<textarea name="club_board_content" placeholder="내용을 입력해주세요" style="width:100%">${clubBoardData.club_board_content }</textarea>
 										</div>
 										<input type="hidden" name="club_no" value="${clubNo }">
-										<input type="hidden" name="club_act_no" value="${clubActNo }">
+										<input type="hidden" name="club_board_no" value="${clubBoardNo }">
 									</div>
 									<div class="row mt-3">
 										<div class="col" style="text-align:right">

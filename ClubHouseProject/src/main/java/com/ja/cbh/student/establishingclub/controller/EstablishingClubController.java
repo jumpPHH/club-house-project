@@ -82,7 +82,6 @@ public class EstablishingClubController {
 	@RequestMapping("student_writeClubInfoProcess")
 	public String student_writeClubInfoProcess(ClubVO clubVO, Model model, HttpSession session, @Param("title_image")MultipartFile title_image, @Param("club_dscrp_image")MultipartFile dscrp_image) {
 		//ClubVO에 클럽 회장, 동아리 이름 , 동아리 신청 회원수, 동아리 신청일자 넣기
-		System.out.println("들어오지도 못함?");
 		{
 		String rootFilePath = "C:/uploadFiles/";
 		
@@ -140,7 +139,6 @@ public class EstablishingClubController {
 			
 			try {
 				dscrp_image.transferTo(new File(rootFilePath + todayFolderName + randomName));
-				System.out.println("파일경로랑 이름 : " + rootFilePath + todayFolderName + randomName);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -153,10 +151,6 @@ public class EstablishingClubController {
 		Club_ApplVO clubApplData = establishingClubService.getApprovedClubApplByStudId(studData.getStud_id());
 		
 		
-		System.out.println(clubApplData.getClub_appl_date());
-		System.out.println(clubApplData.getClub_appl_people_count());
-		System.out.println(clubApplData.getClub_name());
-		System.out.println(studData.getStud_id());
 		
 		
 		clubVO.setClub_appl_dt(clubApplData.getClub_appl_date());

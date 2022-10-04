@@ -45,5 +45,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND CLUB_APPL_STATE = 1
 	</select>
 
+
+
+
+	<!-- 전체 -->
+	<select id="selectAllEstablishingRequestResult" resultType="com.ja.cbh.vo.Club_ApplVO">
+		SELECT * FROM CBH_CLUB_APPL
+	</select>
+	
+	<select id="selectRequestByNo" resultType="com.ja.cbh.vo.Club_ApplVO">
+		SELECT * FROM CBH_CLUB_APPL
+		WHERE CLUB_APPL_NO = #{applNo}
+	</select>
+
 </mapper>
 
