@@ -18,13 +18,19 @@
 	referrerpolicy="origin"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
+<style type="text/css">
+.selectDiv{
+color: #FA5858;
+font-size: 1.1rem;
+font-weight: bold;
+}
+</style>
 <script type="text/javascript">
 	function getRequestedApvList(type,e){
 		$("#type").val(type)
-		$(".divisionTab").removeClass("table-active");
+		$(".divisionTab").removeClass("selectDiv");
 		if(e){
-			e.classList.add("table-active")
+			e.classList.add("selectDiv")
 		}
 		
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
@@ -155,9 +161,9 @@
 	function getMyApvList(type,e){
 		
 		$("#type").val(type)
-		$(".divisionTab").removeClass("table-active");
+		$(".divisionTab").removeClass("selectDiv");
 		if(e){
-			e.classList.add("table-active")
+			e.classList.add("selectDiv")
 		}
 		
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
@@ -229,6 +235,7 @@
   		 		td3.innerText = Apv.APV_TITLE
   		 		tr.appendChild(td3);
   		 		
+  		 		
   		 		if((Apv.STAFF_MID_NAME != undefined) && (Apv.APV_MID_DATE == undefined) ){
   		 			var td4 = document.createElement("td");
   	  		 		td4.classList.add("col-1");
@@ -246,51 +253,33 @@
   		 			tr.appendChild(td4);
   		 		}
   		 		
-  				if(Apv.STAFF_MID_NAME != undefined){
-  		 			if((Apv.APV_MID_DATE == undefined) && (Apv.APV_REJECT_DATE == undefined)){
-  		  		 		var td5 = document.createElement("td");
-  		  		 		td5.classList.add("col-1");
-  		  		 		td5.innerText = "진행중"
-  		  		 		tr.appendChild(td5);
-  		  		 	}else if((Apv.APV_MID_DATE != undefined) && (Apv.APV_REJECT_DATE == undefined)){
-  		  		 			var td5 = document.createElement("td");
-  		  	  		 		td5.classList.add("col-1");
-  		  	  		 		td5.innerText = "결재완료"
-  		  	  		 		tr.appendChild(td5);
-  		  		 	}else if((Apv.APV_MID_DATE == undefined) && (Apv.APV_REJECT_DATE != undefined)){
-  		  		 			var td5 = document.createElement("td");
-  		  	  		 		td5.classList.add("col-1");
-  		  	  		 		td5.innerText = "반려"
-  		  	  		 		tr.appendChild(td5);
-  		  		 	}
+  				if(Apv.APV_REJECT_DATE != undefined){
+  					var td5 = document.createElement("td");
+	  	  		 		td5.classList.add("col-1");
+	  	  		 		td5.innerText = "반려"
+	  	  		 		tr.appendChild(td5);
+  				}else if(Apv.APV_FNL_DATE != undefined){
+  					var td5 = document.createElement("td");
+  	  		 		td5.classList.add("col-1");
+  	  		 		td5.innerText = "결재완료"
+  	  		 		tr.appendChild(td5);
+  				}else{
+  					var td5 = document.createElement("td");
+		  		 		td5.classList.add("col-1");
+		  		 		td5.innerText = "진행중"
+		  		 		tr.appendChild(td5);
+  				}
+  					
   		 			
-  		 		}else if(Apv.STAFF_FNL_NAME != undefined){
-  		 			if((Apv.APV_FNL_DATE == undefined) && (Apv.APV_REJECT_DATE == undefined)){
-  		  		 		var td5 = document.createElement("td");
-  		  		 		td5.classList.add("col-1");
-  		  		 		td5.innerText = "진행중"
-  		  		 		tr.appendChild(td5);
-  		  		 	}else if((Apv.APV_FNL_DATE != undefined) && (Apv.APV_REJECT_DATE == undefined)){
-  		  		 			var td5 = document.createElement("td");
-  		  	  		 		td5.classList.add("col-1");
-  		  	  		 		td5.innerText = "결재완료"
-  		  	  		 		tr.appendChild(td5);
-  		  		 	}else if((Apv.APV_FNL_DATE == undefined) && (Apv.APV_REJECT_DATE != undefined)){
-  		  		 			var td5 = document.createElement("td");
-  		  	  		 		td5.classList.add("col-1");
-  		  	  		 		td5.innerText = "반려"
-  		  	  		 		tr.appendChild(td5);
-  		  		 	}
-  		 			
-  		 		}
+  		 		
   		 		
   		 		var td6 = document.createElement("td");
   		 		td6.classList.add("col-1");
   		 		td6.setAttribute("onclick","getApv('"+Apv.APV_NO+"','My')")
   		 		td6.innerText = "보기"
   		 		tr.appendChild(td6);
+		
   		 	}
-  		 
 			}      
 		}	
 		xhr.open("post","../restApproval/getMyApvList",false);
@@ -1414,7 +1403,12 @@
  			menubar: false,
  			readonly: true
  			});
- 		
+window.addEventListener('DOMContentLoaded', function(){
+				var navtab = document.getElementById("DraftManagementPage")
+				navtab.setAttribute("style", "border-right: 5px solid #FA5858");
+				var start = document.getElementById("start")
+				start.click();
+			   });
 </script>
 
 
@@ -1425,45 +1419,45 @@
 	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
 	<div class="page-content p-5 pt-4" id="content">
 	  <!-- 토글 버튼 -->
-		<button id="sidebarCollapse" type="button"
+		<button id="sidebarCollapse" type="button" style="color: #FA5858"
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
 			<small
 				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
 
 					<!-- 여기다 작성하세요 -->
-					<div class="row p-2 pb-1 mb-1">
-						<div class="col-auto text-center box p-2 me-2 ps-3" style="background-color: #e3c5bf; color: white; font-size: 1.1rem">
+					<div class="row ps-2 pb-1 mb-1" >
+						<div class="col-auto text-center box p-2 me-2 ps-3" style="background-color: #FA5858; color: white; font-size: 1.1rem; height: 45px">
 						<span>내결재&nbsp:</span>
 						</div>
-						<div class="col box p-2">
-						<div class="row ps-3">
-												<div class="col-auto" style="cursor: pointer; border-right: 2px solid #ededed;"
+						<div class="col box" style="height: 45px">
+						<div class="row ps-3"  style="margin-top: 10px;">
+												<div id="start"class="col-auto divisionTab" style="cursor: pointer; border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의전체',this)">전체</div>
-						<div class="col-auto" style="cursor: pointer; border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab" style="cursor: pointer; border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의진행중',this)">진행중</div>
-						<div class="col-auto" style="cursor: pointer; border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab" style="cursor: pointer; border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의결재완료',this)">결재완료</div>
-						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab"  style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getMyApvList('나의반려',this)">반려</div>
 						</div>
 						</div>
 						
 					</div>
 					
-					<div class="row p-2 mb-2 pt-1">
-						<div class="col-auto text-center box p-2 ps-3 me-2" style="background-color: #e3c5bf; color: white; font-size: 1.1rem">
+					<div class="row ps-2 mb-2 pt-1" >
+						<div class="col-auto text-center box p-2 ps-3 me-2" style="background-color: #FA5858; color: white; font-size: 1.1rem;height: 45px">
 						<span>요청된 결재&nbsp:</span>	
 						</div>
-						<div class="col box p-2 ">
-							<div class="row ps-3">
-							<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
+						<div class="col box" style="height: 45px">
+							<div class="row ps-3" style="margin-top: 10px;">
+							<div class="col-auto divisionTab" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청전체',this)">전체</div>
-						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청미결재',this)">미결재</div>
-						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청결재',this)">결재</div>
-						<div class="col-auto" style="cursor: pointer;border-right: 2px solid #ededed;"
+						<div class="col-auto divisionTab" style="cursor: pointer;border-right: 2px solid #ededed;"
 												onclick="getRequestedApvList('요청반려',this)">반려</div>
 							
 							</div>

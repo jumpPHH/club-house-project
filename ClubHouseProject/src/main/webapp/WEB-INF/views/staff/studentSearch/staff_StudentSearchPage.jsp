@@ -20,39 +20,77 @@
 	font-size: 3vh;
 	color: #bf1f51;
 }
+	
 
 </style>
+<script type="text/javascript">
+	function clubData() {
+	
+		var xhr = new XMLHttpRequest();
+	
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var jsonObj = JSON.parse(xhr.responseText);
+				
+				for(var dd of jsonObj.data){
+				var tbodyBox = document.getElementById("tbody");
+				var tr = document.createElement("tr");
+				var td1 = document.createElement("td");
+				var td2 = document.createElement("td");
+				td1.innerText = dd.club_no;
+				td2.innerText = dd.club_name;
+				tr.appendChild(td1);
+				tr.appendChild(td2);
+				tbodyBox.appendChild(tr);
+				
+				}
+			
+			}
+		}
+	
+		xhr.open("post" , "/cbh/staff/club/clubData"); //리퀘스트 세팅..
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+		xhr.send();
+	}
+	
+	function clubStudData(){
+		
+		var xhr = new XMLHttpRequest();
+		
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var jsonObj = JSON.parse(xhr.responseText);
+				
+				
+			}
+		}
+	
+		xhr.open("post" , "/cbh/staff/club/clubData"); //리퀘스트 세팅..
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+		xhr.send();
+		
+	}
+	
+	window.addEventListener("DOMContentLoaded", function() {
+	clubData();
+});
+</script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/staff_common/staff_header.jsp"></jsp:include>
+
 <jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
 
-<div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh;overflow-y: auto; word-break: break-all">
-	<div class="container-fluid" style="background-color: aqua">
-		<div class="row" >
-			<div class="col" id="title">
-				학생조회
-			</div>
-		</div>
+	 <!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
+   <div class="page-content p-5 pt-4" id="content">
+     <!-- 토글 버튼 -->
+      <button id="sidebarCollapse" type="button"
+         class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
+         <i class="fa fa-bars mr-2"></i><small
+            class="text-uppercase font-weight-bold">MENU</small>
+      </button>
 
-		<!-- 버튼 from으로 조회하고 신규삭제 ajax써야할듯-->
-		<div class="row" >
-			<div class="col-9" style="">
-			</div>
-			<div class="col" style="">
-				<button class="btn btn" type="button">조회</button>
-			</div>
-			<div class="col" style="">
-				<button class="btn btn" type="button">신규</button>
-			</div>
-			<div class="col" style="">
-				<button class="btn btn" type="button">삭제</button>
-			</div>
-			<div class="col" style="">
-				<button class="btn btn" type="button">저장</button>
-			</div>
-		</div>
-		<div class="row">
+		<!-- 버튼 form으로 조회하고 신규삭제 ajax써야할듯-->
+		<div class="row mt-4 box p-4"  style="border-color: grey">
 			<div class="col">
 				학번(이름)
 			</div>
@@ -77,18 +115,26 @@
 				<input type="text">
 			</div>
 		
-		</div>
-		
-		<br>
-		<div class="row">
-			<div class="col">
-				학생정보 건이 조회되었습니다
+			<div class="col" style="">
+				<button class="btn btn" type="button">조회</button>
+			</div>
+			<div class="col" style="">
+				<button class="btn btn" type="button">신규</button>
+			</div>
+			<div class="col" style="">
+				<button class="btn btn" type="button">삭제</button>
+			</div>
+			<div class="col" style="">
+				<button class="btn btn" type="button">저장</button>
 			</div>
 		</div>
-		
-		<br>
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col"> -->
+<!-- 				학생정보 건이 조회되었습니다 -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		<!-- 학생정보 -->
-			<div class="row">
+			<div class="row mt-4 box p-4">
 				<div class="col">
 					<table class="table">
 						<thead>
@@ -103,15 +149,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${studentList }" var="list">
+							<c:forEach items="" var="list">
 								<tr>
 									<td><input onclick="" type="checkbox"  class="form-check-input"></td>
-									<td>${list.stud_id }</td>
-									<td>${list.stud_name }</td>
-									<td>${list.stud_gender }</td>
-									<td>${list.stud_dept }</td>
-									<td>${list.stud_grade }</td>
-									<td>${list.stud_state }</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -119,8 +165,8 @@
 				</div>
 			</div>
 
-	</div>
-</div>
+		</div>
+
 
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>

@@ -15,11 +15,12 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9	.1/font/bootstrap-icons.css">
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <style type="text/css">
 .selectDiv{
-background-color: #e3c5bf;
-color: white;
+color: #FA5858;
+font-size: 1.2rem;
+font-weight: bold;
 }
 </style>
 <script type="text/javascript">
@@ -143,7 +144,7 @@ function save(){
 
 function getDivisionList(table,e){
 	if(data.length != 0){
-		alert("구분이동시 저장하지않은 항목은 적용되지 않습니다.")
+	alert("구분이동시 사라짐")
 	}
 		data = [];
 	var NAME = NAME;
@@ -568,53 +569,7 @@ function getDivisionList(table,e){
 	xhr.send("table=" + table); 
 }
 	
-function viewForm(NO,NAME){
-	var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
-	var title = document.getElementById("title");
-	
-	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-	 xhr.onreadystatechange = function () {
-	if(xhr.readyState == 4 && xhr.status == 200){
-	var result = JSON.parse(xhr.responseText);
-	title.innerText = NAME;
-	var modalBody = document.getElementById("modalBody")
-	var saveApvFormButton = document.getElementById("saveApvFormButton");
-	saveApvFormButton.setAttribute("onclick","saveApvForm("+NO+")")
-	tinyMCE.activeEditor.resetContent()
-	
-	if(result.FORM == null){
-	}else{
-		tinyMCE.activeEditor.setContent(result.FORM);
-	}
-	myModal.show();
-		}      
-	}	
-	xhr.open("post","../restDivision/getApvForm",false);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send("NO=" + NO);
-}
-	
-	
-function saveApvForm(NO){
-	var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
-	var FORM = tinyMCE.activeEditor.getContent();
-	var ApvForm = {
-			"FORM" : FORM,
-			"NO":NO
-		}
-	var ApvFormData = JSON.stringify(ApvForm);
-	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-	 xhr.onreadystatechange = function () {
-	if(xhr.readyState == 4 && xhr.status == 200){
-	var result = JSON.parse(xhr.responseText);
 
-	swal("","저장완료.","success")
-		}      
-	}	
-	xhr.open("post","../restDivision/saveApvForm");
-	xhr.setRequestHeader("Content-type","application/json");
-	xhr.send(ApvFormData);
-}
 
 
 
@@ -938,9 +893,12 @@ function stateCheck(e){
  		$(".check").click();
  		
  	}
+
  	
  	window.addEventListener('DOMContentLoaded', function(){
 		$("#noti").click();
+		var navtab = document.getElementById("code")
+		navtab.setAttribute("style", "border-right: 5px solid #FA5858");
 	   });
 </script>
 </head>
@@ -952,7 +910,7 @@ function stateCheck(e){
 	<div class="page-content p-5 pt-4" id="content">
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
-			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3" style="color: #FA5858">
 			<i class="fa fa-bars mr-2"></i><small
 				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
@@ -963,7 +921,7 @@ function stateCheck(e){
 
 		<div class="row px-3 mt-4">
 			<div class="col">
-				<div class="row ps-1 p-2 mb-2 box">
+				<div class="row ps-1 p-2 mb-3 box" style="height: 45px; align-items: center">
 					
 					<div  class="col text-center" style="border-right: 2px solid #ededed;">
 						<div class="row" style="justify-content: center">
@@ -1071,10 +1029,9 @@ function stateCheck(e){
 		aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered modal-xl">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header" id="modalHead">
 					<button type="button" class="btn" id="saveApvFormButton">저장</button>
-					<button type="button" id="modalClose"  class="btn-close" data-bs-target="#staticBackdrop" data-bs-dismiss="modal"
-						aria-label="Close"></button>
+					<button onclick="modalClosesss()" type="button" class="btn-close"></button>
 				</div>
 				<div class="row">
 					<div class="col text-center" style="font-size: 1.5em; font-weight: bold;" id="title"></div>
@@ -1090,9 +1047,61 @@ function stateCheck(e){
 			</div>
 		</div>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-webcomponent@2/dist/tinymce-webcomponent.min.js"></script>
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+	var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
+	function viewForm(NO,NAME){
+		var title = document.getElementById("title");
+		
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+		 xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200){
+		var result = JSON.parse(xhr.responseText);
+		title.innerText = NAME;
+		var modalBody = document.getElementById("modalBody")
+		var saveApvFormButton = document.getElementById("saveApvFormButton");
+		saveApvFormButton.setAttribute("onclick","saveApvForm("+NO+")")
+		tinyMCE.activeEditor.resetContent()
+		
+		if(result.FORM == null){
+		}else{
+			tinyMCE.activeEditor.setContent(result.FORM);
+		}
+		myModal.show();
+			}      
+		}	
+		xhr.open("post","../restDivision/getApvForm",false);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send("NO=" + NO);
+	}
+		
+		
+	function saveApvForm(NO){
+		var FORM = tinyMCE.activeEditor.getContent();
+		var ApvForm = {
+				"FORM" : FORM,
+				"NO":NO
+			}
+		var ApvFormData = JSON.stringify(ApvForm);
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+		 xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200){
+		var result = JSON.parse(xhr.responseText);
+		swal("","저장완료","success")
+		}      
+		}	
+		xhr.open("post","../restDivision/saveApvForm",false);
+		xhr.setRequestHeader("Content-type","application/json");
+		xhr.send(ApvFormData);
+	}
+	
+	function modalClosesss(){
+		myModal.hide()
+	}
+	</script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-webcomponent@2/dist/tinymce-webcomponent.min.js"></script>
+
 </body>
 </html>

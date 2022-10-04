@@ -13,7 +13,7 @@
 .vertical-nav {
   min-width: 17rem;
   width: 17rem;
-  height: 100vh;
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -64,9 +64,7 @@
 */
 
 body {
-  background: #4267B2;
-  background: -webkit-linear-gradient(to right, #4267B2, #4267B2);
-  background: linear-gradient(to right, #4267B2, #4267B2);
+  background: linear-gradient(to right, #E0E6F8, #E0E6F8);
   min-height: 100vh;
   overflow-x: hidden;
   font-family: 'Noto Sans KR', sans-serif;
@@ -83,4 +81,10 @@ body {
 
 .text-gray {
   color: #aaa;
+}
+
+.box{
+	background-color: white;
+	border-radius: 1rem;
+	box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
 }

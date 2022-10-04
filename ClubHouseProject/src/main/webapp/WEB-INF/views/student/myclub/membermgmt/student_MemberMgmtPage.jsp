@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 동아리 동아리원 관리 페이지</title>
+<title>회원 관리 페이지</title>
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
@@ -15,44 +15,24 @@
 <link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<style type="text/css">
+.selectDiv {
+	background-color: #bfc9e3;
+	color: white;
+}
 
+a:hover {
+	color: white !important;
+	text-decoration: underline;
+}
+</style>
 
 <script type="text/javascript">
-	function changePosition(target) {
 
-		var club_stud_no = $(target).parent().parent().parent().children('.club_stud_no').text();
-		var club_stud_grade = $(target).val();
-
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var result = JSON.parse(xhr.responseText);
-
-			}
-		}
-
-		xhr.open("post","/cbh/student/myclub/membermgmt/updateClubMemberChangePosition");
-		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xhr.send("club_stud_no=" + club_stud_no + "&club_stud_grade="+ club_stud_grade);
-		location.reload();
-	}
-
-	function deleteMemberInfo(target) {
-
-		var club_stud_no = $(target).parent().children('.club_stud_no').text();
-
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var result = JSON.parse(xhr.responseText);
-
-			}
-		}
-
-		xhr.open("get","/cbh/student/myclub/membermgmt/deleteMemberInfo?club_stud_no="+ club_stud_no);
-		xhr.send();
-		location.reload();
-	}
+function clickMove(target) {
+	$(".selectDiv").removeClass("selectDiv");
+	target.classList.toggle('selectDiv');
+}
 </script>
 </head>
 <body>
@@ -62,51 +42,84 @@
 	<div class="page-content p-5" id="content">
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
-			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
-			<i class="fa fa-bars mr-2"></i><small
-				class="text-uppercase font-weight-bold" style="box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">Toggle</small>
+			class="btn btn-light bg-white rounded-pill box px-4 mb-4">
+			<small class="text-uppercase font-weight-bold">MENU</small>
 		</button>
 
-		<div class="card" 
-			style="width: 100%; height: auto; border-radius: 2%; box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;">
-			<div class="dashboard-card-bottom">
-				<!-- 실제 내용 -->
-				<div class="container-fluid">
-					<c:if test="${empty MainData.IsBoss}">
-					 	관리자만 이용가능한 페이지입니다.
-					 </c:if>
+		<c:if test="${not empty MainData.IsBoss}">
+			<div class="row card box" style="width: 100%; height: 45px;">
+				<div class="dashboard-card-bottom">
+					<div class="row">
 
-					<c:if test="${not empty MainData.IsBoss}">
-						<div class="row">
+						<div class="col-1"></div>
+
+						<div class="col">
+
+							<div class="row ps-1 p-2 mb-2">
+								<div class="col text-center"
+									style="border-right: 2px solid #ededed;">
+									<div class="row" style="justify-content: center">
+										<a
+											href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
+											class="col-auto px-3" onmouseover="clickMove(this)"
+											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+											전체 회원 관리 </a>
+									</div>
+								</div>
+
+								<div class="col text-center"
+									style="border-right: 2px solid #ededed;">
+									<div class="row" style="justify-content: center">
+										<a
+											href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
+											class="col-auto px-3" onmouseover="clickMove(this)"
+											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+											가입 관리 </a>
+									</div>
+								</div>
+
+								<div class="col text-center"
+									style="border-right: 2px solid #ededed;">
+									<div class="row" style="justify-content: center">
+										<div class="col-auto px-3"
+											style="cursor: pointer; border-radius: 2rem;">[동아리 총 멤버
+											: ${ActiveMemberCount} 명]</div>
+									</div>
+								</div>
+
+								<div class="col text-center">
+									<div class="row" style="justify-content: center">
+										<div class="col-auto px-3"
+											style="cursor: pointer; border-radius: 2rem;">[동아리 총 멤버
+											: ${ActiveMemberCount} 명]</div>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="col-1"></div>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row my-3 card box" style="width: 100%; height: auto;">
+				<div class="dashboard-card-bottom">
+					<!-- 실제 내용 -->
+					<div class="container-fluid">
+					
+						<c:if test="${empty MainData.IsBoss}">
+						 	관리자만 이용가능한 페이지입니다.
+						 </c:if>
+					
+						<div class="row my-5">
+
 							<div class="col-1"></div>
 
 							<div class="col">
-								<div class="row my-5">
-									<div class="col">
-										<i class="bi bi-person-video3"
-											style="font-size: 40px; color: #EF1B3F;"></i> <span
-											style="font-size: 30px;">회원 관리</span>
-									</div>
-								</div>
-
-								<div class="row my-5">
-									<div class="col-2" style="text-align: center;">
-										<a
-											href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
-											style="font-size: 19px;">전체 회원 관리</a>
-									</div>
-									<div class="col-1" style="text-align: center;">|</div>
-									<div class="col-2" style="text-align: center;">
-										<a
-											href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
-											style="font-size: 19px;">가입 관리</a>
-									</div>
-									<div class="col" style="text-align: center;">[동아리 총 멤버 :
-										${ActiveMemberCount} 명]</div>
-									<div class="col" style="text-align: center;">[검색 결과 :
-										${ActiveMemberSelectCount} 명]</div>
-								</div>
-
 								<div class="row">
 									<table class="table">
 										<thead>
@@ -163,21 +176,62 @@
 
 																<ul class="dropdown-menu">
 																	<li><input type="text"
-																		class="btn btn-outline-secondary"
+																		class="btn btn-outline-secondary alertStart"
 																		onclick="changePosition(this)" value="부회장"></li>
 																	<li><input type="text"
-																		class="btn btn-outline-secondary"
+																		class="btn btn-outline-secondary alertStart"
 																		onclick="changePosition(this)" value="총무"></li>
 																	<li><input type="text"
-																		class="btn btn-outline-secondary"
+																		class="btn btn-outline-secondary alertStart"
 																		onclick="changePosition(this)" value="화계"></li>
 																	<li><input type="text"
-																		class="btn btn-outline-secondary"
+																		class="btn btn-outline-secondary alertStart"
 																		onclick="changePosition(this)" value="서기"></li>
 																	<li><input type="text"
-																		class="btn btn-outline-secondary"
+																		class="btn btn-outline-secondary alertStart"
 																		onclick="changePosition(this)" value="일반회원"></li>
 																</ul>
+
+																<script type="text/javascript">
+
+																	function changePosition(target) {
+	
+																		var club_stud_no = $(target).parent().parent().parent().children('.club_stud_no').text();
+																		var club_stud_grade = $(target).val();
+													
+																		Swal.fire({
+																		      title:'직책 임명을 하시겠습니까?',
+																		      text: "직책 임명은. 신중하세요.",
+																		      icon: 'warning',
+																		      showCancelButton: true,
+																		      confirmButtonColor: '#3085d6',
+																		      cancelButtonColor: '#d33',
+																		      confirmButtonText: '승인',
+																		      cancelButtonText: '취소',
+																		      reverseButtons: true, // 버튼 순서 거꾸로
+																		      
+																		    }).then((result) => {
+																		      if (result.isConfirmed) {
+
+																		        var xhr = new XMLHttpRequest();
+																				xhr.onreadystatechange = function() {
+																					if (xhr.readyState == 4 && xhr.status == 200) {
+																						var result = JSON.parse(xhr.responseText);
+
+																					}
+																				}
+																		      
+																				xhr.open("post","/cbh/student/myclub/membermgmt/updateClubMemberChangePosition");
+																				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+																				xhr.send("club_stud_no=" + club_stud_no + "&club_stud_grade="+ club_stud_grade);
+																				
+																				location.reload();
+
+																		      }
+																				
+																		    })
+																	}
+																</script>
 
 																<div hidden="hidden" class="club_stud_no">${ActiveMemberDataList[i].MemberInfoDyVO.club_stud_no}</div>
 															</div>
@@ -186,7 +240,42 @@
 														<td><input type="text" class="btn btn-danger"
 															onclick="deleteMemberInfo(this)" value="강제 탈퇴">
 															<div hidden="hidden" class="club_stud_no">${ActiveMemberDataList[i].MemberInfoDyVO.club_stud_no}</div>
-														</td>
+															<script type="text/javascript">
+															function deleteMemberInfo(target) {
+
+																var club_stud_no = $(target).parent().children('.club_stud_no').text();
+														
+																Swal.fire({
+																      title:'강제 탈퇴 시키시겠습니까?',
+																      text: "다시 되돌릴 수 없습니다. 신중하세요.",
+																      icon: 'warning',
+																      showCancelButton: true,
+																      confirmButtonColor: '#3085d6',
+																      cancelButtonColor: '#d33',
+																      confirmButtonText: '승인',
+																      cancelButtonText: '취소',
+																      reverseButtons: true, // 버튼 순서 거꾸로
+																      
+																    }).then((result) => {
+																      if (result.isConfirmed) {
+
+																        var xhr = new XMLHttpRequest();
+																		xhr.onreadystatechange = function() {
+																			if (xhr.readyState == 4 && xhr.status == 200) {
+																				var result = JSON.parse(xhr.responseText);
+
+																			}
+																		}
+																      
+																		xhr.open("get","/cbh/student/myclub/membermgmt/deleteMemberInfo?club_stud_no="+ club_stud_no);
+																		xhr.send();
+																      	
+																		location.reload();
+																      }
+																		
+																    })
+																}	
+															</script></td>
 													</tr>
 												</tbody>
 											</c:forEach>
@@ -279,19 +368,17 @@
 										</ul>
 									</nav>
 								</div>
+
 							</div>
 
 							<div class="col-1"></div>
-
 						</div>
-					</c:if>
+					</div>
 				</div>
-
 			</div>
-		</div>
+		</c:if>
 	</div>
-	
-	<script type="text/javascript"
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript"
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
