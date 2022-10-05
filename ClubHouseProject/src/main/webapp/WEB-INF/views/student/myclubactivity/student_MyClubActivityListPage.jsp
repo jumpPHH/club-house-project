@@ -16,12 +16,25 @@
 	
 </head>
 <body>
-<jsp:include page="../../student_common/student_header.jsp"></jsp:include>
-<jsp:include page="../../student_common/student_sidevar.jsp"></jsp:include>
+<jsp:include
+		page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
+	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
+	<div class="page-content p-5" id="content">
+		<!-- 토글 버튼 -->
+		<button id="sidebarCollapse" type="button"
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
+			<i class="fa fa-bars mr-2"></i><small
+				class="text-uppercase font-weight-bold"
+				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Toggle</small>
+		</button>
 
-<div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh;overflow-y: auto">
-	<div class="container-fluid" style="background-color: white">
-		<div class="row">
+		<div class="card"
+			style="width: 100%; height: auto; border-radius: 2%; box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">
+			<div class="dashboard-card-bottom">
+				<!-- 실제 내용 -->
+				
+				
+				<div class="row">
 			<div class="col-1"></div>
 			<div class="col">
 			
@@ -73,11 +86,21 @@
 			</div>
 			<div class="col-1"></div>
 		</div>
-	</div>
-</div>
+				
+				
+				</div>
+				</div>
+				</div>
+		
+		
+		
+
 
 	
+		
 	
+
+
 	
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>

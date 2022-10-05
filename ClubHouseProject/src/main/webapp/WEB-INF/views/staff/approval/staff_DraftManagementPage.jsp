@@ -24,6 +24,7 @@ color: #FA5858;
 font-size: 1.1rem;
 font-weight: bold;
 }
+
 </style>
 <script type="text/javascript">
 	function getRequestedApvList(type,e){
@@ -75,9 +76,7 @@ font-weight: bold;
   		 	ApvBody.innerHTML="";
   		 	
   		 	for(var Apv of result.ApvList){
-  		 	if((Apv.STAFF_MID_ID != result.staffVO.staff_id) && (Apv.APV_REJECT_DATE != undefined)){
-  		 		
-  		 	}else{
+  		
   		 		var tr = document.createElement("tr");
   		 		tr.classList.add("text-center");
   		 		ApvBody.appendChild(tr);
@@ -149,7 +148,7 @@ font-weight: bold;
   		 		td6.setAttribute("onclick","getApv('"+Apv.APV_NO+"','Requested')")
   		 		td6.innerText = "보기"
   		 		tr.appendChild(td6);
-  		 	}
+  		 	
   		 	}
 		}      
 			}	
@@ -398,7 +397,7 @@ font-weight: bold;
  	 				APV_FNL_DATE.setAttribute("style","width:5rem;");
  	 				APV_FNL_DATE.innerText= moment(result.Apv.APV_FNL_DATE).format('YYYY/MM/DD')
  	 				APPROVAL_DATE.appendChild(APV_FNL_DATE);
- 				}else{
+ 				}else if((result.Apv.APV_FNL_DATE == undefined) && (result.Apv.APV_REJECT_DATE == undefined)){
  					var STAFF_FNL_NAME = document.createElement("div");
  					STAFF_FNL_NAME.classList.add("col-2");
  					STAFF_FNL_NAME.classList.add("border");
@@ -421,6 +420,36 @@ font-weight: bold;
  	 				APV_FNL_DATE.classList.add("text-center");
  	 				APV_FNL_DATE.setAttribute("style","width:5rem;");
  	 				APPROVAL_DATE.appendChild(APV_FNL_DATE);
+ 				}else if((result.Apv.APV_FNL_DATE == undefined) && (result.Apv.APV_REJECT_DATE != undefined)){
+ 					var APV_REJECT_IMG_DIV = document.createElement("div") 
+ 	 				APV_REJECT_IMG_DIV.classList.add("col-2");
+ 	 				APV_REJECT_IMG_DIV.classList.add("py-1");
+ 	 				APV_REJECT_IMG_DIV.classList.add("border");
+ 	 				APV_REJECT_IMG_DIV.classList.add("text-center");
+ 	 				APV_REJECT_IMG_DIV.setAttribute("style","width:5rem;");
+ 	 				APPROVAL_IMG.appendChild(APV_REJECT_IMG_DIV);
+ 	 				
+ 	 				var APV_REJECT_IMG = document.createElement("img");
+ 	 				APV_REJECT_IMG.classList.add("img-fluid");
+ 	 				APV_REJECT_IMG.setAttribute("src","/cbh/resources/img/staff/reject.png");
+ 	 				APV_REJECT_IMG_DIV.appendChild(APV_REJECT_IMG);
+ 	 			
+ 	 				var APV_REJECT_DATE = document.createElement("div")
+ 	 				APV_REJECT_DATE.classList.add("col-2");
+ 	 				APV_REJECT_DATE.classList.add("border");
+ 	 				APV_REJECT_DATE.classList.add("text-center");
+ 	 				APV_REJECT_DATE.setAttribute("style","width:5rem;");
+ 	 				APV_REJECT_DATE.innerText= moment(result.Apv.APV_REJECT_DATE).format('YYYY/MM/DD')
+ 	 				APPROVAL_DATE.appendChild(APV_REJECT_DATE);
+ 	 				
+ 	 				var STAFF_FNL_NAME = document.createElement("div");
+ 					STAFF_FNL_NAME.classList.add("col-2");
+ 					STAFF_FNL_NAME.classList.add("border");
+ 					STAFF_FNL_NAME.classList.add("text-center");
+ 					STAFF_FNL_NAME.setAttribute("style","width:5rem;")
+ 			 		STAFF_FNL_NAME.innerText = result.Apv.STAFF_FNL_NAME;
+ 			 		APPROVAL_NAMES.appendChild(STAFF_FNL_NAME);
+
  				}
  			}else if((result.Apv.APV_MID_DATE == undefined) && (result.Apv.APV_REJECT_DATE == undefined)){
  				var APV_MID_IMG_DIV = document.createElement("div") 
@@ -1428,7 +1457,7 @@ window.addEventListener('DOMContentLoaded', function(){
 					<!-- 여기다 작성하세요 -->
 					<div class="row ps-2 pb-1 mb-1" >
 						<div class="col-auto text-center box p-2 me-2 ps-3" style="background-color: #FA5858; color: white; font-size: 1.1rem; height: 45px">
-						<span>내결재&nbsp:</span>
+						<span>나의 결재&nbsp:</span>
 						</div>
 						<div class="col box" style="height: 45px">
 						<div class="row ps-3"  style="margin-top: 10px;">
@@ -1481,14 +1510,6 @@ window.addEventListener('DOMContentLoaded', function(){
 											</tr>
 										</thead>
 										<tbody id="ApvBody">
-											<tr class="text-center">
-												<td class="col-1">2022/09/18-1</td>
-												<td class="col-1">지출결의서</td>
-												<td class="col-6 text-start">누구누구의 지출결의서</td>
-												<td class="col-1">테스트부장</td>
-												<td class="col-1">진행중</td>
-												<td class="col-1" onclick="test()">보기</td>
-											</tr>
 										</tbody>
 									</table>
 
@@ -1524,11 +1545,11 @@ window.addEventListener('DOMContentLoaded', function(){
 						style="height: 8.5%;"></div>
 					<div id="APPROVAL_DATE" class="row justify-content-end"
 						style="height: 2.5%; font-size: 0.5rem"></div>
-					<div class="row my-1" style="height: 3%">
-						<div class="col-auto">기안번호</div>
-						<div id="apvNo" class="col-2"></div>
-						<div class="col-1">제목</div>
-						<div id="apvContent" class="col"></div>
+					<div class="row my-2 mx-2" style="height: 4%;font-size:1.1rem">
+						<div class="col-auto" style="border-left: 2px solid #ededed">기안번호 :</div>
+						<div id="apvNo" class="col-2 ps-0" style="border-right: 2px solid #ededed"></div>
+						<div class="col-auto">제목 :</div>
+						<div id="apvContent" class="col ps-0"></div>
 					</div>
 					<div id="modalBodyRow" class="row">
 						<div class="col">

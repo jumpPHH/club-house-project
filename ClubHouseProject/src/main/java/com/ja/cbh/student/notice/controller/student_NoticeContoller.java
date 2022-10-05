@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ja.cbh.student.notice.service.student_NoticeServiceImpl;
+import com.ja.cbh.vo.NoticeVO;
 
 @Controller
 @RequestMapping("/student/notice/*")
@@ -27,7 +28,10 @@ public class student_NoticeContoller {
 	}
 	
 	@RequestMapping("student_NoticeReadPage")
-	public String student_NoticeReadPage() {
+	public String student_NoticeReadPage(String noti_no, Model model) {
+		int notiNo = Integer.parseInt(noti_no);
+		NoticeVO noticeData = noticeService.getNoticeDataByNotiNo(notiNo);
+		model.addAttribute("noticeData", noticeData);
 		
 		return "student/notice/student_NoticeReadPage";
 	}

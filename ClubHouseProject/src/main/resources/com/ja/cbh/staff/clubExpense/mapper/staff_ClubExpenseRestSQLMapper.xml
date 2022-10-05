@@ -58,7 +58,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="updateClubExpnsApplyStateByClubExpnsApplyNo">
 		UPDATE CBH_CLUB_EXPNS_APPLY
-		SET CLUB_EXPNS_APPLY_STATE = #{STATE} 
+		SET CLUB_EXPNS_APPLY_STATE = #{STATE}
+		<if test='STATE == "반려"'>
+			<if test="REJECT != null">
+			, CLUB_EXPNS_APPLY_REJECT_REASON = #{REJECT}
+			</if>
+		</if>
 		WHERE CLUB_EXPNS_APPLY_NO = #{NO}
 	</update>
 </mapper>

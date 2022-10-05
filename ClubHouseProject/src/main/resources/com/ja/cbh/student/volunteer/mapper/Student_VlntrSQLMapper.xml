@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.cbh.student.volunteer.mapper.Student_VlntrSQLMapper">
+	<select id="selectVlntrNotiByVlntrNo" resultType="com.ja.cbh.vo.VlntrNotiVO">
+		SELECT * FROM CBH_VLNTR_NOTI
+		WHERE VLNTR_NOTI_NO = #{vlntr_noti_no}
+	</select>
+	
+	<select id="selectVlntrDivNameByVlntrDivNo" resultType="com.ja.cbh.vo.VlntrDivVO"> 
+	 	SELECT * FROM CBH_VLNTR_DIV
+	 	WHERE VLNTR_DIV_NO = #{vlntr_div_no}
+	</select>
+	
+	<update id="updateVlntrNotiByVlntr">
+		UPDATE CBH_VLNTR_NOTI 
+		SET vlntr_appl_count = vlntr_appl_count + 1
+		WHERE vlntr_noti_no = #{vlntr_noti_no}
+	</update>
+	
+	<insert id="insertVlntrAppleByVlntrNotiNoAndStudId">
+		INSERT INTO CBH_VLNTR_APPL values(
+			CBH_VLNTR_APPL_seq.nextval,
+			#{stud_id},
+			#{vlntr_noti_no},
+			sysdate
+		)
+	</insert>
+	
+	<select id="selectVlntrApplStudIdByVlntrDivNo" resultType="int">
+		SELECT COUNT(*) FROM CBH_VLNTR_APPL
+		WHERE VLNTR_NOTI_NO = #{vlntr_noti_no}
+		AND STUD_ID = #{stud_id}	
+	</select>
+	
+	<delete id="deleteVlntrApplByVlntrNotiNoAndStudId">
+		DELETE FROM CBH_VLNTR_APPL
+		WHERE VLNTR_NOTI_NO = #{vlntr_noti_no}
+		AND STUD_ID = #{stud_id}	
+	</delete>
+	
+	<update id="updateVlntrNotiApplCount">
+		UPDATE CBH_VLNTR_NOTI
+		SET vlntr_appl_count = vlntr_appl_count - 1
+		WHERE vlntr_noti_no = #{vlntr_noti_no}
+	</update>
+</mapper>
