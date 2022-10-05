@@ -62,38 +62,6 @@
 }
 </style>
 <script type="text/javascript">
-	$('#datePicker').datepicker({
-		format : 'yyyy-mm-dd', //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
-		startDate : '-10d', //달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
-		endDate : '+10d', //달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
-		autoclose : true, //사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
-		clearBtn : false, //날짜 선택한 값 초기화 해주는 버튼 보여주는 옵션 기본값 false 보여주려면 true
-		daysOfWeekHighlighted : [ 3 ], //강조 되어야 하는 요일 설정
-		disableTouchKeyboard : false, //모바일에서 플러그인 작동 여부 기본값 false 가 작동 true가 작동 안함.
-		immediateUpdates : false, //사용자가 보는 화면으로 바로바로 날짜를 변경할지 여부 기본값 :false
-		multidate : false, //여러 날짜 선택할 수 있게 하는 옵션 기본값 :false
-		templates : {
-			leftArrow : '&laquo;',
-			rightArrow : '&raquo;',
-		}, //다음달 이전달로 넘어가는 화살표 모양 커스텀 마이징
-		showWeekDays : true, // 위에 요일 보여주는 옵션 기본값 : true
-		title : '테스트', //캘린더 상단에 보여주는 타이틀
-		todayHighlight : true, //오늘 날짜에 하이라이팅 기능 기본값 :false
-		toggleActive : true, //이미 선택된 날짜 선택하면 기본값 : false인경우 그대로 유지 true인 경우 날짜 삭제
-		weekStart : 0, //달력 시작 요일 선택하는 것 기본값은 0인 일요일
-		language : 'ko', //달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
-	}).on('changeDate', function(e) {
-		/* 이벤트의 종류 */
-		//show : datePicker가 보이는 순간 호출
-		//hide : datePicker가 숨겨지는 순간 호출
-		//clearDate: clear 버튼 누르면 호출
-		//changeDate : 사용자가 클릭해서 날짜가 변경되면 호출 (개인적으로 가장 많이 사용함)
-		//changeMonth : 월이 변경되면 호출
-		//changeYear : 년이 변경되는 호출
-		//changeCentury : 한 세기가 변경되면 호출 ex) 20세기에서 21세기가 되는 순간
-		console.log(e);
-		// e.date를 찍어보면 Thu Jun 27 2019 00:00:00 GMT+0900 (한국 표준시) 위와 같은 형태로 보인다.
-	});
 
 	function getClubExpenseList(){
 		var SEARCHWORD = document.getElementById("SEARCHWORD").value;
@@ -101,9 +69,7 @@
 			SEARCHWORD = null;
 		}
 		
-		console.log(SEARCHWORD)
 		var STATE = document.getElementById("STATE").innerText;
-		console.log(STATE);
 		var jsonObj = {
 			"SEARCHWORD" : SEARCHWORD,
 			"STATE" : STATE
@@ -135,7 +101,7 @@
 		
 		var td3 = document.createElement("td");
 		td3.classList.add("text-center");
-		td3.innerText = data.CLUB_EXPNS_APPLY_GRANTS
+		td3.innerText = data.CLUB_EXPNS_APPLY_GRANTS.toLocaleString('ko-KR')
 		tr.appendChild(td3);
 		
 		var td4 = document.createElement("td");
@@ -174,9 +140,20 @@
 	}
 	
 	function updateClubExpenseState(NO,STATE){
+		var REJECT;
+		if(document.getElementById("exampleFormControlTextarea1")){
+			if(document.getElementById("exampleFormControlTextarea1").value){
+			REJECT = document.getElementById("exampleFormControlTextarea1").value 
+			}else{
+			REJECT = null
+			}
+		}else{
+			REJECT = null;
+		}	
 		var jsonObj = {
 			"NO" : NO,
-			"STATE" : STATE
+			"STATE" : STATE,
+			"REJECT" : REJECT
 			}
 		
 		var param = JSON.stringify(jsonObj)
@@ -184,6 +161,7 @@
 		xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var result = JSON.parse(xhr.responseText);
+			
 			var statebtn = document.getElementsByClassName("statebtn");
 			for(var btn of statebtn){
 				if(btn.innerText == result.data.CLUB_EXPNS_APPLY_STATE){
@@ -193,6 +171,64 @@
 				}
 				 
 			}
+			if(document.getElementById("rejectRow")){
+				var rejectRow = document.getElementById("rejectRow")
+				rejectRow.remove();
+			}
+			if(document.getElementById("rejectName")){
+				var rejectName = document.getElementById("rejectName")
+				rejectName.remove();
+			}
+			if(document.getElementById("rejectContent")){
+				var rejectContent = document.getElementById("rejectContent")
+				rejectContent.remove();
+			}
+			
+			var rejectBtn = document.getElementById("rejectBtn")
+			rejectBtn.setAttribute("onclick","rejectPlus("+result.data.CLUB_EXPNS_APPLY_NO+")");
+			rejectBtn.innerText="반려"
+			
+			var statebtn = document.getElementsByClassName("statebtn");
+			for(var btn of statebtn){
+				if(btn.innerText == result.data.CLUB_EXPNS_APPLY_STATE){
+					btn.setAttribute("style","color:#FA5858; font-weight: bold;")
+				}else{
+					btn.removeAttribute("style")
+				}
+				 
+			}
+			console.log(result.data.CLUB_EXPNS_APPLY_STATE)
+			if(result.data.CLUB_EXPNS_APPLY_STATE == "반려"){
+				var modalHead = document.getElementById("modalHead")
+				
+				var rejectName = document.createElement("div");
+				rejectName.classList.add("row");
+				rejectName.classList.add("px-4");
+				rejectName.classList.add("mt-2");
+				rejectName.setAttribute("id","rejectName")
+				modalHead.after(rejectName);
+				
+				var rejectNameCol = document.createElement("div");
+				rejectNameCol.classList.add("col");
+				rejectNameCol.innerText = "반려사유"
+				rejectName.appendChild(rejectNameCol);
+				
+				var rejectRow = document.createElement("div");
+				rejectRow.classList.add("row");
+				rejectRow.setAttribute("id","rejectContent")
+				rejectRow.setAttribute("style","background-color: #F7F7F7; height: 60px;border-radius: 0.5rem;")
+				rejectRow.classList.add("mt-1");
+				rejectRow.classList.add("mx-3");
+				rejectName.after(rejectRow);
+				var rejectCol = document.createElement("div");
+				rejectCol.classList.add("col");
+				if(result.data.CLUB_EXPNS_APPLY_REJECT_REASON){
+				rejectCol.innerText = result.data.CLUB_EXPNS_APPLY_REJECT_REASON;
+				}
+				rejectRow.appendChild(rejectCol);
+				
+			}
+			
 			getClubExpenseList()
 			
 			}
@@ -459,12 +495,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row box mb-3 p-2" style="height: 45px;">
-					<div class="col-2 text-center">기간</div>
-					<div class="col">
-						<input id="datePicker" class="form-control" type="text">
-					</div>
-				</div>
+
 				<div class="row box p-3" style="height: 77vh;">
 
 					<div class="col px-0">
@@ -606,7 +637,7 @@
 											style="font-weight: bold; text-align: right;"><span id="applicant">
 											신 청 자 : 박한희 (인)</span><img
 												style="width: 100px; transform: translate(50%, -60%);"
-												src="/cbh/resources/img/student/myclub/applicationexpenses/payment.png">
+												src="/cbh/resources/img/student/myclub/applicationexpenses/donue_signature.png">
 										</div>
 									</div>
 
