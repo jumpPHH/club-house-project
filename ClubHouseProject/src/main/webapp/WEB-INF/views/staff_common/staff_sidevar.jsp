@@ -57,6 +57,7 @@
 }
 li:hover{
 	border-right: 5px solid #FA5858;
+	background-color: #e7e7e7
 }
 
 body {

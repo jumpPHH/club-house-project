@@ -4,4 +4,325 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ja.cbh.staff.index.mapper.Staff_IndexSQLMapper">
+
+		<select id="selectClubAppl" resultType="HashMap">
+		SELECT * FROM CBH_CLUB_APPL
+	</select>
+	
+	<select id="selectClubExpnsApply" resultType="HashMap">
+		SELECT * FROM CBH_CLUB_EXPNS_APPLY
+	</select>
+	
+	<select id="selectNoti" resultType="HashMap">
+		SELECT * FROM CBH_NOTI
+	</select>
+	
+	<select id="selectVlntrAppl" resultType="HashMap">
+		SELECT * FROM CBH_VLNTR_APPL
+	</select>
+	
+	<select id="selectMyProcessApvByStaffId" resultType="HashMap">
+			SELECT 
+			APV_NO, 
+			APV_DIV_NAME, 
+			APV_TITLE, 
+			STAFF_MID_NAME,
+			APV_MID_DATE,
+			STAFF_NAME AS STAFF_FNL_NAME, 
+			APV_FNL_DATE, 
+			APV_REJECT_RSN,
+			APV_REJECT_DATE,
+			APV_WRITEDATE 
+		FROM CBH_STAFF cs2,(SELECT 
+								APV_NO, 
+								APV_DIV_NAME, 
+								APV_TITLE, 
+								APV_CONTENT, 
+								STAFF_NAME AS STAFF_MID_NAME,
+								APV_MID_DATE, 
+								STAFF_FNL_ID, 
+								APV_FNL_DATE, 
+								APV_REJECT_RSN,
+								APV_REJECT_DATE,
+								APV_WRITEDATE 
+							FROM CBH_STAFF cs RIGHT OUTER JOIN (SELECT 
+																	APV_NO, 
+																	APV_DIV_NAME, 
+																	APV_TITLE, 
+																	APV_CONTENT, 
+																	STAFF_MID_ID,
+																	APV_MID_DATE, 
+																	STAFF_FNL_ID, 
+																	APV_FNL_DATE, 
+																	APV_REJECT_RSN,
+																	APV_REJECT_DATE,
+																	APV_WRITEDATE
+																FROM CBH_APV ch,CBH_APV_DIV cad  
+																WHERE ch.APV_DIV_NO = cad.APV_DIV_NO AND ch.STAFF_ID LIKE #{STAFF_ID}) t1 
+							ON cs.STAFF_ID = t1.STAFF_MID_ID) t2 
+		WHERE cs2.STAFF_ID = t2.STAFF_FNL_ID
+		AND t2.APV_FNL_DATE IS NULL AND t2.APV_REJECT_DATE IS NULL
+		ORDER BY APV_NO DESC
+	</select>
+	
+	<select id="selectCountMyProcessApvByStaffId" resultType="int">
+		SELECT COUNT(*) FROM
+		(SELECT 
+			APV_NO, 
+			APV_DIV_NAME, 
+			APV_TITLE, 
+			STAFF_MID_NAME,
+			APV_MID_DATE,
+			STAFF_NAME AS STAFF_FNL_NAME, 
+			APV_FNL_DATE, 
+			APV_REJECT_RSN,
+			APV_REJECT_DATE,
+			APV_WRITEDATE 
+		FROM CBH_STAFF cs2,(SELECT 
+								APV_NO, 
+								APV_DIV_NAME, 
+								APV_TITLE, 
+								APV_CONTENT, 
+								STAFF_NAME AS STAFF_MID_NAME,
+								APV_MID_DATE, 
+								STAFF_FNL_ID, 
+								APV_FNL_DATE, 
+								APV_REJECT_RSN,
+								APV_REJECT_DATE,
+								APV_WRITEDATE 
+							FROM CBH_STAFF cs RIGHT OUTER JOIN (SELECT 
+																	APV_NO, 
+																	APV_DIV_NAME, 
+																	APV_TITLE, 
+																	APV_CONTENT, 
+																	STAFF_MID_ID,
+																	APV_MID_DATE, 
+																	STAFF_FNL_ID, 
+																	APV_FNL_DATE, 
+																	APV_REJECT_RSN,
+																	APV_REJECT_DATE,
+																	APV_WRITEDATE
+																FROM CBH_APV ch,CBH_APV_DIV cad  
+																WHERE ch.APV_DIV_NO = cad.APV_DIV_NO AND ch.STAFF_ID LIKE #{STAFF_ID}) t1 
+							ON cs.STAFF_ID = t1.STAFF_MID_ID) t2 
+		WHERE cs2.STAFF_ID = t2.STAFF_FNL_ID
+		AND t2.APV_FNL_DATE IS NULL AND t2.APV_REJECT_DATE IS NULL
+		ORDER BY APV_NO DESC) t4
+	</select>
+	
+	<select id="selectMyCompleteApvByStaffId" resultType="HashMap">
+				SELECT 
+			APV_NO, 
+			APV_DIV_NAME, 
+			APV_TITLE, 
+			STAFF_MID_NAME,
+			APV_MID_DATE,
+			STAFF_NAME AS STAFF_FNL_NAME, 
+			APV_FNL_DATE, 
+			APV_REJECT_RSN,
+			APV_REJECT_DATE,
+			APV_WRITEDATE 
+		FROM CBH_STAFF cs2,(SELECT 
+								APV_NO, 
+								APV_DIV_NAME, 
+								APV_TITLE, 
+								APV_CONTENT, 
+								STAFF_NAME AS STAFF_MID_NAME,
+								APV_MID_DATE, 
+								STAFF_FNL_ID, 
+								APV_FNL_DATE, 
+								APV_REJECT_RSN,
+								APV_REJECT_DATE,
+								APV_WRITEDATE 
+							FROM CBH_STAFF cs RIGHT OUTER JOIN (SELECT 
+																	APV_NO, 
+																	APV_DIV_NAME, 
+																	APV_TITLE, 
+																	APV_CONTENT, 
+																	STAFF_MID_ID,
+																	APV_MID_DATE, 
+																	STAFF_FNL_ID, 
+																	APV_FNL_DATE, 
+																	APV_REJECT_RSN,
+																	APV_REJECT_DATE,
+																	APV_WRITEDATE
+																FROM CBH_APV ch,CBH_APV_DIV cad  
+																WHERE ch.APV_DIV_NO = cad.APV_DIV_NO AND ch.STAFF_ID LIKE #{STAFF_ID}) t1 
+							ON cs.STAFF_ID = t1.STAFF_MID_ID) t2 
+		WHERE cs2.STAFF_ID = t2.STAFF_FNL_ID
+			AND t2.APV_FNL_DATE IS NOT NULL
+			ORDER BY APV_NO DESC
+	</select>
+	
+	<select id="selectCountMyCompleteApvByStaffId" resultType="int">
+			SELECT COUNT(*) FROM
+				(SELECT 
+			APV_NO, 
+			APV_DIV_NAME, 
+			APV_TITLE, 
+			STAFF_MID_NAME,
+			APV_MID_DATE,
+			STAFF_NAME AS STAFF_FNL_NAME, 
+			APV_FNL_DATE, 
+			APV_REJECT_RSN,
+			APV_REJECT_DATE,
+			APV_WRITEDATE 
+		FROM CBH_STAFF cs2,(SELECT 
+								APV_NO, 
+								APV_DIV_NAME, 
+								APV_TITLE, 
+								APV_CONTENT, 
+								STAFF_NAME AS STAFF_MID_NAME,
+								APV_MID_DATE, 
+								STAFF_FNL_ID, 
+								APV_FNL_DATE, 
+								APV_REJECT_RSN,
+								APV_REJECT_DATE,
+								APV_WRITEDATE 
+							FROM CBH_STAFF cs RIGHT OUTER JOIN (SELECT 
+																	APV_NO, 
+																	APV_DIV_NAME, 
+																	APV_TITLE, 
+																	APV_CONTENT, 
+																	STAFF_MID_ID,
+																	APV_MID_DATE, 
+																	STAFF_FNL_ID, 
+																	APV_FNL_DATE, 
+																	APV_REJECT_RSN,
+																	APV_REJECT_DATE,
+																	APV_WRITEDATE
+																FROM CBH_APV ch,CBH_APV_DIV cad  
+																WHERE ch.APV_DIV_NO = cad.APV_DIV_NO AND ch.STAFF_ID LIKE #{STAFF_ID}) t1 
+							ON cs.STAFF_ID = t1.STAFF_MID_ID) t2 
+		WHERE cs2.STAFF_ID = t2.STAFF_FNL_ID
+			AND t2.APV_FNL_DATE IS NOT NULL
+			ORDER BY APV_NO DESC) t4
+	
+	</select>
+	
+	<select id="selectMyRejectApvByStaffId" resultType="HashMap">
+		SELECT 
+			APV_NO, 
+			APV_DIV_NAME, 
+			APV_TITLE, 
+			STAFF_MID_NAME,
+			APV_MID_DATE,
+			STAFF_NAME AS STAFF_FNL_NAME, 
+			APV_FNL_DATE, 
+			APV_REJECT_RSN,
+			APV_REJECT_DATE,
+			APV_WRITEDATE 
+		FROM CBH_STAFF cs2,(SELECT 
+								APV_NO, 
+								APV_DIV_NAME, 
+								APV_TITLE, 
+								APV_CONTENT, 
+								STAFF_NAME AS STAFF_MID_NAME,
+								APV_MID_DATE, 
+								STAFF_FNL_ID, 
+								APV_FNL_DATE, 
+								APV_REJECT_RSN,
+								APV_REJECT_DATE,
+								APV_WRITEDATE 
+							FROM CBH_STAFF cs RIGHT OUTER JOIN (SELECT 
+																	APV_NO, 
+																	APV_DIV_NAME, 
+																	APV_TITLE, 
+																	APV_CONTENT, 
+																	STAFF_MID_ID,
+																	APV_MID_DATE, 
+																	STAFF_FNL_ID, 
+																	APV_FNL_DATE, 
+																	APV_REJECT_RSN,
+																	APV_REJECT_DATE,
+																	APV_WRITEDATE
+																FROM CBH_APV ch,CBH_APV_DIV cad  
+																WHERE ch.APV_DIV_NO = cad.APV_DIV_NO AND ch.STAFF_ID LIKE #{STAFF_ID}) t1 
+							ON cs.STAFF_ID = t1.STAFF_MID_ID) t2 
+		WHERE cs2.STAFF_ID = t2.STAFF_FNL_ID
+			AND t2.APV_REJECT_DATE IS NOT NULL
+			 ORDER BY APV_NO DESC
+	</select>
+	
+	<select id="selectCountMyRejectApvByStaffId" resultType="int">
+	SELECT COUNT(*) FROM
+				(SELECT 
+			APV_NO, 
+			APV_DIV_NAME, 
+			APV_TITLE, 
+			STAFF_MID_NAME,
+			APV_MID_DATE,
+			STAFF_NAME AS STAFF_FNL_NAME, 
+			APV_FNL_DATE, 
+			APV_REJECT_RSN,
+			APV_REJECT_DATE,
+			APV_WRITEDATE 
+		FROM CBH_STAFF cs2,(SELECT 
+								APV_NO, 
+								APV_DIV_NAME, 
+								APV_TITLE, 
+								APV_CONTENT, 
+								STAFF_NAME AS STAFF_MID_NAME,
+								APV_MID_DATE, 
+								STAFF_FNL_ID, 
+								APV_FNL_DATE, 
+								APV_REJECT_RSN,
+								APV_REJECT_DATE,
+								APV_WRITEDATE 
+							FROM CBH_STAFF cs RIGHT OUTER JOIN (SELECT 
+																	APV_NO, 
+																	APV_DIV_NAME, 
+																	APV_TITLE, 
+																	APV_CONTENT, 
+																	STAFF_MID_ID,
+																	APV_MID_DATE, 
+																	STAFF_FNL_ID, 
+																	APV_FNL_DATE, 
+																	APV_REJECT_RSN,
+																	APV_REJECT_DATE,
+																	APV_WRITEDATE
+																FROM CBH_APV ch,CBH_APV_DIV cad  
+																WHERE ch.APV_DIV_NO = cad.APV_DIV_NO AND ch.STAFF_ID LIKE #{STAFF_ID}) t1 
+							ON cs.STAFF_ID = t1.STAFF_MID_ID) t2 
+		WHERE cs2.STAFF_ID = t2.STAFF_FNL_ID
+			AND t2.APV_REJECT_DATE IS NOT NULL
+			 ORDER BY APV_NO DESC) t4
+	</select>
+	
+	<select id="selectCountRequestApvByStaffId" resultType="int">
+		SELECT COUNT(*) FROM
+		(SELECT  APV_NO, 
+				APV_DIV_NAME,
+				APV_TITLE,
+				STAFF_NAME,
+				STAFF_MID_ID,
+				APV_MID_DATE,
+				STAFF_FNL_ID,
+				APV_REJECT_DATE,
+				APV_FNL_DATE, 
+				APV_WRITEDATE 
+		FROM CBH_STAFF cs2, (SELECT DISTINCT (APV_NO),
+									APV_DIV_NAME,
+									APV_TITLE,
+									t2.STAFF_ID,
+									STAFF_MID_ID,
+									APV_MID_DATE,
+									STAFF_FNL_ID,
+									APV_REJECT_DATE,
+									APV_FNL_DATE, 
+									APV_WRITEDATE
+							FROM CBH_STAFF cs , (SELECT * 
+												FROM CBH_APV_DIV cad , (SELECT * 
+																		FROM CBH_APV 
+																		WHERE STAFF_MID_ID LIKE #{STAFF_ID} 
+																		OR STAFF_FNL_ID LIKE #{STAFF_ID}) t1 
+												WHERE cad.APV_DIV_NO = t1.APV_DIV_NO) t2 
+							WHERE cs.STAFF_ID = t2.STAFF_ID 
+							AND (STAFF_MID_ID = #{STAFF_ID} AND APV_MID_DATE IS NULL AND APV_REJECT_DATE IS NULL) OR (STAFF_FNL_ID = #{STAFF_ID} AND APV_FNL_DATE IS NULL AND APV_REJECT_DATE IS NULL)) t3
+	WHERE cs2.STAFF_ID = t3.STAFF_ID ORDER BY APV_NO DESC) t5
+	
+	</select>
+
+
+
 </mapper>
