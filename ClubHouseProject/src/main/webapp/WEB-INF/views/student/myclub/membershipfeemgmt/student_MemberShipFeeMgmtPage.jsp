@@ -17,7 +17,6 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <style type="text/css">
@@ -90,14 +89,31 @@
 	font-weight: bold;
 }
 
-.selectDiv{
-background-color: #bfc9e3;
-color: white;
+.selectDiv {
+	background-color: #bfc9e3;
+	color: white !important;
+	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 50%;
+}
+
+a{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
 }
 
 a:hover {
-    color: white !important;
-    text-decoration: underline;
+    -webkit-transform: scale(1.15,1.15);
+    -moz-transform: scale(1.15,1.15);
+    -o-transform: scale(1.15,1.15);
+    -ms-transform: scale(1.15,1.15);
+    transform: scale(1.15,1.15);
 }
 </style>
 
@@ -155,8 +171,7 @@ function save(){
 	
 	alert("저장됨");
 	window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
-}
-hn               
+}               
 
 function plusCode(){
 	var TABLE = $("#TABLE").val();
@@ -297,10 +312,20 @@ function deleteRow() {
 	    }
 	}
 	
-function clickMove(target) {
-	$(".selectDiv").removeClass("selectDiv");
-	target.classList.toggle('selectDiv');
-}	
+document.addEventListener("DOMContentLoaded", function () {
+	
+	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+	var url1 = document.getElementById("student_MemberShipFeeMgmtPage");
+	var url2 = document.getElementById("student_MemberShipFeeMgmtListPage");
+		
+		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+			$("#student_MemberShipFeeMgmtPage").attr('class','selectDiv');
+		
+		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+			$("#student_MemberShipFeeMgmtListPage").attr('class','selectDiv');
+		}
+});
 </script>
 </head>
 <body>
@@ -328,8 +353,9 @@ function clickMove(target) {
 						  <div class="row ps-1 p-2 mb-2">
 							<div  class="col text-center" style="border-right: 2px solid #ededed;">
 								<div class="row" style="justify-content: center">
-									<a href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtPage"
-									 class="col-auto px-3" onmouseover="clickMove(this)" style="cursor: pointer; border-radius: 2rem;
+									<a id="student_MemberShipFeeMgmtPage"  
+									 href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtPage"
+									 class="col-auto px-3" style="cursor: pointer; border-radius: 2rem;
 									 color: #4140cb; font-weight: bold; text-decoration:none;">
 									 회비 내역 작성
 									</a>
@@ -338,8 +364,9 @@ function clickMove(target) {
 							
 							<div  class="col text-center">
 								<div class="row" style="justify-content: center">
-									<a href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage"
-									 class="col-auto px-3" onmouseover="clickMove(this)"  style="cursor: pointer; border-radius: 2rem;
+									<a id="student_MemberShipFeeMgmtListPage" 
+									 href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage"
+									 class="col-auto px-3" style="cursor: pointer; border-radius: 2rem;
 									  color: #4140cb; font-weight: bold; text-decoration:none;">
 									 회비 내역
 									</a>

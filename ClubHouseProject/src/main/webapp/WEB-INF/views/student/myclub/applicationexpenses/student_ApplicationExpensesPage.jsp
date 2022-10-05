@@ -63,20 +63,47 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
 
 .selectDiv {
 	background-color: #bfc9e3;
-	color: white;
+	color: white !important;
+	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 50%;
+}
+
+a{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
 }
 
 a:hover {
-	color: white !important;
-	text-decoration: underline;
+    -webkit-transform: scale(1.15,1.15);
+    -moz-transform: scale(1.15,1.15);
+    -o-transform: scale(1.15,1.15);
+    -ms-transform: scale(1.15,1.15);
+    transform: scale(1.15,1.15);
 }
 </style>
 
 <script type="text/javascript">
-	function clickMove(target) {
-		$(".selectDiv").removeClass("selectDiv");
-		target.classList.toggle('selectDiv');
-	}
+document.addEventListener("DOMContentLoaded", function () {
+	
+	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+	var url1 = document.getElementById("student_ApplicationExpensesPage");
+	var url2 = document.getElementById("student_ApplicationExpensesListPage");
+		
+		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+			$("#student_ApplicationExpensesPage").attr('class','selectDiv');
+		
+		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+			$("#student_ApplicationExpensesListPage").attr('class','selectDiv');
+		}
+});
 </script>
 
 </head>
@@ -105,9 +132,9 @@ a:hover {
 								<div class="col text-center"
 									style="border-right: 2px solid #ededed;">
 									<div class="row" style="justify-content: center">
-										<a
+										<a	id="student_ApplicationExpensesPage"
 											href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
+											class="col-auto px-3" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											신청서 작성 </a>
 									</div>
@@ -115,9 +142,9 @@ a:hover {
 
 								<div class="col text-center">
 									<div class="row" style="justify-content: center">
-										<a
+										<a	id="student_ApplicationExpensesListPage"	
 											href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesListPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
+											class="col-auto px-3" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											신청 내역 </a>
 									</div>
@@ -256,15 +283,15 @@ a:hover {
 											<div class="col"></div>
 											<div class="col-4"
 												style="font-weight: bold; text-align: right;">
-												신 청 자 : 박한희 (인) <img
+												신 청 자 : ${ClubBossInfo.GetClubBoss.stud_name} (인) <img
 													style="width: 100px; transform: translate(50%, -60%);"
-													src="/cbh/resources/img/student/myclub/applicationexpenses/payment.png">
+													src="/cbh/resources/img/student/myclub/applicationexpenses/donue_signature.png">
 											</div>
 										</div>
 
 										<div class="row my-3">
 											<div class="col-8" style="font-size: 25px; font-weight: bold;">
-												중앙정보처리학원 총장 귀하 <img
+												중앙정보처리학원 총장 <img
 													style="width: 100px; transform: translate(-60%, -5%);"
 													src="/cbh/resources/img/student/myclub/applicationexpenses/president.png">
 											</div>

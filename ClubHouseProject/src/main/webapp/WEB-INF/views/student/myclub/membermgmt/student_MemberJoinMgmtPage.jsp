@@ -18,13 +18,31 @@
 <style type="text/css">
 .selectDiv {
 	background-color: #bfc9e3;
-	color: white;
+	color: white !important;
+	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 50%;
+}
+
+a{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
 }
 
 a:hover {
-	color: white !important;
-	text-decoration: underline;
+    -webkit-transform: scale(1.15,1.15);
+    -moz-transform: scale(1.15,1.15);
+    -o-transform: scale(1.15,1.15);
+    -ms-transform: scale(1.15,1.15);
+    transform: scale(1.15,1.15);
 }
+
 </style>
 
 <script type="text/javascript">
@@ -70,10 +88,22 @@ a:hover {
 		location.reload();
 	}
 	
-	function clickMove(target) {
-		$(".selectDiv").removeClass("selectDiv");
-		target.classList.toggle('selectDiv');
-	}
+
+	document.addEventListener("DOMContentLoaded", function () {
+		
+		var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+		var url1 = document.getElementById("student_MemberMgmtPage");
+		var url2 = document.getElementById("student_MemberJoinMgmtPage");
+			
+			if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+				$("#student_MemberMgmtPage").attr('class','selectDiv');
+			
+			}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+				$("#student_MemberJoinMgmtPage").attr('class','selectDiv');
+			}
+	});
+	
 </script>
 </head>
 <body>
@@ -101,9 +131,8 @@ a:hover {
 								<div class="col text-center"
 									style="border-right: 2px solid #ededed;">
 									<div class="row" style="justify-content: center">
-										<a
-											href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
+										<a  href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
+											class="col-auto px-3" id="student_MemberMgmtPage" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											전체 회원 관리 </a>
 									</div>
@@ -111,9 +140,8 @@ a:hover {
 
 								<div class="col text-center">
 									<div class="row" style="justify-content: center">
-										<a
-											href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
+										<a  href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
+											class="col-auto px-3" id="student_MemberJoinMgmtPage" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											가입 관리 </a>
 									</div>
