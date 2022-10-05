@@ -82,21 +82,8 @@ body {
 
 </style>
 <script type="text/javascript">
-$(function() {
-	  // Sidebar toggle behavior
-	  $('#sidebarCollapse').on('click', function() {
-	    $('#sidebar, #content').toggleClass('active');
-	  });
-	});
-function ul(index) {
-	console.log('click!' + index)
-	
-	var underlines = document.querySelectorAll(".underline");
 
-	for (var i = 0; i < underlines.length; i++) {
-		underlines[i].style.transform = 'translate3d(' + index * 100 + '%,0,0)';
-	}
-}
+
 	function getStaffInfo(){
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
 		xhr.onreadystatechange = function () {

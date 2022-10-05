@@ -637,7 +637,7 @@
 											style="font-weight: bold; text-align: right;"><span id="applicant">
 											신 청 자 : 박한희 (인)</span><img
 												style="width: 100px; transform: translate(50%, -60%);"
-												src="/cbh/resources/img/student/myclub/applicationexpenses/payment.png">
+												src="/cbh/resources/img/student/myclub/applicationexpenses/donue_signature.png">
 										</div>
 									</div>
 
