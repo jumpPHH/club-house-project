@@ -291,9 +291,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 										<div class="row my-3">
 											<div class="col-8" style="font-size: 25px; font-weight: bold;">
-												중앙정보처리학원 총장 <img
-													style="width: 100px; transform: translate(-60%, -5%);"
-													src="/cbh/resources/img/student/myclub/applicationexpenses/president.png">
+												중앙정보처리학원 총장 귀하 
 											</div>
 											
 											<div class="col" style="text-align: right;">
