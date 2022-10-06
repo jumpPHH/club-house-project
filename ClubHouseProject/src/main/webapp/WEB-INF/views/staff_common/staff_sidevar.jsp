@@ -144,14 +144,14 @@ function ul(index) {
    <p class="text-gray font-weight-bold text-uppercase ps-3 mt-3 small mb-0">학생</p>
 
   <ul class="nav flex-column ps-3 mb-0">
-    <li class="nav-item ps-1">
+    <li class="nav-item ps-1" id="StudentSearchPage">
       <a href="/cbh/staff/studentSearch/staff_StudentSearchPage" class="nav-link text-dark font-italic">
                 <i class=" bi bi-pencil-square me-2" style="color: #FA5858"></i>
                 학생조회
             </a>
     </li>
     
-    <li class="nav-item ps-1">
+    <li class="nav-item ps-1" id="StudentNoticePage">
       <a href="/cbh/staff/studentNotice/staff_StudentNoticePage" class="nav-link text-dark font-italic">
                 <i class=" bi bi-ui-checks me-2" style="color: #FA5858"></i>
                 학생공지사항
@@ -162,13 +162,13 @@ function ul(index) {
    <p class="text-gray font-weight-bold text-uppercase ps-3 mt-3 small  mb-0">동아리</p>
 
   <ul class="nav flex-column ps-3 mb-0">
- <li class="nav-item ps-1">
+ <li class="nav-item ps-1" id="ApplyClubPage">
       <a href="/cbh/staff/applyClub/staff_applyClubPage" class="nav-link text-dark font-italic">
                 <i class=" bi bi-house-door-fill me-2" style="color: #FA5858"></i>
             	동아리신청
             </a>
     </li>
-    <li class="nav-item ps-1">
+    <li class="nav-item ps-1" id="MainPage">
       <a href="/cbh/student/myclub/main/student_MainPage" class="nav-link text-dark font-italic">
                 <i class="bi bi-house-door-fill me-2" style="color: #FA5858"></i>
                 동아리관리

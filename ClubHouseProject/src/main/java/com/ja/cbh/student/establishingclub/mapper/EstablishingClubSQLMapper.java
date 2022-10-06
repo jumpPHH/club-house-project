@@ -20,9 +20,14 @@ public interface EstablishingClubSQLMapper {
 	
 	
 	//
-	public ArrayList<Club_ApplVO> selectAllEstablishingRequestResult();
+	public ArrayList<Club_ApplVO> selectAllEstablishingRequestResult(
+			@Param("searchWord") String searchWord, 
+			@Param("pageNum") int pageNum);
 	
-	public Club_ApplVO selectRequestByNo(int applNo);
+	public Club_ApplVO selectRequestByNo(int club_appl_no);
+	
+	public int selectCount(@Param("club_appl_no")int club_appl_no,
+			@Param("searchWord") String searchWord);
 	
 	
 }
