@@ -24,16 +24,188 @@
 				
 				<!-- 여기다 작성하세요 -->
 				<div class="row mb-4 ps-2" style="height: 25vh">
-					<div class="col-5 box me-4" style="width: 40vw">결재진행</div>
-					<div class="col-5 box " style="width: 40vw">결재함</div>
+					<div class="col box me-4">
+						<div class="row">
+							<div class="col text-between pt-1" style="color:#FA5858">
+							<span style="font-weight: bold;font-size: 1.1rem;color: black;">결재문서</span> 
+							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/approval/staff_DraftManagementPage'">전체보기</span> 
+							</div>
+						</div>
+						<div class="row">
+							<div class="ps-3 col text-warning text-primary" style="font-size: 1rem; font-weight: bold">
+								진행중
+							</div>
+						</div>
+						<div class="row">
+							<div class="col ps-0">
+								<table class="table table-sm mb-1 table-borderless" style="font-size: 0.8rem">
+									<tbody>
+										<c:choose>
+											<c:when test="${not empty data.MyProcessApvList }">
+												<c:forEach begin="0" end="1" step="1" items="${data.MyProcessApvList }" var="data">
+													<tr>
+														<th class="text-center col-auto py-0 ps-3"><i class="bi bi-dot"></i></th>
+														<td class="py-0">${data.APV_TITLE }</td>
+														<td class="text-center col-2 py-0 "><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
+													</tr>
+												</c:forEach>
+											</c:when>										
+											<c:otherwise>
+												<tr style="height: 19.19px">
+													<th class="text-center col-auto py-0 ps-3"></th>
+													<td class="py-0"></td>
+													<td class="text-center col-2 py-0"></td>	
+												</tr>
+												<tr style="height: 19.19px">
+													<th class="text-center col-auto py-0 ps-3"></th>
+													<td class="py-0"></td>
+													<td class="text-center col-2 py-0"></td>	
+												</tr>
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							</div>						
+						</div>
+						
+						<div class="row">
+						</div>
+						<div class="row" >
+							<div class="ps-3 col text-primary" style="font-size: 1rem; font-weight: bold">
+								완료
+							</div>
+						</div>
+						<div class="row">
+							<div class="col ps-0">
+								<table class="table table-sm mb-1 table-borderless" style="font-size: 0.8rem">
+									<tbody>
+										<c:choose>
+											<c:when test="${not empty data.MyCompleteApvList }">
+												<c:forEach begin="0" end="1" step="1" items="${data.MyCompleteApvList }" var="data">
+													<tr>
+														<th class="text-center col-auto py-0 ps-3"><i class="bi bi-dot"></i></th>
+														<td class="py-0">${data.APV_TITLE }</td>
+														<td class="text-center col-2 py-0"><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
+													</tr>
+												</c:forEach>
+											</c:when>										
+											<c:otherwise>
+												<tr style="height: 19.19px">
+													<th class="text-center col-auto py-0 ps-3"></th>
+													<td class="py-0"></td>
+													<td class="text-center col-2 py-0"></td>	
+												</tr>
+												<tr style="height: 19.19px">
+													<th class="text-center col-auto py-0  ps-3"></th>
+													<td class="py-0"></td>
+													<td class="text-center col-2 py-0"></td>	
+												</tr>
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							</div>						
+						</div>
+						
+						<div class="row">
+						</div>
+						<div class="row">
+							<div class="ps-3 col text-danger" style="font-size: 1rem; font-weight: bold">
+								반려
+							</div>
+						</div>
+						<div class="row">
+							<div class="col ps-0">
+								<table class="table table-sm mb-1 table-borderless" style="font-size: 0.8rem">
+									
+									<tbody>
+										<c:choose>
+											<c:when test="${not empty data.MyRejectApvList }">
+												<c:forEach begin="0" end="1" step="1" items="${data.MyRejectApvList }" var="data">
+													<tr>
+														<th class="text-center col-auto py-0 ps-3"><i class="bi bi-dot"></i></th>
+														<td class="py-0">${data.APV_TITLE }</td>
+														<td class="text-center col-2 py-0"><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
+													</tr>
+												</c:forEach>
+											</c:when>										
+											<c:otherwise>
+												<tr style="height: 19.19px">
+													<th class="text-center col-auto py-0 ps-3"></th>
+													<td class="py-0"></td>
+													<td class="text-center col-2 py-0"></td>	
+												</tr>
+												<tr style="height: 19.19px">
+													<th class="text-center col-auto py-0 ps-3"></th>
+													<td class="py-0"></td>
+													<td class="text-center col-2 py-0"></td>	
+												</tr>
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							</div>						
+						</div>
+						
+						<div class="row">
+						</div>
+					
+					
+					
+					
+					</div>
+					
+					
+					
+					
+					<div class="col box">
+					<div class="row">
+						<div class="col text-between pt-1" style="color:#FA5858">
+							<span style="font-weight: bold;font-size: 1.1rem;color: black;">결재함</span> 
+							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/approval/staff_DraftManagementPage'">전체보기</span> 
+							</div>
+					</div>
+					
+					</div>
 				</div>
 				<div class="row mb-4 ps-2" style="height: 25vh">
-				<div class="col-5 box me-4" style="width: 40vw">동아리신청</div>
-				<div class="col-5 box " style="width: 40vw">동아리경비신청</div>
+				<div class="col box me-4">
+					<div class="row">
+						<div class="col text-between pt-1" style="color:#FA5858">
+							<span style="font-weight: bold;font-size: 1.1rem;color: black;">동아리신청</span> 
+							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/approval/staff_DraftManagementPage'">전체보기</span> 
+							</div>
+					</div>
+				</div>
+				<div class="col box">
+					<div class="row">
+						<div class="col text-between pt-1" style="color:#FA5858">
+							<span style="font-weight: bold;font-size: 1.1rem;color: black;">동아리 경비신청</span> 
+							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/approval/staff_DraftManagementPage'">전체보기</span> 
+							</div>
+					</div>
+				
+				</div>
 				</div>
 				<div class="row ps-2" style="height: 25vh">
-				<div class="col-5 box me-4" style="width: 40vw">학생공지사항</div>
-				<div class="col-5 box " style="width: 40vw">알람내역</div>
+				<div class="col box me-4">
+				<div class="row">
+						<div class="col text-between pt-1" style="color:#FA5858">
+							<span style="font-weight: bold;font-size: 1.1rem;color: black;">학생공지사항</span> 
+							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/approval/staff_DraftManagementPage'">전체보기</span> 
+							</div>
+					</div>
+				</div>
+				<div class="col box " >
+				<div class="row">
+						<div class="col text-between pt-1" style="color:#FA5858">
+							<span style="font-weight: bold;font-size: 1.1rem;color: black;">봉사신청</span> 
+							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/approval/staff_DraftManagementPage'">전체보기</span> 
+							</div>
+					</div>
+				
+				
+				</div>
 				</div>
 				
 				

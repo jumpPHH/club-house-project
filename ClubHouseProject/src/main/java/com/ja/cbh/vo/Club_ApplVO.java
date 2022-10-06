@@ -10,7 +10,9 @@ public class Club_ApplVO {
 	private int club_appl_people_count; //동아리 신청 회원수
 	private String club_purpose; //동아리 설립 및 목적
 	private Date club_appl_date; //동아리 신청일자
-	private String club_appl_state; 
+	private String club_appl_state;
+
+
 	public Club_ApplVO() {
 		super();
 	}
@@ -67,6 +69,7 @@ public class Club_ApplVO {
 	public void setClub_appl_state(String club_appl_state) {
 		this.club_appl_state = club_appl_state;
 	}
+	
 	
 	
 	}

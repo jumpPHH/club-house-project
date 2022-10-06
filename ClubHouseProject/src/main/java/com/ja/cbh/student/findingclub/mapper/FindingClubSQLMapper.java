@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.ja.cbh.vo.ClubVO;
 import com.ja.cbh.vo.Club_Dept_CategoryVO;
 import com.ja.cbh.vo.Club_StudVO;
+import com.ja.cbh.vo.StudVO;
 
 public interface FindingClubSQLMapper {
 	// 모든 클럽카테고리 가져오기
@@ -19,4 +20,6 @@ public interface FindingClubSQLMapper {
 	public ClubVO selectClubByNo(int clubNo);
 	// 일반회원이 특정 클럽 가입신청시 insert
 	public void insertClubStud(Club_StudVO clubStudVO);
+	// 아이디에 해당하는 사람 정보 갖고오기
+	public StudVO selectClubStudByStudId(String studId);
 }

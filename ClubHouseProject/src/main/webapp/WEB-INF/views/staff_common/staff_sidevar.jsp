@@ -65,6 +65,7 @@
 }
 li:hover{
 	border-right: 5px solid #FA5858;
+	background-color: #e7e7e7
 }
 
 body {
@@ -90,6 +91,7 @@ body {
 
 </style>
 <script type="text/javascript">
+<<<<<<< HEAD
 
 $(function() {
 	  // Sidebar toggle behavior
@@ -102,11 +104,10 @@ function ul(index) {
 	console.log('click!' + index)
 	
 	var underlines = document.querySelectorAll(".underline");
+=======
+>>>>>>> 97d423caa3f1c56e33bed2dac9be6d54d0adea11
 
-	for (var i = 0; i < underlines.length; i++) {
-		underlines[i].style.transform = 'translate3d(' + index * 100 + '%,0,0)';
-	}
-}
+
 	function getStaffInfo(){
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
 		xhr.onreadystatechange = function () {

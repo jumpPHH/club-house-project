@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper	namespace="com.ja.cbh.student.clubboard.mapper.ClubBoardSQLMapper">
+<mapper	namespace="com.ja.cbh.student.myclub.clubboard.mapper.ClubBoardSQLMapper">
 	<select id="selectClubBoardListByClubNo"  resultType="com.ja.cbh.vo.Club_BoardVO">
 		SELECT * FROM CBH_CLUB_BOARD
 		WHERE CLUB_NO = #{clubNo}
@@ -41,6 +41,12 @@
 		WHERE CLUB_Board_NO = #{clubBoardNo}
 	</update>
 	
+	<!-- 클럽보드 이미지 갖고오기 -->
+	<select id="selectClubBoardImageByClubBoardNoAndClubNo" resultType="com.ja.cbh.vo.Club_BoardImageVO">
+		SELECT * FROM CBH_CLUB_BOARDIMAGE
+		WHERE CLUB_BOARD_NO = #{clubBoardNo}
+		AND CLUB_NO = #{clubNo}
+	</select>
 	
 	
 	<!-- 작성하기 -->
@@ -99,6 +105,7 @@
 		INSERT INTO CBH_CLUB_BOARDIMAGE VALUES(
 			CBH_CLUB_BOARDIMAGE_SEQ.nextval,
 			#{clubBoardImageVO.club_board_no},
+			#{clubBoardImageVO.club_no},
 			#{clubBoardImageVO.club_board_image_link}
 		)
 	</insert>

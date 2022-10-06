@@ -21,16 +21,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO CBH_CLUB VALUES(
 			CBH_CLUB_SEQ.nextval,
 			1,
+			#{clubVO.club_category_no},
+			#{clubVO.club_boss},
+			#{clubVO.club_name},
+			#{clubVO.club_description},
+			#{clubVO.club_people_count},
 			1,
-			#{club_boss},
-			#{club_name},
-			#{club_description},
-			#{club_people_count},
-			1,
-			#{club_title_image},
-			#{club_dscrp_image},
+			#{clubVO.club_title_image},
+			#{clubVO.club_dscrp_image},
 			SYSDATE,
-			#{club_appl_dt}
+			#{clubVO.club_appl_dt}
 		)
 	</insert>
 	
@@ -45,7 +45,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND CLUB_APPL_STATE = 1
 	</select>
 
-
+	<select id="selectClubStudByStudId" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT * FROM CBH_CLUB_STUD
+		WHERE STUD_ID = #{studId}
+	</select>
+	
+	<update id="updateClubApplBy">
+	 UPDATE CBH_CLUB_APPL
+	 SET CLUB_APPL_STATE = 4
+	 WHERE CLUB_APPL_NO = #{applNo}
+	</update>
 
 
 	<!-- 전체 -->
@@ -53,10 +62,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM CBH_CLUB_APPL
 	</select>
 	
+	<select id="selectRequestByStudId" resultType="com.ja.cbh.vo.Club_ApplVO">
+		SELECT * FROM CBH_CLUB_APPL
+		WHERE STUD_ID = #{studId}
+	</select>
+	
 	<select id="selectRequestByNo" resultType="com.ja.cbh.vo.Club_ApplVO">
 		SELECT * FROM CBH_CLUB_APPL
-		WHERE CLUB_APPL_NO = #{applNo}
+		WHERE STUD_ID = #{applNo}
 	</select>
+
 
 </mapper>
 
