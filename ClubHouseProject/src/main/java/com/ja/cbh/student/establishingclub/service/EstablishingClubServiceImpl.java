@@ -10,6 +10,7 @@ import com.ja.cbh.student.establishingclub.mapper.EstablishingClubSQLMapper;
 import com.ja.cbh.vo.ClubVO;
 import com.ja.cbh.vo.Club_ApplVO;
 import com.ja.cbh.vo.Club_StudVO;
+import com.ja.cbh.vo.StudVO;
 
 @Service
 public class EstablishingClubServiceImpl {
@@ -17,8 +18,8 @@ public class EstablishingClubServiceImpl {
 	@Autowired
 	private EstablishingClubSQLMapper establishingClubSQLMapper;
 	
-	public void inputClubAppl(Club_ApplVO clubApplVo) {
-		establishingClubSQLMapper.insertClubAppl(clubApplVo);
+	public void inputClubAppl(@Param(value="clubApplVo") Club_ApplVO clubApplVO) {
+		establishingClubSQLMapper.insertClubAppl(clubApplVO);
 		
 	}
 	//stud_id에 해당하는 사람의 동아리 신청 내역 가져오기.
@@ -53,6 +54,12 @@ public class EstablishingClubServiceImpl {
 		Club_StudVO clubStudData = establishingClubSQLMapper.selectClubStudByStudId(studId);
 		
 		return clubStudData;
+	}
+	
+	//동아리 회장도 동아리 회원으로 등록하기
+	public void inputClubStudByStud(StudVO studVO) {
+		establishingClubSQLMapper.insertClubStudByStud(studVO);
+		
 	}
 	
 

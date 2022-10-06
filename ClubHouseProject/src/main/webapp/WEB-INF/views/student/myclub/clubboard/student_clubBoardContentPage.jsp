@@ -8,21 +8,56 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<script src="https://code.jquery.com/jquery-3.6.1.js"
-	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-	crossorigin="anonymous">
-	
-</script>
+<style type="text/css">
+	.selectDiv {
+	background-color: #bfc9e3;
+	color: white !important;
+	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 60%;
+}
+
+.aClick{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.aClick:hover {
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+}
+</style>
 
 
 
 
 
 <script type="text/javascript">
+
+document.addEventListener("DOMContentLoaded", function () {
+	
+	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+	var url1 = document.getElementById("student_indexPage");
+	var url2 = document.getElementById("student_MemberJoinMgmtPage");
+	
+		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+			$("#student_indexPage").attr('class','selectDiv');
+		
+		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+			$("#student_MemberJoinMgmtPage").attr('class','selectDiv');
+		}
+});
+
 
 	var sessionUserId = "${sessionUserInfo.stud_id}";
 	
@@ -234,21 +269,21 @@
 							<div class="col text-center">
 								<div class="row"
 									style="justify-content: center; border-right: 2px solid #ededed">
-									<a
-										href="/cbh/student/myclub/clubactivities/student_indexPage?club_no=${map.clubActData.club_no }"
-										class="col-auto px-3" onmouseover="clickMove(this)"
+									<a	id="student_indexPage"
+										href="/cbh/student/myclub/clubboard/student_indexPage?club_no=${map.clubActData.club_no }"
+										class="col-auto px-3 aClick" 
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
-										동아리 활동내역 </a>
+										자유게시판 </a>
 								</div>
 							</div>
 
 							<div class="col text-center">
 								<div class="row" style="justify-content: center">
-									<a id="student_MemberShipFeeMgmtListPage"
+									<a id="student_MemberJoinMgmtPage"
 										href="/cbh/student/myclub/writeClubActPage?club_no=${map.clubActData.club_no }"
-										class="col-auto px-3"
+										class="col-auto px-3 aClick"
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
-										활동내역 작성 </a>
+										자유게시판 작성 </a>
 								</div>
 							</div>
 						</div>
@@ -314,7 +349,7 @@
 										
 													<div class="row">
 														<c:forEach items="${map.clubBoardImageList }" var="clubBoardImageLink">
-															<div class="col">
+															<div class="col mb-5" style="padding:2em;">
 																<img src="${clubBoardImageLink.club_board_image_link }"><br>
 															</div>
 														</c:forEach>
@@ -325,18 +360,22 @@
 													<div class="row">
 														<div class="col" id="buttonBox"
 															style="padding: 2em; border-top: 1px solid #ddd">
-															<button class="btn btn-secondary">목록</button>
-
+															<span><button class="btn btn-secondary">목록</button></span>
+															<span><button class="btn btn-primary" onclick="location.href='/cbh/student/myclub/clubboard/student_modifyClubBoardPage?club_no=${map.clubBoardData.club_no}&club_board_no=${map.clubBoardData.club_board_no }'">수정</button></span>
+															<span><button class="btn btn-danger"  onclick="location.href='/cbh/student/myclub/clubboard/student_deleteClubBoardProcess?club_no=${map.clubBoardData.club_no}&club_board_no=${map.clubBoardData.club_board_no }'">삭제</button></span>
 														</div>
 													</div>
 													
-													<!-- 댓글 리스트 박스 -->
+													<!-- 1 리스트 박스 -->
 													<div class="row mt-5">
 														<div class="col" id="commentListBox"  style="border:1px; border-radius:5px; border-color:gray;"><span style="font-weight:bold; font-size:20px">댓글</span>
-														<br> <hr style="height:5px; color:gray; width:8%; margin-bottom:3vh">
-															
 														</div>
 													</div>
+													<div class="row"  style="border-top:1px solid #ddd; margin-top:1em; width:15%; margin-left:1px;">
+														<div class="col">
+														</div>
+													</div>
+													
 													
 													<!-- 댓글작성박스 -->
 													<div class="row mt-5">

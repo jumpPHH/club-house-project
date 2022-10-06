@@ -9,5 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT CLUB_NO FROM CBH_CLUB_STUD
 		WHERE STUD_ID = #{studId} 
 	</select>
+	
+	<select id="selectClubStudByStudId" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT * FROM CBH_CLUB_STUD
+		WHERE STUD_ID = #{studId}
+	</select>
 
 </mapper> 

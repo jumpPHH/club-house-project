@@ -22,9 +22,51 @@
 
 
 <style type="text/css">
+.selectDiv {
+	background-color: #bfc9e3;
+	color: white !important;
+	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 60%;
+}
+
+.aClick{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.aClick:hover {
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+}
 </style>
 
 <script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+	
+	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+	var url1 = document.getElementById("student_indexPage");
+	var url2 = document.getElementById("student_MemberJoinMgmtPage");
+	
+		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+			$("#student_indexPage").attr('class','selectDiv');
+		
+		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+			$("#student_MemberJoinMgmtPage").attr('class','selectDiv');
+		}
+});
+
+
 	function seeTheReason() {
 		// 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
 		// 		xhr.onreadystatechange = function () {
@@ -74,19 +116,19 @@
 							<div class="col text-center">
 								<div class="row"
 									style="justify-content: center; border-right: 2px solid #ededed">
-									<a
+									<a  id="student_indexPage"
 										href="/cbh/student/myclub/clubboard/student_indexPage?club_no=${clubNo }"
-										class="col-auto px-3" onmouseover="clickMove(this)"
+										class="col-auto px-3 aClick"
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
-										메인 </a>
+										자유게시판 </a>
 								</div>
 							</div>
 
 							<div class="col text-center">
 								<div class="row" style="justify-content: center">
-									<a id="student_MemberShipFeeMgmtListPage"
+									<a id="student_MemberJoinMgmtPage"
 										href="/cbh/student/myclub/clubboard/writeClubBoardPage?club_no=${clubNo }"
-										class="col-auto px-3"
+										class="col-auto px-3 aClick"
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 										자유게시판 작성 </a>
 								</div>

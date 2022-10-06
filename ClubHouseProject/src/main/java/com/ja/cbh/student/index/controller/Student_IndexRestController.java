@@ -2,6 +2,7 @@ package com.ja.cbh.student.index.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,13 @@ public class Student_IndexRestController {
 	private Student_IndexServiceImpl student_IndexService;
 	
 	@RequestMapping("getClubNo")
-	public HashMap<String, Object> getClubNo(HttpSession session){
+	public HashMap<String, Object> getClubNo(HttpSession session, HttpServletResponse response){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 	
 		
 		StudVO studVO = (StudVO)session.getAttribute("sessionUserInfo");
 		
-		int clubNo = student_IndexService.getClubNo(studVO.getStud_id());
+		int clubNo = student_IndexService.getClubNo(studVO.getStud_id(), response);
 		
 		map.put("result", "success");
 		map.put("clubNo", clubNo);
