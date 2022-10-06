@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 
 
@@ -68,7 +69,7 @@
 		xhr.send(); 
 	}
 
-	function deleteNotice(noticeNo){
+	function deleteAppl(noticeNo){
 		
 		//var arr = new Array();
 
@@ -83,28 +84,73 @@
 			xhr.send();
 	}
 	
-	function refreshNoticeList(){
+	function refreshApplList(){
 		
 		var xhr = new XMLHttpRequest(); 
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var result = JSON.parse(xhr.responseText);
+				
+// 				var tbodyBox = document.getElementById("tbody");
+// 				tbodyBox.innerHTML = ""
+				
+				
 			}
 		}
+		
 	}
 	
-// 	function checkAll(){
-// 		$(".check").click();
+// 	function stateChange(){
+					
+// 				if($(".reject").click()){
+// 				var tdState = document.getElementById("state");
+// 				tdState.innerHTML = "";
+// 				tdState.innerHTML = "반려";
+// 				}
+				
+// 				if($(".accept").click()){
+// 				var tdState = document.getElementById("state");
+// 				tdState.innerHTML = "";
+// 				tdState.innerHTML = "승인";
+			
+// 		}
+		
 // 	}
 	
-	function checkAll(elm){
-		elm.checked;
+	function reject(){
+		if($(".reject").click()){
+				var tdState = document.getElementById("state");
+				tdState.innerHTML = "";
+				tdState.innerHTML = "반려";
+			}
+		
+		
 	}
+	
+	function accept(){
+		if($(".accept").click()){
+				var tdState = document.getElementById("state");
+				tdState.innerHTML = "";
+				tdState.innerHTML = "승인";
+			}
+		
+		
+	}
+	
+	
+	function checkAll(this){
+		if($(".checkAll").check()){
+			
+		}
+			
+		
+	}
+	
 
- 	window.addEventListener('DOMContentLoaded' , function checkAll(elm){
-    var checkBox = document.getElementById('check');
-    checkBox.checked;
- 	}
+
+ 	window.addEventListener('DOMContentLoaded' , function(){
+
+ 	});
 
 </script>
 </head>
@@ -121,6 +167,7 @@
             class="text-uppercase font-weight-bold">MENU</small>
       </button>
 		
+	<form action="./staff_applyClubPage" method="get">
 		<div class="row mt-4 box p-4"  style="border-color: gray" >
 			<div class="col-1">
 				동아리
@@ -135,7 +182,7 @@
 				<button onclick="deleteNotice()" class="btn btn-danger" type="button">삭제</button>
 			</div>			
 		</div>
-
+	</form>
 		
 	<div class="row mt-4 box p-4">
 		<div class="col">
@@ -149,7 +196,7 @@
 					<th class="col">상태</th>
 				<tr>
 			</thead>
-			<tbody>
+			<tbody id="tbody">
 					<!-- paging UI -->
 					<c:forEach items="${clubApplDataList}" var="clubApplData">
 						<tr>
@@ -159,7 +206,7 @@
 					      <td><a data-bs-toggle="modal" data-bs-target="#exampleModal">${clubApplData.club_ApplVO.club_name }</a></td>
 					      <td>${clubApplData.club_ApplVO.stud_id }</td>
 					      <td><fmt:formatDate value ="${clubApplData.club_ApplVO.club_appl_date }" pattern="yyyy년 MM월 hh시 mm분"/></td>
-					      <td>
+					      <td id="state">
 					      <c:choose>
 					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state == 0}">
 					      		승인
@@ -185,7 +232,7 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <h5 class="modal-title" id="exampleModalLabel">신청 상세</h5>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
@@ -219,8 +266,8 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">돌아가기</button>
-	        <button type="button" class="btn btn-danger">반려</button>
-	        <button type="button" class="btn btn-primary">검수</button>
+	        <button id="reject" onclick="reject()" type="button" class="btn btn-danger" data-bs-dismiss="modal">반려</button>
+	        <button id="accept" onclick="accept()" type="button" class="btn btn-primary" data-bs-dismiss="modal">승인</button>
 	      </div>
 	    </div>
 	  </div>
@@ -235,16 +282,16 @@
 							  		<li class="page-item disabled"><a class="page-link">&lt;</a></li>
 						  		</c:when>
 						  		<c:otherwise>
-						  		    <li class="page-item"><a class="page-link" href="./mainPage?pageNum=${startPage - 1 }${additionalParam}">&lt;</a></li>
+						  		    <li class="page-item"><a class="page-link" href="./staff_applyClubPage?pageNum=${startPage - 1 }${additionalParam}">&lt;</a></li>
 						  		</c:otherwise>
 						  </c:choose>
 						    <c:forEach begin="${startPage }" end="${endPage }" var="i">
 						    	<c:choose>
 						    		<c:when test="${i == currentPageNum }">
-										<li class="page-item active"><a class="page-link" href="./mainPage?pageNum=${i}${additionalParam}">${i}</a></li>  		
+										<li class="page-item active"><a class="page-link" href="./staff_applyClubPage?pageNum=${i}${additionalParam}">${i}</a></li>  		
 						    		</c:when>
 						    		<c:otherwise>
-						    			<li class="page-item"><a class="page-link" href="./mainPage?pageNum=${i}${additionalParam}">${i}</a></li>
+						    			<li class="page-item"><a class="page-link" href="./staff_applyClubPage?pageNum=${i}${additionalParam}">${i}</a></li>
 						    		</c:otherwise>
 						    	</c:choose>
 						    </c:forEach>
@@ -253,7 +300,7 @@
 							    	<li class="page-item disabled"><a class="page-link">&gt;</a></li>
 						    	</c:when>
 						    	<c:otherwise>
-						    		<li class="page-item"><a class="page-link" href="./mainPage?pageNum=${endPage+1}${additionalParam}">&gt;</a></li>
+						    		<li class="page-item"><a class="page-link" href="./staff_applyClubPage?pageNum=${endPage+1}${additionalParam}">&gt;</a></li>
 						    	</c:otherwise>
 						    </c:choose>
 						  </ul>

@@ -59,7 +59,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 전체 -->
 	<select id="selectAllEstablishingRequestResult" resultType="com.ja.cbh.vo.Club_ApplVO">
-		SELECT * FROM CBH_CLUB_APPL
+		SELECT t2.* FROM (
+			SELECT t1.* , ROWNUM as rnum FROM (
+				SELECT * FROM CBH_CLUB_APPL 
+					<if test="searchWord != null">
+							WHERE CLUB_NAME LIKE '%' || #{searchWord} || '%'
+					</if>
+				ORDER BY CLUB_APPL_NO DESC
+			)t1
+		)t2	
+		<![CDATA[
+		WHERE t2.rnum >= (#{pageNum}-1)*10+1 AND t2.rnum <= #{pageNum}*10
+		]]>	
+	</select>
+	
+	<select id="selectCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM CBH_CLUB_APPL 
+		WHERE CLUB_NAME LIKE '%' || #{searchWord} || '%'
 	</select>
 	
 	<select id="selectRequestByStudId" resultType="com.ja.cbh.vo.Club_ApplVO">
@@ -69,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectRequestByNo" resultType="com.ja.cbh.vo.Club_ApplVO">
 		SELECT * FROM CBH_CLUB_APPL
-		WHERE STUD_ID = #{applNo}
+		WHERE CLUB_APPL_NO = #{applNo}
 	</select>
 
 

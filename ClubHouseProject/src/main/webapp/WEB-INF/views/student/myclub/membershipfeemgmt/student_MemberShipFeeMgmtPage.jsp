@@ -98,7 +98,7 @@
     width: 50%;
 }
 
-a{
+.aClick{
     display: inline-block;
     color: #03c;
     -webkit-transition: 0.5s;
@@ -108,7 +108,7 @@ a{
     transition: 0.5s;
 }
 
-a:hover {
+.aClick:hover {
     -webkit-transform: scale(1.15,1.15);
     -moz-transform: scale(1.15,1.15);
     -o-transform: scale(1.15,1.15);
@@ -331,17 +331,16 @@ document.addEventListener("DOMContentLoaded", function () {
 <body>
 	<jsp:include
 		page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
-
 	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
-	<div class="page-content pl-5" id="content">
+	<div class="page-content p-5" id="content">
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
-			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
+			class="btn btn-light bg-white rounded-pill box px-4 mb-4">
 			<small
 				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
 			
-				<div class="row card box"
+		<div class="row card box"
 			style="width: 100%; height: 45px;">
 			<div class="dashboard-card-bottom">
 					<div class="row">
@@ -355,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
 								<div class="row" style="justify-content: center">
 									<a id="student_MemberShipFeeMgmtPage"  
 									 href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtPage"
-									 class="col-auto px-3" style="cursor: pointer; border-radius: 2rem;
+									 class="col-auto px-3 aClick" style="cursor: pointer; border-radius: 2rem;
 									 color: #4140cb; font-weight: bold; text-decoration:none;">
 									 회비 내역 작성
 									</a>
@@ -366,7 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
 								<div class="row" style="justify-content: center">
 									<a id="student_MemberShipFeeMgmtListPage" 
 									 href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage"
-									 class="col-auto px-3" style="cursor: pointer; border-radius: 2rem;
+									 class="col-auto px-3 aClick" style="cursor: pointer; border-radius: 2rem;
 									  color: #4140cb; font-weight: bold; text-decoration:none;">
 									 회비 내역
 									</a>
@@ -468,7 +467,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						</div>
 					</c:if>
 
-					<div class="row my-5"></div>
+					
 
 				</div>
 			</div>

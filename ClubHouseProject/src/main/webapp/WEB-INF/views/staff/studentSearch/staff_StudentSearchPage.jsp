@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 
 
@@ -24,7 +25,10 @@
 
 </style>
 <script type="text/javascript">
-	function clubData() {
+
+	
+
+	function studData() {
 	
 		var xhr = new XMLHttpRequest();
 	
@@ -32,15 +36,46 @@
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var jsonObj = JSON.parse(xhr.responseText);
 				
-				for(var dd of jsonObj.data){
+				console.log(jsonObj.studentData);
+				
+				for(var data of jsonObj.studentData){
 				var tbodyBox = document.getElementById("tbody");
 				var tr = document.createElement("tr");
+
+				var check = document.createElement("td");
+				tr.appendChild(check);
+
+	            var checkInput = document.createElement("input");
+	            checkInput.classList.add("check");
+	            checkInput.classList.add("form-check-input");
+	            checkInput.setAttribute("onclick","deleteValue(this)")
+	            checkInput.setAttribute("type","checkbox")
+	            check.appendChild(checkInput);
+				
 				var td1 = document.createElement("td");
+				td1.innerText = data.stud_id;
+				tr.appendChild(td1);	
+				
 				var td2 = document.createElement("td");
-				td1.innerText = dd.club_no;
-				td2.innerText = dd.club_name;
-				tr.appendChild(td1);
+				td2.innerText = data.stud_name;
 				tr.appendChild(td2);
+				
+				var td3 = document.createElement("td");
+				td3.innerText = data.stud_gender;
+				tr.appendChild(td3);
+				
+				var td4 = document.createElement("td");
+				td4.innerText = data.stud_dept;
+				tr.appendChild(td4);
+				
+				var td5 = document.createElement("td");
+				td5.innerText = data.stud_grade;
+				tr.appendChild(td5);
+				
+				var td6 = document.createElement("td");
+				td6.innerText = data.stud_state;
+				tr.appendChild(td6);
+				
 				tbodyBox.appendChild(tr);
 				
 				}
@@ -48,13 +83,31 @@
 			}
 		}
 	
-		xhr.open("post" , "/cbh/staff/club/clubData"); //리퀘스트 세팅..
-		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+		xhr.open("post" , "/cbh/staff/studentSearch/studData");
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhr.send();
 	}
 	
-	function clubStudData(){
+	
+	
+	function deleteData(stud_id){
+		var xhr = new XMLHttpRequest();
 		
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var jsonObj = JSON.parse(xhr.responseText);
+				
+				$(".checkedDelte").closest(".check").remove();
+				
+				//refreshStudDataList();
+				
+			}
+		}
+		xhr.open("get" , "/cbh/staff/studentSearch/deleteData?stud_id=" + stud_id);
+		xhr.send();
+	}
+	
+	function updateData(stud_id){
 		var xhr = new XMLHttpRequest();
 		
 		xhr.onreadystatechange = function() {
@@ -62,17 +115,96 @@
 				var jsonObj = JSON.parse(xhr.responseText);
 				
 				
+				
 			}
 		}
-	
-		xhr.open("post" , "/cbh/staff/club/clubData"); //리퀘스트 세팅..
-		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+		xhr.open("post" , "/cbh/staff/studentSearch/updateData");
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhr.send();
-		
 	}
 	
+	
+	function refreshStudDataList(stud_id){
+		var xhr = new XMLHttpRequest();
+		
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var jsonObj = JSON.parse(xhr.responseText);
+			
+					
+					var tbodyBox = document.getElementById("tbody");
+					tbodyBox.innerHTML = "";
+					
+					
+					for(var data of jsonObj.studentData){
+						var tbodyBox = document.getElementById("tbody");
+						var tr = document.createElement("tr");							
+							
+// 						if($(".check").click && $("deleteData()").click()){
+// 							$(".check").closest(".input").remove();
+// 						}
+						
+						
+						var check = document.createElement("td");
+						tr.appendChild(check);
+
+			            var checkInput = document.createElement("input");
+			            checkInput.classList.add("check");
+			            checkInput.classList.add("form-check-input");
+			            checkInput.setAttribute("onclick","deleteValue(this)")
+			            checkInput.setAttribute("type","checkbox")
+			            check.appendChild(checkInput);
+						
+						var td1 = document.createElement("td");
+						td1.innerText = data.stud_id;
+						tr.appendChild(td1);							
+						
+						var td2 = document.createElement("td");
+						td2.innerText = data.stud_name;
+						tr.appendChild(td2);
+						
+						var td3 = document.createElement("td");
+						td3.innerText = data.stud_gender;
+						tr.appendChild(td3);
+						
+						var td4 = document.createElement("td");
+						td4.innerText = data.stud_dept;
+						tr.appendChild(td4);
+						
+						var td5 = document.createElement("td");
+						td5.innerText = data.stud_grade;
+						tr.appendChild(td5);
+						
+						var td6 = document.createElement("td");
+						td6.innerText = data.stud_state;
+						tr.appendChild(td6);
+						
+						tbodyBox.appendChild(tr);
+						
+						
+						}
+					
+					
+				}
+			}
+			xhr.open("get" , "/cbh/staff/studentSearch/studData?stud_id=");
+			xhr.send();
+	}
+	
+	function totalCheck(){
+ 		$(".check").click();
+ 		
+ 	}
+	
+	function deleteValue(e){
+		e.classList.remove("checkedDelte")
+	}
+	
+	
 	window.addEventListener("DOMContentLoaded", function() {
-	clubData();
+	studData();
+	//refreshStudDataList();
+	
 });
 </script>
 </head>
@@ -122,7 +254,7 @@
 				<button class="btn btn" type="button">신규</button>
 			</div>
 			<div class="col" style="">
-				<button class="btn btn" type="button">삭제</button>
+				<button onclick="deleteData()" class="btn btn" type="button">삭제</button>
 			</div>
 			<div class="col" style="">
 				<button class="btn btn" type="button">저장</button>
@@ -139,7 +271,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th scope="col"><input onclick="totalCheck()" type="checkbox" class="form-check-input"></th>
+								<th scope="col"><input id="totalCheck" onclick="totalCheck()" type="checkbox" class="form-check-input"></th>
 								<th scope="col">학번</th>
 								<th scope="col">이름</th>
 								<th scope="col">성별</th>
@@ -148,18 +280,16 @@
 								<th scope="col">학적상태</th>
 							</tr>
 						</thead>
-						<tbody>
-							<c:forEach items="" var="list">
-								<tr>
-									<td><input onclick="" type="checkbox"  class="form-check-input"></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-							</c:forEach>
+						<tbody id="tbody">
+<!-- 								<tr> -->
+<!-- 									<td><input id="check" onclick="" type="checkbox"  class="form-check-input"></td> -->
+<!-- 									<td></td> -->
+<!-- 									<td></td> -->
+<!-- 									<td></td> -->
+<!-- 									<td></td> -->
+<!-- 									<td></td> -->
+<!-- 									<td></td> -->
+<!-- 								</tr> -->
 						</tbody>
 					</table>
 				</div>

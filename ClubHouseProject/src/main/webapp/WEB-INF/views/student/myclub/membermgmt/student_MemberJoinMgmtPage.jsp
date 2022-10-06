@@ -12,7 +12,6 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style type="text/css">
@@ -25,7 +24,7 @@
     width: 50%;
 }
 
-a{
+.aClick{
     display: inline-block;
     color: #03c;
     -webkit-transition: 0.5s;
@@ -35,7 +34,7 @@ a{
     transition: 0.5s;
 }
 
-a:hover {
+.aClick:hover {
     -webkit-transform: scale(1.15,1.15);
     -moz-transform: scale(1.15,1.15);
     -o-transform: scale(1.15,1.15);
@@ -114,9 +113,8 @@ a:hover {
 	<div class="page-content p-5" id="content">
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
-			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
-			<small
-				class="text-uppercase font-weight-bold" >MENU</small>
+			class="btn btn-light bg-white rounded-pill box px-4 mb-4">
+			<small class="text-uppercase font-weight-bold" >MENU</small>
 		</button>
 		
 		<div class="row card box" style="width: 100%; height: 45px;">
@@ -132,7 +130,7 @@ a:hover {
 									style="border-right: 2px solid #ededed;">
 									<div class="row" style="justify-content: center">
 										<a  href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
-											class="col-auto px-3" id="student_MemberMgmtPage" 
+											class="col-auto px-3 aClick" id="student_MemberMgmtPage" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											전체 회원 관리 </a>
 									</div>
@@ -141,7 +139,7 @@ a:hover {
 								<div class="col text-center">
 									<div class="row" style="justify-content: center">
 										<a  href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
-											class="col-auto px-3" id="student_MemberJoinMgmtPage" 
+											class="col-auto px-3 aClick" id="student_MemberJoinMgmtPage" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											가입 관리 </a>
 									</div>
