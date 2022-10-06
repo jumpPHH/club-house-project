@@ -4,4 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ja.cbh.staff.login.mapper.Staff_LoginRestSQLMapper">
+
+	<select id="selectStaffByStaffId" resultType="HashMap">
+		SELECT * FROM CBH_STAFF cs , CBH_PSTN_DIV cpd WHERE cs.PSTN_DIV_NO = cpd.PSTN_DIV_NO AND STAFF_ID = #{STAFF_ID}
+	</select>
+
+
+
+
+
 </mapper>

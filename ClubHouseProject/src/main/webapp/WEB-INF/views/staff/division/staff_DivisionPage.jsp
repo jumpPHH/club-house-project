@@ -22,8 +22,21 @@ color: #FA5858;
 font-size: 1.2rem;
 font-weight: bold;
 }
+.form-check-input:focus {
+    border-color: #FA5858;
+    outline: 0;
+    box-shadow: 0 0 0 0;
+}
+.form-check-input:checked {
+    border-color:#FA5858;
+    background-color: #FA5858;
+ }
+ .form-check-input{
+  border-color:#FA5858;
+ }
 </style>
 <script type="text/javascript">
+
 
 tinymce.init({
 	selector : 'textarea#modalBody',
@@ -528,7 +541,7 @@ function getDivisionList(table,e){
 		var td5_1 = document.createElement("td");
 		td5_1.classList.add("col-1");
 		td5_1.classList.add("FORMBUTTON");
-		td5_1.setAttribute("style","color:blue")
+		td5_1.setAttribute("style","cursor: pointer;color: #FA5858;")
 		td5_1.setAttribute("onclick","viewForm("+data.NO+",'"+data.NAME+"')")
 		td5_1.innerText = "보기"
 		tr.appendChild(td5_1);

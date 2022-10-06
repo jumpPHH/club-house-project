@@ -11,6 +11,8 @@ public class Club_ApplVO {
 	private String club_purpose; //동아리 설립 및 목적
 	private Date club_appl_date; //동아리 신청일자
 	private String club_appl_state;
+
+
 	public Club_ApplVO() {
 		super();
 	}

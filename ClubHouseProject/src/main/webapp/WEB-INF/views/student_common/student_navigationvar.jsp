@@ -89,7 +89,7 @@ function ul(index) {
 			<i class="fa bi bi-book-half mr-3 text-primary fa-fw"></i> 공지사항
 		</a></li>
 
-		<li class="nav-item"><a href="#"
+		<li class="nav-item"><a href="/cbh/student/volunteer/stud_VlntrApplPage"
 			class="nav-link text-dark font-italic bg-light"> <i
 				class="fa bi bi-signpost-2-fill mr-3 text-primary fa-fw"></i> 봉사공고
 		</a></li>

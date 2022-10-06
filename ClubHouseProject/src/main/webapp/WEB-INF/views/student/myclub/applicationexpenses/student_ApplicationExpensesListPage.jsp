@@ -15,20 +15,47 @@
 <style type="text/css">
 .selectDiv {
 	background-color: #bfc9e3;
-	color: white;
+	color: white !important;
+	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 50%;
+}
+
+a{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
 }
 
 a:hover {
-	color: white !important;
-	text-decoration: underline;
+    -webkit-transform: scale(1.15,1.15);
+    -moz-transform: scale(1.15,1.15);
+    -o-transform: scale(1.15,1.15);
+    -ms-transform: scale(1.15,1.15);
+    transform: scale(1.15,1.15);
 }
 </style>
 
 <script type="text/javascript">
-function clickMove(target) {
-	$(".selectDiv").removeClass("selectDiv");
-	target.classList.toggle('selectDiv');
-}
+document.addEventListener("DOMContentLoaded", function () {
+	
+	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+	var url1 = document.getElementById("student_ApplicationExpensesPage");
+	var url2 = document.getElementById("student_ApplicationExpensesListPage");
+		
+		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+			$("#student_ApplicationExpensesPage").attr('class','selectDiv');
+		
+		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+			$("#student_ApplicationExpensesListPage").attr('class','selectDiv');
+		}
+});
 </script>
 </head>
 <body>
@@ -56,9 +83,9 @@ function clickMove(target) {
 								<div class="col text-center"
 									style="border-right: 2px solid #ededed;">
 									<div class="row" style="justify-content: center">
-										<a
+										<a  id="student_ApplicationExpensesPage"
 											href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
+											class="col-auto px-3"
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											신청서 작성 </a>
 									</div>
@@ -66,9 +93,9 @@ function clickMove(target) {
 
 								<div class="col text-center" style="border-right: 2px solid #ededed;">
 									<div class="row" style="justify-content: center">
-										<a
+										<a  id="student_ApplicationExpensesListPage"
 											href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesListPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
+											class="col-auto px-3" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											신청 내용 </a>
 									</div>

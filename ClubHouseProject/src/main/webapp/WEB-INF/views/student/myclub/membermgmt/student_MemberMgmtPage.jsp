@@ -18,21 +18,49 @@
 <style type="text/css">
 .selectDiv {
 	background-color: #bfc9e3;
-	color: white;
+	color: white !important;
+	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 60%;
+}
+
+a{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
 }
 
 a:hover {
-	color: white !important;
-	text-decoration: underline;
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
 }
 </style>
 
 <script type="text/javascript">
 
-function clickMove(target) {
-	$(".selectDiv").removeClass("selectDiv");
-	target.classList.toggle('selectDiv');
-}
+document.addEventListener("DOMContentLoaded", function () {
+	
+	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+	var url1 = document.getElementById("student_MemberMgmtPage");
+	var url2 = document.getElementById("student_MemberJoinMgmtPage");
+	
+		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+			$("#student_MemberMgmtPage").attr('class','selectDiv');
+		
+		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+			$("#student_MemberJoinMgmtPage").attr('class','selectDiv');
+		}
+});
+
 </script>
 </head>
 <body>
@@ -59,9 +87,9 @@ function clickMove(target) {
 								<div class="col text-center"
 									style="border-right: 2px solid #ededed;">
 									<div class="row" style="justify-content: center">
-										<a
+										<a	id ="student_MemberMgmtPage"
 											href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
+											class="col-auto px-3" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											전체 회원 관리 </a>
 									</div>
@@ -70,9 +98,9 @@ function clickMove(target) {
 								<div class="col text-center"
 									style="border-right: 2px solid #ededed;">
 									<div class="row" style="justify-content: center">
-										<a
+										<a  id ="student_MemberJoinMgmtPage"
 											href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
+											class="col-auto px-3" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											가입 관리 </a>
 									</div>
