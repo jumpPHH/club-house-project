@@ -11,13 +11,12 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 <body>
 
 	<jsp:include
 		page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
+		
 	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
 	<div class="page-content p-5" id="content">
 		<!-- 토글 버튼 -->
@@ -189,7 +188,7 @@
 								<div class="row my-3" style="padding-top: 30px;">
 									<div>
 										<div class="col card form-check"
-											style="width: 100%; height: 230px; font-weight: bolder; background-color: #e6ecff; padding-left: 10px;">
+											style="width: 100%; height: 250px; font-weight: bolder; background-color: #e6ecff; padding-left: 10px;">
 											${MainData.MyClubInfo.club_description }</div>
 									</div>
 								</div>
@@ -206,6 +205,7 @@
 		<c:if test="${empty MainBoardData}">
 			<c:if test="${empty MainActData}">
 				<div class="row my-3">
+				
 					<div class="col">
 						<div class="card box" style="width: auto; height: 500px;">
 							<div class="dashboard-card-bottom">
@@ -257,6 +257,7 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="col">
 						<div class="card box" style="width: auto; height: 500px;">
 							<div class="dashboard-card-bottom">
@@ -310,6 +311,7 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			</c:if>
 		</c:if>
@@ -317,11 +319,16 @@
 		<c:if test="${not empty MainBoardData}">
 			<c:if test="${not empty MainActData}">
 				<div class="row my-3">
+				
 					<div class="col">
+					
 						<div class="card box" style="width: auto; height: 500px;">
+						
 							<div class="dashboard-card-bottom">
+							
 								<!-- 실제 내용 -->
 								<div class="container-fluid">
+								
 									<div class="row">
 										<div class="col-1"></div>
 										<div class="col">
@@ -356,7 +363,8 @@
 																<tbody>
 																	<tr>
 																		<th scope="row">${MainActData.Club_ActVoList.club_act_no }</th>
-																		<td style="text-overflow: ellipsis;">${MainActData.Club_ActVoList.club_act_title }</td>
+																		<td
+																			style="width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block;">${MainActData.Club_ActVoList.club_act_title }</td>
 																		<td>${MainActData.Club_ActStudVoList.stud_name }</td>
 																		<td><fmt:formatDate
 																				value="${MainActData.Club_ActVoList.club_act_date }"
@@ -375,22 +383,38 @@
 
 
 										</div>
+										
 										<div class="col-1"></div>
 									</div>
+									
 								</div>
+								
 							</div>
+							
 						</div>
+						
 					</div>
+					
+					
 					<div class="col">
+					
 						<div class="card box" style="width: auto; height: 500px;">
+						
 							<div class="dashboard-card-bottom">
 								<!-- 실제 내용 -->
+								
 								<div class="container-fluid">
+								
 									<div class="row">
+									
 										<div class="col-1"></div>
+										
 										<div class="col">
+										
 											<div class="row my-3">
+											
 												<div class="col">
+												
 													<div class="row my-4">
 														<div class="col">
 															<h3>동아리 자유 게시판</h3>
@@ -399,9 +423,10 @@
 															전체보기<i class="bi bi-arrow-right-circle-fill"
 																style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
 														</div>
-												</div>
+													</div>
 
 												<div class="row my-2">
+												
 													<table class="table">
 														<thead>
 															<tr>
@@ -418,7 +443,8 @@
 															<tbody>
 																<tr>
 																	<th scope="row">${MainBoardData.Club_BoardVoList.club_board_no }</th>
-																	<td style="text-overflow: ellipsis;">${MainBoardData.Club_BoardVoList.club_board_title }</td>
+																	<td
+																		style="width: 230px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block;">${MainBoardData.Club_BoardVoList.club_board_title }</td>
 																	<td>${MainBoardData.Club_BoardStudVoList.stud_name}</td>
 																	<td><fmt:formatDate
 																			value="${MainBoardData.Club_BoardVoList.club_board_writedate }"
@@ -428,20 +454,29 @@
 															</tbody>
 														</c:forEach>
 													</table>
+													
 												</div>
+												
 											</div>
 
 										</div>
-										<div class="col-1"></div>
+											
 									</div>
+									
+									<div class="col-1"></div>
 								</div>
+								
 							</div>
+							
 						</div>
+						
 					</div>
+					
+				</div>
 				</div>
 			</c:if>
 		</c:if>
-
+	</div>
 		<script type="text/javascript"
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
