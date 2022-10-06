@@ -32,7 +32,7 @@ $(function() {
 			}
 		}
 		
-		xhr.open('get','./restapi/getClubNo');
+		xhr.open('get','/cbh/student/index/restapi/getClubNo');
 		xhr.send();
 	}
 	

@@ -234,7 +234,32 @@ img {
 									<div class="row">
 										<div class="col text_align_center"
 											style="margin-top: 7vh; text-align: center;">
-											<h2 style="font-weight: bold;">공연예술분과</h2>
+											<c:choose>
+												<c:when test="${clubCategoryNo eq 1 }">
+													<h2 style="font-weight:bold;">공연예술분과</h2>
+												</c:when>
+												<c:when test="${clubCategoryNo eq 2 }">
+													<h2 style="font-weight:bold;">종교분과</h2>
+												</c:when>
+												<c:when test="${clubCategoryNo eq 3 }">
+													<h2 style="font-weight:bold;">체육분과</h2>
+												</c:when>
+												<c:when test="${clubCategoryNo eq 4 }">
+													<h2 style="font-weight:bold;">사회활동분과</h2>
+												</c:when>
+												<c:when test="${clubCategoryNo eq 5 }">
+													<h2 style="font-weight:bold;">창작예술분과</h2>
+												</c:when>
+												<c:when test="${clubCategoryNo eq 6 }">
+													<h2 style="font-weight:bold;">학술교양분과</h2>
+												</c:when>
+												<c:when test="${clubCategoryNo eq 7 }">
+													<h2 style="font-weight:bold;">기타분과</h2>
+												</c:when>
+												
+												
+											</c:choose>
+											
 										</div>
 									</div>
 									<!-- 동아리 검색 -->

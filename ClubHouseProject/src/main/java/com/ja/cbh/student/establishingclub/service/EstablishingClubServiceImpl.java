@@ -2,12 +2,14 @@ package com.ja.cbh.student.establishingclub.service;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ja.cbh.student.establishingclub.mapper.EstablishingClubSQLMapper;
 import com.ja.cbh.vo.ClubVO;
 import com.ja.cbh.vo.Club_ApplVO;
+import com.ja.cbh.vo.Club_StudVO;
 
 @Service
 public class EstablishingClubServiceImpl {
@@ -34,11 +36,24 @@ public class EstablishingClubServiceImpl {
 	}
 	
 	//클럽 정보 넣기
-	public void inputClub(ClubVO club_vo) {
-		establishingClubSQLMapper.insertClub(club_vo);
+	public void inputClub(@Param(value="clubVO") ClubVO clubVO, @Param(value="applNo") int applNo) {
+		establishingClubSQLMapper.insertClub(clubVO);
+		establishingClubSQLMapper.updateClubApplBy(applNo);
 	}
 	
+	// 특정 아이디가 신청한 클럽이 있는지 확인용
+	public Club_ApplVO getClubApplByStudId(String studId) {
+		Club_ApplVO clubApplVO = establishingClubSQLMapper.selectRequestByStudId(studId);
+		
+		return clubApplVO;
+	}
 	
+	// 동아리 회원정보 갖고오기 - 동아리 가입되어있는지 안되어있는지 확인용
+	public Club_StudVO getClubStudByStudId(String studId) {
+		Club_StudVO clubStudData = establishingClubSQLMapper.selectClubStudByStudId(studId);
+		
+		return clubStudData;
+	}
 	
 
 	

@@ -131,6 +131,7 @@ a:hover {
 			</div>
 			
 			
+			
 		<div class="row my-3 card box" style="width: 100%; height: auto;">
 			<div class="dashboard-card-bottom">
 				<!-- 실제 내용 -->
