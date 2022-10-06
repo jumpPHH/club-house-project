@@ -12,7 +12,6 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style type="text/css">
@@ -25,7 +24,7 @@
     width: 60%;
 }
 
-a{
+.aClick{
     display: inline-block;
     color: #03c;
     -webkit-transition: 0.5s;
@@ -35,7 +34,7 @@ a{
     transition: 0.5s;
 }
 
-a:hover {
+.aClick:hover {
     -webkit-transform: scale(1.1,1.1);
     -moz-transform: scale(1.1,1.1);
     -o-transform: scale(1.1,1.1);
@@ -66,12 +65,14 @@ document.addEventListener("DOMContentLoaded", function () {
 <body>
 	<jsp:include
 		page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
+		
 	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
 	<div class="page-content p-5" id="content">
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
 			class="btn btn-light bg-white rounded-pill box px-4 mb-4">
-			<small class="text-uppercase font-weight-bold">MENU</small>
+			<small
+				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
 
 		<c:if test="${not empty MainData.IsBoss}">
@@ -89,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
 									<div class="row" style="justify-content: center">
 										<a	id ="student_MemberMgmtPage"
 											href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
-											class="col-auto px-3" 
+											class="col-auto px-3 aClick" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											전체 회원 관리 </a>
 									</div>
@@ -100,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
 									<div class="row" style="justify-content: center">
 										<a  id ="student_MemberJoinMgmtPage"
 											href="/cbh/student/myclub/membermgmt/student_MemberJoinMgmtPage"
-											class="col-auto px-3" 
+											class="col-auto px-3 aClick" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											가입 관리 </a>
 									</div>

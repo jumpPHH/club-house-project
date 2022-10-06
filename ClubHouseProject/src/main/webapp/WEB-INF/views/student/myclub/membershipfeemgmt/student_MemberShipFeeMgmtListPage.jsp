@@ -13,7 +13,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/cbh/resources/css/student_navbar.css">
+
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -27,7 +27,7 @@
     width: 50%;
 }
 
-a{
+.aClick{
     display: inline-block;
     color: #03c;
     -webkit-transition: 0.5s;
@@ -37,7 +37,7 @@ a{
     transition: 0.5s;
 }
 
-a:hover {
+.aClick:hover {
     -webkit-transform: scale(1.15,1.15);
     -moz-transform: scale(1.15,1.15);
     -o-transform: scale(1.15,1.15);
@@ -335,7 +335,7 @@ a:hover {
 	<div class="page-content p-5" id="content">
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
-			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
+			class="btn btn-light bg-white rounded-pill box px-4 mb-4">
 			<small
 				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
@@ -354,7 +354,7 @@ a:hover {
 								<div class="row" style="justify-content: center">
 									<a id="student_MemberShipFeeMgmtPage"  
 									 href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtPage"
-									 class="col-auto px-3" style="cursor: pointer; border-radius: 2rem;
+									 class="col-auto px-3 aClick" style="cursor: pointer; border-radius: 2rem;
 									 color: #4140cb; font-weight: bold; text-decoration:none;">
 									 회비 내역 작성
 									</a>
@@ -365,7 +365,7 @@ a:hover {
 								<div class="row" style="justify-content: center">
 									<a id="student_MemberShipFeeMgmtListPage" 
 									 href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage"
-									 class="col-auto px-3" style="cursor: pointer; border-radius: 2rem;
+									 class="col-auto px-3 aClick" style="cursor: pointer; border-radius: 2rem;
 									  color: #4140cb; font-weight: bold; text-decoration:none;">
 									 회비 내역
 									</a>
