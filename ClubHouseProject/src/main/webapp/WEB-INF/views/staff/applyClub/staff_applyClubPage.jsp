@@ -138,7 +138,7 @@
 	}
 	
 	
-	function checkAll(this){
+	function checkAll(){
 		if($(".checkAll").check()){
 			
 		}
@@ -164,22 +164,23 @@
       <button id="sidebarCollapse" type="button"
          class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
          <i class="fa fa-bars mr-2"></i><small
-            class="text-uppercase font-weight-bold">MENU</small>
+            class="text-uppercase font-weight-bold" style="color: #FA5858">MENU</small>
       </button>
 		
 	<form action="./staff_applyClubPage" method="get">
-		<div class="row mt-4 box p-4"  style="border-color: gray" >
+		<div class="row mt-4 box" style="height: 45px; align-items: center">
 			<div class="col-1">
-				동아리
+				동아리명
 			</div>
 			<div class="col">
 				<input name="searchWord" type="text">
 			</div>
-			<div class="col-2" style="">
-				<button class="btn btn-primary" type="submit">조회</button>
+			<div class="col-7" style=""></div>
+			<div class="col d-grid" style="">
+				<button class="btn btn-outline-primary py-1" type="submit">조회</button>
 			</div>
-			<div class="col-2" style="">
-				<button onclick="deleteNotice()" class="btn btn-danger" type="button">삭제</button>
+			<div class="col d-grid" style="">
+				<button onclick="deleteNotice()" class="btn btn-outline-danger py-1" type="button">삭제</button>
 			</div>			
 		</div>
 	</form>
@@ -197,7 +198,6 @@
 				<tr>
 			</thead>
 			<tbody id="tbody">
-					<!-- paging UI -->
 					<c:forEach items="${clubApplDataList}" var="clubApplData">
 						<tr>
 						  <th><input id="check" onclick="check()" type="checkbox" class="form-check-input" value="${clubApplData.club_appl_no }"></th>
@@ -232,35 +232,35 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">신청 상세</h5>
+	        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold">신청 상세</h5>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
 			     <div class="row" >
-				<div class="col-2"></div>
+				<div class="col-3" style="font-weight: bold">동아리 이름:</div>
 				<div class="col">
-					동아리 이름: ${applData.applVO.club_name }
+					 ${applData.applVO.club_name }
 				</div>
 			</div>
 			<br>
 			<div class="row" >
-				<div class="col-2"></div>
+				<div class="col-3" style="font-weight: bold">신청인:</div>
 				<div class="col">
-					신청인: ${applData.applVO.stud_id }
+					 ${applData.applVO.stud_id }
 				</div>
 			</div>
 			<br>
 			<div class="row" >
-				<div class="col-2"></div>
+				<div class="col-3" style="font-weight: bold">신청인원:</div>
 				<div class="col">
-					신청인원: ${applData.applVO.club_appl_people_count }
+					 ${applData.applVO.club_appl_people_count }
 				</div>
 			</div>
 			<br>
 			<div class="row" >
-				<div class="col-2"></div>
+				<div class="col-3" style="font-weight: bold">동아리설명:</div>
 				<div class="col">
-					동아리설명: ${applData.applVO.club_purpose }
+					 ${applData.applVO.club_purpose }
 				</div>
 			</div>
 	      </div>
@@ -274,38 +274,51 @@
 	</div>
 
 				<div class="row mt-3">
+				<div class="col-4"></div>
 					<div class="col"> <!-- 페이징 -->
 						<nav aria-label="Page navigation example">
 						  <ul class="pagination">
 						  <c:choose>
 						  		<c:when test="${startPage <= 1 }">
-							  		<li class="page-item disabled"><a class="page-link">&lt;</a></li>
+							  		<li class="page-item disabled"><a class="page-link" 
+							  			href="#" style="text-decoration-line: none; color: red;">◀</a></li>
 						  		</c:when>
 						  		<c:otherwise>
-						  		    <li class="page-item"><a class="page-link" href="./staff_applyClubPage?pageNum=${startPage - 1 }${additionalParam}">&lt;</a></li>
+						  		    <li class="page-item"><a class="page-link" 
+						  		    	style="text-decoration-line: none; color: black;"
+						  		    	href="./staff_applyClubPage?pageNum=${startPage - 1 }${additionalParam}">◀</a></li>
 						  		</c:otherwise>
 						  </c:choose>
 						    <c:forEach begin="${startPage }" end="${endPage }" var="i">
 						    	<c:choose>
 						    		<c:when test="${i == currentPageNum }">
-										<li class="page-item active"><a class="page-link" href="./staff_applyClubPage?pageNum=${i}${additionalParam}">${i}</a></li>  		
+										<li class="page-item active"><a class="page-link" 
+											style="text-decoration-line: none; font-weight: 600;"
+											href="./staff_applyClubPage?pageNum=${i}${additionalParam}">${i}</a></li>  		
 						    		</c:when>
 						    		<c:otherwise>
-						    			<li class="page-item"><a class="page-link" href="./staff_applyClubPage?pageNum=${i}${additionalParam}">${i}</a></li>
+						    			<li class="page-item"><a class="page-link" 
+						    				style="text-decoration-line"
+						    				href="./staff_applyClubPage?pageNum=${i}${additionalParam}">${i}</a></li>
 						    		</c:otherwise>
 						    	</c:choose>
 						    </c:forEach>
 						    <c:choose>
 						    	<c:when test="${endPage >= totalPageCount }">
-							    	<li class="page-item disabled"><a class="page-link">&gt;</a></li>
+							    	<li class="page-item disabled"><a class="page-link"
+							    		style="text-decoration-line: none; color: red;"
+							    		href="./staff_applyClubPage?pageNum=${endPage+1}${additionalParam}">▶</a></li>
 						    	</c:when>
 						    	<c:otherwise>
-						    		<li class="page-item"><a class="page-link" href="./staff_applyClubPage?pageNum=${endPage+1}${additionalParam}">&gt;</a></li>
+						    		<li class="page-item"><a class="page-link" 
+						    			style="text-decoration-line: none; color: black;"
+						    			href="./staff_applyClubPage?pageNum=${endPage+1}${additionalParam}">▶</a></li>
 						    	</c:otherwise>
 						    </c:choose>
 						  </ul>
 						</nav>							
 					</div>
+					<div class="col-4"></div>
 				</div>
 				
 				
