@@ -1,6 +1,7 @@
 package com.ja.cbh.student.establishingclub.controller;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,8 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ja.cbh.student.establishingclub.service.EstablishingClubServiceImpl;
 import com.ja.cbh.student.findingclub.service.FindingClubServiceImpl;
+import com.ja.cbh.student.myclub.clubboard.mapper.ClubBoardSQLMapper;
 import com.ja.cbh.vo.ClubVO;
 import com.ja.cbh.vo.Club_ApplVO;
+import com.ja.cbh.vo.Club_StudVO;
 import com.ja.cbh.vo.StudVO;
 
 @Controller
@@ -29,24 +32,57 @@ public class EstablishingClubController {
 	
 	@Autowired
 	private EstablishingClubServiceImpl establishingClubService; 
-	@Autowired
-	private FindingClubServiceImpl findingService;
+	
 	
 	@RequestMapping("student_indexPage")
-	public String applicationFormPage() {
+	public String student_indexPage(HttpSession session,Model model) {
 		
 		return "student/establishingclub/student_indexPage";
 	}
 	
 	@RequestMapping("student_requestEstablishClubProcess")
 	public String student_requestEstablishClubProcess(Club_ApplVO clubAppl_vo, HttpSession session, HttpServletResponse response) {
-		
+		String msg = "";
 			
 		StudVO studInfo = (StudVO)session.getAttribute("sessionUserInfo");
 		clubAppl_vo.setStud_id(studInfo.getStud_id()); 
+		Club_ApplVO sessionApplData = establishingClubService.getClubApplByStudId(studInfo.getStud_id());
+		
+		Club_StudVO clubStudData = establishingClubService.getClubStudByStudId(studInfo.getStud_id());
+		if(clubStudData != null) {
+			 try {
+					response.setContentType("text/html; charset=utf-8");
+					PrintWriter w = response.getWriter();
+					msg = "이미 동아리에 가입되어 있습니다.";
+					w.write("<script>alert('"+msg+"');location.href='"+"/cbh/student/index/student_IndexPage'"+";</script>");
+					w.flush();
+					w.close();
+		     }catch(Exception e) {
+					e.printStackTrace();
+		     }
+		}
+		
+		if(sessionApplData.getClub_appl_state() == "2") {
+			 try {
+					response.setContentType("text/html; charset=utf-8");
+					PrintWriter w = response.getWriter();
+					msg = "개설 심사중인 동아리가 존재합니다.";
+					w.write("<script>alert('"+msg+"');location.href='"+"/cbh/student/index/student_IndexPage'"+";</script>");
+					w.flush();
+					w.close();
+		     }catch(Exception e) {
+					e.printStackTrace();
+		     }
+		}
 		
 		establishingClubService.inputClubAppl(clubAppl_vo);
 		
+		
+		return "student/establishingclub/student_establishingRequestSuccessPage";
+	}
+	
+	@RequestMapping("student_establishingRequestSuccessPage")
+	public String student_establishingRequestSuccessPage() {
 		
 		return "student/establishingclub/student_establishingRequestSuccessPage";
 	}
@@ -157,14 +193,16 @@ public class EstablishingClubController {
 		clubVO.setClub_people_count(clubApplData.getClub_appl_people_count());
 		clubVO.setClub_name(clubApplData.getClub_name());
 		clubVO.setClub_boss(studData.getStud_id());
+		System.out.println(clubVO.getClub_boss());
 		
 		
+		int applNo = clubApplData.getClub_appl_no();
 		
-		
-		establishingClubService.inputClub(clubVO);
+		establishingClubService.inputClub(clubVO,applNo);
 		
 		return"student/establishingclub/student_insertClubInfoSuccessPage";
 	}
+	
 	
 	
 

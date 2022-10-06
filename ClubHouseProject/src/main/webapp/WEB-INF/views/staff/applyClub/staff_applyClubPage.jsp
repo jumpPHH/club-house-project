@@ -189,7 +189,7 @@
 			<table class="table table hover caption-top table-sm" >
 			  <thead>
 			    <tr>
-					<th><input id="checkAll" onclick="checkAll(this)" type="checkbox" class="form-check-input" value="전체체크"></th>
+					<th><input id="checkAll" onclick="checkAll()" type="checkbox" class="form-check-input" value="전체체크"></th>
 					<th class="col">동아리</th>
 					<th class="col">신청인</th>
 					<th class="col">선택일시</th>

@@ -10,6 +10,7 @@ import com.ja.cbh.student.findingclub.mapper.FindingClubSQLMapper;
 import com.ja.cbh.vo.ClubVO;
 import com.ja.cbh.vo.Club_Dept_CategoryVO;
 import com.ja.cbh.vo.Club_StudVO;
+import com.ja.cbh.vo.StudVO;
 
 @Service
 public class FindingClubServiceImpl {
@@ -43,6 +44,13 @@ public class FindingClubServiceImpl {
 	public void inputClubStud(Club_StudVO club_studVO) {
 		findingClubSQLMapper.insertClubStud(club_studVO);
 		
+	}
+	
+	// 특정 아이디에 해당하는 사람 정보 갖고오기
+	public StudVO getClubStudByStudId(String studId) {
+		StudVO StudVO = findingClubSQLMapper.selectClubStudByStudId(studId);
+		
+		return StudVO;
 	}
 	
 }

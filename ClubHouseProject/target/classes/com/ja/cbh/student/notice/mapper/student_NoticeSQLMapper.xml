@@ -14,7 +14,11 @@
 		SELECT * FROM CBH_STAFF WHERE STAFF_ID=#{staff_id}
 	
 	</select> 
-
+	
+	<select id="selectNoticeByNotiNo" resultType="com.ja.cbh.vo.NoticeVO">
+		SELECT * FROM CBH_NOTI
+		WHERE NOTI_NO = #{notiNo}
+	</select>
 
 </mapper>
 

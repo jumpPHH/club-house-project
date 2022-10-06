@@ -4,4 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ja.cbh.student.index.mapper.Student_IndexSQLMapper">
+	
+	<select id="getClubNo" resultType="int">
+		SELECT CLUB_NO FROM CBH_CLUB_STUD
+		WHERE STUD_ID = #{studId} 
+	</select>
+
 </mapper> 
