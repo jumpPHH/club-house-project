@@ -44,20 +44,20 @@
 											<c:when test="${not empty data.MyProcessApvList }">
 												<c:forEach begin="0" end="1" step="1" items="${data.MyProcessApvList }" var="data">
 													<tr>
-														<th class="text-center col-1 py-0"><i class="bi bi-dot"></i></th>
+														<th class="text-center col-auto py-0 ps-3"><i class="bi bi-dot"></i></th>
 														<td class="py-0">${data.APV_TITLE }</td>
-														<td class="text-center col-2 py-0"><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
+														<td class="text-center col-2 py-0 "><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
 													</tr>
 												</c:forEach>
 											</c:when>										
 											<c:otherwise>
 												<tr style="height: 19.19px">
-													<th class="text-center col-1 py-0"></th>
+													<th class="text-center col-auto py-0 ps-3"></th>
 													<td class="py-0"></td>
 													<td class="text-center col-2 py-0"></td>	
 												</tr>
 												<tr style="height: 19.19px">
-													<th class="text-center col-1 py-0"></th>
+													<th class="text-center col-auto py-0 ps-3"></th>
 													<td class="py-0"></td>
 													<td class="text-center col-2 py-0"></td>	
 												</tr>
@@ -83,7 +83,7 @@
 											<c:when test="${not empty data.MyCompleteApvList }">
 												<c:forEach begin="0" end="1" step="1" items="${data.MyCompleteApvList }" var="data">
 													<tr>
-														<th class="text-center col-1 py-0"><i class="bi bi-dot"></i></th>
+														<th class="text-center col-auto py-0 ps-3"><i class="bi bi-dot"></i></th>
 														<td class="py-0">${data.APV_TITLE }</td>
 														<td class="text-center col-2 py-0"><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
 													</tr>
@@ -91,12 +91,12 @@
 											</c:when>										
 											<c:otherwise>
 												<tr style="height: 19.19px">
-													<th class="text-center col-1 py-0"></th>
+													<th class="text-center col-auto py-0 ps-3"></th>
 													<td class="py-0"></td>
 													<td class="text-center col-2 py-0"></td>	
 												</tr>
 												<tr style="height: 19.19px">
-													<th class="text-center col-1 py-0"></th>
+													<th class="text-center col-auto py-0  ps-3"></th>
 													<td class="py-0"></td>
 													<td class="text-center col-2 py-0"></td>	
 												</tr>
@@ -123,7 +123,7 @@
 											<c:when test="${not empty data.MyRejectApvList }">
 												<c:forEach begin="0" end="1" step="1" items="${data.MyRejectApvList }" var="data">
 													<tr>
-														<th class="text-center col-1 py-0"><i class="bi bi-dot"></i></th>
+														<th class="text-center col-auto py-0 ps-3"><i class="bi bi-dot"></i></th>
 														<td class="py-0">${data.APV_TITLE }</td>
 														<td class="text-center col-2 py-0"><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
 													</tr>
@@ -131,12 +131,12 @@
 											</c:when>										
 											<c:otherwise>
 												<tr style="height: 19.19px">
-													<th class="text-center col-1 py-0"></th>
+													<th class="text-center col-auto py-0 ps-3"></th>
 													<td class="py-0"></td>
 													<td class="text-center col-2 py-0"></td>	
 												</tr>
 												<tr style="height: 19.19px">
-													<th class="text-center col-1 py-0"></th>
+													<th class="text-center col-auto py-0 ps-3"></th>
 													<td class="py-0"></td>
 													<td class="text-center col-2 py-0"></td>	
 												</tr>
