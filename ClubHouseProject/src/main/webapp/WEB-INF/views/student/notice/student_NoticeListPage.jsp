@@ -54,13 +54,13 @@
 			<div class="col-1"><i class="bi bi-eye"></i></div>
 		</div>
 		
-		<c:forEach begin="0"  end="${NoticeDataList.size()-1}" var="i">
+		<c:forEach  items="${NoticeDataList}" var="i">
 			<div class="row border-bottom" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
-			<div class="col-1">${NoticeDataList[i].club_NoticeVO.noti_no}</div>
-			<div class="col"><a href="/cbh/student/notice/student_NoticeReadPage?noti_no=${NoticeDataList[i].club_NoticeVO.noti_no}">${NoticeDataList[i].club_NoticeVO.noti_title}</a></div>
-			<div class="col-1">${NoticeDataList[i].staffVO.staff_name }</div>
-			<div class="col-1"><fmt:formatDate value="${NoticeDataList[i].club_NoticeVO.noti_date}" pattern="yy.MM.dd"/></div>
-			<div class="col-1">${NoticeDataList[i].club_NoticeVO.noti_readcount}</div>
+			<div class="col-1">${i.club_NoticeVO.noti_no}</div>
+			<div class="col"><a href="/cbh/student/notice/student_NoticeReadPage?noti_no=${i.club_NoticeVO.noti_no}">${i.club_NoticeVO.noti_title}</a></div>
+			<div class="col-1">${i.staffVO.staff_name }</div>
+			<div class="col-1"><fmt:formatDate value="${i.club_NoticeVO.noti_date}" pattern="yy.MM.dd"/></div>
+			<div class="col-1">${i.club_NoticeVO.noti_readcount}</div>
 		</div>
 		</c:forEach>
 		

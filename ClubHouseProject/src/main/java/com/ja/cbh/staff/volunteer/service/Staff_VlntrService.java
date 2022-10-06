@@ -33,7 +33,6 @@ public class Staff_VlntrService {
 			Date now = new Date();
 			
 			if(vlntrNotiVO.getVlntr_appl_count() == vlntrNotiVO.getVlntr_fixed_people() || now.after(vlntrNotiVO.getVlntr_end_date())) {
-				System.out.println("들어오냐?");
 				int vlntr_noti_no = vlntrNotiVO.getVlntr_noti_no();
 				staff_VlntrSQLMapper.updateVlntrNotiByVlntrNotiNo(vlntr_noti_no);
 			}

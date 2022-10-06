@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 
 
@@ -20,6 +21,8 @@
 	font-size: 3vh;
 	color: #bf1f51;
 }
+
+
 
 </style>
 <script type="text/javascript">
@@ -93,9 +96,9 @@
 		}
 	}
 	
-// 	function checkAll(){
-// 		$(".check").click();
-// 	}
+	function checkAll(){
+		$(".check").click();
+	}
 
 </script>
 </head>
@@ -131,14 +134,14 @@
 				<input name="searchWord" type="text">
 			</div>
 			<div class="col" style="">
-				<button class="btn btn-primary" type="submit">조회</button>
+				<button class="btn btn-outline-primary" type="submit">조회</button>
 			</div>
 		
 			<div class="col" style="">
-				<button class="btn btn-success" type="button" onclick="location.href='/cbh/staff/studentNotice/writeNoticePage'">작성</button>
+				<button class="btn btn-outline-success" type="button" onclick="location.href='/cbh/staff/studentNotice/writeNoticePage'">작성</button>
 			</div>
 			<div class="col" style="">
-				<button onclick="deleteNotice()" class="btn btn-danger" type="button">삭제</button>
+				<button onclick="deleteNotice()" class="btn btn-outline-danger" type="button">삭제</button>
 			</div>			
 		</div>
 		</form>
@@ -160,7 +163,7 @@
 						<tbody>
 							<c:forEach items="${noticeDataList }" var="noticeData">
 								<tr>
-									<td><input name="check" onclick="check1()" type="checkbox"  class="check form-check-input" value="${noticeData.noticeVO.noti_no }"></td>
+									<td><input name="check" onclick="check()" type="checkbox"  class="check form-check-input" value="${noticeData.noticeVO.noti_no }"></td>
 									<td>${noticeData.noticeVO.noti_no }</td>
 									<td>${noticeData.noticeVO.staff_id}</td>
 									<td><a href="./readNoticePage?noticeNo=${noticeData.noticeVO.noti_no }">${noticeData.noticeVO.noti_title }</a></td>

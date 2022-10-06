@@ -28,11 +28,24 @@
 
 		<c:if test="${empty MainData.IsBoss}">
 			<c:if test="${empty MainData.IsNormalMember}">
-				<div class="card box" style="width: 100%; height: auto;">
-					<div class="dashboard-card-bottom">
-						<!-- 실제 내용 -->
-						<div class="container-fluid"></div>
-					</div>
+			 	<link rel="stylesheet" href="/cbh/resources/css/status02.css">
+
+				<!-- Google font -->
+				<link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
+				
+				<div class="row">
+					<div class="col-1"></div>
+						<div class="col">
+							<div id="notfound">
+							<div class="notfound">
+								<div class="notfound-404"></div>
+								<h1 style="font-size: 45px;">동아리 미가입/개설</h1>
+								<h2 style="font-size: 20px;">동아리 미가입/개설 되어있지 않습니다.</h2>
+								<p>죄송합니다. 현재 서비스를 이용하시려면 동아리 가입을 하거나 개설을 해주세요.</p>						
+							</div>
+						</div>
+						</div>
+					<div class="col-1"></div>	
 				</div>
 
 			</c:if>
@@ -200,120 +213,6 @@
 
 				</div>
 			</div>
-		</c:if>
-
-		<c:if test="${empty MainBoardData}">
-			<c:if test="${empty MainActData}">
-				<div class="row my-3">
-				
-					<div class="col">
-						<div class="card box" style="width: auto; height: 500px;">
-							<div class="dashboard-card-bottom">
-								<!-- 실제 내용 -->
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-1"></div>
-										<div class="col">
-											<div class="row my-3">
-												<div class="col">
-													<div class="row my-2">
-														<div class="col">
-															<h3>동아리 활동 내역</h3>
-														</div>
-														<div class="col" style="text-align: right;">
-															전체보기<i class="bi bi-arrow-right-circle-fill"
-																style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
-														</div>
-													</div>
-													<div class="row my-2">
-														<table class="table">
-															<thead>
-																<tr>
-																	<th scope="col">#</th>
-																	<th scope="col">제목</th>
-																	<th scope="col">글쓴이</th>
-																	<th scope="col">작성일</th>
-																	<th scope="col">조회수</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<th scope="row"></th>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-												</div>
-											</div>
-
-										</div>
-										<div class="col-1"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col">
-						<div class="card box" style="width: auto; height: 500px;">
-							<div class="dashboard-card-bottom">
-								<!-- 실제 내용 -->
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-1"></div>
-										<div class="col">
-											<div class="row my-3">
-												<div class="col">
-													<div class="row my-2">
-														<div class="col">
-															<h3>동아리 자유 게시판</h3>
-														</div>
-														<div class="col" style="text-align: right;">
-															전체보기<i class="bi bi-arrow-right-circle-fill"
-																style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
-														</div>
-
-													</div>
-												</div>
-
-												<div class="row my-2">
-													<table class="table">
-														<thead>
-															<tr>
-																<th scope="col">#</th>
-																<th scope="col">제목</th>
-																<th scope="col">글쓴이</th>
-																<th scope="col">작성일</th>
-																<th scope="col">조회수</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<th scope="row"></th>
-																<td></td>
-																<td></td>
-																<td></td>
-																<td></td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-
-										</div>
-										<div class="col-1"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-				</div>
-			</c:if>
 		</c:if>
 
 		<c:if test="${not empty MainBoardData}">

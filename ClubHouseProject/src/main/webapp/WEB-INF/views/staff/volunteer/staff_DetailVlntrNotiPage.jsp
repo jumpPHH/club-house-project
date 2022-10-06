@@ -94,24 +94,41 @@
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3" style="color: #FA5858">
 			<i class="fa fa-bars mr-2"></i><small
 				class="text-uppercase font-weight-bold">MENU</small>
-		</button>
+			</button>
 		
-		
-		
-		
-		<div class="row mx-5 mt-4">
-			<!-- 여기다 작성하세요 -->
-			<div class="col">
-				<h2>
-				<i class="bi bi-heart" style="color:red"></i>
-				<strong>봉사자 모집공고</strong> 
-				</h2>
-			</div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
 			
-			<div class="row mt-5">
+			
+			
+			<div class="row mt-3 box p-2">
+				<div class="row mt-5" style="height: 100px">
+					<div class="col-1"></div>
+					<div class="col-7">
+						<div class="row">
+							<div class="col">
+								<div class="row">
+									<div class="col-auto text-start" ><h1>${vlntrMap.vlntrNotiVo.vlntr_title }</h1></div>
+									<div class="col-auto mt-3">
+										<c:choose>
+									      	<c:when test="${vlntrMap.vlntrNotiVo.vlntr_noti_state eq 'N'}">
+									      		<h4 style="color: orange">( 모집중 )</h4>  
+									      	</c:when>
+											<c:when test="${vlntrMap.vlntrNotiVo.vlntr_noti_state eq 'Y'}">
+									      		<h4 style="color: blue">( 마감 )</h4>
+									      	</c:when>
+									     </c:choose>
+									</div>
+				
+								</div>
+							</div>
+						</div>
+						
+						
+						
+					</div>
+					<div class="col"></div>
+					
+				</div>
+				<div class="row">
 				<div class="col"></div>
 				<div class="col"></div>
 				<div class="col">
@@ -170,7 +187,7 @@
 								      		</div>
 								      		<div class="col">
 												 봉사시간<br><textarea class="form-control" placeholder="봉사시간을 작성해주세요"
-												   id="floatingTextarea" name="vlntr_srvc_time">${vlntrMap.vlntrNotiVo.vlntr_srvc_time}</textarea>
+											   id="floatingTextarea" name="vlntr_srvc_time">${vlntrMap.vlntrNotiVo.vlntr_srvc_time}</textarea>
 								      		</div>
 								      	</div>
 								      	<div class="row mt-2">
@@ -323,83 +340,87 @@
 				
 				</div>
 			</div>
-			
-			<div class="row mt-3" style="height: 100px">
-				<hr>
-				<div class="col-1"></div>
-				<div class="col-7">
+				<div class="row mt-4">
+					<div class="col-1"></div>
+					<div class="col-10">
+						<div class="row">
+						<table class="table">
+<%-- 							<colgroup> --%>
+<%-- 								<col width="20%"> --%>
+<%-- 								<col width="20%"> --%>
+<%-- 								<col width="20%"> --%>
+<%-- 								<col width="20%"> --%>
+<%-- 							</colgroup> --%>
+							<tbody class="table-group-divider">
+								<tr>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">봉사구분</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;">${vlntrMap.vlntrDivVo.vlntr_div_name }</td>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">봉사구분</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;">${vlntrMap.vlntrNotiVo.vlntr_title }</td>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">봉사시간</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;">${vlntrMap.vlntrNotiVo.vlntr_srvc_time }시간</td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">모집시작일</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;"><fmt:formatDate value="${vlntrMap.vlntrNotiVo.vlntr_st_date }"  pattern="yy.MM.dd"/></td>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">모집종료일</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;"><fmt:formatDate value="${vlntrMap.vlntrNotiVo.vlntr_end_date }" pattern="yy.MM.dd"/></td>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">모집인원수</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;">${vlntrMap.vlntrNotiVo.vlntr_fixed_people }명</td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">기관명</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;">${vlntrMap.vlntrNotiVo.vlntr_spot }</td>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">공고자</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;">행정직원</td>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">확인자</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;">${vlntrMap.vlntrNotiVo.vlntr_checker }</td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">봉사 집합 시간</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;">${vlntrMap.vlntrNotiVo.vlntr_mtng_time }</td>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">활동장소</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;">${vlntrMap.vlntrNotiVo.vlntr_spot }</td>
+									<th scope="col" style="width:100px"></th>
+									<td scope="col" style="width: 200px;"></td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align: center; background-color: rgb(240, 233, 233); width:100px">활동내용</th>
+									<td scope="col" style="width: 200px; font-size: 16px; color: grey;">${vlntrMap.vlntrNotiVo.vlntr_content }</td>
+									<th scope="col" style="width:100px"></th>
+									<td scope="col" style="width: 200px;"></td>
+									<th scope="col" style="width:100px"></th>
+									<td scope="col" style="width: 200px;"></td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
+					</div>
+					<div class="col-1">
 					
-					<h2>${vlntrMap.vlntrNotiVo.vlntr_title }</h2>
-				
-				</div>
-				<div class="col">
-					<span>
-						<c:choose>
-					      	<c:when test="${vlntrMap.vlntrNotiVo.vlntr_noti_state eq 'N'}">
-					      		<td scope="row" style="color: black;">모집중</td> 
-					      	</c:when>
-							<c:when test="${vlntrMap.vlntrNotiVo.vlntr_noti_state eq 'Y'}">
-					      		<td scope="row" style="color: orange;">마감</td>
-					      	</c:when>
-					     </c:choose>
-					</span>
-				</div>
-				<hr>
-			</div>
-			
-			
-			<div class="row mt-5">
-				<div class="col">
-					<img src="/uploadFiles/${vlntrMap.vlntrNotiVo.vlntr_image_link }" style="width: 90%; height:90%;"><br>
-				</div>
-				<div class="col">
-					<table class="table" style="height: 500px">
-				
-						<tbody>
-						    <tr style="border-top: 1px solid lightgrey; border-bottom: 1px solid lightgrey;" >
-						      <th class="b1000 text-center" style="background-color: rgb(240, 233, 233)">봉사구분</th>
-						      <td>${vlntrMap.vlntrDivVo.vlntr_div_name }</td>
-						     </tr>
-						     <tr> 
-						      <th class="b1000 text-center" style="background-color: rgb(240, 233, 233)">봉사공고제목</th>
-						      <td>${vlntrMap.vlntrNotiVo.vlntr_title }</td>
-						    </tr>
-						  
-						    <tr>
-						      <th scope="col" class="b1000 text-center" style="background-color: rgb(240, 233, 233)">모집시작일</th>
-						      <td scope="col"><fmt:formatDate value="${vlntrMap.vlntrNotiVo.vlntr_st_date }"  pattern="yy.MM.dd"/></td>
-						      </tr>
-						     <tr>
-						      <th scope="col" class="b1000 text-center" style="background-color: rgb(240, 233, 233)">모집종료일</th>
-						      <td scope="col"><fmt:formatDate value="${vlntrMap.vlntrNotiVo.vlntr_end_date }" pattern="yy.MM.dd"/></td>
-						    </tr>
-						    <tr>
-						      <th scope="col" class="b1000 text-center" style="background-color: rgb(240, 233, 233)">모집인원수</th>
-						      <td scope="col">${vlntrMap.vlntrNotiVo.vlntr_fixed_people }명</td>
-						      </tr>
-						     <tr>
-						      <th scope="col" class="b1000 text-center" style="background-color: rgb(240, 233, 233)">봉사시간</th>
-						      <td scope="col">${vlntrMap.vlntrNotiVo.vlntr_srvc_time }시간</td>
-						    </tr>
-						    <tr>
-						      <th scope="col" class="b1000 text-center" style="background-color: rgb(240, 233, 233)">활동장소</th>
-						      <td scope="col">${vlntrMap.vlntrNotiVo.vlntr_spot }</td>
-						      </tr>
-						     <tr>
-						      <th scope="col" class="b1000 text-center"style="background-color: rgb(240, 233, 233)">활동내용</th>
-						      <td scope="col">${vlntrMap.vlntrNotiVo.vlntr_content }</td>
-						    </tr>
-				 		</tbody>
-				</table>
-					
-				</div>
-				
-			</div>	
+					</div>
 
-			
-			
+					
+					
+				
 			</div>
-			</div>
+			<div class="row mt-3">
+				<div class="col-1"></div>
+				<div class="col-10" style="padding: 0;">
+					<div class="row">
+						<img class="img-fluid" src="/uploadFiles/${vlntrMap.vlntrNotiVo.vlntr_image_link }" style="width: 100%; height:100%;"><br>
+					</div>
+						
+				</div>
+				<div class="col-1"></div>
+			</div>	
+				
+				
+		</div>
+			
+		
+
+	</div>
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

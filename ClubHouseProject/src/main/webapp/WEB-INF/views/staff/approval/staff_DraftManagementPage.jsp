@@ -1498,8 +1498,8 @@ window.addEventListener('DOMContentLoaded', function(){
 							<div class="row">
 								<div class="col" style="height: 70vh;">
 									<input id="type" type="hidden" value="전체">
-									<table class="table table-hover caption-top table-sm">
-										<thead>
+									<table class="table table-hover caption-top table-sm" >
+										<thead style="background-color: rgb(252, 243, 243)">
 											<tr id="ApvHead" class="text-center">
 												<th class="col-1">기안번호</th>
 												<th class="col-1">구분</th>

@@ -27,10 +27,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM CBH_CLUB_STUD ccs , CBH_STUD cs 
 		WHERE ccs.STUD_ID = cs.STUD_ID
 		<if test="stud_name != ''">
-		AND cs.STUD_NAME = #{stud_name}
+		AND cs.STUD_NAME LIKE '%' || #{stud_name} || '%'
 		</if>
 		<if test="stud_id != ''">
-		AND cs.STUD_ID = #{stud_id}		
+		AND cs.STUD_ID LIKE '%' || #{stud_id} || '%'
 		</if>
 	</select>
 

@@ -24,6 +24,20 @@ public interface EstablishingClubSQLMapper {
 	public void insertClub(@Param(value="clubVO")ClubVO clubVO);
 	// 동아리 회원 정보 갖고오기  - 동아리에 가입되어있는지 안되어있는지 확인용 
 	public Club_StudVO selectClubStudByStudId(String studId);
+	
+
+	
+	//
+	public ArrayList<Club_ApplVO> selectAllEstablishingRequestResult(
+			@Param("searchWord") String searchWord, 
+			@Param("pageNum") int pageNum);
+	
+	//public Club_ApplVO selectRequestByNo(int club_appl_no);
+	
+	public int selectCount(@Param("club_appl_no")int club_appl_no,
+			@Param("searchWord") String searchWord);
+
+
 	//개설 결과 가져오기
 	public ArrayList<Club_ApplVO> selectAllEstablishingRequestResult();
 	// 특정 아이디가 동아리 개설 신청한게 있는지 확인하는용
@@ -32,9 +46,12 @@ public interface EstablishingClubSQLMapper {
 	
 	// 동아리 승인될 시 더이상 동아리 상세정보 입력 버튼 이용못하게 만들기용
 	public void updateClubApplBy(int applNo);
+
 	// 동아리 개설이 승인되고 개설한 사람 해당 동아리에 가입된 상태 만들기
 	public void insertClubStudByStud(@Param(value="studVO") StudVO studVO);
 	
-	
+
+
+
 	
 }
