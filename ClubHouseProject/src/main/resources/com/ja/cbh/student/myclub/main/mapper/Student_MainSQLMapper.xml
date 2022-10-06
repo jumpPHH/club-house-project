@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectNormalMemberIsCount" resultType="int">
 		SELECT COUNT(*)
 		FROM CBH_CLUB_STUD
-		WHERE (CLUB_STUD_GRADE = '부회장' OR CLUB_STUD_GRADE = '총무' OR CLUB_STUD_GRADE = '화계' 
+		WHERE (CLUB_STUD_GRADE = '부회장' OR CLUB_STUD_GRADE = '총무' OR CLUB_STUD_GRADE = '회계' 
 		OR CLUB_STUD_GRADE = '서기' OR CLUB_STUD_GRADE = '일반회원')
 		AND STUD_ID = #{stud_id}
 	</select>
@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectNormalMemberIs" resultType="com.ja.cbh.vo.Club_StudVO">
 		SELECT *
 		FROM CBH_CLUB_STUD
-		WHERE (CLUB_STUD_GRADE = '부회장' OR CLUB_STUD_GRADE = '총무' OR CLUB_STUD_GRADE = '화계' 
+		WHERE (CLUB_STUD_GRADE = '부회장' OR CLUB_STUD_GRADE = '총무' OR CLUB_STUD_GRADE = '회계' 
 		OR CLUB_STUD_GRADE = '서기' OR CLUB_STUD_GRADE = '일반회원')
 		AND STUD_ID = #{stud_id}
 	</select>
