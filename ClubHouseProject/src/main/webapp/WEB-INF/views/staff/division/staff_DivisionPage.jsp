@@ -1016,7 +1016,7 @@ function stateCheck(e){
 									<caption class="ps-2" style="font-size: 0.8rem;">
 										코드내역 <span id="contentCount"></span>
 									</caption>
-									<thead>
+									<thead style="background-color: rgb(252, 243, 243)">
 										<tr id="codeContentHead" class="text-center">
 										</tr>
 									</thead>
