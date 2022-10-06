@@ -32,8 +32,6 @@ public interface ClubBoardSQLMapper {
 		// 지우기
 		public void deleteClubBoardByClubNoAndClubBoardNo(@Param(value="clubBoardVO") Club_BoardVO clubBoardVO);
 		
-		
-		
 		// ClubStudNo 따오기용
 		public int selectClubStudNoByStudId(String studId);
 		// 동아리 회원 정보 가져오기
