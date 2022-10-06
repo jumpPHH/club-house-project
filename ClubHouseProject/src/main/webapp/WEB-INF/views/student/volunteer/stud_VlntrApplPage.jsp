@@ -20,7 +20,7 @@
    <div class="page-content p-5" id="content">
      <!-- 토글 버튼 -->
       <button id="sidebarCollapse" type="button"
-         class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
+         class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4" style="color: #FA5858">
          <i class="fa fa-bars mr-2"></i><small
             class="text-uppercase font-weight-bold">Toggle</small>
       </button>
@@ -32,7 +32,7 @@
             	<div class="col-1"></div>
             	<div class="col">
             		  <div class="container-fluid">
-						<div class="row mx-5 mt-4">
+						<div class="row mt-5">
 							<div class="col">
 								<h2>
 								<i class="bi bi-heart" style="color:red"></i>
@@ -43,9 +43,9 @@
 							<div class="col"></div>
 							<div class="col"></div>
 						
-						<div class="row mt-4">
-							<table class="table">
-							  <thead class="table" style="background-color: rgb(230, 219, 219); height: 4rem;">
+						<div class="row mt-5">
+							<table class="table text-center">
+							  <thead style="background-color: rgb(252, 243, 243);">
 							    <tr>
 							      <th class="cl" scope="col">번호</th>
 							      <th class="cl" scope="col">제목</th>
@@ -53,32 +53,35 @@
 							      <th class="cl" scope="col">지원인원수/모집인원수</th>
 							      <th class="cl" scope="col">봉사시간수</th>
 							      <th class="cl" scope="col">모집상태</th>
+							      <th></th>
 							    </tr>
 							  </thead>
 							  <tbody class="table-group-divider">
-								<c:forEach items="${vlntrNotiList}" var="data">
+							  <c:forEach items="${vlntrNotiList }" var="data">
 							    <tr>
 							      <th scope="row">${data.vlntrNotiVO.vlntr_noti_no}</th>
-							      <td><a href="./stud_DetailVlntrApplPage?vlntr_noti_no=${data.vlntrNotiVO.vlntr_noti_no}">${data.vlntrNotiVO.vlntr_title}</a></td>
+							      <th>${data.vlntrNotiVO.vlntr_title}</th>
 							      <td>${data.vlntrNotiVO.vlntr_content }</td>
 							      <td>${data.vlntrNotiVO.vlntr_appl_count}/${data.vlntrNotiVO.vlntr_fixed_people}</td>
 							      <td>${data.vlntrNotiVO.vlntr_srvc_time }</td>
 							      <c:choose>
 							      	<c:when test="${data.vlntrNotiVO.vlntr_noti_state eq 'N'}">
-							      		<td scope="row" style="color: red;">모집중</td> 
+							      		<td scope="row" style="color: blue;">모집중</td> 
 							      	</c:when>
 									<c:when test="${data.vlntrNotiVO.vlntr_noti_state eq 'Y'}">
 							      		<td scope="row" style="color: green;">마감</td>
 							      	</c:when>
 							      </c:choose>
+							      <td><button onclick="location.href='/cbh/student/volunteer/stud_DetailVlntrApplPage?vlntr_noti_no=${data.vlntrNotiVO.vlntr_noti_no}'" 
+							      type="button" class="btn" style="color: black;"><i class="bi bi-search"></i>보기</button></td>
 							    </tr>
 							  </c:forEach>
 							  </tbody>
-							</table>
-							
-						</div>	
+						</table>
+				
+					</div>
 						
-						<form action="./staff_VlntrNotiPage" method="get">
+						<form action="./stud_VlntrApplPage" method="get">
 							 <div class="row my-5">
 				                           <div class="col">
 				                              <h6
@@ -117,10 +120,10 @@
 				                        </div>
 						</form>
 						
-						<div class="row mt-3">
+						<div class="row text-center">
 							<div class="col"> <!-- 페이징 -->
 								<nav aria-label="Page navigation example">
-								  <ul class="pagination">
+								  <ul class="pagination" style="place-content: center;">
 								  <c:choose>
 								  		<c:when test="${startPage <= 1 }">
 									  		<li class="page-item disabled"><a class="page-link"

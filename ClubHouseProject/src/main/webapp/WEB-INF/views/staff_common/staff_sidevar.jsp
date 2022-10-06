@@ -55,7 +55,7 @@
     width: calc(100% - 17rem);
   }
 }
-li:hover{
+#sidebar li:hover{
 	border-right: 5px solid #FA5858;
 	background-color: #e7e7e7
 }
@@ -203,16 +203,15 @@ body {
   </ul>
      <p class="text-gray font-weight-bold text-uppercase ps-3 mt-3 small mb-0">봉사관리</p>
 
-  <ul class="nav flex-column ps-3 bg-white  mb-0">
+  <ul class="nav flex-column ps-3 mb-0">
     <li id="VlntrNotiPage" class="nav-item ps-1">
-      <a href="/cbh/staff/volunteer/staff_VlntrNotiPage" 
-      class="nav-link text-dark font-italic bg-light">
+      <a href="/cbh/staff/volunteer/staff_VlntrNotiPage"    class="nav-link text-dark font-italic">
                 <i class=" bi bi-pencil-square me-2 " style="color: #FA5858"></i>
                 봉사공고작성
             </a>
     </li>
     
-    <li class="nav-item ps-1">
+    <li class="nav-item ps-1" id="VlntrControlPage">
       <a href="/cbh/staff/volunteer/staff_VlntrControlPage" class="nav-link text-dark font-italic ">
                 <i class=" bi bi-ui-checks me-2 " style="color: #FA5858"></i>
                 봉사시간관리

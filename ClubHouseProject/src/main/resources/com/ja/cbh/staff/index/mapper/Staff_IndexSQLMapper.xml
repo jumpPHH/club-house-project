@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectClubExpnsApply" resultType="HashMap">
-		SELECT * FROM CBH_CLUB_EXPNS_APPLY
+		SELECT ccea.*, cc.CLUB_NAME FROM CBH_CLUB_expns_apply ccea, CBH_CLUB cc WHERE ccea.CLUB_NO = cc.CLUB_NO
 	</select>
 	
 	<select id="selectNoti" resultType="HashMap">
@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectVlntrAppl" resultType="HashMap">
-		SELECT * FROM CBH_VLNTR_APPL
+		SELECT cvn.VLNTR_TITLE, cs.STUD_NAME, cva.VLNTR_APPL_DATE FROM CBH_VLNTR_APPL cva, CBH_VLNTR_NOTI cvn, CBH_STUD cs  WHERE cva.VLNTR_NOTI_NO = cvn.VLNTR_NOTI_NO AND cva.STUD_ID = cs.STUD_ID 
 	</select>
 	
 	<select id="selectMyProcessApvByStaffId" resultType="HashMap">

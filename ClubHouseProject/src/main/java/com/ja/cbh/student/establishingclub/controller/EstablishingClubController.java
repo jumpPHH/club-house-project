@@ -41,11 +41,11 @@ public class EstablishingClubController {
 	}
 	
 	@RequestMapping("student_requestEstablishClubProcess")
-	public String student_requestEstablishClubProcess(Club_ApplVO clubAppl_vo, HttpSession session, HttpServletResponse response) {
+	public String student_requestEstablishClubProcess(Club_ApplVO clubApplVO, HttpSession session, HttpServletResponse response) {
 		String msg = "";
 			
 		StudVO studInfo = (StudVO)session.getAttribute("sessionUserInfo");
-		clubAppl_vo.setStud_id(studInfo.getStud_id()); 
+		clubApplVO.setStud_id(studInfo.getStud_id()); 
 		Club_ApplVO sessionApplData = establishingClubService.getClubApplByStudId(studInfo.getStud_id());
 		
 		Club_StudVO clubStudData = establishingClubService.getClubStudByStudId(studInfo.getStud_id());
@@ -62,6 +62,19 @@ public class EstablishingClubController {
 		     }
 		}
 		
+		if(sessionApplData == null) {
+			System.out.println(clubApplVO.getClub_appl_no());
+			System.out.println(clubApplVO.getClub_appl_people_count());
+			System.out.println(clubApplVO.getClub_appl_state());
+			System.out.println(clubApplVO.getClub_category_no());
+			System.out.println(clubApplVO.getClub_name());
+			System.out.println(clubApplVO.getClub_purpose());
+			System.out.println(clubApplVO.getStud_id());
+			System.out.println(clubApplVO.getClub_appl_date());
+			establishingClubService.inputClubAppl(clubApplVO);
+			return "student/establishingclub/student_establishingRequestSuccessPage";
+		}
+		
 		if(sessionApplData.getClub_appl_state() == "2") {
 			 try {
 					response.setContentType("text/html; charset=utf-8");
@@ -75,7 +88,7 @@ public class EstablishingClubController {
 		     }
 		}
 		
-		establishingClubService.inputClubAppl(clubAppl_vo);
+		
 		
 		
 		return "student/establishingclub/student_establishingRequestSuccessPage";
@@ -187,8 +200,7 @@ public class EstablishingClubController {
 		Club_ApplVO clubApplData = establishingClubService.getApprovedClubApplByStudId(studData.getStud_id());
 		
 		
-		
-		
+		clubVO.setClub_category_no(clubApplData.getClub_category_no());
 		clubVO.setClub_appl_dt(clubApplData.getClub_appl_date());
 		clubVO.setClub_people_count(clubApplData.getClub_appl_people_count());
 		clubVO.setClub_name(clubApplData.getClub_name());
@@ -198,6 +210,7 @@ public class EstablishingClubController {
 		
 		int applNo = clubApplData.getClub_appl_no();
 		
+		establishingClubService.inputClubStudByStud(studData);
 		establishingClubService.inputClub(clubVO,applNo);
 		
 		return"student/establishingclub/student_insertClubInfoSuccessPage";

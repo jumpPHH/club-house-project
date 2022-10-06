@@ -75,7 +75,7 @@
 							<div class="row">
 								<div class="col" id="content">
 									<!-- 컨텐트 of 헤더 -->
-									<div class="row page_title">
+									<div class="row page_title px-4">
 										<div class="col text_align_left pt-2" style="color: red">
 											* 표시가 있는 항목들은 필수 입력항목입니다.</div>
 										<div class="col-4 page_title_text"></div>
@@ -99,27 +99,6 @@
 																<input type="file" name="title_image">
 															</div>
 														</div>
-													</div>
-												</div>
-												<hr style="height: 1px; color: #adb5bd">
-
-												<!-- 동아리 분류  -->
-												<div class="row p-3">
-													<div class="col-3 pt-2">
-														<span style="color: red;">*</span> 동아리 분류
-													</div>
-													<div class="col">
-														<select class="custom-select my-1 mr-sm-2 form-control"
-															id="inlineFormCustomSelectPref" name="club_category_no">
-															<option selected>클럽의 카테고리를 선택해주세요.</option>
-															<option value="1">공연예술분과</option>
-															<option value="2">종교분과</option>
-															<option value="3">체육분과</option>
-															<option value="4">사회활동분과</option>
-															<option value="5">창작예술분과</option>
-															<option value="6">학술교양분과</option>
-															<option value="7">기타분과</option>
-														</select>
 													</div>
 												</div>
 												<hr style="height: 1px; color: #adb5bd">
