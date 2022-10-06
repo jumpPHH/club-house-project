@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script
 	src="https://cdn.tiny.cloud/1/bdorzubong3byjkwg9kl0ayxl92mhi8e0f24djie6ukepumt/tinymce/6/tinymce.min.js"
@@ -72,7 +73,7 @@ function doSubmit(){
 		
 		var APV_FORM =document.getElementById("APV_FORM");
 		APV_FORM.submit();
-		
+		swal("","작성완료.","success")
 	}
 	
 	function selectApvDiv(e,NAME){

@@ -25,9 +25,9 @@ public class Staff_ApplyClubService {
 	@Autowired
 	private Student_SignUpSQLMapper student_SignUpSQLMapper;
 	
-	public ArrayList<HashMap<String, Object>> getAllClubAppl() {
+	public ArrayList<HashMap<String, Object>> getAllClubAppl(String searchWord, int pageNum) {
 		ArrayList<HashMap<String, Object>> dataList = new ArrayList<HashMap<String,Object>>();
-		ArrayList<Club_ApplVO> clubApplData = establishingClubSQLMapper.selectAllEstablishingRequestResult();
+		ArrayList<Club_ApplVO> clubApplData = establishingClubSQLMapper.selectAllEstablishingRequestResult(searchWord, pageNum);
 		
 		for(Club_ApplVO club_ApplVO : clubApplData) {
 			String studId = club_ApplVO.getStud_id();
@@ -55,10 +55,10 @@ public class Staff_ApplyClubService {
 //		return map;
 //	}
 	
-	public HashMap<String, Object> getApplData(int applNo){
+	public HashMap<String, Object> getApplData(int club_appl_no){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		Club_ApplVO applVO = establishingClubSQLMapper.selectRequestByNo(applNo);
+		Club_ApplVO applVO = establishingClubSQLMapper.selectRequestByNo(club_appl_no);
 		String stud_id = applVO.getStud_id();
 		StudVO studVO = student_SignUpSQLMapper.selectByStudentId(stud_id);
 				
@@ -66,5 +66,9 @@ public class Staff_ApplyClubService {
 		map.put("studVO", studVO);
 		
 		return map;
+	}
+	
+	public int getNoticeCount(int club_appl_no, String searchWord) {
+		return establishingClubSQLMapper.selectCount(club_appl_no, searchWord);
 	}
 }

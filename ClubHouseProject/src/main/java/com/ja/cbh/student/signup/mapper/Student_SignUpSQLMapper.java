@@ -12,9 +12,14 @@ public interface Student_SignUpSQLMapper {
 	//학생조회에 필요한 정보
 	public StudVO selectByStudentId(String studId);
 	
-	public ArrayList<StudVO> selectStudentAll(String studId);
+	public ArrayList<StudVO> selectStudentAll();
 	
 	//학번으로 학생 수
-	public int countStudentById(String studId);
+	public int countStudentById(int no);
+	
+	//삭제
+	public void deleteByStudentId(String stud_id);
+	//수정
+	public void updateByStudentId(StudVO studVO);
 	
 }
