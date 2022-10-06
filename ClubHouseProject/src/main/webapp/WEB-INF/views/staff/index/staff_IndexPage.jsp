@@ -195,7 +195,7 @@
 									<tbody>
 										<c:choose>
 											<c:when test="${not empty data.ClubApplList }">
-												<c:forEach begin="0" end="8" items="${data.MyRejectApvList }" var="data">
+												<c:forEach begin="0" end="8" items="${data.ClubApplList }" var="data">
 													<tr>
 														<th class="text-center col-1 py-0 ps-3"><i class="bi bi-dot"></i></th>
 														<td class="py-0">${data.CLUB_NAME }</td>
