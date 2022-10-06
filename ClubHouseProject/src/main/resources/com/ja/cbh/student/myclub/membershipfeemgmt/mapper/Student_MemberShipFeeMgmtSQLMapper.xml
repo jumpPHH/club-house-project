@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND cs.STUD_ID = ccs.STUD_ID 
 		AND CLUB_STUD_STATE = '활동중'
 		AND ccs.STUD_ID = #{stud_id}
-		AND (ccs.CLUB_STUD_GRADE = '대표' OR ccs.CLUB_STUD_GRADE = '화계')
+		AND (ccs.CLUB_STUD_GRADE = '대표' OR ccs.CLUB_STUD_GRADE = '회계')
 	</select>
 	
 	<select id="selectCLubFeeAllData" resultType="com.ja.cbh.vo.Club_Fee">
