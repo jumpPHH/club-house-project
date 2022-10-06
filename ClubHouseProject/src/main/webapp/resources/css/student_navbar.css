@@ -1,15 +1,6 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-
-/*
-*
-* ==========================================
-* CUSTOM UTIL CLASSES
-* ==========================================
-*
-*/
-
 .vertical-nav {
   min-width: 17rem;
   width: 17rem;
@@ -64,7 +55,7 @@
 */
 
 body {
-  background: linear-gradient(to right, #E0E6F8, #E0E6F8);
+  background: #adb5bd12;
   min-height: 100vh;
   overflow-x: hidden;
   font-family: 'Noto Sans KR', sans-serif;
@@ -86,5 +77,9 @@ body {
 .box{
 	background-color: white;
 	border-radius: 1rem;
-	box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+	box-shadow: 0 .3rem .25rem rgba(0,0,0,.075);
+}
+
+li:hover{
+	border-right: 5px solid #FA5858;
 }

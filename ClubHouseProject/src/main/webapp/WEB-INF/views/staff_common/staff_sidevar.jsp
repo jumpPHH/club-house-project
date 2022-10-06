@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/cbh/resources/css/student_navbar.css">
+<script src="https://code.jquery
+.com/jquery-3.3.1.slim.min.js"></script>
 <style>
 @import
 	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap')
@@ -82,12 +90,14 @@ body {
 
 </style>
 <script type="text/javascript">
+
 $(function() {
 	  // Sidebar toggle behavior
 	  $('#sidebarCollapse').on('click', function() {
 	    $('#sidebar, #content').toggleClass('active');
 	  });
 	});
+	
 function ul(index) {
 	console.log('click!' + index)
 	
@@ -214,9 +224,10 @@ function ul(index) {
   </ul>
      <p class="text-gray font-weight-bold text-uppercase ps-3 mt-3 small mb-0">봉사관리</p>
 
-  <ul class="nav flex-column ps-3  mb-0">
+  <ul class="nav flex-column ps-3 bg-white  mb-0">
     <li id="VlntrNotiPage" class="nav-item ps-1">
-      <a href="/cbh/staff/volunteer/staff_VlntrNotiPage" class="nav-link text-dark font-italic ">
+      <a href="/cbh/staff/volunteer/staff_VlntrNotiPage" 
+      class="nav-link text-dark font-italic bg-light">
                 <i class=" bi bi-pencil-square me-2 " style="color: #FA5858"></i>
                 봉사공고작성
             </a>
@@ -229,6 +240,9 @@ function ul(index) {
             </a>
     </li>
   </ul>
+  
+
 </div>
 <!-- 사이드바 끝 -->
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>

@@ -8,7 +8,8 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/cbh/resources/css/student_navbar.css">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://code.jquery
+.com/jquery-3.3.1.slim.min.js"></script>
 <script type="text/javascript">
 $(function() {
 	  // Sidebar toggle behavior
@@ -29,7 +30,7 @@ function ul(index) {
 </script>
 
 <!-- 사이드바 시작 -->
-<div class="vertical-nav bg-white box" id="sidebar">
+<div class="vertical-nav bg-white" id="sidebar">
 	<div class="py-3 px-3 mb-2 bg-light">
 		<div class="media d-flex align-items-center">
 			<img src="/uploadFiles/ClubHouseProject/student/${sessionUserInfo.stud_photo_link}" width="65"
@@ -50,8 +51,8 @@ function ul(index) {
 
 	<ul class="nav flex-column bg-white mb-0">
 		<li class="nav-item"><a href="/cbh/student/findingclub/mainPage"
-			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-search mr-3 text-primary fa-fw"></i> 동아리찾기
+			class="nav-link text-dark font-italic bg-light">  
+			<i class="fa bi bi-search mr-3  fa-fw" style="color: #FA5858"></i> 동아리찾기
 		</a></li>
 	</ul>
 
@@ -62,12 +63,12 @@ function ul(index) {
 		<li class="nav-item"><a
 			href="/cbh/student/notice/student_NoticeListPage"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-book-half mr-3 text-primary fa-fw"></i> 공지사항
+				class="fa bi bi-book-half mr-3  fa-fw" style="color: #FA5858"></i> 공지사항
 		</a></li>
 
 		<li class="nav-item"><a href="/cbh/student/volunteer/stud_VlntrApplPage"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-signpost-2-fill mr-3 text-primary fa-fw"></i> 봉사공고
+				class="fa bi bi-signpost-2-fill mr-3  fa-fw" style="color: #FA5858"></i> 봉사공고
 		</a></li>
 	</ul>
 
@@ -78,12 +79,12 @@ function ul(index) {
 	<ul class="nav flex-column bg-white mb-0">
 		<li class="nav-item"><a href="#"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i> 신청서작성
+				class="fa bi bi-pencil-square mr-3  fa-fw" style="color: #FA5858"></i> 신청서작성
 		</a></li>
 
 		<li class="nav-item"><a href="#"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-ui-checks mr-3 text-primary fa-fw"></i> 동아리신청상태
+				class="fa bi bi-ui-checks mr-3  fa-fw" style="color: #FA5858"></i> 동아리신청상태
 		</a></li>
 	</ul>
 
@@ -95,46 +96,46 @@ function ul(index) {
 		<li class="nav-item"><a
 			href="/cbh/student/myclub/main/student_MainPage"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-house-door-fill mr-3 text-primary fa-fw"></i> 메인
+				class="fa bi bi-house-door-fill mr-3  fa-fw" style="color: #FA5858"></i> 메인
 		</a></li>
 
 		<li class="nav-item"><a href="#"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-pencil-square mr-3 text-primary fa-fw"></i> 활동계획서작성
+				class="fa bi bi-pencil-square mr-3  fa-fw" style="color: #FA5858"></i> 활동계획서작성
 		</a></li>
 
 		<li class="nav-item"><a href="#"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-journal-text mr-3 text-primary fa-fw"></i> 자유게시판
+				class="fa bi bi-journal-text mr-3  fa-fw" style="color: #FA5858"></i> 자유게시판
 		</a></li>
 
 		<li class="nav-item"><a href="/cbh/student/myclub/schedule/student_ClubSchedulePage"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-layout-text-sidebar mr-3 text-primary fa-fw"></i>
+				class="fa bi bi-layout-text-sidebar mr-3  fa-fw" style="color: #FA5858"></i>
 				동아리일정
 		</a></li>
 
 		<li class="nav-item"><a
 			href="/cbh/student/myclub/membermgmt/student_MemberMgmtPage"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-person-square mr-3 text-primary fa-fw"></i> 회원관리
+				class="fa bi bi-person-square mr-3  fa-fw" style="color: #FA5858"></i> 회원관리
 		</a></li>
 
 		<li class="nav-item"><a
 			href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesPage"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-currency-dollar mr-3 text-primary fa-fw"></i> 경비신청
+				class="fa bi bi-currency-dollar mr-3  fa-fw" style="color: #FA5858"></i> 경비신청
 		</a></li>
 
 		<li class="nav-item"><a
 			href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtPage"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-currency-exchange mr-3 text-primary fa-fw"></i> 회비관리
+				class="fa bi bi-currency-exchange mr-3  fa-fw" style="color: #FA5858"></i> 회비관리
 		</a></li>
 
 		<li class="nav-item"><a href="#"
 			class="nav-link text-dark font-italic bg-light"> <i
-				class="fa bi bi-gear-fill mr-3 text-primary fa-fw"></i> 동아리소개작성
+				class="fa bi bi bi-gear-fill mr-3 fa-fw" style="color: #FA5858"></i> 동아리소개작성
 		</a></li>
 	</ul>
 
