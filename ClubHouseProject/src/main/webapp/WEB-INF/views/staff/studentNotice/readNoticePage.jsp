@@ -78,7 +78,7 @@
 				<a class = "btn btn-danger" href="./deleteNoticeProcess?notice_no=${notiData.noticeVO.noti_no }">삭제</a>
 			</div>
 			<div class="col d-grid">
-		        <a class = "btn btn-success" href="./updateContentPage?notice_no=${notiData.noticeVO.noti_no }">수정</a>
+		        <a class = "btn btn-success" href="./updateContentPage?notice_no=${notiData.noticeVO.noti_no }"><i class="bi bi-pencil-square"></i>수정</a>
 			</div>
 		</div>
 		

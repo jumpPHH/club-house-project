@@ -19,7 +19,27 @@
 #stud{
 	overflow-x: auto;
 }
-	
+
+thead{
+	text-align: center;
+}
+
+#tbody{
+	text-align: center;
+}
+
+.chkBtn{
+	text-align: left;
+}
+
+.form-check-input:checked {
+    border-color:#FA5858;
+    background-color: #FA5858;
+ }
+.form-check-input{
+  border-color:#FA5858;
+ }
+
 
 </style>
 <script type="text/javascript">
@@ -41,6 +61,7 @@
 				var tr = document.createElement("tr");
 
 				var check = document.createElement("td");
+				check.classList.add("chkBtn");
 				tr.appendChild(check);
 
 	            var checkInput = document.createElement("input");
@@ -246,7 +267,7 @@
 			</div>
 		
 			<div class="col d-grid" style="">
-				<button class="btn btn-outline-primary py-1" type="button">조회</button>
+				<button class="btn btn-outline-primary py-1" type="button"><i class="bi bi-search"></i>조회</button>
 			</div>
 <!-- 			<div class="col" style=""> -->
 <!-- 				<button class="btn btn" type="button">신규</button> -->
@@ -266,10 +287,10 @@
 		<!-- 학생정보 -->
 			<div class="row mt-4 box p-4" id="stud" style="height: 600px; overflow: auto;">
 				<div class="col">
-					<table class="table">
-						<thead style="color: rgb(252, 243, 243);">
+					<table class="table table-sm table-hover">
+						<thead style="background-color: rgb(252, 243, 243);">
 							<tr>
-								<th scope="col"><input id="totalCheck" onclick="totalCheck()" type="checkbox" class="form-check-input"></th>
+								<th scope="col" style="text-align: left;"><input id="totalCheck" onclick="totalCheck()" type="checkbox" class="form-check-input"></th>
 								<th scope="col">학번</th>
 								<th scope="col">이름</th>
 								<th scope="col">성별</th>
@@ -280,7 +301,7 @@
 						</thead>
 						<tbody id="tbody">
 <!-- 								<tr> -->
-<!-- 									<td><input id="check" onclick="" type="checkbox"  class="form-check-input"></td> -->
+<!-- 									<td><input id="chkBtn" onclick="" type="checkbox"  class="form-check-input"></td> -->
 <!-- 									<td></td> -->
 <!-- 									<td></td> -->
 <!-- 									<td></td> -->

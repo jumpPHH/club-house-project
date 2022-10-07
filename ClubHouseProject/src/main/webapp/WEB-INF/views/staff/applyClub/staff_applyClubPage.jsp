@@ -22,6 +22,14 @@
 	color: #bf1f51;
 }
 
+.form-check-input:checked {
+    border-color:#FA5858;
+    background-color: #FA5858;
+ }
+.form-check-input{
+  border-color:#FA5858;
+ }
+
 </style>
 <script type="text/javascript">
 	
@@ -120,8 +128,8 @@
 	function reject(){
 		if($(".reject").click()){
 				var tdState = document.getElementById("state");
-				tdState.innerHTML = "";
-				tdState.innerHTML = "반려";
+				tdState.innerHTML ="";
+				tdState.innerHTML ="반려";
 			}
 		
 		
@@ -130,8 +138,8 @@
 	function accept(){
 		if($(".accept").click()){
 				var tdState = document.getElementById("state");
-				tdState.innerHTML = "";
-				tdState.innerHTML = "승인";
+				tdState.innerHTML ="";
+				tdState.innerHTML ="승인";
 			}
 		
 		
@@ -177,7 +185,7 @@
 			</div>
 			<div class="col-7" style=""></div>
 			<div class="col d-grid" style="">
-				<button class="btn btn-outline-primary py-1" type="submit">조회</button>
+				<button class="btn btn-outline-primary py-1" type="submit"><i class="bi bi-search"></i>조회</button>
 			</div>
 			<div class="col d-grid" style="">
 				<button onclick="deleteNotice()" class="btn btn-outline-danger py-1" type="button">삭제</button>
@@ -185,16 +193,16 @@
 		</div>
 	</form>
 		
-	<div class="row mt-4 box p-4">
+	<div class="row mt-4 box p-4" style="height: 68vh;">
 		<div class="col">
 			<table class="table table hover caption-top table-sm" >
-			  <thead>
+			  <thead style="background-color: rgb(252, 243, 243);">
 			    <tr>
 					<th><input id="checkAll" onclick="checkAll()" type="checkbox" class="form-check-input" value="전체체크"></th>
-					<th class="col">동아리</th>
-					<th class="col">신청인</th>
-					<th class="col">선택일시</th>
-					<th class="col">상태</th>
+					<th class="col-4" style="text-align: center">동아리</th>
+					<th class="col-2" style="text-align: center">신청인</th>
+					<th class="col-5" style="text-align: center">선택일시</th>
+					<th class="col-1" style="text-align: center">상태</th>
 				<tr>
 			</thead>
 			<tbody id="tbody">
@@ -203,18 +211,18 @@
 						  <th><input id="check" onclick="check()" type="checkbox" class="form-check-input" value="${clubApplData.club_appl_no }"></th>
 						  <!-- <td><a href="./staff_readClubRequestPage?=${clubApplData.club_ApplVO.club_appl_no }">${clubApplData.club_ApplVO.club_name }</a></td> -->
 					      <!-- Button trigger modal -->
-					      <td><a data-bs-toggle="modal" data-bs-target="#exampleModal">${clubApplData.club_ApplVO.club_name }</a></td>
-					      <td>${clubApplData.club_ApplVO.stud_id }</td>
-					      <td><fmt:formatDate value ="${clubApplData.club_ApplVO.club_appl_date }" pattern="yyyy년 MM월 hh시 mm분"/></td>
-					      <td id="state">
+					      <td style="text-align: center; color:#FA5858;"><a data-bs-toggle="modal" data-bs-target="#exampleModal">${clubApplData.club_ApplVO.club_name }</a></td>
+					      <td style="text-align: center">${clubApplData.club_ApplVO.stud_id }</td>
+					      <td style="text-align: center"><fmt:formatDate value ="${clubApplData.club_ApplVO.club_appl_date }" pattern="yyyy년 MM월 dd일"/></td>
+					      <td id="state" style="text-align: center">
 					      <c:choose>
-					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state == 0}">
+					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state eq 0}">
 					      		승인
 					      	</c:when>
-					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state == 1}">
+					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state eq 1}">
 					      		반려
 					      	</c:when>
-					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state == 2}">
+					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state eq 2}">
 					      		심사중
 					      	</c:when>
 					      </c:choose>
@@ -293,7 +301,7 @@
 						    	<c:choose>
 						    		<c:when test="${i == currentPageNum }">
 										<li class="page-item active"><a class="page-link" 
-											style="text-decoration-line: none; font-weight: 600;"
+											style="text-decoration-line: none; border-color:#FA5858; background-color: #FA5858; font-weight: 600;"
 											href="./staff_applyClubPage?pageNum=${i}${additionalParam}">${i}</a></li>  		
 						    		</c:when>
 						    		<c:otherwise>

@@ -34,7 +34,7 @@ public class Staff_StudentNoticeController {
 		model.addAttribute("noticeDataList", noticeDataList);
 		
 		int noticeCount = staff_StudentNoticeService.getNoticeCount(noti_div_no, searchWord);
-		int totalPageCount = (int)Math.ceil(noticeCount/10.0);
+		int totalPageCount = (int)Math.ceil(noticeCount/15.0);
 		int startPage = ((pageNum-1)/5)*5+1;
 		int endPage = ((pageNum-1)/5+1)*5; 
 		
