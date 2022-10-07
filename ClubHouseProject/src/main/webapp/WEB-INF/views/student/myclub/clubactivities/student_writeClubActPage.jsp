@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +52,12 @@
 				class="text-uppercase font-weight-bold"
 				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Toggle</small>
 		</button>
-
+		
+		<c:if test="${clubNo == 0}">
+			
+		</c:if>
+		
+	
 		<div class="row card box"
 			style="width: 100%; height: 45px; margin-left: 0.1em; margin-bottom: 1em;">
 			<div class="dashboard-card-bottom">
