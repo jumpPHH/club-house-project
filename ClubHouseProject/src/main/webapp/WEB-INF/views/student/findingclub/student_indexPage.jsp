@@ -48,17 +48,58 @@
 	font-weight: bold;
 	font-size: 1.4em;
 }
+
+.selectDiv {
+	background-color: #bfc9e3;
+	color: white !important;
+	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 60%;
+}
+
+.aClick{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.aClick:hover {
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+}
 </style>
 
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+	
+	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+	var url1 = document.getElementById("student_indexPage");
+	var url2 = document.getElementById("student_MemberJoinMgmtPage");
+	
+		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+			$("#student_indexPage").attr('class','selectDiv');
+		
+		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+			$("#student_MemberJoinMgmtPage").attr('class','selectDiv');
+		}
+});
+</script>
+
 </head>
+
 <body>
 
 	<jsp:include
 		page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
-<head>
-<style>
-</style>
-</head>
 <!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
 <div class="page-content p-5" id="content">
 	<!-- 토글 버튼 -->
@@ -68,6 +109,45 @@
 			class="text-uppercase font-weight-bold"
 			style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Toggle</small>
 	</button>
+	
+	<div class="row card box"
+			style="width: 100%; height: 45px; margin-left: 0.1em; margin-bottom: 0.7em;">
+			<div class="dashboard-card-bottom">
+				<div class="row">
+
+					<div class="col-1"></div>
+
+					<div class="col">
+
+						<div class="row ps-1 p-2 mb-2">
+							<div class="col text-center">
+								<div class="row"
+									style="justify-content: center; border-right: 2px solid #ededed">
+									<a id="student_indexPage"
+										href="/cbh/student/findingclub/student_indexPage"
+										class="col-auto px-3 aClick"
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+										동아리 찾기 </a>
+								</div>
+							</div>
+
+							<div class="col text-center">
+								<div class="row" style="justify-content: center">
+									<a id="student_MemberJoinMgmtPage"
+										href="#"
+										class="col-auto px-3 aClick"
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+										분야 별 동아리들 </a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-1"></div>
+				</div>
+			</div>
+		</div>
+	
 
 	<div class="card"
 		style="width: 100%; height: auto; border-radius: 2%; box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important; padding: 0px 15px;">
@@ -77,20 +157,11 @@
 			<!-- 카테고리 박스 -->
 			<div class="container-fluid">
 				<div class="row">
-
 					<!-- 컨텐트 박스 -->
 					<div class="col pe-0">
 						<!-- 컨텐트 부분 -->
 						<div class="row">
 							<div class="col" id="content">
-								<!-- 컨텐트 헤더 -->
-								<div class="row">
-									<div class="col" style="margin-top: 0.8em">
-										<i class="fa bi bi-search mr-3 text-primary fa-fw"
-											style="width: 2em; height: 1.2em"></i>&nbsp <span
-											class="page_title">동아리 찾기</span>
-									</div>
-								</div>
 
 								<!-- 켄텐트 of 컨텐트 -->
 								<div class="row mt-2">
@@ -110,7 +181,7 @@
 													<div class="col my-2">
 														<div class="row">
 															<div class="col-4"></div>
-															<div class="col category_box_title">공연예술분과</div>
+															<div class="col category_box_title">공연예술분야</div>
 														</div>
 														<div class="row pt-4">
 															<div class="col-4"></div>
@@ -122,8 +193,7 @@
 															<div class="col">
 																<!-- 여기에 카테고리 파라미터로 넘겨주는 주소 적어야 함. -->
 																<button class="btn btn-primary">
-																	<a
-																		href="./student_clubsOfCategoryPage?club_category_no=1"
+																	<a	href="./student_clubsOfCategoryPage?club_category_no=1"
 																		style="color: white;">자세히보기</a>
 																</button>
 															</div>
@@ -146,7 +216,7 @@
 													<div class="col my-2">
 														<div class="row">
 															<div class="col-4"></div>
-															<div class="col category_box_title">종교분과</div>
+															<div class="col category_box_title">종교분야</div>
 														</div>
 														<div class="row pt-4">
 															<div class="col-4"></div>
@@ -159,9 +229,7 @@
 																<!-- 여기에 카테고리 파라미터로 넘겨주는 주소 적어야 함. -->
 
 																<button class="btn btn-primary">
-																	<a
-																		href="./student_clubsOfCategoryPage?club_category_no=2"
-																		style="color: white;">자세히보기</a>
+																	<a href="./student_clubsOfCategoryPage?club_category_no=2"	style="color: white;">자세히보기</a>
 																</button>
 															</div>
 														</div>
@@ -183,7 +251,7 @@
 													<div class="col my-2">
 														<div class="row">
 															<div class="col-4"></div>
-															<div class="col category_box_title">체육분과</div>
+															<div class="col category_box_title">체육분야</div>
 														</div>
 														<div class="row pt-4">
 															<div class="col-4"></div>
@@ -223,7 +291,7 @@
 													<div class="col my-2">
 														<div class="row">
 															<div class="col-4"></div>
-															<div class="col category_box_title">사회활동분과</div>
+															<div class="col category_box_title">사회활동분야</div>
 														</div>
 														<div class="row pt-4">
 															<div class="col-4"></div>
@@ -260,7 +328,7 @@
 													<div class="col my-2">
 														<div class="row">
 															<div class="col-4"></div>
-															<div class="col category_box_title">창작예술분과</div>
+															<div class="col category_box_title">창작예술분야</div>
 														</div>
 														<div class="row pt-4">
 															<div class="col-4"></div>
@@ -297,7 +365,7 @@
 													<div class="col my-2">
 														<div class="row">
 															<div class="col-4"></div>
-															<div class="col category_box_title">학술교양분과</div>
+															<div class="col category_box_title">학술교양분야</div>
 														</div>
 														<div class="row pt-4">
 															<div class="col-4"></div>
@@ -336,7 +404,7 @@
 													<div class="col my-2">
 														<div class="row">
 															<div class="col-4"></div>
-															<div class="col category_box_title">기타분과</div>
+															<div class="col category_box_title">기타분야</div>
 														</div>
 														<div class="row pt-4">
 															<div class="col-4"></div>

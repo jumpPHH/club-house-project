@@ -16,10 +16,8 @@
 <style type="text/css">
 
 
-#title{
-	font-weight: bold;
-	font-size: 3vh;
-	color: #bf1f51;
+#stud{
+	overflow-x: auto;
 }
 	
 
@@ -213,26 +211,26 @@
 <jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
 
 	 <!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
-   <div class="page-content p-5 pt-4" id="content">
+   <div class="page-content p-5 pt-4" id="content" style="">
      <!-- 토글 버튼 -->
       <button id="sidebarCollapse" type="button"
          class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
          <i class="fa fa-bars mr-2"></i><small
-            class="text-uppercase font-weight-bold">MENU</small>
+            class="text-uppercase font-weight-bold" style="color: #FA5858">MENU</small>
       </button>
 
 		<!-- 버튼 form으로 조회하고 신규삭제 ajax써야할듯-->
-		<div class="row mt-4 box p-4"  style="border-color: grey">
-			<div class="col">
+		<div class="row mt-4 box" style="height: 45px; align-items: center;">
+			<div class="col-1">
 				학번(이름)
 			</div>
-			<div class="col">
+			<div class="col-3">
 				<input type="text">
 			</div>
-			<div class="col">
+			<div class="col-1">
 				학적상태
 			</div>
-			<div class="col">
+			<div class="col-1">
 				<select name="searchType" >
 					<option value="attending">재학</option>
 					<option value="absence">휴학</option>
@@ -240,25 +238,25 @@
 					<option value="graduate">졸업</option>					
 				</select>
 			</div>
-			<div class="col">
+			<div class="col-1">
 				소속학과
 			</div>
-			<div class="col">
+			<div class="col-3">
 				<input type="text">
 			</div>
 		
-			<div class="col" style="">
-				<button class="btn btn" type="button">조회</button>
+			<div class="col d-grid" style="">
+				<button class="btn btn-outline-primary py-1" type="button">조회</button>
 			</div>
-			<div class="col" style="">
-				<button class="btn btn" type="button">신규</button>
+<!-- 			<div class="col" style=""> -->
+<!-- 				<button class="btn btn" type="button">신규</button> -->
+<!-- 			</div> -->
+			<div class="col d-grid" style="">
+				<button onclick="deleteData()" class="btn btn-outline-danger py-1" type="button">삭제</button>
 			</div>
-			<div class="col" style="">
-				<button onclick="deleteData()" class="btn btn" type="button">삭제</button>
-			</div>
-			<div class="col" style="">
-				<button class="btn btn" type="button">저장</button>
-			</div>
+<!-- 			<div class="col" style=""> -->
+<!-- 				<button class="btn btn" type="button">저장</button> -->
+<!-- 			</div> -->
 		</div>
 <!-- 		<div class="row"> -->
 <!-- 			<div class="col"> -->
@@ -266,10 +264,10 @@
 <!-- 			</div> -->
 <!-- 		</div> -->
 		<!-- 학생정보 -->
-			<div class="row mt-4 box p-4">
+			<div class="row mt-4 box p-4" id="stud" style="height: 600px; overflow: auto;">
 				<div class="col">
 					<table class="table">
-						<thead>
+						<thead style="color: rgb(252, 243, 243);">
 							<tr>
 								<th scope="col"><input id="totalCheck" onclick="totalCheck()" type="checkbox" class="form-check-input"></th>
 								<th scope="col">학번</th>

@@ -18,7 +18,6 @@ $(function() {
 	  });
 	});
 	
- HEAD
 	
 	
 	function getClubNo() {
@@ -28,7 +27,18 @@ $(function() {
 				var jsonObj = JSON.parse(xhr.responseText);
 				
 				var establigshingClubResultPage = document.querySelector('#establishingClubResultPage');
-				establigshingClubResultPage.setAttribute("href","/cbh/student/myclub/clubboard?clubNo="+jsonObj.clubNo);
+				console.log("establigshingClubResultPage : " + establigshingClubResultPage);
+				console.log("clubNo : " +jsonObj.clubNo)
+				establigshingClubResultPage.setAttribute("href","/cbh/student/establishingclub/student_establishingClubResultPage?clubNo="+jsonObj.clubNo);
+				
+				var establishingClubIndexPage = document.querySelector('#establishingClubIndexPage');
+				establishingClubIndexPage.setAttribute("href","/cbh/student/establishingclub/student_indexPage?clubNo="+jsonObj.clubNo);
+			
+				var myclubClubActivities = document.querySelector('#myclubClubActivities');
+				myclubClubActivities.setAttribute("href", "/cbh/student/myclub/clubactivities/student_indexPage?club_no="+ jsonObj.clubNo);
+				
+				var myclubClubBoardPage = document.querySelector('#myclubClubBoardPage');
+				myclubClubBoardPage.setAttribute("href", "/cbh/student/myclub/clubboard/student_indexPage?club_no="+ jsonObj.clubNo);
 				
 			}
 		}
@@ -50,6 +60,7 @@ function ul(index) {
 		underlines[i].style.transform = 'translate3d(' + index * 100 + '%,0,0)';
 	}
 }
+
 
 </script>
 
@@ -103,15 +114,17 @@ function ul(index) {
 
 	<ul class="nav flex-column bg-white mb-0">
 		<li class="nav-item">
-			<a href="/cbh/student/establishingclub/student_indexPage"
+			<a id="establishingClubIndexPage" href="/cbh/student/establishingclub/student_indexPage"
 				class="nav-link text-dark font-italic bg-light"> 
 				<i class="fa bi bi-pencil-square mr-3 fa-fw" style="color: #FA5858"></i> 신청서작성
 			</a>
 		</li>
 
 		<li class="nav-item">
-			<a id="establigshingClubResultPage" href="/cbh/student/establishingclub/student_establishingClubResultPage"	class="nav-link text-dark font-italic bg-light"> 
+
+			<a id="establishingClubResultPage" href="/cbh/student/establishingclub/student_establishingClubResultPage"	class="nav-link text-dark font-italic bg-light"> 
 				<i	class="fa bi bi-ui-checks mr-3 fa-fw" style="color: #FA5858"></i> 동아리신청상태
+
 			</a>
 		</li>
 
@@ -129,12 +142,13 @@ function ul(index) {
 		</a></li>
 
 		<li class="nav-item">
-			<a href="/cbh/student/myclub/clubactivities/student_writeClubActPage"	class="nav-link text-dark font-italic bg-light"> 
-				<i	class="fa bi bi-pencil-square mr-3 fa-fw" style="color: #FA5858"></i> 활동계획서작성
+			
+			<a id="myclubClubActivities" href="/cbh/student/myclub/clubactivities/student_writeClubActPage"	class="nav-link text-dark font-italic bg-light"> 
+				<i	class="fa bi bi-pencil-square mr-3 fa-fw" style="color: #FA5858"></i> 활동내역
 			</a>
 		</li>
 
-		<li class="nav-item"><a href="/cbh/student/myclub/clubboard?clubNo="
+		<li class="nav-item"><a id="myclubClubBoardPage" href="/cbh/student/myclub/clubboard?clubNo="
 			class="nav-link text-dark font-italic bg-light"> <i
 				class="fa bi bi-journal-text mr-3  fa-fw" style="color: #FA5858"></i> 자유게시판
 		</a></li>

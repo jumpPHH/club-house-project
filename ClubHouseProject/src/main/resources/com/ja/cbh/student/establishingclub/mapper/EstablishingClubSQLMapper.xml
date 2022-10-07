@@ -8,12 +8,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertClubAppl">
 		INSERT INTO CBH_CLUB_APPL VALUES(
 			CBH_CLUB_APPL_SEQ.nextval,
-			#{stud_id},
-			#{club_name},
-			#{club_appl_people_count},
-			#{club_purpose},
+			#{clubApplVO.stud_id},
+			#{clubApplVO.club_name},
+			#{clubApplVO.club_appl_people_count},
+			#{clubApplVO.club_purpose},
 			SYSDATE,
-			3
+			3,
+			#{clubApplVO.club_category_no}
 		)	
 	</insert>
 	
@@ -88,6 +89,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM CBH_CLUB_APPL
 		WHERE CLUB_APPL_NO = #{applNo}
 	</select>
+	
+	<insert id="insertClubStudByStud">
+		INSERT INTO CBH_CLUB_STUD VALUES(
+			CBH_CLUB_STUD_SEQ.NEXTVAL,
+			#{studVO.stud_id},
+			#{studVO.club_no},
+			#{studVO.club_stud_grade},
+			SYSDATE,
+			SYSDATE,
+			'',
+			'',
+			'1'
+		)
+	
+	</insert>
 
 
 </mapper>

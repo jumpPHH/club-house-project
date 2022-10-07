@@ -33,6 +33,7 @@ public class ClubBoardController {
 	@RequestMapping("student_indexPage")
 	public String student_indexPage(Model model, @RequestParam(value="club_no") String club_no,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
 		int clubNo = Integer.parseInt(club_no);
+		System.out.println(clubNo);
 
 		ArrayList<HashMap<String, Object>> clubBoardList = clubBoardService.getClubBoardList(clubNo,searchWord);
 		

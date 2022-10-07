@@ -16,10 +16,17 @@
 <style type="text/css">
 
 
+.body{
+	background-color: #adb5bd12;
+}
+
 #title{
-	font-weight: bold;
-	font-size: 3vh;
-	color: #bf1f51;
+	color: #FA5858;
+	text-decoration-line: none;
+}
+
+#search{
+	float: left;
 }
 
 
@@ -102,7 +109,7 @@
 
 </script>
 </head>
-<body>
+<body id="body">
 	<jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
 	
 		
@@ -112,16 +119,16 @@
 		<button id="sidebarCollapse" type="button"
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
 			<i class="fa fa-bars mr-2"></i><small
-				class="text-uppercase font-weight-bold">MENU</small>
+				class="text-uppercase font-weight-bold" style="color: #FA5858">MENU</small>
 		</button>
 		
 		<br>
 		<form action="./staff_StudentNoticePage" method="get">
-		<div class="row mt-4 box p-4"  style="border-color: gray" >
+		<div class="row mt-4 box" style="height: 45px; align-items: center">
 			<div class="col-1">
 				공지구분
 			</div>
-			<div class="col">
+			<div class="col-2">
 				<select name="noti_div_no">
 					<option selected value="0">일반공지</option>
 					<option value="1">긴급공지</option>					
@@ -131,17 +138,17 @@
 				제목
 			</div>
 			<div class="col">
-				<input name="searchWord" type="text">
+				<input name="searchWord" id="search" type="text">
 			</div>
-			<div class="col" style="">
-				<button class="btn btn-outline-primary" type="submit">조회</button>
+			<div class="col-1" style="">
+				<button class="btn btn-outline-primary py-1" type="submit">조회</button>
 			</div>
 		
-			<div class="col" style="">
-				<button class="btn btn-outline-success" type="button" onclick="location.href='/cbh/staff/studentNotice/writeNoticePage'">작성</button>
+			<div class="col-1" style="">
+				<button class="btn btn-outline-success py-1" type="button" onclick="location.href='/cbh/staff/studentNotice/writeNoticePage'">작성</button>
 			</div>
-			<div class="col" style="">
-				<button onclick="deleteNotice()" class="btn btn-outline-danger" type="button">삭제</button>
+			<div class="col-1" style="float: right;">
+				<button onclick="deleteNotice()" class="btn btn-outline-danger py-1" type="button">삭제</button>
 			</div>			
 		</div>
 		</form>
@@ -166,7 +173,7 @@
 									<td><input name="check" onclick="check()" type="checkbox"  class="check form-check-input" value="${noticeData.noticeVO.noti_no }"></td>
 									<td>${noticeData.noticeVO.noti_no }</td>
 									<td>${noticeData.noticeVO.staff_id}</td>
-									<td><a href="./readNoticePage?noticeNo=${noticeData.noticeVO.noti_no }">${noticeData.noticeVO.noti_title }</a></td>
+									<td><a id="title" href="./readNoticePage?noticeNo=${noticeData.noticeVO.noti_no }">${noticeData.noticeVO.noti_title }</a></td>
 									<c:choose>
 										<c:when test="${noticeData.noticeVO.noti_div_no == 0 }">
 											<td>일반공지</td>
@@ -183,8 +190,9 @@
 					</table>
 				</div>
 			</div>
-			
-			<div class="row">
+			<br>
+			<div class="row mt-3">
+			<div class="col-4"></div>
 				<div class="col">
 					<!-- paging UI -->
 					<nav aria-label="Page navigation example">
@@ -192,42 +200,45 @@
 							<c:choose>
 								<c:when test="${startPage <=1}">
 									<li class="page-item disabled"><a class="page-link"
-										href="#">&lt;</a></li>
+										href="#" style="text-decoration-line: none; color: red;">◀</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="./staff_StudentNoticePage?pageNum=${startPage-1}${additionalParam}">&lt;</a></li>
+										style="text-decoration-line: none; color: black;"
+										href="./staff_StudentNoticePage?pageNum=${startPage-1}${additionalParam}">◀</a></li>
 								</c:otherwise>
 							</c:choose>
-
 							<c:forEach begin="${startPage}" end="${endPage}" var="i">
 								<c:choose>
 									<c:when test="${i == currentPageNum}">
 										<li class="page-item active"><a class="page-link"
+											style="text-decoration-line: none; font-weight: 600;"
 											href="./staff_StudentNoticePage?pageNum=${i}${additionalParam}">${i}</a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
+											style="text-decoration-line: none; color: black;"
 											href="./staff_StudentNoticePage?pageNum=${i}${additionalParam}">${i}</a></li>
 									</c:otherwise>
 								</c:choose>
-
 							</c:forEach>
-
 							<c:choose>
 								<c:when test="${endPage >= totalPageCount }">
 									<li class="page-item disabled"><a class="page-link"
-										href="./staff_StudentNoticePage?pageNum=${endPage+1}${additionalParam}">&gt;</a></li>
+										style="text-decoration-line: none; color: red;"
+										href="./staff_StudentNoticePage?pageNum=${endPage+1}${additionalParam}">▶</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="./staff_StudentNoticePage?pageNum=${endPage+1}${additionalParam}">&gt;</a></li>
+										style="text-decoration-line: none; color: black;"
+										href="./staff_StudentNoticePage?pageNum=${endPage+1}${additionalParam}">▶</a></li>
 								</c:otherwise>
 							</c:choose>
 
 						</ul>
 					</nav>
 				</div>
+				<div class="col-4"></div>
 			</div>
 		
 </div>

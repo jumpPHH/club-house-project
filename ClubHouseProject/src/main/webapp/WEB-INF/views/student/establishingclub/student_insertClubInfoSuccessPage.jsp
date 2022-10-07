@@ -84,7 +84,7 @@
 							</div>
 							<div class="row">
 								<div class="col" style="text-align:center; margin-bottom:15em;">
-									<button type="button" class="btn btn-danger" style="width:40em; height:3em;" onclick="location.href='./student_indexPage'">동아리 메인페이지로 이동</button>
+									<button type="button" class="btn btn-danger" style="width:40em; height:3em;" onclick="location.href='/cbh/student/index/student_IndexPage'">동아리 메인페이지로 이동</button>
 								</div>
 							</div>
 							

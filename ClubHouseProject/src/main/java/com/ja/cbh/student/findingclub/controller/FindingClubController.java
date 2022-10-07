@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ja.cbh.student.findingclub.service.FindingClubServiceImpl;
+import com.ja.cbh.vo.ClubDeptCategoryVO;
 import com.ja.cbh.vo.ClubVO;
 import com.ja.cbh.vo.Club_Dept_CategoryVO;
 import com.ja.cbh.vo.Club_StudVO;
@@ -38,7 +39,9 @@ public class FindingClubController {
 		int clubCategoryNo = Integer.parseInt(club_category_no);
 		
 		ArrayList<ClubVO> clubList = findingClubService.getAllClubsOfCategory(clubCategoryNo, searchWord);
+		Club_Dept_CategoryVO clubCategoryVO = findingClubService.getClubCategoryByNo(clubCategoryNo);
 		
+		model.addAttribute("clubCategoryVO", clubCategoryVO);
 		model.addAttribute("clubList", clubList);
 		model.addAttribute("clubCategoryNo", clubCategoryNo);
 		
@@ -52,6 +55,8 @@ public class FindingClubController {
 		
 		ClubVO clubData = findingClubService.getClubByNo(clubNo);
 		StudVO clubBossData = findingClubService.getClubStudByStudId(clubData.getClub_boss()) ;
+		Club_Dept_CategoryVO clubCategoryData = findingClubService.getClubCategoryByNo(clubData.getClub_category_no());
+		model.addAttribute("clubCategoryData", clubCategoryData);
 		model.addAttribute("clubData", clubData);
 		model.addAttribute("clubBossData", clubBossData);
 		
