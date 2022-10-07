@@ -23,7 +23,7 @@
 		</button>
 				
 				<!-- 여기다 작성하세요 -->
-				<div class="row mb-4 ps-2" style="height: 25vh">
+				<div class="row mb-4 ps-2" style="height: 26.5vh">
 					<div class="col box me-4">
 						<div class="row">
 							<div class="col text-between pt-1" style="color:#FA5858">
@@ -181,7 +181,7 @@
 					
 					</div>
 				</div>
-				<div class="row mb-4 ps-2" style="height: 25vh">
+				<div class="row mb-4 ps-2" style="height: 26.5vh">
 				<div class="col box me-4">
 					<div class="row">
 						<div class="col text-between pt-1 mb-2" style="color:#FA5858">
@@ -195,7 +195,7 @@
 									<tbody>
 										<c:choose>
 											<c:when test="${not empty data.ClubApplList }">
-												<c:forEach begin="0" end="8" items="${data.MyRejectApvList }" var="data">
+												<c:forEach begin="0" end="8" items="${data.ClubApplList }" var="data">
 													<tr>
 														<th class="text-center col-1 py-0 ps-3"><i class="bi bi-dot"></i></th>
 														<td class="py-0">${data.CLUB_NAME }</td>
@@ -271,7 +271,7 @@
 						</div>
 				</div>
 				</div>
-				<div class="row ps-2" style="height: 25vh">
+				<div class="row ps-2" style="height: 26.5vh">
 				<div class="col box me-4">
 				<div class="row">
 						<div class="col text-between pt-1 mb-2" style="color:#FA5858">

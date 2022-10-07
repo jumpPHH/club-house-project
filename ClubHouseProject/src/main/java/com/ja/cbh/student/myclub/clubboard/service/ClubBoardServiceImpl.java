@@ -31,7 +31,9 @@ public class ClubBoardServiceImpl {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			
 			int clubStudNo = boardData.getClub_stud_no();
+			System.out.println(clubStudNo);
 			Club_StudVO clubStudData = clubBoardSQLMapper.selectClubStudByClubStudNo(clubStudNo);
+		
 			StudVO studData = clubBoardSQLMapper.selectStudByStudId(clubStudData.getStud_id());
 			String writerName = studData.getStud_name();
 			

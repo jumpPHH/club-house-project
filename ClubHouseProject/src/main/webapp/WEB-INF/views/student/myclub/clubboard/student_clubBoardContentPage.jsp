@@ -1,125 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-   
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-	<link rel="stylesheet"
-   href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-   href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/cbh/resources/css/NewFile.css">
-<link rel="stylesheet" href="/cbh/resources/css/establishingclub.css">
-<script src="https://code.jquery.com/jquery-3.6.1.js"
-        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-        crossorigin="anonymous">
-</script>
-
-
-
-
 <style type="text/css">
-.tab {
-	border: 1px solid white;
-	border-bottom: 0px;
-	background-color: black;
-	color: white;
-	width: auto;
-	align-self: end;
-	flex: 0 0 auto;
-	border-radius: 0.3rem 0.3rem 0% 0%;
+	.selectDiv {
+	background-color: #bfc9e3;
+	color: white !important;
+	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 60%;
 }
 
-.scroll-container {
-	display: flex;
-	flex-wrap: no-wrap;
-	overflow-x: hidden;
-	overflow-y: hidden;
-	align-items: end;
+.aClick{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
 }
 
-.MP {
-	padding-left: 2.2rem;
-}
-
-#bigMenuText{
-	font-size: 2.5vh;
-}
-#sideBar>ul>li{
-	font-size: 2vh;
-	padding-left: 1.0vw;
-}
-#sideBar>ul>li>div{
-	background:linear-gradient( to right, #d6d6d6 , #ededed );
-	margin-right: 1.0vw;
-	padding-left:1vw;
-	border-radius: 5vh;
-	color:#969696;
-	font-weight: bold;
-}
-#sideBar>ul>li>div{
-	margin-bottom: .2vh;
-	margin-right: 1.0vw;
-	padding-left:1vw;
-	border-radius: 5vh;
-}
-#sideBar li ul li{
-	font-size: 1.8vh;
-	list-style-type: disc;
-	list-style: none;
-	margin-bottom: .5vh;
-	color: #828282;
-}
-#sideBar li ul li:hover{
-	font-weight: bold;
-	color: #bf1f51;
-	letter-spacing: 0.05vw;
-}
-#sideBar ul{
-	margin-bottom: 1.5vh;
-	padding-left: 0;
-}
-#sideBar li ul{
-	padding-left: 1vw;
-	margin-bottom: 2.2vh;
-}
-.bi-chevron-right{
-	
+.aClick:hover {
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
 }
 </style>
 
+
+
+
+
 <script type="text/javascript">
+
+document.addEventListener("DOMContentLoaded", function () {
 	
-	var club_no = ${map.clubBoardData.club_no};
-	var club_board_no = ${map.clubBoardData.club_board_no};
-	var club_stud_no = ${map.clubBoardData.club_stud_no};
+	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+	var url1 = document.getElementById("student_indexPage");
+	var url2 = document.getElementById("student_MemberJoinMgmtPage");
+	
+		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+			$("#student_indexPage").attr('class','selectDiv');
+		
+		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+			$("#student_MemberJoinMgmtPage").attr('class','selectDiv');
+		}
+});
+
+
 	var sessionUserId = "${sessionUserInfo.stud_id}";
 	
 	
 
-	function seeTheReason(){
-// 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-// 		xhr.onreadystatechange = function () {
-			
-// 			if(xhr.readyState == 4 && xhr.status == 200){
-// 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-				
-				
-// 			}
-// 		}
-		
-// 		xhr.open("get" , "./getReject); //리퀘스트 세팅..
-// 		//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
-// 		xhr.send(); //AJAX로 리퀘스트함..
-
-		var popUrl = "./establishingClubRejectReasonPage";
-	    var popOption = "top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no, scrollbars=no";
-	    window.open(popUrl, popOption);
-	}
 	
 	
 	function activateUpdateAndDeleteButtonIfHeisWriter(){
@@ -287,144 +230,205 @@
 		xhr.open("get","./restapi/deleteClubBoardComment_By3No?club_board_no="+clubBoardNo+"&club_no="+clubNo+"&club_board_comment_no="+clubBoardCommentNo);
 		xhr.send(); //AJAX로 리퀘스트함..
 	}
-	
-	function updateComment(){
-		
-	}
-	
-	window.addEventListener("DOMContentLoaded" , function (){
+
+	window.addEventListener("DOMContentLoaded", function() {
 		//사실상 처음 실행하는 코드 모음...
-		activateUpdateAndDeleteButtonIfHeisWriter();
-		refreshCommentList();
+		activateUpdateAndDeleteButtonIfHeIsClubBoss();
+
 		//setInterval(refreshCommentList , 3000); //폴링 방식의 실시간... 화면 갱신...
-		
+
 	});
-	
-	
-	
 </script>
 
 
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/student_common/student_header.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/views/student_common/student_sidevar.jsp"></jsp:include>
+	<jsp:include
+		page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
 
+	<div class="page-content p-5" id="content">
+		<!-- 토글 버튼 -->
+		<button id="sidebarCollapse" type="button"
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
+			<i class="fa fa-bars mr-2"></i><small
+				class="text-uppercase font-weight-bold"
+				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Toggle</small>
+		</button>
 
-<div style="position: absolute; left: 13.5%; width: 86.5%; top: 14vh; height:86vh;overflow-y: auto">
-	<div class="container-fluid">
-		<div class="row" >
-			<div class="col">
-				
-				<!-- 여기다 작성하세요 -->
+		<div class="row card box"
+			style="width: 100%; height: 45px; margin-left: 0.1em; margin-bottom: 1em;">
+			<div class="dashboard-card-bottom">
 				<div class="row">
-					<div class="col" id="content">
-							<!-- 컨텐트 위에 헤더 -->
-							<div class="row page_title">
-								<div class="col-4 page_title_text">
-									<span style="margin-left: 0.3em;">자유게시판</span>
+
+					<div class="col-1"></div>
+
+					<div class="col">
+
+						<div class="row ps-1 p-2 mb-2">
+							<div class="col text-center">
+								<div class="row"
+									style="justify-content: center; border-right: 2px solid #ededed">
+									<a	id="student_indexPage"
+										href="/cbh/student/myclub/clubboard/student_indexPage?club_no=${map.clubActData.club_no }"
+										class="col-auto px-3 aClick" 
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+										자유게시판 </a>
 								</div>
-								<div class="col"></div>
 							</div>
-							<!-- 컨텐트 박스 -->
+
+							<div class="col text-center">
+								<div class="row" style="justify-content: center">
+									<a id="student_MemberJoinMgmtPage"
+										href="/cbh/student/myclub/writeClubActPage?club_no=${map.clubActData.club_no }"
+										class="col-auto px-3 aClick"
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+										자유게시판 작성 </a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-1"></div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="card"
+			style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important; padding: 30px;">
+			<div class="dashboard-card-bottom">
+				<!-- 실제 내용 -->
+
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col">
+
+							<!-- 여기다 작성하세요 -->
 							<div class="row">
-								<div class="col">
-									<!-- 글 제목 공간 -->	
-									<div class="row">
-										<div class="col" style="text-align:center;">
-											<hr style="height:1px; color:gray;" class="py-3"><br>
-											<h2>${map.clubBoardData.club_board_title }</h2><br>
-											<hr style="height:1px; color:gray;" class="py-3">
-										</div>
-									</div>
-									
-									<!-- 글의 내용 공간 -->	
+								<div class="col" id="content">
+									<!-- 컨텐트 박스 -->
 									<div class="row">
 										<div class="col">
+											<!-- 글 제목 공간 -->
+											<div class="row"
+												style="border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; background-color: #f6f6f6">
+												<div class="col" style="text-align: center;">
+													<h2 style="margin-top: 1em;">${map.clubBoardData.club_board_title }</h2>
+													<br>
+												</div>
+											</div>
+
+											<!-- 글의 내용 공간 -->
+											<div class="row">
+												<div class="col">
+
+													<!-- 조회수 및 날짜 공간 -->
+													<div class="row">
+														<div class="col"
+															style="text-align: right; margin-top: 1em; padding: 1em 2em 0.2em 2em;">
+															조회수 : ${map.clubBoardData.club_board_readcount } | 날짜 :
+															<fmt:formatDate value="${map.clubBoardData.club_board_writedate }"
+																pattern="yyyy-MM-dd" />
+														</div>
+													</div>
+
+													<!-- 작성자 -->
+													<div class="row">
+														<div class="col"
+															style="text-align: right; padding: 0 2em;">작성자 : 회장
+														</div>
+													</div>
+
+													<!-- 진짜 글 내용 -->
+													<div class="row">
+														<div class="col mt-5" style="padding: 2em; margin: 2em 0;">
+															${map.clubBoardData.club_board_content }</div>
+													</div>
 										
-											<!-- 조회수 및 날짜 공간 -->
-											<div class="row">
-												<div class="col" style="text-align:right">
-													조회수 : ${map.clubBoardData.club_board_readcount } |  날짜 : <fmt:formatDate value="${map.clubBoardData.club_board_writedate }" pattern="yyyy-MM-dd"/>
-												</div>
-											</div>
-											
-											<!-- 진짜 글 내용 -->
-											<div class="row">
-												<div class="col mt-5">
-													${map.clubBoardData.club_board_content }
-												</div>
-											</div>
-											<div class="row">
-											<c:forEach items="${map.clubBoardImageList }" var="clubBoardImageLink">
-												<div class="col">
-													<img src="${clubBoardImageLink.club_board_image_link }"><br>
-												</div>
-											</c:forEach>
-											</div>
-											<!-- 목록 버튼 칸  -->
-											<div class="row mt-5">
-												<div class="col" id="buttonBox">
+													<div class="row">
+														<c:forEach items="${map.clubBoardImageList }" var="clubBoardImageLink">
+															<div class="col mb-5" style="padding:2em;">
+																<img src="${clubBoardImageLink.club_board_image_link }"><br>
+															</div>
+														</c:forEach>
+													</div>
 													
-												</div>
-											</div>
-											<hr style="height:1px; color:gray">
-											
-											
-											<!-- 댓글 리스트 박스 -->
-											<div class="row mt-5">
-												<div class="col" id="commentListBox"  style="border:1px; border-radius:5px; border-color:gray;"><span style="font-weight:bold; font-size:20px">댓글</span>
-												<br> <hr style="height:5px; color:gray; width:8%; margin-bottom:3vh">
 													
+													<!-- 목록 버튼 칸  -->
+													<div class="row">
+														<div class="col" id="buttonBox"
+															style="padding: 2em; border-top: 1px solid #ddd">
+															<span><button class="btn btn-secondary">목록</button></span>
+															<span><button class="btn btn-primary" onclick="location.href='/cbh/student/myclub/clubboard/student_modifyClubBoardPage?club_no=${map.clubBoardData.club_no}&club_board_no=${map.clubBoardData.club_board_no }'">수정</button></span>
+															<span><button class="btn btn-danger"  onclick="location.href='/cbh/student/myclub/clubboard/student_deleteClubBoardProcess?club_no=${map.clubBoardData.club_no}&club_board_no=${map.clubBoardData.club_board_no }'">삭제</button></span>
+														</div>
+													</div>
+													
+													<!-- 1 리스트 박스 -->
+													<div class="row mt-5">
+														<div class="col" id="commentListBox"  style="border:1px; border-radius:5px; border-color:gray;"><span style="font-weight:bold; font-size:20px">댓글</span>
+														</div>
+													</div>
+													<div class="row"  style="border-top:1px solid #ddd; margin-top:1em; width:15%; margin-left:1px;">
+														<div class="col">
+														</div>
+													</div>
+													
+													
+													<!-- 댓글작성박스 -->
+													<div class="row mt-5">
+														<div class="col">
+															<input type="text" id="club_board_comment_content" style="width:100%; height:5vh;  border: solid 2px #adb5bd; border-radius: 8px; ">
+														</div>
+														<div class="col-1">
+															<button class="btn btn-secondary" onclick="inputClubBoardComment()">작성</button>
+														</div>
+													</div>
+
+													<!-- 다음 글 이전글 박스 -->
+													<table class="table" style="margin-top: 8vh">
+														<colgroup>
+															<col width="25%">
+															<col width>
+														</colgroup>
+														<thead>
+														</thead>
+														<tbody>
+															<tr style="border-top: 1px solid #dee2e6">
+																<th
+																	style="border-right: 1px solid #dee2e6; text-align: center; padding: 2vh 0.5vh">다음
+																	글</th>
+																<td style="padding-left: 1em; padding: 2vh"><a
+																	href="./student_clubBoardContentPage?club_board_no=${map.NextPostBoardNo }&club_no=${map.clubBoardData.club_no}">${map.NextPostTitle }</a></td>
+															</tr>
+															<tr style="border-top: 1px solid #dee2e6">
+																<th
+																	style="border-right: 1px solid #dee2e6; text-align: center; padding: 2vh 0.5vh">이전
+																	글</th>
+																<td style="padding-left: 1em; padding: 2vh"><a
+																	href="./student_clubBoardContentPage?club_board_no=${map.PreviousPostBoardNo }&club_no=${map.clubBoardData.club_no}">${map.PreviousPostTitle }</a></td>
+															</tr>
+														</tbody>
+													</table>
+
 												</div>
 											</div>
-											
-											<!-- 댓글작성박스 -->
-											<div class="row mt-5">
-												<div class="col">
-													<input type="text" id="club_board_comment_content" style="width:100%; height:5vh;  border: solid 2px #adb5bd; border-radius: 8px; ">
-												</div>
-												<div class="col-1">
-													<button class="btn btn-secondary" onclick="inputClubBoardComment()">작성</button>
-												</div>
-											</div>
-											
-											<!-- 다음 글 이전글 박스 -->
-											<table class="table" style="margin-top:8vh">
-												<colgroup>
-													<col width="25%">
-													<col width>
-												</colgroup>
-												<thead>
-												</thead>
-												<tbody>
-													<tr style="border-top: 1px solid #dee2e6">
-														<th style="border-right: 1px solid #dee2e6; text-align:center; padding:2vh 0.5vh">다음 글</th>
-														<td style="padding-left:1em; padding:2vh"><a href="./student_clubBoardContentPage?club_board_no=${map.NextPostBoardNo }&club_no=${map.clubBoardData.club_no}">${map.NextPostTitle }</a></td>
-													</tr>
-													<tr style="border-top: 1px solid #dee2e6">
-														<th style="border-right: 1px solid #dee2e6; text-align:center; padding:2vh 0.5vh">이전 글</th>
-														<td style="padding-left:1em; padding:2vh"><a href="./student_clubBoardContentPage?club_board_no=${map.PreviousPostBoardNo }&club_no=${map.clubBoardData.club_no}">${map.PreviousPostTitle }</a></td>
-													</tr>
-												</tbody>
-											</table>
-												
-										</div>	
+
+										</div>
 									</div>
-								
 								</div>
+								<input type="hidden" id="club_no"
+									value="${map.clubActData.club_no }"> <input
+									type="hidden" id="club_act_no"
+									value="${map.clubActData.club_act_no }">
 							</div>
 						</div>
-						<div class="col-2">
-							<input type="hidden" id="club_no" value="${map.clubBoardData.club_no }">
-							<input type="hidden" id="club_board_no" value="${map.clubBoardData.club_board_no }">
-						</div>
-						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-					
 </body>
 </html>

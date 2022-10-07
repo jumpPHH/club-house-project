@@ -11,13 +11,12 @@ public class Club_ApplVO {
 	private String club_purpose; //동아리 설립 및 목적
 	private Date club_appl_date; //동아리 신청일자
 	private String club_appl_state;
-
-
+	private int club_category_no;
 	public Club_ApplVO() {
 		super();
 	}
 	public Club_ApplVO(int club_appl_no, String stud_id, String club_name, int club_appl_people_count,
-			String club_purpose, Date club_appl_date, String club_appl_state) {
+			String club_purpose, Date club_appl_date, String club_appl_state, int club_category_no) {
 		super();
 		this.club_appl_no = club_appl_no;
 		this.stud_id = stud_id;
@@ -26,6 +25,7 @@ public class Club_ApplVO {
 		this.club_purpose = club_purpose;
 		this.club_appl_date = club_appl_date;
 		this.club_appl_state = club_appl_state;
+		this.club_category_no = club_category_no;
 	}
 	public int getClub_appl_no() {
 		return club_appl_no;
@@ -69,7 +69,13 @@ public class Club_ApplVO {
 	public void setClub_appl_state(String club_appl_state) {
 		this.club_appl_state = club_appl_state;
 	}
-	
+	public int getClub_category_no() {
+		return club_category_no;
+	}
+	public void setClub_category_no(int club_category_no) {
+		this.club_category_no = club_category_no;
+	}
+
 	
 	
 	}

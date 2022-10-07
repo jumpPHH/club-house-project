@@ -75,9 +75,52 @@ img {
 	font-weight: 600;
 	font-size: 20px;
 }
+
+.selectDiv {
+	background-color: #bfc9e3;
+	color: white !important;
+	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 60%;
+}
+
+.aClick{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.aClick:hover {
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+}
 </style>
 
 <script type="text/javascript">
+
+document.addEventListener("DOMContentLoaded", function () {
+	
+	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+	var url1 = document.getElementById("student_indexPage");
+	var url2 = document.getElementById("student_MemberJoinMgmtPage");
+	
+		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+			$("#student_indexPage").attr('class','selectDiv');
+		
+		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+			$("#student_clubsOfCategoryPage").attr('class','selectDiv');
+		}
+});
+
 	// 홈페이지 로드시 클럽리스트 불러오기
 	function getCategoryOfClubList() {
 		clubCategoryNo = document.querySelector("#clubCategoryNo").value;
@@ -183,9 +226,12 @@ img {
 		xhr.send(); //AJAX로 리퀘스트함..		
 
 	}
+	
+	
 
 	window.addEventListener("DOMContentLoaded", function() {
-		getCategoryOfClubList()
+		getCategoryOfClubList();
+		getClubCategory();
 	});
 </script>
 
@@ -202,6 +248,47 @@ img {
 				class="text-uppercase font-weight-bold"
 				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Toggle</small>
 		</button>
+		
+		<div class="row card box"
+			style="width: 100%; height: 45px; margin-left: 0.1em; margin-bottom: 0.7em;">
+			<div class="dashboard-card-bottom">
+				<div class="row">
+
+					<div class="col-1"></div>
+
+					<div class="col">
+
+						<div class="row ps-1 p-2 mb-2">
+							<div class="col text-center">
+								<div class="row"
+									style="justify-content: center; border-right: 2px solid #ededed">
+									<a	id="student_indexPage"
+										href="/cbh/student/findingclub/student_indexPage"
+										class="col-auto px-3 aClick" onmouseover="clickMove(this)"
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+										동아리 찾기 </a>
+								</div>
+							</div>
+
+							<div class="col text-center">
+								<div class="row" style="justify-content: center">
+									<a id="student_clubsOfCategoryPage"
+										href="/cbh/student/findingclub/student_clubsOfCategoryPage?club_category_no=${clubCategoryVO.club_category_name }"
+										class="col-auto px-3 aClick"
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+									 	${clubCategoryVO.club_category_name } 동아리들</a>
+									 <span id="clubCategoryNameBox"></span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-1"></div>
+				</div>
+			</div>
+		</div>
+		
+		
 
 		<div class="card"
 			style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important; padding: 30px;">
@@ -211,50 +298,35 @@ img {
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col">
-
 							<!-- 여기다 작성하세요 -->
 							<!-- 컨텐트 부분 -->
 							<div class="row">
 								<div class="col" id="content">
-									<!-- 컨텐트 of 헤더 -->
-									<div class="row page_title">
-										<div class="col page_title_text">
-											<i class="fa bi bi-search mr-3 text-primary fa-fw"
-												style="font-size: 1.3em;"></i> <span
-												style="font-size: 1.4em; font-weight: bold">동아리 찾기</span>
-										</div>
-										<div class="col-3 text_align_right">
-											<button class="btn btn-primary"
-												onclick="location.href='/cbh/student/findingclub/student_indexPage'"
-												style="border-radius: 5px; border: none; width: 9em; height: 5vh">
-												카테고리로 이동</button>
-										</div>
-									</div>
 									<!-- 카테고리 제목 -->
 									<div class="row">
 										<div class="col text_align_center"
 											style="margin-top: 7vh; text-align: center;">
 											<c:choose>
 												<c:when test="${clubCategoryNo eq 1 }">
-													<h2 style="font-weight:bold;">공연예술분과</h2>
+													<h2 style="font-weight:bold;">공연예술분야</h2>
 												</c:when>
 												<c:when test="${clubCategoryNo eq 2 }">
-													<h2 style="font-weight:bold;">종교분과</h2>
+													<h2 style="font-weight:bold;">종교분야</h2>
 												</c:when>
 												<c:when test="${clubCategoryNo eq 3 }">
-													<h2 style="font-weight:bold;">체육분과</h2>
+													<h2 style="font-weight:bold;">체육분야</h2>
 												</c:when>
 												<c:when test="${clubCategoryNo eq 4 }">
-													<h2 style="font-weight:bold;">사회활동분과</h2>
+													<h2 style="font-weight:bold;">사회활동분야</h2>
 												</c:when>
 												<c:when test="${clubCategoryNo eq 5 }">
-													<h2 style="font-weight:bold;">창작예술분과</h2>
+													<h2 style="font-weight:bold;">창작예술분야</h2>
 												</c:when>
 												<c:when test="${clubCategoryNo eq 6 }">
-													<h2 style="font-weight:bold;">학술교양분과</h2>
+													<h2 style="font-weight:bold;">학술교양분야</h2>
 												</c:when>
 												<c:when test="${clubCategoryNo eq 7 }">
-													<h2 style="font-weight:bold;">기타분과</h2>
+													<h2 style="font-weight:bold;">기타분야</h2>
 												</c:when>
 												
 												
