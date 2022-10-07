@@ -29,6 +29,25 @@
 	float: left;
 }
 
+th{
+	text-align: center;
+}
+
+td{
+	text-align: center;
+}
+
+.form-check-input:checked {
+    border-color:#FA5858;
+    background-color: #FA5858;
+ }
+.form-check-input{
+  border-color:#FA5858;
+ }
+
+.check{
+  border-color:#FA5858;
+ }
 
 
 </style>
@@ -141,11 +160,11 @@
 				<input name="searchWord" id="search" type="text">
 			</div>
 			<div class="col-1" style="">
-				<button class="btn btn-outline-primary py-1" type="submit">조회</button>
+				<button class="btn btn-outline-primary py-1" type="submit"><i class="bi bi-search"></i>조회</button>
 			</div>
 		
 			<div class="col-1" style="">
-				<button class="btn btn-outline-success py-1" type="button" onclick="location.href='/cbh/staff/studentNotice/writeNoticePage'">작성</button>
+				<button class="btn btn-outline-success py-1" type="button" onclick="location.href='/cbh/staff/studentNotice/writeNoticePage'"><i class="bi bi-pencil-square"></i>작성</button>
 			</div>
 			<div class="col-1" style="float: right;">
 				<button onclick="deleteNotice()" class="btn btn-outline-danger py-1" type="button">삭제</button>
@@ -153,12 +172,12 @@
 		</div>
 		</form>
 
-		<div class="row mt-4 box p-4">
+		<div class="row mt-4 box p-4" style="height: 68vh;">
 				<div class="col">
 					<table class="table table hover caption-top table-sm" >
-						<thead>
+						<thead style="background-color: rgb(252, 243, 243);">
 							<tr>
-								<th class="col-1"><input id="checkAll" onclick="checkAll()" type="checkbox" class="form-check-input" value="전체체크"></th>
+								<th class="col-1" style="text-align: left;"><input id="checkAll" onclick="checkAll()" type="checkbox" class="form-check-input" value="전체체크"></th>
 								<th class="col-1">번호</th>
 								<th class="col-1">작성자</th>
 								<th class="col-4">제목</th>
@@ -170,7 +189,7 @@
 						<tbody>
 							<c:forEach items="${noticeDataList }" var="noticeData">
 								<tr>
-									<td><input name="check" onclick="check()" type="checkbox"  class="check form-check-input" value="${noticeData.noticeVO.noti_no }"></td>
+									<td style="text-align: left;"><input name="check" onclick="check()" type="checkbox"  class="check form-check-input" value="${noticeData.noticeVO.noti_no }"></td>
 									<td>${noticeData.noticeVO.noti_no }</td>
 									<td>${noticeData.noticeVO.staff_id}</td>
 									<td><a id="title" href="./readNoticePage?noticeNo=${noticeData.noticeVO.noti_no }">${noticeData.noticeVO.noti_title }</a></td>
@@ -182,7 +201,7 @@
 											<td>긴급공지</td>
 										</c:when>
 									</c:choose>
-									<td><fmt:formatDate value ="${noticeData.noticeVO.noti_date }" pattern="yyyy년 MM월 hh시 mm분"/></td>
+									<td><fmt:formatDate value ="${noticeData.noticeVO.noti_date }" pattern="yyyy년 MM월 dd일"/></td>
 									<td>${noticeData.noticeVO.noti_readcount }</td>									
 								</tr>
 							</c:forEach>
@@ -190,7 +209,6 @@
 					</table>
 				</div>
 			</div>
-			<br>
 			<div class="row mt-3">
 			<div class="col-4"></div>
 				<div class="col">
@@ -212,7 +230,7 @@
 								<c:choose>
 									<c:when test="${i == currentPageNum}">
 										<li class="page-item active"><a class="page-link"
-											style="text-decoration-line: none; font-weight: 600;"
+											style="text-decoration-line: none; border-color:#FA5858; background-color: #FA5858; font-weight: 600;"
 											href="./staff_StudentNoticePage?pageNum=${i}${additionalParam}">${i}</a></li>
 									</c:when>
 									<c:otherwise>
