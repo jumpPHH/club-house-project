@@ -241,7 +241,7 @@ thead{
       </button>
 
 		<!-- 버튼 form으로 조회하고 신규삭제 ajax써야할듯-->
-		<div class="row mt-4 box" style="height: 45px; align-items: center;">
+		<div class="row ps-3 ms-1 mt-4 box" style="height: 45px; align-items: center;">
 			<div class="col-1">
 				학번(이름)
 			</div>
@@ -285,7 +285,7 @@ thead{
 <!-- 			</div> -->
 <!-- 		</div> -->
 		<!-- 학생정보 -->
-			<div class="row mt-4 box p-4" id="stud" style="height: 600px; overflow: auto;">
+			<div class="row mt-4 ms-1 box p-4" id="stud" style="height: 75vh; overflow: auto;">
 				<div class="col">
 					<table class="table table-sm table-hover">
 						<thead style="background-color: rgb(252, 243, 243);">

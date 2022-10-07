@@ -176,7 +176,7 @@
       </button>
 		
 	<form action="./staff_applyClubPage" method="get">
-		<div class="row mt-4 box" style="height: 45px; align-items: center">
+		<div class="row mt-4 ms-1 ps-3 box" style="height: 45px; align-items: center">
 			<div class="col-1">
 				동아리명
 			</div>
@@ -193,7 +193,7 @@
 		</div>
 	</form>
 		
-	<div class="row mt-4 box p-4" style="height: 68vh;">
+	<div class="row mt-4 box ms-1 p-4" style="height: 68vh;">
 		<div class="col">
 			<table class="table table hover caption-top table-sm" >
 			  <thead style="background-color: rgb(252, 243, 243);">
@@ -212,7 +212,7 @@
 						  <!-- <td><a href="./staff_readClubRequestPage?=${clubApplData.club_ApplVO.club_appl_no }">${clubApplData.club_ApplVO.club_name }</a></td> -->
 					      <!-- Button trigger modal -->
 					      <td style="text-align: center; color:#FA5858;"><a data-bs-toggle="modal" data-bs-target="#exampleModal">${clubApplData.club_ApplVO.club_name }</a></td>
-					      <td style="text-align: center">${clubApplData.club_ApplVO.stud_id }</td>
+					      <td style="text-align: center">${clubApplData.studVO.stud_name }</td>
 					      <td style="text-align: center"><fmt:formatDate value ="${clubApplData.club_ApplVO.club_appl_date }" pattern="yyyy년 MM월 dd일"/></td>
 					      <td id="state" style="text-align: center">
 					      <c:choose>
@@ -282,10 +282,9 @@
 	</div>
 
 				<div class="row mt-3">
-				<div class="col-4"></div>
 					<div class="col"> <!-- 페이징 -->
 						<nav aria-label="Page navigation example">
-						  <ul class="pagination">
+						  <ul class="pagination" style="justify-content: center">
 						  <c:choose>
 						  		<c:when test="${startPage <= 1 }">
 							  		<li class="page-item disabled"><a class="page-link" 
@@ -326,7 +325,6 @@
 						  </ul>
 						</nav>							
 					</div>
-					<div class="col-4"></div>
 				</div>
 				
 				

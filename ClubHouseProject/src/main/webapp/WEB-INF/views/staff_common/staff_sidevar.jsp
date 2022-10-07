@@ -183,12 +183,7 @@ $(function() {
             	동아리신청
             </a>
     </li>
-    <li class="nav-item ps-1" id="MainPage">
-      <a href="/cbh/student/myclub/main/student_MainPage" class="nav-link text-dark font-italic">
-                <i class="bi bi-house-door-fill me-2" style="color: #FA5858"></i>
-                동아리관리
-            </a>
-    </li>
+
     
     <li id="ClubStudControlPage"class="nav-item ps-1">
       <a href="/cbh/staff/club/staff_ClubStudControlPage" class="nav-link text-dark font-italic">

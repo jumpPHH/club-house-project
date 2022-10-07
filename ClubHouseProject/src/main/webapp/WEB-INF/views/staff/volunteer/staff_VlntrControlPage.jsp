@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', function(){
 			
 			
 			<table class="table table-sm text-center" style="border-color: grey">
-			  <thead style="background-color: rgb(240, 233, 233);">
+			  <thead style="background-color: rgb(252, 243, 243);">
 			    <tr>
 <!--   				  <th><input class="form-check-input" type="checkbox" id="cbx_chkAll" /></th> -->
 			      <th scope="col">동아리</th>

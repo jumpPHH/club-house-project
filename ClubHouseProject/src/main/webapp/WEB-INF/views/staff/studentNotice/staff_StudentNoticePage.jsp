@@ -143,7 +143,7 @@ td{
 		
 		<br>
 		<form action="./staff_StudentNoticePage" method="get">
-		<div class="row mt-4 box" style="height: 45px; align-items: center">
+		<div class="row ps-3 mt-4 ms-1 box" style="height: 45px; align-items: center">
 			<div class="col-1">
 				공지구분
 			</div>
@@ -172,7 +172,7 @@ td{
 		</div>
 		</form>
 
-		<div class="row mt-4 box p-4" style="height: 68vh;">
+		<div class="row mt-4 ms-1 box p-4" style="height: 70vh;">
 				<div class="col">
 					<table class="table table hover caption-top table-sm" >
 						<thead style="background-color: rgb(252, 243, 243);">
@@ -191,7 +191,7 @@ td{
 								<tr>
 									<td style="text-align: left;"><input name="check" onclick="check()" type="checkbox"  class="check form-check-input" value="${noticeData.noticeVO.noti_no }"></td>
 									<td>${noticeData.noticeVO.noti_no }</td>
-									<td>${noticeData.noticeVO.staff_id}</td>
+									<td>${noticeData.staffVO.staff_name}</td>
 									<td><a id="title" href="./readNoticePage?noticeNo=${noticeData.noticeVO.noti_no }">${noticeData.noticeVO.noti_title }</a></td>
 									<c:choose>
 										<c:when test="${noticeData.noticeVO.noti_div_no == 0 }">
@@ -209,12 +209,11 @@ td{
 					</table>
 				</div>
 			</div>
-			<div class="row mt-3">
-			<div class="col-4"></div>
+			<div class="row mt-3" >
 				<div class="col">
 					<!-- paging UI -->
-					<nav aria-label="Page navigation example">
-						<ul class="pagination">
+					<nav aria-label="Page navigation example" >
+						<ul class="pagination" style="justify-content: center;">
 							<c:choose>
 								<c:when test="${startPage <=1}">
 									<li class="page-item disabled"><a class="page-link"
@@ -256,7 +255,6 @@ td{
 						</ul>
 					</nav>
 				</div>
-				<div class="col-4"></div>
 			</div>
 		
 </div>

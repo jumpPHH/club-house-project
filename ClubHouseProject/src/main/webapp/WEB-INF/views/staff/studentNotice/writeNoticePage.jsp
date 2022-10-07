@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 
 
@@ -35,13 +36,13 @@
 
 <!-- <div style="position: absolute; left: 30%; width: 50%; top: 10vh; height:90vh; word-break: break-all"> -->
 <!-- 	<div class="container-fluid" style="background-color: #FA8585; border-radius: 30px;"> -->
-		<div class="row mt-4 box"  style="height: 45px; align-items: center">
-			<div class="col" style="color: #FA5858; font-weight: bold; font-size: 1.5rem;">
+		<div class="row mt-4 ms-1 box"  style="height: 45px; align-items: center">
+			<div class="col text-center" style="color: #FA5858; font-weight: bold; font-size: 1.5rem;">
 				공지작성
 			</div>
 		</div>
 		
-		<div class="row mt-4 box p-4">
+		<div class="row mt-4 ms-1 box p-4">
 			<div class="col">
 		
 		<form action="./writeNoticeProcess" method="post">
@@ -51,7 +52,7 @@
 				공지구분
 			</div>
 			<div class="col">
-				<select name="noti_div_no">
+				<select name="noti_div_no" class=" form-select">
 					<option selected value="0">일반공지</option>
 					<option value="1">긴급공지</option>					
 				</select>
@@ -63,9 +64,8 @@
 				공지제목
 			</div>
 			<div class="col">
-				<input class="container-fluid" type="text" name="noti_title" placeholder="제목을 적어주세요">
+				<input class="container-fluid form-control" type="text" name="noti_title" placeholder="제목을 적어주세요">
 			</div>
-			<div class="col-4"></div>
 		</div>
 		
 		<div class="row" style="padding: 2vh;">
@@ -73,7 +73,7 @@
 				공지내용
 			</div>
 			<div class="col">
-				<textarea name="noti_content" rows="15" cols="100" placeholder="  공지내용을 적어주세요"></textarea>
+				<textarea class=" form-control" name="noti_content" rows="15" cols="100" placeholder="  공지내용을 적어주세요"></textarea>
 			</div>
 		</div>
 		<br>

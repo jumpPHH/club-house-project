@@ -33,14 +33,14 @@
 				class="text-uppercase font-weight-bold" style="color: #FA5858">MENU</small>
 		</button>
 		
-		<div class="row mt-4 box"  style="height: 45px; align-items: center">
-			<div class="col" style="color: #FA5858; font-weight: bold; font-size: 1.5rem;">
+		<div class="row mt-4 box ms-1"  style="height: 45px; align-items: center">
+			<div class="col text-center" style="color: #FA5858; font-weight: bold; font-size: 1.5rem;">
 				공지상세
 			</div>
 		</div>
 		
 		
-<div class="row mt-4 box p-4">
+<div class="row mt-4 box ms-1 p-4" style="height: 75vh">
 	<div class="col">
 	
 		<div class="row" style="padding: 2vh;">

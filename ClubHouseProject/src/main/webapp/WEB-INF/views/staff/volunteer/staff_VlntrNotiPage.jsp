@@ -110,7 +110,7 @@ window.addEventListener('DOMContentLoaded', function(){
 			<div class="row ms-1 mt-3 box " style="height: 45px; align-items: center;"><!-- 검색 -->
 				<div class="col-1"></div>
 				<div class="col">
-					<select name="searchType" class="form-control">
+					<select name="searchType" class="form-select">
 						
 						<option value="title">제목</option>
 						<option value="content">내용</option>

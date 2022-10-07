@@ -35,13 +35,13 @@
 
 <!-- <div style="position: absolute; left: 30%; width: 50%; top: 10vh; height:90vh; word-break: break-all"> -->
 <!-- 	<div class="container-fluid" style="background-color: #FA8585; border-radius: 30px;"> -->
-		<div class="row mt-4 box"  style="height: 45px; align-items: center">
-			<div class="col" style="color: #FA5858; font-weight: bold; font-size: 1.5rem;">
+		<div class="row mt-4 ms-1 box"  style="height: 45px; align-items: center">
+			<div class="col text-center" style="color: #FA5858; font-weight: bold; font-size: 1.5rem;">
 				공지수정
 			</div>
 		</div>
 		
-		<div class="row mt-4 box p-4">
+		<div class="row mt-4 box ms-1 p-4">
 			<div class="col">
 		
 		<form action="./updateContentProcess" method="post">
