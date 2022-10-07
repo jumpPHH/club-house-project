@@ -84,7 +84,12 @@ body {
 </style>
 <script type="text/javascript">
 
-
+$(function() {
+	  // Sidebar toggle behavior
+	  $('#sidebarCollapse').on('click', function() {
+	    $('#sidebar, #content').toggleClass('active');
+	  });
+	});
 
 	function getStaffInfo(){
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
@@ -112,7 +117,7 @@ body {
 <!-- 사이드바 시작 -->
 <div class="vertical-nav bg-white" id="sidebar">
   <div class="py-4 px-3 mb-2 bg-light">
-    <div class="media d-flex align-items-center"><img src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+    <div class="media d-flex align-items-center"><img style="cursor: pointer;" onclick="location.href='/cbh/staff/index/staff_IndexPage'" src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
       <div class="media-body ps-2">
         <h4 id="name" class="m-0"></h4>
         <p id="position"class="font-weight-light text-muted mb-0"></p>
