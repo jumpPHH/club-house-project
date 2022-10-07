@@ -143,7 +143,7 @@ function ul(index) {
 
 		<li class="nav-item">
 			
-			<a id="myclubClubActivities" href="/cbh/student/myclub/clubactivities/student_writeClubActPage"	class="nav-link text-dark font-italic bg-light"> 
+			<a id="myclubClubActivities" href="/cbh/student/myclub/clubactivities/student_indexPage"	class="nav-link text-dark font-italic bg-light"> 
 				<i	class="fa bi bi-pencil-square mr-3 fa-fw" style="color: #FA5858"></i> 활동내역
 			</a>
 		</li>

@@ -27,8 +27,16 @@ public class ClubActivitiesController {
 	// 동아리 활동내역 메인페이지. 동아리 활동 내역이 보이는 페이지임.
 	// 나중에 추가해야할 기능. 해당 동아리가 아닌 사람이 파라미터만 수정해서 데이터를
 	@RequestMapping("student_indexPage")
-	public String student_indexPage(Model model, @RequestParam(value="club_no") String club_no,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
+	public String student_indexPage(Model model, @RequestParam(value = "club_no",defaultValue = "0")String club_no,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
 		int clubNo = Integer.parseInt(club_no);
+		
+		System.out.println(clubNo);
+		
+		if(clubNo == 0) { 
+			System.out.println(clubNo);
+			
+			return "../../student_common/student_error";
+		}
 
 		ArrayList<Club_ActVO> clubActivitiesList = clubActivitiesService.getClubActivitiesList(clubNo,searchWord);
 		
