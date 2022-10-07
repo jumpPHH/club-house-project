@@ -1,4 +1,4 @@
-package com.ja.cbh.student.clubboard.controller;
+package com.ja.cbh.student.myclub.clubboard.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ja.cbh.student.clubboard.service.ClubBoardServiceImpl;
+import com.ja.cbh.student.myclub.clubboard.service.ClubBoardServiceImpl;
 import com.ja.cbh.vo.Club_BoardImageVO;
 import com.ja.cbh.vo.Club_BoardVO;
 import com.ja.cbh.vo.StudVO;
 
 @Controller
-@RequestMapping("student/clubboard/*")
+@RequestMapping("student/myclub/clubboard/*")
 public class ClubBoardController {
 
 	@Autowired
@@ -33,6 +33,7 @@ public class ClubBoardController {
 	@RequestMapping("student_indexPage")
 	public String student_indexPage(Model model, @RequestParam(value="club_no") String club_no,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
 		int clubNo = Integer.parseInt(club_no);
+		System.out.println(clubNo);
 
 		ArrayList<HashMap<String, Object>> clubBoardList = clubBoardService.getClubBoardList(clubNo,searchWord);
 		
@@ -62,7 +63,7 @@ public class ClubBoardController {
 		model.addAttribute("clubBoardList", clubBoardList);
 		model.addAttribute("clubNo", clubNo);
 
-		return "student/clubboard/student_indexPage";
+		return "student/myclub/clubboard/student_indexPage";
 	}
 
 	// 특정 글 상세보기 페이지
@@ -83,7 +84,7 @@ public class ClubBoardController {
 		model.addAttribute("sessionUserInfo", sessionUserInfo);
 		model.addAttribute("sessionClubStudNo", sessionClubStudNo);
 
-		return "student/clubboard/student_clubBoardContentPage";
+		return "student/myclub/clubboard/student_clubBoardContentPage";
 	}
 	
 	//작성 페이지
@@ -98,13 +99,14 @@ public class ClubBoardController {
 		model.addAttribute("clubNo", clubNo);
 		model.addAttribute("writerName",writerName);
 		
-		return "student/clubboard/student_writeClubBoardPage";
+		return "student/myclub/clubboard/student_writeClubBoardPage";
 	}
 	
 	@RequestMapping("student_writeClubBoardProcess")
 	public String student_writeClubBoardProcess(Club_BoardVO clubBoardVO, HttpSession session, MultipartFile []club_board_image) {
 		
 		int clubBoardNo = clubBoardService.getClubBoardNo();
+		int clubNo = clubBoardVO.getClub_no();
 		
 		//ClubVO에 클럽 회장, 동아리 이름 , 동아리 신청 회원수, 동아리 신청일자 넣기
 		if(club_board_image[0].getOriginalFilename() != null) {
@@ -136,9 +138,9 @@ public class ClubBoardController {
 				e.printStackTrace();
 			}
 			Club_BoardImageVO clubBoardImageVO = new Club_BoardImageVO();
-			clubBoardImageVO.setClub_board_no(clubBoardNo);
 			clubBoardImageVO.setClub_board_image_link(todayFolder + randomName);
 			clubBoardImageVO.setClub_board_no(clubBoardNo);
+			clubBoardImageVO.setClub_no(clubNo);
 			clubBoardService.inputClubBoardImage(clubBoardImageVO);
 			}
 		}
@@ -167,7 +169,7 @@ public class ClubBoardController {
 		model.addAttribute("clubBoardNo", clubBoardNo);
 		model.addAttribute("clubBoardData", clubBoardData);
 		
-		return "student/clubboard/student_modifyClubBoardPage";
+		return "student/myclub/clubboard/student_modifyClubBoardPage";
 	}
 	
 	// 수정 프로세스

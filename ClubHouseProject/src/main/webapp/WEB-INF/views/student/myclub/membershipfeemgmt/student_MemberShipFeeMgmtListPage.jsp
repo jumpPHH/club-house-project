@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,18 +13,36 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/cbh/resources/css/student_navbar.css">
 
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <style type="text/css">
-.selectDiv{
-background-color: #bfc9e3;
-color: white;
+.selectDiv {
+	background-color: #bfc9e3;
+	color: white !important;
+	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 50%;
 }
-a:hover {
-    color: white !important;
-    text-decoration: underline;
+
+.aClick{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.aClick:hover {
+    -webkit-transform: scale(1.15,1.15);
+    -moz-transform: scale(1.15,1.15);
+    -o-transform: scale(1.15,1.15);
+    -ms-transform: scale(1.15,1.15);
+    transform: scale(1.15,1.15);
 }
 </style>
 <script type="text/javascript">
@@ -291,10 +311,20 @@ a:hover {
 		window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
 	}
 	
-	function clickMove(target) {
-		$(".selectDiv").removeClass("selectDiv");
-		target.classList.toggle('selectDiv');
-	}
+	document.addEventListener("DOMContentLoaded", function () {
+		
+		var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+		var url1 = document.getElementById("student_MemberShipFeeMgmtPage");
+		var url2 = document.getElementById("student_MemberShipFeeMgmtListPage");
+
+			if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+				$("#student_MemberShipFeeMgmtPage").attr('class','selectDiv');
+			
+			}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+				$("#student_MemberShipFeeMgmtListPage").attr('class','selectDiv');
+			}
+	});
 </script>
 
 </head>
@@ -305,7 +335,7 @@ a:hover {
 	<div class="page-content p-5" id="content">
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse" type="button"
-			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
+			class="btn btn-light bg-white rounded-pill box px-4 mb-4">
 			<small
 				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
@@ -319,21 +349,23 @@ a:hover {
 						
 						<div class="col">
 						
-						  <div class="row ps-1 p-2 mb-2">
+						<div class="row ps-1 p-2 mb-2">
 							<div  class="col text-center" style="border-right: 2px solid #ededed;">
 								<div class="row" style="justify-content: center">
-									<a href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtPage"
-									 class="col-auto px-3" onmouseover="clickMove(this)" style="cursor: pointer; border-radius: 2rem;
+									<a id="student_MemberShipFeeMgmtPage"  
+									 href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtPage"
+									 class="col-auto px-3 aClick" style="cursor: pointer; border-radius: 2rem;
 									 color: #4140cb; font-weight: bold; text-decoration:none;">
 									 회비 내역 작성
 									</a>
 								</div>
 							</div>
 							
-							<div  class="col text-center" style="border-right: 2px solid #ededed;">
+							<div  class="col text-center">
 								<div class="row" style="justify-content: center">
-									<a href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeListMgmtPage"
-									 class="col-auto px-3" onmouseover="clickMove(this)"  style="cursor: pointer; border-radius: 2rem;
+									<a id="student_MemberShipFeeMgmtListPage" 
+									 href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage"
+									 class="col-auto px-3 aClick" style="cursor: pointer; border-radius: 2rem;
 									  color: #4140cb; font-weight: bold; text-decoration:none;">
 									 회비 내역
 									</a>

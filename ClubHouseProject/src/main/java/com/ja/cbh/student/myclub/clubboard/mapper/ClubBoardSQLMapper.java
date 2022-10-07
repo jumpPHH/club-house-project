@@ -1,8 +1,9 @@
-package com.ja.cbh.student.clubboard.mapper;
+package com.ja.cbh.student.myclub.clubboard.mapper;
 
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PatchMapping;
 
 import com.ja.cbh.vo.Club_BoardCommentVO;
 import com.ja.cbh.vo.Club_BoardImageVO;
@@ -31,8 +32,6 @@ public interface ClubBoardSQLMapper {
 		// 지우기
 		public void deleteClubBoardByClubNoAndClubBoardNo(@Param(value="clubBoardVO") Club_BoardVO clubBoardVO);
 		
-		
-		
 		// ClubStudNo 따오기용
 		public int selectClubStudNoByStudId(String studId);
 		// 동아리 회원 정보 가져오기
@@ -43,6 +42,8 @@ public interface ClubBoardSQLMapper {
 		public int createClubBoardNo();
 		// 게시판 이미지 데이터 넣어주기
 		public void insertClubBoardImage(@Param(value="clubBoardImageVO") Club_BoardImageVO clubBoardImageVO);
+		// 게시판 이미지 갖고오기
+		public ArrayList<Club_BoardImageVO> selectClubBoardImageByClubBoardNoAndClubNo(@Param(value="clubBoardNo") int clubBoardNo, @Param(value="clubNo") int clubNo);
 		// 게시판 이미지 삭제
 		public void deleteClubBoardimage(int clubBoardNo);
 		

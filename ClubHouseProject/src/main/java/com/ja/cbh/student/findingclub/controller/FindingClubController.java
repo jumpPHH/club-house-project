@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ja.cbh.student.findingclub.service.FindingClubServiceImpl;
+import com.ja.cbh.vo.ClubDeptCategoryVO;
 import com.ja.cbh.vo.ClubVO;
 import com.ja.cbh.vo.Club_Dept_CategoryVO;
 import com.ja.cbh.vo.Club_StudVO;
@@ -37,11 +38,11 @@ public class FindingClubController {
 	public String student_clubsOfCategoryPage(Model model, @Param("club_category_no") String club_category_no, @Param("searchWord") String searchWord) {
 		int clubCategoryNo = Integer.parseInt(club_category_no);
 		
-		Club_Dept_CategoryVO clubCategoryInfo = findingClubService.getClubCategoryByNo(clubCategoryNo);
 		ArrayList<ClubVO> clubList = findingClubService.getAllClubsOfCategory(clubCategoryNo, searchWord);
+		Club_Dept_CategoryVO clubCategoryVO = findingClubService.getClubCategoryByNo(clubCategoryNo);
 		
+		model.addAttribute("clubCategoryVO", clubCategoryVO);
 		model.addAttribute("clubList", clubList);
-		model.addAttribute("clubCategoryInfo", clubCategoryInfo);
 		model.addAttribute("clubCategoryNo", clubCategoryNo);
 		
 		return "student/findingclub/student_clubsOfCategoryPage";
@@ -53,7 +54,12 @@ public class FindingClubController {
 		int clubNo = Integer.parseInt(club_no);
 		
 		ClubVO clubData = findingClubService.getClubByNo(clubNo);
+		StudVO clubBossData = findingClubService.getClubStudByStudId(clubData.getClub_boss()) ;
+		Club_Dept_CategoryVO clubCategoryData = findingClubService.getClubCategoryByNo(clubData.getClub_category_no());
+		model.addAttribute("clubCategoryData", clubCategoryData);
 		model.addAttribute("clubData", clubData);
+		model.addAttribute("clubBossData", clubBossData);
+		
 		
 		return "student/findingclub/student_clubIntroducingPage";
 	}
@@ -97,6 +103,19 @@ public class FindingClubController {
 		System.out.println(club_StudVO.getClub_stud_drop_date());
 		System.out.println(club_StudVO.getClub_stud_join_date());
 		
+		if(findingClubService.getClubStudByStudId(studId) != null) {
+			try {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter w = response.getWriter();
+				msg = "회원님은 이미 동아리에 가입되어 있거나, 가입 심사중인 상태입니다";
+				w.write("<script>alert('"+msg+"');location.href='"+"/cbh/student/index/student_IndexPage'"+";</script>");
+				w.flush();
+				w.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return "";
+		}
 		
 		findingClubService.inputClubStud(club_StudVO);
 		

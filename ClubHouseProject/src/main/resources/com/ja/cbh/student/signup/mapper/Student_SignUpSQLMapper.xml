@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectStudentAll" resultType="com.ja.cbh.vo.StudVO">
-		SELECT * FROM CBH_STUD ORDER BY CBH_STUD DESC
+		SELECT * FROM CBH_STUD ORDER BY STUD_ID DESC
 	</select>
 	
 		<!-- 학생 숫자 -->
@@ -40,6 +40,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE STUD_ID = #{stud_id}
 	</select>
 	
+	<delete id="deleteByStudentId">
+		DELETE FROM CBH_STUD
+		WHERE STUD_ID = #{stud_id}
+	</delete>
 	
+	<update id="updateByStudentId">
+		UPDATE CBH_STUD
+		SET STUD_NAME = #{stud_name}, STUD_GENDER = #(stud_gender) ,STUD_GRADE = #{stud_grade},
+		STUD_DEPT = #{stud_dept}, STUD_STATE = #{stud_state}
+		WHERE STUD_ID = #{stud_id}
+	</update>
 	
 </mapper>  

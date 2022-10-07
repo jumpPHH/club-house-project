@@ -78,7 +78,6 @@ a {
 
 
 .club_box span {
-  position: absolute;
   bottom: -20px;
   left: 0;
   z-index: -1;

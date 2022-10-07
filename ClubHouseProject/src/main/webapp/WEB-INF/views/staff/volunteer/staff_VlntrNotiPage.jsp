@@ -100,22 +100,168 @@ window.addEventListener('DOMContentLoaded', function(){
    <div class="page-content p-5 pt-4" id="content">
      <!-- 토글 버튼 -->
       <button id="sidebarCollapse" type="button"
-         class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
+         class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3" style="color: #FA5858">
          <i class="fa fa-bars mr-2"></i><small
             class="text-uppercase font-weight-bold">MENU</small>
       </button>
       
 
-		<div class="row mt-5">
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col">
-				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-					공고작성
+		<form action="./staff_VlntrNotiPage" method="get">
+			<div class="row ms-1 mt-3 box " style="height: 45px; align-items: center;"><!-- 검색 -->
+				<div class="col-1"></div>
+				<div class="col">
+					<select name="searchType" class="form-control">
+						
+						<option value="title">제목</option>
+						<option value="content">내용</option>
+						<option value="spot">장소</option>
+					</select>
+				</div>
+				<div class="col-8">
+					<input name="searchWord" type="text" class="form-control">
+				</div>
+				<div class="col">
+					<button class="btn btn-primary">
+					<i class="bi bi-search"></i>검색</button>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</form>
+		<div class="row mt-4 ms-1 box p-3" style="height: 68vh">
+		
+		<div class="col">
+			<div class="row mt-2 mb-1">
+				<div class="col text-end">
+						<!-- Button trigger modal -->
+				<button type="button" class="btn" style="color: #FA5858;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+					<i class="bi bi-pencil-square"></i>공고작성
 				</button>
 				
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<table class="table text-center table-sm">
+				  <thead style="background-color: rgb(252, 243, 243);">
+				    <tr>
+				      <th class="cl" scope="col">번호</th>
+				      <th class="cl" scope="col">제목</th>
+				      <th class="cl" scope="col">내용</th>
+				      <th class="cl" scope="col">지원인원수/모집인원수</th>
+				      <th class="cl" scope="col">봉사시간수</th>
+				      <th class="cl" scope="col">모집상태</th>
+				      <th>상세보기</th>
+				    </tr>
+				  </thead>
+				  <tbody class="table-group-divider">
+				  <c:forEach items="${vlntrNotiList }" var="data">
+				    <tr>
+				      <th scope="row">${data.vlntrNotiVO.vlntr_noti_no}</th>
+				      <th>${data.vlntrNotiVO.vlntr_title}</th>
+				      <td>${data.vlntrNotiVO.vlntr_content }</td>
+				      <td>${data.vlntrNotiVO.vlntr_appl_count}/${data.vlntrNotiVO.vlntr_fixed_people}</td>
+				      <td>${data.vlntrNotiVO.vlntr_srvc_time }</td>
+				      <c:choose>
+				      	<c:when test="${data.vlntrNotiVO.vlntr_noti_state eq 'N'}">
+				      		<td scope="row" style="color: blue;">모집중</td> 
+				      	</c:when>
+						<c:when test="${data.vlntrNotiVO.vlntr_noti_state eq 'Y'}">
+				      		<td scope="row" style="color: green;">마감</td>
+				      	</c:when>
+				      </c:choose>
+<%-- 				      <td><a href="./staff_DetailVlntrNotiPage?vlntr_noti_no=${data.vlntrNotiVO.vlntr_noti_no}">보기</a></td> --%>
+				      <td class="pt-0"><button onclick="location.href='/cbh/staff/volunteer/staff_DetailVlntrNotiPage?vlntr_noti_no=${data.vlntrNotiVO.vlntr_noti_no}'" 
+				      type="button" class="btn py-0" style="color: black;"><i class="bi bi-search"></i>보기</button></td>
+				    </tr>
+				  </c:forEach>
+				  </tbody>
+				</table>
+				</div>
+			</div>
+				
+				
+			</div>
+		</div>	
+		<div class="row mt-3">
+<!-- 			<div class="col"> 페이징 -->
+<!-- 				<nav aria-label="Page navigation example"> -->
+<!-- 				  <ul class="pagination" style="place-content: center;"> -->
+<%-- 				  <c:choose> --%>
+<%-- 				  		<c:when test="${startPage <= 1 }"> --%>
+<!-- 					  		<li class="page-item disabled"><a class="page-link">&lt;</a></li> -->
+<%-- 				  		</c:when> --%>
+<%-- 				  		<c:otherwise> --%>
+<%-- 				  		    <li class="page-item"><a class="page-link" href="./staff_VlntrNotiPage?pageNum=${startPage - 1 }${additionalParam}">&lt;</a></li> --%>
+<%-- 				  		</c:otherwise> --%>
+<%-- 				  </c:choose> --%>
+<%-- 				    <c:forEach begin="${startPage }" end="${endPage }" var="i"> --%>
+<%-- 				    	<c:choose> --%>
+<%-- 				    		<c:when test="${i == currentPageNum }"> --%>
+<%-- 								<li class="page-item active"><a class="page-link" href="./staff_VlntrNotiPage?pageNum=${i}${additionalParam}">${i}</a></li>  		 --%>
+<%-- 				    		</c:when> --%>
+<%-- 				    		<c:otherwise> --%>
+<%-- 				    			<li class="page-item"><a class="page-link" href="./staff_VlntrNotiPage?pageNum=${i}${additionalParam}">${i}</a></li> --%>
+<%-- 				    		</c:otherwise> --%>
+<%-- 				    	</c:choose> --%>
+<%-- 				    </c:forEach> --%>
+<%-- 				    <c:choose> --%>
+<%-- 				    	<c:when test="${endPage >= totalPageCount }"> --%>
+<!-- 					    	<li class="page-item disabled"><a class="page-link">&gt;</a></li> -->
+<%-- 				    	</c:when> --%>
+<%-- 				    	<c:otherwise> --%>
+<%-- 				    		<li class="page-item"><a class="page-link" href="./staff_VlntrNotiPage?pageNum=${endPage+1}${additionalParam}">&gt;</a></li> --%>
+<%-- 				    	</c:otherwise> --%>
+<%-- 				    </c:choose> --%>
+<!-- 				  </ul> -->
+<!-- 				</nav>							 -->
+<!-- 			</div> -->
+						<div class="row mt-3 text-center">
+							<div class="col"> <!-- 페이징 -->
+								<nav aria-label="Page navigation example">
+								  <ul class="pagination" style="place-content: center;">
+								  <c:choose>
+								  		<c:when test="${startPage <= 1 }">
+									  		<li class="page-item disabled"><a class="page-link"
+				                              style="text-decoration-line: none; color: red;">◀</a></li>
+								  		</c:when>
+								  		<c:otherwise>
+								  		
+								  		    <li class="page-item"><a class="page-link"
+				                              style="text-decoration-line: none; color: black;"
+				                              href="./staff_VlntrNotiPage?pageNum=${startPage - 1 }${additionalParam}">◀</a></li>
+								  		</c:otherwise>
+								  </c:choose>
+								  
+								    <c:forEach begin="${startPage }" end="${endPage }" var="i">
+								    	<c:choose>
+								    		<c:when test="${i == currentPageNum }">
+												<li class="page-item active"><a style="text-decoration-line: none; color: blue; font-weight: 600;" class="page-link" href="./staff_VlntrNotiPage?pageNum=${i}${additionalParam}">${i}</a></li>  		
+								    		</c:when>
+								    		<c:otherwise>
+								    			<li class="page-item"><a class="page-link" style="text-decoration-line: none; color: black;" href="./staff_VlntrNotiPage?pageNum=${i}${additionalParam}">${i}</a></li>
+								    		</c:otherwise>
+								    	</c:choose>
+								    </c:forEach>
+								    <c:choose>
+								    	<c:when test="${endPage >= totalPageCount }">
+									    	<li class="page-item disabled"><a class="page-link"
+				                              style="text-decoration-line: none; color: red;">▶</a></li>
+								    	</c:when>
+								    	<c:otherwise>
+								    		<li class="page-item"><a class="page-link"  style="text-decoration-line: none; color: black;" href="./staff_VlntrNotiPage?pageNum=${endPage+1}${additionalParam}">▶</a></li>
+								    	</c:otherwise>
+								    </c:choose>
+								  </ul>
+								</nav>							
+							</div>
+				
+			</div>
+			
+		</div>		
+			<!-- 여기다 작성하세요 -->
+				
+	</div>
 				<!-- Modal -->
 				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 				  <div class="modal-dialog">
@@ -178,7 +324,7 @@ window.addEventListener('DOMContentLoaded', function(){
 				      	<div class="row mt-2">
 				      		<div class="col">
 								 봉사 집합 시간<br>
-								 <input class="form-control" type="datetime-local" name="vlntr_mtng_time">
+								 <input class="form-control" type="datetime-local" pattern="yy.MM.dd yy:mm"  name="vlntr_mtng_time">
 				      		</div>
 				      	</div>
 				      	<div class="row mt-2">
@@ -214,96 +360,6 @@ window.addEventListener('DOMContentLoaded', function(){
 				    </div>
 				  </div>
 				</div>
-			</div>
-		</div>	
-		<form action="./staff_VlntrNotiPage" method="get">
-			<div class="row mt-3 box p-3"><!-- 검색 -->
-				<div class="col">
-					<select name="searchType" class="form-control">
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-						<option value="spot">장소</option>
-					</select>
-				</div>
-				<div class="col-8">
-					<input name="searchWord" type="text" class="form-control">
-				</div>
-				<div class="col d-grid">
-					<button class="btn btn-primary">검색</button>
-				</div>
-			</div>
-		</form>
-		<div class="row mt-4 box p-3">
-			<table class="table">
-			  <thead class="table" style="background-color: rgb(230, 219, 219); height: 4rem;">
-			    <tr>
-			      <th class="cl" scope="col">번호</th>
-			      <th class="cl" scope="col">제목</th>
-			      <th class="cl" scope="col">내용</th>
-			      <th class="cl" scope="col">지원인원수/모집인원수</th>
-			      <th class="cl" scope="col">봉사시간수</th>
-			      <th class="cl" scope="col">모집상태</th>
-			    </tr>
-			  </thead>
-			  <tbody class="table-group-divider">
-			  <c:forEach items="${vlntrNotiList }" var="data">
-			    <tr>
-			      <th scope="row">${data.vlntrNotiVO.vlntr_noti_no}</th>
-			      <td><a href="./staff_DetailVlntrNotiPage?vlntr_noti_no=${data.vlntrNotiVO.vlntr_noti_no}">${data.vlntrNotiVO.vlntr_title}</a></td>
-			      <td>${data.vlntrNotiVO.vlntr_content }</td>
-			      <td>${data.vlntrNotiVO.vlntr_appl_count}/${data.vlntrNotiVO.vlntr_fixed_people}</td>
-			      <td>${data.vlntrNotiVO.vlntr_srvc_time }</td>
-			      <c:choose>
-			      	<c:when test="${data.vlntrNotiVO.vlntr_noti_state eq 'N'}">
-			      		<td scope="row" style="color: red;">모집중</td> 
-			      	</c:when>
-					<c:when test="${data.vlntrNotiVO.vlntr_noti_state eq 'Y'}">
-			      		<td scope="row" style="color: green;">마감</td>
-			      	</c:when>
-			      </c:choose>
-			    </tr>
-			  </c:forEach>
-			  </tbody>
-			</table>
-		</div>	
-		<div class="row mt-3">
-			<div class="col"> <!-- 페이징 -->
-				<nav aria-label="Page navigation example">
-				  <ul class="pagination">
-				  <c:choose>
-				  		<c:when test="${startPage <= 1 }">
-					  		<li class="page-item disabled"><a class="page-link">&lt;</a></li>
-				  		</c:when>
-				  		<c:otherwise>
-				  		    <li class="page-item"><a class="page-link" href="./staff_VlntrNotiPage?pageNum=${startPage - 1 }${additionalParam}">&lt;</a></li>
-				  		</c:otherwise>
-				  </c:choose>
-				    <c:forEach begin="${startPage }" end="${endPage }" var="i">
-				    	<c:choose>
-				    		<c:when test="${i == currentPageNum }">
-								<li class="page-item active"><a class="page-link" href="./staff_VlntrNotiPage?pageNum=${i}${additionalParam}">${i}</a></li>  		
-				    		</c:when>
-				    		<c:otherwise>
-				    			<li class="page-item"><a class="page-link" href="./staff_VlntrNotiPage?pageNum=${i}${additionalParam}">${i}</a></li>
-				    		</c:otherwise>
-				    	</c:choose>
-				    </c:forEach>
-				    <c:choose>
-				    	<c:when test="${endPage >= totalPageCount }">
-					    	<li class="page-item disabled"><a class="page-link">&gt;</a></li>
-				    	</c:when>
-				    	<c:otherwise>
-				    		<li class="page-item"><a class="page-link" href="./staff_VlntrNotiPage?pageNum=${endPage+1}${additionalParam}">&gt;</a></li>
-				    	</c:otherwise>
-				    </c:choose>
-				  </ul>
-				</nav>							
-			</div>
-		</div>		
-			<!-- 여기다 작성하세요 -->
-				
-				</div>
-
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

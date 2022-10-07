@@ -20,32 +20,20 @@ public class Staff_StudentSearchService {
 	private Student_SignUpSQLMapper student_SignUpSQLMapper;
 	
 	
-	public ArrayList<HashMap<String, Object>> getStudentDataList(String studId){
-		ArrayList<HashMap<String, Object>> studentDataList = new ArrayList<HashMap<String,Object>>();
-		
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		StudVO studVO = student_SignUpSQLMapper.selectByStudentId(studId);
-		map.put("data", studVO);
-		studentDataList.add(map);
-		//System.out.println(student_SignUpSQLMapper.selectStudentAll(stud_id));
-		return studentDataList;
+	public ArrayList<StudVO> getStudentDataList(){
+	
+		return student_SignUpSQLMapper.selectStudentAll();
 	}
 	
-	public HashMap<String, Object> getStudentData(String studId){
+	public HashMap<String, Object> getStudentData(String stud_id){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		StudVO studVO = student_SignUpSQLMapper.selectByStudentId(studId);
+		StudVO studVO = student_SignUpSQLMapper.selectByStudentId(stud_id);
 		
 		map.put("studVO", studVO);
 		
 		return map;
 	}
 	
-	
-	
-	//학생 수 구하기
-	public int getStudentCount(String stud_id) {
-		return student_SignUpSQLMapper.countStudentById(stud_id);
-	}
 	
 }

@@ -22,8 +22,21 @@ color: #FA5858;
 font-size: 1.2rem;
 font-weight: bold;
 }
+.form-check-input:focus {
+    border-color: #FA5858;
+    outline: 0;
+    box-shadow: 0 0 0 0;
+}
+.form-check-input:checked {
+    border-color:#FA5858;
+    background-color: #FA5858;
+ }
+ .form-check-input{
+  border-color:#FA5858;
+ }
 </style>
 <script type="text/javascript">
+
 
 tinymce.init({
 	selector : 'textarea#modalBody',
@@ -1003,7 +1016,7 @@ function stateCheck(e){
 									<caption class="ps-2" style="font-size: 0.8rem;">
 										코드내역 <span id="contentCount"></span>
 									</caption>
-									<thead>
+									<thead style="background-color: rgb(252, 243, 243)">
 										<tr id="codeContentHead" class="text-center">
 										</tr>
 									</thead>

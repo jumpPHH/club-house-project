@@ -24,58 +24,68 @@
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/staff_common/staff_header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
-
-<div style="position: absolute; left: 20%; width: 80%; top: 14vh; height:86vh;overflow-y: auto; word-break: break-all">
-	<div class="container-fluid" style="">
+<div class="page-content p-5 pt-4" id="content">
+	 <!-- 토글 버튼 -->
+		<button id="sidebarCollapse" type="button"
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
+			<i class="fa fa-bars mr-2"></i><small
+				class="text-uppercase font-weight-bold" style="color: #FA5858">MENU</small>
+		</button>
 		
-		<div class="row" >
-			<div class="col-2"></div>
-			<div class="col">
-				공지구분: <c:choose>
-							<c:when test="${notiData.noticeVO.noti_div_no == 0 }">
-								<td>일반공지</td>
-							</c:when>
-							<c:when test="${notiData.noticeVO.noti_div_no == 1 }">
-								<td>긴급공지</td>
-							</c:when>
-						</c:choose>
+		<div class="row mt-4 box"  style="height: 45px; align-items: center">
+			<div class="col" style="color: #FA5858; font-weight: bold; font-size: 1.5rem;">
+				공지상세
 			</div>
 		</div>
-		<br>
-		<div class="row" >
-			<div class="col-2"></div>
+		
+		
+<div class="row mt-4 box p-4">
+	<div class="col">
+	
+		<div class="row" style="padding: 2vh;">
+			<div class="col-2">공지구분</div>
 			<div class="col">
-				공지제목: ${notiData.noticeVO.noti_title } 
+				<c:choose>
+					<c:when test="${notiData.noticeVO.noti_div_no == 0 }">
+						<td>일반공지</td>
+					</c:when>
+					<c:when test="${notiData.noticeVO.noti_div_no == 1 }">
+						<td>긴급공지</td>
+					</c:when>
+				</c:choose>
 			</div>
 		</div>
-		<br>
-		<div class="row" >
-			<div class="col-2"></div>
+		<div class="row" style="padding: 2vh;">
+			<div class="col-2">공지제목</div>
 			<div class="col">
-				공지사항: ${notiData.noticeVO.noti_content }
+				 ${notiData.noticeVO.noti_title } 
+			</div>
+		</div>
+		<div class="row" style="padding: 2vh;">
+			<div class="col-2">공지사항</div>
+			<div class="col">
+				 ${notiData.noticeVO.noti_content }
 			</div>
 		</div>
 		<c:if test="${ !empty sessionUserInfo && sessionUserInfo.staff_id == data.staffVO.staff_id}">session이 안넘어가낭</c:if>
-		<br>
-		<div class="row">
-			<div class="col-4"></div>
-			<div class="col d-grid">
+		<div class="row" style="padding: 1vh;">
+			<div class="col-2">
 				 <a class = "btn btn-dark" onclick="location.href='/cbh/staff/studentNotice/staff_StudentNoticePage'">돌아가기</a>
 			</div>
+			<div class="col-7"></div>
 			<div class="col d-grid">
-		       <a class = "btn btn-danger" href="./deleteNoticeProcess?notice_no=${notiData.noticeVO.noti_no }">삭제</a>
-	        </div>
+				<a class = "btn btn-danger" href="./deleteNoticeProcess?notice_no=${notiData.noticeVO.noti_no }">삭제</a>
+			</div>
 			<div class="col d-grid">
 		        <a class = "btn btn-success" href="./updateContentPage?notice_no=${notiData.noticeVO.noti_no }">수정</a>
 			</div>
-			<div class="col-4"></div>
 		</div>
 		
 		
-		
 	</div>
+</div>
+
 </div>
 
 	<script type="text/javascript"

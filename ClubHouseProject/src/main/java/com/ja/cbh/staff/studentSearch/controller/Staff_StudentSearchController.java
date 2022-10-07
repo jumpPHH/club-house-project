@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ja.cbh.staff.studentSearch.service.Staff_StudentSearchService;
 import com.ja.cbh.vo.StaffVO;
+import com.ja.cbh.vo.StudVO;
 
 @Controller
 @RequestMapping("/staff/studentSearch/*")
@@ -23,7 +24,7 @@ public class Staff_StudentSearchController {
 	@RequestMapping("staff_StudentSearchPage")
 	public String staff_StudentSearchPage(Model model, HttpSession session){
 		
-//		ArrayList<HashMap<String, Object>> studentList = staff_StudentSearchService.getStudentDataList(stud_id);
+//		ArrayList<StudVO> studentList = staff_StudentSearchService.getStudentDataList();
 //		model.addAttribute("studentList", studentList);
 		//System.out.println(studentList);
 		

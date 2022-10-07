@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/cbh/resources/css/staff_MainPage.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 
 
@@ -68,7 +69,7 @@
 		xhr.send(); 
 	}
 
-	function deleteNotice(noticeNo){
+	function deleteAppl(noticeNo){
 		
 		//var arr = new Array();
 
@@ -83,28 +84,73 @@
 			xhr.send();
 	}
 	
-	function refreshNoticeList(){
+	function refreshApplList(){
 		
 		var xhr = new XMLHttpRequest(); 
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var result = JSON.parse(xhr.responseText);
+				
+// 				var tbodyBox = document.getElementById("tbody");
+// 				tbodyBox.innerHTML = ""
+				
+				
 			}
 		}
+		
 	}
 	
-// 	function checkAll(){
-// 		$(".check").click();
+// 	function stateChange(){
+					
+// 				if($(".reject").click()){
+// 				var tdState = document.getElementById("state");
+// 				tdState.innerHTML = "";
+// 				tdState.innerHTML = "반려";
+// 				}
+				
+// 				if($(".accept").click()){
+// 				var tdState = document.getElementById("state");
+// 				tdState.innerHTML = "";
+// 				tdState.innerHTML = "승인";
+			
+// 		}
+		
 // 	}
 	
-	function checkAll(elm){
-		elm.checked;
+	function reject(){
+		if($(".reject").click()){
+				var tdState = document.getElementById("state");
+				tdState.innerHTML = "";
+				tdState.innerHTML = "반려";
+			}
+		
+		
 	}
+	
+	function accept(){
+		if($(".accept").click()){
+				var tdState = document.getElementById("state");
+				tdState.innerHTML = "";
+				tdState.innerHTML = "승인";
+			}
+		
+		
+	}
+	
+	
+	function checkAll(){
+		if($(".checkAll").check()){
+			
+		}
+			
+		
+	}
+	
 
- 	window.addEventListener('DOMContentLoaded' , function checkAll(elm){
-    var checkBox = document.getElementById('check');
-    checkBox.checked;
- 	}
+
+ 	window.addEventListener('DOMContentLoaded' , function(){
+
+ 	});
 
 </script>
 </head>
@@ -118,24 +164,26 @@
       <button id="sidebarCollapse" type="button"
          class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
          <i class="fa fa-bars mr-2"></i><small
-            class="text-uppercase font-weight-bold">MENU</small>
+            class="text-uppercase font-weight-bold" style="color: #FA5858">MENU</small>
       </button>
 		
-		<div class="row mt-4 box p-4"  style="border-color: gray" >
+	<form action="./staff_applyClubPage" method="get">
+		<div class="row mt-4 box" style="height: 45px; align-items: center">
 			<div class="col-1">
-				동아리
+				동아리명
 			</div>
 			<div class="col">
 				<input name="searchWord" type="text">
 			</div>
-			<div class="col-2" style="">
-				<button class="btn btn-primary" type="submit">조회</button>
+			<div class="col-7" style=""></div>
+			<div class="col d-grid" style="">
+				<button class="btn btn-outline-primary py-1" type="submit">조회</button>
 			</div>
-			<div class="col-2" style="">
-				<button onclick="deleteNotice()" class="btn btn-danger" type="button">삭제</button>
+			<div class="col d-grid" style="">
+				<button onclick="deleteNotice()" class="btn btn-outline-danger py-1" type="button">삭제</button>
 			</div>			
 		</div>
-
+	</form>
 		
 	<div class="row mt-4 box p-4">
 		<div class="col">
@@ -149,8 +197,7 @@
 					<th class="col">상태</th>
 				<tr>
 			</thead>
-			<tbody>
-					<!-- paging UI -->
+			<tbody id="tbody">
 					<c:forEach items="${clubApplDataList}" var="clubApplData">
 						<tr>
 						  <th><input id="check" onclick="check()" type="checkbox" class="form-check-input" value="${clubApplData.club_appl_no }"></th>
@@ -159,7 +206,7 @@
 					      <td><a data-bs-toggle="modal" data-bs-target="#exampleModal">${clubApplData.club_ApplVO.club_name }</a></td>
 					      <td>${clubApplData.club_ApplVO.stud_id }</td>
 					      <td><fmt:formatDate value ="${clubApplData.club_ApplVO.club_appl_date }" pattern="yyyy년 MM월 hh시 mm분"/></td>
-					      <td>
+					      <td id="state">
 					      <c:choose>
 					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state == 0}">
 					      		승인
@@ -185,80 +232,93 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold">신청 상세</h5>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
 			     <div class="row" >
-				<div class="col-2"></div>
+				<div class="col-3" style="font-weight: bold">동아리 이름:</div>
 				<div class="col">
-					동아리 이름: ${applData.applVO.club_name }
+					 ${applData.applVO.club_name }
 				</div>
 			</div>
 			<br>
 			<div class="row" >
-				<div class="col-2"></div>
+				<div class="col-3" style="font-weight: bold">신청인:</div>
 				<div class="col">
-					신청인: ${applData.applVO.stud_id }
+					 ${applData.applVO.stud_id }
 				</div>
 			</div>
 			<br>
 			<div class="row" >
-				<div class="col-2"></div>
+				<div class="col-3" style="font-weight: bold">신청인원:</div>
 				<div class="col">
-					신청인원: ${applData.applVO.club_appl_people_count }
+					 ${applData.applVO.club_appl_people_count }
 				</div>
 			</div>
 			<br>
 			<div class="row" >
-				<div class="col-2"></div>
+				<div class="col-3" style="font-weight: bold">동아리설명:</div>
 				<div class="col">
-					동아리설명: ${applData.applVO.club_purpose }
+					 ${applData.applVO.club_purpose }
 				</div>
 			</div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">돌아가기</button>
-	        <button type="button" class="btn btn-danger">반려</button>
-	        <button type="button" class="btn btn-primary">검수</button>
+	        <button id="reject" onclick="reject()" type="button" class="btn btn-danger" data-bs-dismiss="modal">반려</button>
+	        <button id="accept" onclick="accept()" type="button" class="btn btn-primary" data-bs-dismiss="modal">승인</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 
 				<div class="row mt-3">
+				<div class="col-4"></div>
 					<div class="col"> <!-- 페이징 -->
 						<nav aria-label="Page navigation example">
 						  <ul class="pagination">
 						  <c:choose>
 						  		<c:when test="${startPage <= 1 }">
-							  		<li class="page-item disabled"><a class="page-link">&lt;</a></li>
+							  		<li class="page-item disabled"><a class="page-link" 
+							  			href="#" style="text-decoration-line: none; color: red;">◀</a></li>
 						  		</c:when>
 						  		<c:otherwise>
-						  		    <li class="page-item"><a class="page-link" href="./mainPage?pageNum=${startPage - 1 }${additionalParam}">&lt;</a></li>
+						  		    <li class="page-item"><a class="page-link" 
+						  		    	style="text-decoration-line: none; color: black;"
+						  		    	href="./staff_applyClubPage?pageNum=${startPage - 1 }${additionalParam}">◀</a></li>
 						  		</c:otherwise>
 						  </c:choose>
 						    <c:forEach begin="${startPage }" end="${endPage }" var="i">
 						    	<c:choose>
 						    		<c:when test="${i == currentPageNum }">
-										<li class="page-item active"><a class="page-link" href="./mainPage?pageNum=${i}${additionalParam}">${i}</a></li>  		
+										<li class="page-item active"><a class="page-link" 
+											style="text-decoration-line: none; font-weight: 600;"
+											href="./staff_applyClubPage?pageNum=${i}${additionalParam}">${i}</a></li>  		
 						    		</c:when>
 						    		<c:otherwise>
-						    			<li class="page-item"><a class="page-link" href="./mainPage?pageNum=${i}${additionalParam}">${i}</a></li>
+						    			<li class="page-item"><a class="page-link" 
+						    				style="text-decoration-line"
+						    				href="./staff_applyClubPage?pageNum=${i}${additionalParam}">${i}</a></li>
 						    		</c:otherwise>
 						    	</c:choose>
 						    </c:forEach>
 						    <c:choose>
 						    	<c:when test="${endPage >= totalPageCount }">
-							    	<li class="page-item disabled"><a class="page-link">&gt;</a></li>
+							    	<li class="page-item disabled"><a class="page-link"
+							    		style="text-decoration-line: none; color: red;"
+							    		href="./staff_applyClubPage?pageNum=${endPage+1}${additionalParam}">▶</a></li>
 						    	</c:when>
 						    	<c:otherwise>
-						    		<li class="page-item"><a class="page-link" href="./mainPage?pageNum=${endPage+1}${additionalParam}">&gt;</a></li>
+						    		<li class="page-item"><a class="page-link" 
+						    			style="text-decoration-line: none; color: black;"
+						    			href="./staff_applyClubPage?pageNum=${endPage+1}${additionalParam}">▶</a></li>
 						    	</c:otherwise>
 						    </c:choose>
 						  </ul>
 						</nav>							
 					</div>
+					<div class="col-4"></div>
 				</div>
 				
 				

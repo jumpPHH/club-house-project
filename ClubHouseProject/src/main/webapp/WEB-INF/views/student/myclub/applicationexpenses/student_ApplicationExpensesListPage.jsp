@@ -11,35 +11,61 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/cbh/resources/css/student_MainPage.css">
 <style type="text/css">
 .selectDiv {
 	background-color: #bfc9e3;
-	color: white;
-}
-
-a:hover {
 	color: white !important;
 	text-decoration: underline;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 50%;
+}
+
+.aClick{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.aClick:hover {
+    -webkit-transform: scale(1.15,1.15);
+    -moz-transform: scale(1.15,1.15);
+    -o-transform: scale(1.15,1.15);
+    -ms-transform: scale(1.15,1.15);
+    transform: scale(1.15,1.15);
 }
 </style>
 
 <script type="text/javascript">
-function clickMove(target) {
-	$(".selectDiv").removeClass("selectDiv");
-	target.classList.toggle('selectDiv');
-}
+document.addEventListener("DOMContentLoaded", function () {
+	
+	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+	var url1 = document.getElementById("student_ApplicationExpensesPage");
+	var url2 = document.getElementById("student_ApplicationExpensesListPage");
+		
+		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+			$("#student_ApplicationExpensesPage").attr('class','selectDiv');
+		
+		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+			$("#student_ApplicationExpensesListPage").attr('class','selectDiv');
+		}
+});
 </script>
 </head>
 <body>
 	<jsp:include
 		page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
-
+		
 	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
 	<div class="page-content p-5" id="content">
 		<!-- 토글 버튼 -->
 		<button id="sidebarCollapse box" type="button"
-			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
+			class="btn btn-light bg-white rounded-pill box px-4 mb-4">
 			<small
 				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
@@ -56,9 +82,9 @@ function clickMove(target) {
 								<div class="col text-center"
 									style="border-right: 2px solid #ededed;">
 									<div class="row" style="justify-content: center">
-										<a
+										<a  id="student_ApplicationExpensesPage"
 											href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
+											class="col-auto px-3 aClick"
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											신청서 작성 </a>
 									</div>
@@ -66,9 +92,9 @@ function clickMove(target) {
 
 								<div class="col text-center" style="border-right: 2px solid #ededed;">
 									<div class="row" style="justify-content: center">
-										<a
+										<a  id="student_ApplicationExpensesListPage"
 											href="/cbh/student/myclub/applicationexpenses/student_ApplicationExpensesListPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
+											class="col-auto px-3 aClick" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											신청 내용 </a>
 									</div>

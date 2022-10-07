@@ -24,61 +24,77 @@
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/staff_common/staff_header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/staff_common/staff_sidevar.jsp"></jsp:include>
+<div class="page-content p-5 pt-4" id="content">
+	 <!-- 토글 버튼 -->
+		<button id="sidebarCollapse" type="button"
+			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-3">
+			<i class="fa fa-bars mr-2"></i><small
+				class="text-uppercase font-weight-bold" style="color: #FA5858">MENU</small>
+		</button>
 
-<div style="position: absolute; left: 20%; width: 80%; top: 14vh; height:86vh;overflow-y: auto; word-break: break-all">
-	<div class="container-fluid" style="background-color: ">
+<!-- <div style="position: absolute; left: 30%; width: 50%; top: 10vh; height:90vh; word-break: break-all"> -->
+<!-- 	<div class="container-fluid" style="background-color: #FA8585; border-radius: 30px;"> -->
+		<div class="row mt-4 box"  style="height: 45px; align-items: center">
+			<div class="col" style="color: #FA5858; font-weight: bold; font-size: 1.5rem;">
+				공지작성
+			</div>
+		</div>
+		
+		<div class="row mt-4 box p-4">
+			<div class="col">
 		
 		<form action="./writeNoticeProcess" method="post">
-		<div class="row" >
-			<div class="col-2"></div>
+<!-- 		<div class="row"><div class="col"></div></div> -->
+		<div class="row" style="padding: 2vh;">
 			<div class="col-2">
 				공지구분
 			</div>
 			<div class="col">
-				<select name="noti_div_no" >
+				<select name="noti_div_no">
 					<option selected value="0">일반공지</option>
 					<option value="1">긴급공지</option>					
 				</select>
 			</div>
 		</div>
 		
-		<div class="row" >
-			<div class="col-2"></div>
+		<div class="row" style="padding: 2vh;">		
 			<div class="col-2">
 				공지제목
 			</div>
 			<div class="col">
-				<input type="text" name="noti_title">
+				<input class="container-fluid" type="text" name="noti_title" placeholder="제목을 적어주세요">
 			</div>
+			<div class="col-4"></div>
 		</div>
 		
-		<div class="row" >
-			<div class="col-2"></div>
+		<div class="row" style="padding: 2vh;">
 			<div class="col-2">
-				공지사항
+				공지내용
 			</div>
 			<div class="col">
-				<textarea name="noti_content" rows="10" cols="60"></textarea>
+				<textarea name="noti_content" rows="15" cols="100" placeholder="  공지내용을 적어주세요"></textarea>
 			</div>
 		</div>
 		<br>
-		<div class="row">
-			<div class="col-4"></div>
+		<div class="row" style="padding: 1vh;">
+			<div class="col-2"></div>
 			<div class="col d-grid">
-		       <a class = "btn btn-danger" href="./staff_StudentNoticePage"> 취소 </a>
+		       <a class="btn btn-danger" href="./staff_StudentNoticePage"> 취소 </a>
 	        </div>
 			<div class="col d-grid">
-		       <button class = "btn btn-primary" type="submit"> 확인 </button>
+		       <button class="btn btn-primary" type="submit"> 확인 </button>
 			</div>
-			<div class="col-4"></div>
+			<div class="col-2"></div>
 		</div>
+		
 		</form>
 
-		
+		</div>
 	</div>
-</div>
+
+</div>		
+
 
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
