@@ -81,14 +81,14 @@
 document.addEventListener("DOMContentLoaded", function () {
 	
 	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
-
+	
 	var url1 = document.getElementById("student_indexPage");
 	var url2 = document.getElementById("student_MemberJoinMgmtPage");
-	
-		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
+
+		if((url1.getAttribute("href").split('/'))[4]+".jsp" == nowPage){
 			$("#student_indexPage").attr('class','selectDiv');
 		
-		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
+		}else if ((url2.getAttribute("href").split('/'))[4]+".jsp" == nowPage) {
 			$("#student_MemberJoinMgmtPage").attr('class','selectDiv');
 		}
 });
@@ -128,6 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 										class="col-auto px-3 aClick"
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 										동아리 찾기 </a>
+		
 								</div>
 							</div>
 

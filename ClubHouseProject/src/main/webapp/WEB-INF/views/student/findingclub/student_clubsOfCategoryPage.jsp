@@ -106,21 +106,6 @@ img {
 
 <script type="text/javascript">
 
-document.addEventListener("DOMContentLoaded", function () {
-	
-	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
-
-	var url1 = document.getElementById("student_indexPage");
-	var url2 = document.getElementById("student_MemberJoinMgmtPage");
-	
-		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
-			$("#student_indexPage").attr('class','selectDiv');
-		
-		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
-			$("#student_clubsOfCategoryPage").attr('class','selectDiv');
-		}
-});
-
 	// 홈페이지 로드시 클럽리스트 불러오기
 	function getCategoryOfClubList() {
 		clubCategoryNo = document.querySelector("#clubCategoryNo").value;
@@ -231,7 +216,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	window.addEventListener("DOMContentLoaded", function() {
 		getCategoryOfClubList();
-		getClubCategory();
+		
+	});
+	
+	document.addEventListener("DOMContentLoaded", function () {
+
+		var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+		var url1 = document.getElementById("student_indexPage");
+		var url2 = document.getElementById("student_clubsOfCategoryPage");
+
+			if((url1.getAttribute("href").split('/'))[4]+".jsp" == nowPage){
+				$("#student_indexPage").attr('class','selectDiv');
+			
+			}else if ((url2.getAttribute("href").split('/')[4].split('?'))[0]+".jsp" == nowPage) {
+				$("#student_clubsOfCategoryPage").attr('class','selectDiv');
+			}
 	});
 </script>
 
@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
 									style="justify-content: center; border-right: 2px solid #ededed">
 									<a	id="student_indexPage"
 										href="/cbh/student/findingclub/student_indexPage"
-										class="col-auto px-3 aClick" onmouseover="clickMove(this)"
+										class="col-auto px-3 aClick" 
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 										동아리 찾기 </a>
 								</div>
@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
 							<div class="col text-center">
 								<div class="row" style="justify-content: center">
 									<a id="student_clubsOfCategoryPage"
-										href="/cbh/student/findingclub/student_clubsOfCategoryPage?club_category_no=${clubCategoryVO.club_category_name }"
+										href="/cbh/student/findingclub/student_clubsOfCategoryPage?club_category_no=${clubCategoryVO.club_category_no}"
 										class="col-auto px-3 aClick"
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 									 	${clubCategoryVO.club_category_name } 동아리들</a>

@@ -116,10 +116,10 @@ document.addEventListener("DOMContentLoaded", function () {
 							<div class="col text-center">
 								<div class="row"
 									style="justify-content: center; border-right: 2px solid #ededed">
-									<a  id="student_indexPage"
+									<a id="student_indexPage"
 										href="/cbh/student/myclub/clubboard/student_indexPage?club_no=${clubNo }"
 										class="col-auto px-3 aClick"
-										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none; background-color: #bfc9e3; color: white !important;  padding-left: 0px; padding-right: 0px; width: 60%;">
 										자유게시판 </a>
 								</div>
 							</div>
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
 							<div class="col text-center">
 								<div class="row" style="justify-content: center">
 									<a id="student_MemberJoinMgmtPage"
-										href="/cbh/student/myclub/clubboard/writeClubBoardPage?club_no=${clubNo }"
+										href="/cbh/student/myclub/clubboard/student_writeClubBoardPage?club_no=${clubNo }"
 										class="col-auto px-3 aClick"
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 										자유게시판 작성 </a>

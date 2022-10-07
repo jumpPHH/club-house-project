@@ -19,40 +19,50 @@
 </script>
 
 <style type="text/css">
-
 .selectDiv {
 	background-color: #bfc9e3;
 	color: white !important;
 	text-decoration: underline;
 	padding-left: 0px;
-    padding-right: 0px;
-    width: 60%;
+	padding-right: 0px;
+	width: 60%;
 }
 
-.aClick{
-    display: inline-block;
-    color: #03c;
-    -webkit-transition: 0.5s;
-    -moz-transition: 0.5s;
-    -o-transition: 0.5s;
-    -ms-transition: 0.5s;
-    transition: 0.5s;
+.aClick {
+	display: inline-block;
+	color: #03c;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-o-transition: 0.5s;
+	-ms-transition: 0.5s;
+	transition: 0.5s;
 }
 
 .aClick:hover {
-    -webkit-transform: scale(1.1,1.1);
-    -moz-transform: scale(1.1,1.1);
-    -o-transform: scale(1.1,1.1);
-    -ms-transform: scale(1.1,1.1);
-    transform: scale(1.1,1.1);
+	-webkit-transform: scale(1.1, 1.1);
+	-moz-transform: scale(1.1, 1.1);
+	-o-transform: scale(1.1, 1.1);
+	-ms-transform: scale(1.1, 1.1);
+	transform: scale(1.1, 1.1);
 }
 </style>
 
 <script type="text/javascript">
-	function clickMove(target) {
-		$(".selectDiv").removeClass("selectDiv");
-		target.classList.toggle('selectDiv');
-	}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
+
+	var url1 = document.getElementById("student_indexPage");
+	var url2 = document.getElementById("student_clubsOfCategoryPage");
+
+		if((url1.getAttribute("href").split('/')[4].split('?'))[0]+".jsp" == nowPage){
+			$("#student_indexPage").attr('class','selectDiv');
+		
+		}else if ((url2.getAttribute("href").split('/')[4].split('?'))[0]+".jsp" == nowPage) {
+			$("#student_clubsOfCategoryPage").attr('class','selectDiv');
+		}
+});
 </script>
 
 <title>Insert title here</title>
@@ -70,44 +80,45 @@
 				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Toggle</small>
 		</button>
 
-		<div class="row card box" style="width: 100%; height: 45px; margin-left:0.1em; margin-bottom:1em;">
-				<div class="dashboard-card-bottom">
-					<div class="row">
+		<div class="row card box"
+			style="width: 100%; height: 45px; margin-left: 0.1em; margin-bottom: 1em;">
+			<div class="dashboard-card-bottom">
+				<div class="row">
 
-						<div class="col-1"></div>
+					<div class="col-1"></div>
 
-						<div class="col">
+					<div class="col">
 
-							<div class="row ps-1 p-2 mb-2">
-								<div class="col text-center">
-									<div class="row" style="justify-content: center">
-										<a
-											href="/cbh/student/findingclub/student_indexPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
-											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
-											동아리 찾기 </a>
-									</div>
-								</div>
-								
-								<div class="col text-center">
+						<div class="row ps-1 p-2 mb-2">
+							<div class="col text-center">
 								<div class="row" style="justify-content: center">
-									<a id="student_MemberShipFeeMgmtListPage"
-										href="/cbh/student/findingclub/student_clubsOfCategoryPage?club_category_no=${clubCategoryData.club_category_name }"
+									<a id="student_indexPage"
+										href="/cbh/student/findingclub/student_indexPage"
 										class="col-auto px-3"
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
-									 	${clubCategoryData.club_category_name } 동아리들</a>
-									 <span id="clubCategoryNameBox"></span>
+										동아리 찾기 </a>
 								</div>
 							</div>
-								
+
+							<div class="col text-center">
+								<div class="row" style="justify-content: center">
+									<a id="student_clubsOfCategoryPage"
+										href="/cbh/student/findingclub/student_clubsOfCategoryPage?club_category_no=${clubCategoryData.club_category_no }"
+										class="col-auto px-3"
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none; background-color: #bfc9e3; color: white !important; text-decoration: none; padding-left: 0px; padding-right: 0px; width: 60%;">
+										${clubCategoryData.club_category_name } 동아리들</a> <span
+										id="clubCategoryNameBox"></span>
+								</div>
 							</div>
+
 						</div>
-						<div class="col-1"></div>
 					</div>
+					<div class="col-1"></div>
 				</div>
 			</div>
-		
-		
+		</div>
+
+
 
 		<div class="card"
 			style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important; padding: 30px;">
