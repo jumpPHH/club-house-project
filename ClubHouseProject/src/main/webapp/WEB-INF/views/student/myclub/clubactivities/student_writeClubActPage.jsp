@@ -16,6 +16,23 @@
 </script>
 
 <style type="text/css">
+.aClick{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.aClick:hover {
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+}
 </style>
 
 
@@ -49,7 +66,7 @@
 									style="justify-content: center; border-right: 2px solid #ededed">
 									<a
 										href="/cbh/student/myclub/clubactivities/student_indexPage?club_no=${clubNo }"
-										class="col-auto px-3" onmouseover="clickMove(this)"
+										class="col-auto px-3" 
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 										동아리 활동내역 </a>
 								</div>
@@ -58,9 +75,9 @@
 							<div class="col text-center">
 								<div class="row" style="justify-content: center">
 									<a id="student_MemberShipFeeMgmtListPage"
-										href="/cbh/student/myclub/writeClubActPage?club_no=${clubNo}"
+										href="/cbh/student/myclub/clubactivities/student_writeClubActPage?club_no=${clubNo}"
 										class="col-auto px-3"
-										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none; background-color: #bfc9e3; color: white !important; padding-left: 0px; padding-right: 0px; width: 60%;">
 										활동내역 작성 </a>
 								</div>
 							</div>

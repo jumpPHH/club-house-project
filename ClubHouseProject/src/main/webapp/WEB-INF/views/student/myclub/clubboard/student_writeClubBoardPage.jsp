@@ -12,26 +12,26 @@
 	color: white !important;
 	text-decoration: underline;
 	padding-left: 0px;
-    padding-right: 0px;
-    width: 60%;
+	padding-right: 0px;
+	width: 60%;
 }
 
-.aClick{
-    display: inline-block;
-    color: #03c;
-    -webkit-transition: 0.5s;
-    -moz-transition: 0.5s;
-    -o-transition: 0.5s;
-    -ms-transition: 0.5s;
-    transition: 0.5s;
+.aClick {
+	display: inline-block;
+	color: #03c;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-o-transition: 0.5s;
+	-ms-transition: 0.5s;
+	transition: 0.5s;
 }
 
 .aClick:hover {
-    -webkit-transform: scale(1.1,1.1);
-    -moz-transform: scale(1.1,1.1);
-    -o-transform: scale(1.1,1.1);
-    -ms-transform: scale(1.1,1.1);
-    transform: scale(1.1,1.1);
+	-webkit-transform: scale(1.1, 1.1);
+	-moz-transform: scale(1.1, 1.1);
+	-o-transform: scale(1.1, 1.1);
+	-ms-transform: scale(1.1, 1.1);
+	transform: scale(1.1, 1.1);
 }
 </style>
 <script type="text/javascript">
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
 								<div class="row" style="justify-content: center">
 									<a id="student_MemberJoinMgmtPage" href="#"
 										class="col-auto px-3 aClick"
-										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none; background-color: #bfc9e3; color: white !important; padding-left: 0px; padding-right: 0px; width: 60%;">
 										자유게시판 작성 </a>
 								</div>
 							</div>
@@ -183,17 +183,17 @@ document.addEventListener("DOMContentLoaded", function () {
 										<input type="hidden" value="${clubNo }" name="club_no">
 										<hr class="mt-3 hrSetting">
 										<div class="row mt-5 mb-5">
-											<div class="col" style="text-align:right;">
+											<div class="col" style="text-align: right;">
 												<button class="btn"
 													style="background-color: gray; color: white; width: 15em; height: 3em;">취소</button>
 											</div>
-											<div class="col" style="text-align:left;">
+											<div class="col" style="text-align: left;">
 												<button type="submit" class="btn"
 													style="background-color: #c4073d; color: white; width: 15em; height: 3em;">제출하기</button>
 											</div>
 										</div>
 									</form>
-									
+
 									<div class="row">
 										<div class="col text_align_right"></div>
 									</div>

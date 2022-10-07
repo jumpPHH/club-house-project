@@ -18,11 +18,34 @@
 	
 </script>
 
-
-
-
 <style type="text/css">
+	.selectDiv {
+	background-color: #bfc9e3;
+	color: white !important;
+	padding-left: 0px;
+    padding-right: 0px;
+    width: 60%;
+}
+
+.aClick{
+    display: inline-block;
+    color: #03c;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.aClick:hover {
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+}
 </style>
+
 
 <script type="text/javascript">
 	function seeTheReason() {
@@ -76,7 +99,7 @@
 									<div class="row" style="justify-content: center">
 										<a
 											href="/cbh/student/establishingclub/student_indexPage"
-											class="col-auto px-3" onmouseover="clickMove(this)"
+											class="col-auto px-3" 
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											신청서 작성 </a>
 									</div>
@@ -84,12 +107,12 @@
 
 								<div class="col text-center">
 									<div class="row" style="justify-content: center">
-										<a
-											href="/cbh/student/establishingclub/student_establishingClubResultPage?stud_id=${sessionUserInfo.stud_id }"
-											class="col-auto px-3" onmouseover="clickMove(this)"
-											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
-											동아리 신청 상태 </a>
-									</div>
+									<a
+										href="/cbh/student/establishingclub/student_establishingClubResultPage?stud_id=${sessionUserInfo.stud_id }"
+										class="col-auto px-3"
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none; background-color: #bfc9e3; color: white !important; padding-left: 0px; padding-right: 0px; width: 60%;">
+										동아리 신청 상태 </a>
+								</div>
 								</div>
 							</div>
 

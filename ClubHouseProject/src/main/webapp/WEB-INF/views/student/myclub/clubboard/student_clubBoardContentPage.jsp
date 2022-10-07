@@ -12,7 +12,6 @@
 	.selectDiv {
 	background-color: #bfc9e3;
 	color: white !important;
-	text-decoration: underline;
 	padding-left: 0px;
     padding-right: 0px;
     width: 60%;
@@ -269,10 +268,10 @@ document.addEventListener("DOMContentLoaded", function () {
 							<div class="col text-center">
 								<div class="row"
 									style="justify-content: center; border-right: 2px solid #ededed">
-									<a	id="student_indexPage"
-										href="/cbh/student/myclub/clubboard/student_indexPage?club_no=${map.clubActData.club_no }"
-										class="col-auto px-3 aClick" 
-										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+									<a id="student_indexPage"
+										href="/cbh/student/myclub/clubboard/student_indexPage?club_no=${map.clubBoardData.club_no }"
+										class="col-auto px-3 aClick"
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration-line: none; background-color: #bfc9e3; color: white !important; padding-left: 0px; padding-right: 0px; width: 60%;">
 										자유게시판 </a>
 								</div>
 							</div>
@@ -280,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
 							<div class="col text-center">
 								<div class="row" style="justify-content: center">
 									<a id="student_MemberJoinMgmtPage"
-										href="/cbh/student/myclub/writeClubActPage?club_no=${map.clubActData.club_no }"
+										href="/cbh/student/myclub/clubboard/student_writeClubBoardPage?club_no=${map.clubBoardData.club_no }"
 										class="col-auto px-3 aClick"
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 										자유게시판 작성 </a>
@@ -368,7 +367,8 @@ document.addEventListener("DOMContentLoaded", function () {
 													
 													<!-- 1 리스트 박스 -->
 													<div class="row mt-5">
-														<div class="col" id="commentListBox"  style="border:1px; border-radius:5px; border-color:gray;"><span style="font-weight:bold; font-size:20px">댓글</span>
+														<div class="col" id="commentListBox"  style="border:1px; border-radius:5px; border-color:gray;">
+														<span style="font-weight:bold; font-size:20px;">댓글</span>
 														</div>
 													</div>
 													<div class="row"  style="border-top:1px solid #ddd; margin-top:1em; width:15%; margin-left:1px;">
