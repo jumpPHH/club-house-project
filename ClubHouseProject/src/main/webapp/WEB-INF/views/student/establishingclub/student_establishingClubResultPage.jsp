@@ -82,7 +82,7 @@
 		<button id="sidebarCollapse" type="button"
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
 			<i class="fa fa-bars mr-2"></i><small
-				class="text-uppercase font-weight-bold">Toggle</small>
+				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
 		
 		<div class="row card box" style="width: 100%; height: 45px;">
@@ -141,20 +141,20 @@
 									<table class="table">
 										<thead>
 											<tr class="table-secondary">
-												<th scope="col" class="text_align_center">번호</th>
-												<th scope="col">동아리 이름</th>
-												<th scope="col">개설 목적</th>
-												<th scope="col">개설 신청 현황</th>
-												<th scope="col" class="text_align_center">신청 일시</th>
+												<th scope="col" style="text-align:center;">번호</th>
+												<th scope="col" style="text-align:center;">동아리 이름</th>
+												<th scope="col" style="text-align:center;">개설 목적</th>
+												<th scope="col" style="text-align:center;">개설 신청 현황</th>
+												<th scope="col" style="text-align:center;">신청 일시</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="data" items="${clubApplDataList }">
 												<tr>
-													<td class="text_align_center">${data.club_appl_no }</td>
-													<td>${data.club_name }</td>
-													<td>${data.club_purpose }</td>
-													<td><c:if test="${data.club_appl_state eq '1' }">
+													<td class="text_align_center" style="text-align:center; padding-top:1em;">${data.club_appl_no }</td>
+													<td style="padding-top:1em; text-align:center;">${data.club_name }</td>
+													<td style="padding-top:1em; text-align:center;">${data.club_purpose }</td>
+													<td style="text-align:center;"><c:if test="${data.club_appl_state eq '1' }">
 															<c:out value="승인"></c:out><span style="margin-left: 2em"><button
 																	class="btn btn-danger"
 																	onclick="location.href='./student_writeClubInfoPage'">동아리
@@ -171,7 +171,7 @@
 															<c:out value="승인"></c:out>
 														</c:if>
 														</td>
-													<td class="text_align_center"><fmt:formatDate
+													<td class="text_align_center" style="padding-top:1em; text-align:center;"><fmt:formatDate
 															value="${data.club_appl_date }" pattern="yyyy.MM.dd" /></td>
 												</tr>
 											</c:forEach>

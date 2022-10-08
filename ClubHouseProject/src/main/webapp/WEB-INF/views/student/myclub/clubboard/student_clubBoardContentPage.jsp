@@ -401,14 +401,14 @@ document.addEventListener("DOMContentLoaded", function () {
 																	style="border-right: 1px solid #dee2e6; text-align: center; padding: 2vh 0.5vh">다음
 																	글</th>
 																<td style="padding-left: 1em; padding: 2vh"><a
-																	href="./student_clubBoardContentPage?club_board_no=${map.NextPostBoardNo }&club_no=${map.clubBoardData.club_no}">${map.NextPostTitle }</a></td>
+																	style="color:black; text-align:center;" href="./student_clubBoardContentPage?club_board_no=${map.NextPostBoardNo }&club_no=${map.clubBoardData.club_no}">${map.NextPostTitle }</a></td>
 															</tr>
 															<tr style="border-top: 1px solid #dee2e6">
 																<th
 																	style="border-right: 1px solid #dee2e6; text-align: center; padding: 2vh 0.5vh">이전
 																	글</th>
 																<td style="padding-left: 1em; padding: 2vh"><a
-																	href="./student_clubBoardContentPage?club_board_no=${map.PreviousPostBoardNo }&club_no=${map.clubBoardData.club_no}">${map.PreviousPostTitle }</a></td>
+																	style="color:black; text-align:center;" href="./student_clubBoardContentPage?club_board_no=${map.PreviousPostBoardNo }&club_no=${map.clubBoardData.club_no}">${map.PreviousPostTitle }</a></td>
 															</tr>
 														</tbody>
 													</table>

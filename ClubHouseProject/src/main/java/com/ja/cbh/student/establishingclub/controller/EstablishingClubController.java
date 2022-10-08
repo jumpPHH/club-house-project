@@ -196,6 +196,7 @@ public class EstablishingClubController {
 			}
 		
 		StudVO studData  = (StudVO)session.getAttribute("sessionUserInfo");
+		Club_StudVO clubStudVO = new Club_StudVO();
 		
 		Club_ApplVO clubApplData = establishingClubService.getApprovedClubApplByStudId(studData.getStud_id());
 		
@@ -209,8 +210,9 @@ public class EstablishingClubController {
 		
 		
 		int applNo = clubApplData.getClub_appl_no();
+		clubStudVO.setStud_id(studData.getStud_id());
 		
-		establishingClubService.inputClubStudByStud(studData);
+		establishingClubService.inputClubStudByStud(clubStudVO);
 		establishingClubService.inputClub(clubVO,applNo);
 		
 		return"student/establishingclub/student_insertClubInfoSuccessPage";

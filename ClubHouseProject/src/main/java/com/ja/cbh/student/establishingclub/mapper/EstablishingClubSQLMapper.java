@@ -48,7 +48,7 @@ public interface EstablishingClubSQLMapper {
 	public void updateClubApplBy(int applNo);
 
 	// 동아리 개설이 승인되고 개설한 사람 해당 동아리에 가입된 상태 만들기
-	public void insertClubStudByStud(@Param(value="studVO") StudVO studVO);
+	public void insertClubStudByStud(@Param(value="clubStudVO") Club_StudVO clubStudVO);
 	
 
 

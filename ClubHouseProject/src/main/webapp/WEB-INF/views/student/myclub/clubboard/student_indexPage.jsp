@@ -48,23 +48,14 @@
     -ms-transform: scale(1.1,1.1);
     transform: scale(1.1,1.1);
 }
+
+.text_align_center {
+	text-align: center;
+}
+
 </style>
 
 <script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function () {
-	
-	var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
-
-	var url1 = document.getElementById("student_indexPage");
-	var url2 = document.getElementById("student_MemberJoinMgmtPage");
-	
-		if((url1.getAttribute("href").split('/'))[5]+".jsp" == nowPage){
-			$("#student_indexPage").attr('class','selectDiv');
-		
-		}else if ((url2.getAttribute("href").split('/'))[5]+".jsp" == nowPage) {
-			$("#student_MemberJoinMgmtPage").attr('class','selectDiv');
-		}
-});
 
 
 	function seeTheReason() {
@@ -100,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
 			<i class="fa fa-bars mr-2"></i><small
 				class="text-uppercase font-weight-bold"
-				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Menu</small>
+				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">MENU</small>
 		</button>
 
 		<div class="row card box"
@@ -161,10 +152,10 @@ document.addEventListener("DOMContentLoaded", function () {
 												<div class="row">
 													<div class="col" style="text-align: right">
 														<div style="margin-right: 1em; display: inline-block">
-															<input type="text" name="searchWord"  style="width: 100%">
+															<input type="text" placeholder="제목을 입력해주세요." name="searchWord"  style="width: 100%">
 														</div>
 														<div style="display: inline-block">
-															<button class="btn btn-primary">검색</button>
+															<button type="submit">검색</button>
 														</div>
 													</div>
 												</div>
@@ -194,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
 																<tr>
 																	<th class="col-1 text_align_center">${clubBoard.boardData.club_board_no }</th>
 															<th class="col-5 text_align_center"><a
-																href="./student_clubBoardContentPage?club_board_no=${clubBoard.boardData.club_board_no }&club_no=${clubBoard.boardData.club_no}">${clubBoard.boardData.club_board_title }</a></th>
+																style="color:black" href="./student_clubBoardContentPage?club_board_no=${clubBoard.boardData.club_board_no }&club_no=${clubBoard.boardData.club_no}">${clubBoard.boardData.club_board_title }</a></th>
 															<th class="col-2 text_align_center">${clubBoard.writerName}</th>
 															<th class="col-2 text_align_center"><fmt:formatDate
 																	value="${clubBoard.boardData.club_board_writedate }"

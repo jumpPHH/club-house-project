@@ -140,6 +140,7 @@
 												method="post">
 												<div class="row">
 													<div class="col" style="text-align: right">
+														<i class="bi bi-search" style="font-size:1em;"></i>
 														<div style="margin-right: 1em; display: inline-block">
 															<input type="text" name="searchWord" style="width: 100%">
 														</div>
@@ -161,25 +162,25 @@
 													<table class="table align-middle">
 														<thead>
 															<tr class="table-secondary">
-																<th class="col-1 text_align_center">번호</th>
-																<th class="col-5 text_align_center">제목</th>
-																<th class="col-2 text_align_center">작성자</th>
-																<th class="col-2 text_align_center">날짜</th>
-																<th class="col-2 text_align_center">조회수</th>
+																<th class="col-1 text_align_center" style="text-align:center;">번호</th>
+																<th class="col-5 text_align_center" style="text-align:center;">제목</th>
+																<th class="col-2 text_align_center" style="text-align:center;">작성자</th>
+																<th class="col-2 text_align_center" style="text-align:center;">날짜</th>
+																<th class="col-2 text_align_center" style="text-align:center;">조회수</th>
 															</tr>
 														</thead>
 														<tbody>
 															<c:forEach var="clubActivity"
 																items="${clubActivitiesList }">
 																<tr>
-																	<th class="col-1 text_align_center">${clubActivity.club_act_no }</th>
-																	<th class="col-5 text_align_center"><a
+																	<th class="col-1 text_align_center" style="text-align:center;">${clubActivity.club_act_no }</th>
+																	<th class="col-5 text_align_center"style="text-align:center;"><a style="color:black;"
 																		href="./student_clubActivitiesContentPage?club_act_no=${clubActivity.club_act_no }&club_no=${clubActivity.club_no}">${clubActivity.club_act_title }</a></th>
-																	<th class="col-2 text_align_center">동아리 회장</th>
-																	<th class="col-2 text_align_center"><fmt:formatDate
+																	<th class="col-2 text_align_center" style="text-align:center;">동아리 회장</th>
+																	<th class="col-2 text_align_center" style="text-align:center;"><fmt:formatDate
 																			value="${clubActivity.club_act_date }"
 																			pattern="yyyy-MM-dd"></fmt:formatDate></th>
-																	<th class="col-2 text_align_center">${clubActivity.club_readcount }</th>
+																	<th class="col-2 text_align_center" style="text-align:center;">${clubActivity.club_readcount }</th>
 																</tr>
 															</c:forEach>
 														</tbody>
