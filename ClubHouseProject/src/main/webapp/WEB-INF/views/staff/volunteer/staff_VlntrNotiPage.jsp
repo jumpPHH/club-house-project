@@ -236,7 +236,7 @@ window.addEventListener('DOMContentLoaded', function(){
 								    <c:forEach begin="${startPage }" end="${endPage }" var="i">
 								    	<c:choose>
 								    		<c:when test="${i == currentPageNum }">
-												<li class="page-item active"><a style="text-decoration-line: none; color: blue; font-weight: 600;" class="page-link" href="./staff_VlntrNotiPage?pageNum=${i}${additionalParam}">${i}</a></li>  		
+												<li class="page-item active"><a style="text-decoration-line: none;  border-color:#FA5858; background-color: #FA5858; font-weight: 600;" class="page-link" href="./staff_VlntrNotiPage?pageNum=${i}${additionalParam}">${i}</a></li>  		
 								    		</c:when>
 								    		<c:otherwise>
 								    			<li class="page-item"><a class="page-link" style="text-decoration-line: none; color: black;" href="./staff_VlntrNotiPage?pageNum=${i}${additionalParam}">${i}</a></li>
