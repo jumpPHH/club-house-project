@@ -144,7 +144,7 @@ function save(){
 	if(xhr.readyState == 4 && xhr.status == 200){
     var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
 	data = [];
-	
+	swal("","저장완료.","success")
     getDivisionList(TABLE)
 	
 		}      
