@@ -27,7 +27,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
 <link rel="stylesheet"
 	href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script type="text/javascript"
@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
 													</div>
 
 													<div class="row">
-														<div class="col-3 title">회 원 수</div>
+														<div class="col-3 title"><i class="bi bi-star-fill" style="color: red; padding-right: 5px;"></i>회 원 수</div>
 														<div class="col blank" style="background-color: white;">
 															<input class="form-control" type="text"
 																placeholder="회원수 입력" aria-label="default input example"
@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
 													</div>
 
 													<div class="row">
-														<div class="col-3 title">경비 요청액</div>
+														<div class="col-3 title"><i class="bi bi-star-fill" style="color: red; padding-right: 5px;"></i>경비 요청액</div>
 														<div class="col blank" style="background-color: white;">
 															<input class="form-control" type="text"
 																placeholder="경비 요청액 입력"
@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
 													</div>
 
 													<div class="row">
-														<div class="col-3 title">사용 목적</div>
+														<div class="col-3 title"><i class="bi bi-star-fill" style="color: red; padding-right: 5px;"></i>사용 목적</div>
 														<div class="col blank" style="background-color: white;">
 															<input class="form-control" type="text"
 																placeholder="사용 목적 입력"
@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
 													</div>
 
 													<div class="row">
-														<div class="col-3 title" style="padding-top: 40px;">경비
+														<div class="col-3 title" style="padding-top: 40px;"><i class="bi bi-star-fill" style="color: red; padding-right: 5px;"></i>경비
 															사용날짜</div>
 														<div class="col blank"
 															style="background-color: white; padding-bottom: 0px;">
@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
 														<div class="col-4"
 															style="font-weight: bold; text-align: right;">
 															신 청 자 : ${ClubBossInfo.GetClubBoss.stud_name} (인) <img
-																style="width: 100px; transform: translate(50%, -60%);"
+																style="width: 100px; transform: translate(-40%, -10%);"
 																src="/cbh/resources/img/student/myclub/applicationexpenses/donue_signature.png">
 														</div>
 													</div>

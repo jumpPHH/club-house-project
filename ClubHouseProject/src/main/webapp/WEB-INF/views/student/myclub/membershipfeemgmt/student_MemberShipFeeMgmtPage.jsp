@@ -18,6 +18,8 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
 <style type="text/css">
 .title01 {
@@ -123,55 +125,72 @@ var data = new Array();
 var club_no = ${ClubBossAndAccountingMemberIs.club_no};
 var club_stud_no = ${ClubBossAndAccountingMemberIs.club_stud_no};
 
-function save(){
+function save() {
 	
-	var count = document.getElementsByClassName("rowBox").length;
-	var TABLE = $("#TABLE").val();
-	
-	for(let i = 0 ; i < count ; i++){
-		
-		var CLUB_STUD_NO = club_stud_no;
-		var CLUB_NO = club_no;
-		var CLUB_FEE_USE_DATE = $(".rowBox").children(".dateCheck").children(".CLUB_FEE_USE_DATE:eq("+i+")").val();
-		var CLUB_FEE_DIVISION = $(".rowBox").children(".divisionCheck").children(".CLUB_FEE_DIVISION:eq("+i+")").val();
-		var CLUB_FEE_DETAIL = $(".rowBox").children(".detailCheck").children(".CLUB_FEE_DETAIL:eq("+i+")").val();
-		var CLUB_FEE_INCOME_AMOUNT = $(".rowBox").children(".incomeAmountCheck").children(".CLUB_FEE_INCOME_AMOUNT:eq("+i+")").val();
-		var CLUB_FEE_USING_AMOUNT = $(".rowBox").children(".usingAmountCheck").children(".CLUB_FEE_USING_AMOUNT:eq("+i+")").val();
-		var CLUB_FEE_OTHER_DETAIL = $(".rowBox").children(".otherDetailCheck").children(".CLUB_FEE_OTHER_DETAIL:eq("+i+")").val();
-		var CLUB_FEE_BALANCE = CLUB_FEE_INCOME_AMOUNT - CLUB_FEE_USING_AMOUNT;
-		
- 		var jsonObj = {
-			"TABLE" : TABLE,
-			"DIV": "저장",
-			"CLUB_STUD_NO":CLUB_STUD_NO,
-			"CLUB_NO":CLUB_NO,
-			"CLUB_FEE_DIVISION":CLUB_FEE_DIVISION,
-			"CLUB_FEE_INCOME_AMOUNT":CLUB_FEE_INCOME_AMOUNT,
-			"CLUB_FEE_USING_AMOUNT":CLUB_FEE_USING_AMOUNT,
-			"CLUB_FEE_BALANCE":CLUB_FEE_BALANCE,
-			"CLUB_FEE_DETAIL":CLUB_FEE_DETAIL,
-			"CLUB_FEE_OTHER_DETAIL":CLUB_FEE_OTHER_DETAIL,
-			"CLUB_FEE_USE_DATE":CLUB_FEE_USE_DATE,
-		}
-		data.push(jsonObj) 
-	}
-	
-	var data2 = JSON.stringify(data);
-	
-	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-		 xhr.onreadystatechange = function () {
-	if(xhr.readyState == 4 && xhr.status == 200){
-    var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+	Swal.fire({
+	      title:'저장 하시겠습니까?',																		      
+	      icon: 'question',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: '저장',
+	      cancelButtonText: '취소',
+	      reverseButtons: true, // 버튼 순서 거꾸로
+	      
+	    }).then((result) => {
+	      if (result.isConfirmed) {
+	    	  
+    		var count = document.getElementsByClassName("rowBox").length;
+    		var TABLE = $("#TABLE").val();
+    		
+    		for(let i = 0 ; i < count ; i++){
+    			
+    			var CLUB_STUD_NO = club_stud_no;
+    			var CLUB_NO = club_no;
+    			var CLUB_FEE_USE_DATE = $(".rowBox").children(".dateCheck").children(".CLUB_FEE_USE_DATE:eq("+i+")").val();
+    			var CLUB_FEE_DIVISION = $(".rowBox").children(".divisionCheck").children(".CLUB_FEE_DIVISION:eq("+i+")").val();
+    			var CLUB_FEE_DETAIL = $(".rowBox").children(".detailCheck").children(".CLUB_FEE_DETAIL:eq("+i+")").val();
+    			var CLUB_FEE_INCOME_AMOUNT = $(".rowBox").children(".incomeAmountCheck").children(".CLUB_FEE_INCOME_AMOUNT:eq("+i+")").val();
+    			var CLUB_FEE_USING_AMOUNT = $(".rowBox").children(".usingAmountCheck").children(".CLUB_FEE_USING_AMOUNT:eq("+i+")").val();
+    			var CLUB_FEE_OTHER_DETAIL = $(".rowBox").children(".otherDetailCheck").children(".CLUB_FEE_OTHER_DETAIL:eq("+i+")").val();
+    			var CLUB_FEE_BALANCE = CLUB_FEE_INCOME_AMOUNT - CLUB_FEE_USING_AMOUNT;
+    			
+    	 		var jsonObj = {
+    				"TABLE" : TABLE,
+    				"DIV": "저장",
+    				"CLUB_STUD_NO":CLUB_STUD_NO,
+    				"CLUB_NO":CLUB_NO,
+    				"CLUB_FEE_DIVISION":CLUB_FEE_DIVISION,
+    				"CLUB_FEE_INCOME_AMOUNT":CLUB_FEE_INCOME_AMOUNT,
+    				"CLUB_FEE_USING_AMOUNT":CLUB_FEE_USING_AMOUNT,
+    				"CLUB_FEE_BALANCE":CLUB_FEE_BALANCE,
+    				"CLUB_FEE_DETAIL":CLUB_FEE_DETAIL,
+    				"CLUB_FEE_OTHER_DETAIL":CLUB_FEE_OTHER_DETAIL,
+    				"CLUB_FEE_USE_DATE":CLUB_FEE_USE_DATE,
+    			}
+    			data.push(jsonObj) 
+    		}
+	    		
+    		var data2 = JSON.stringify(data);
+    		
+    		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+    			 xhr.onreadystatechange = function () {
+    		if(xhr.readyState == 4 && xhr.status == 200){
+    	    var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
 
-		}      
-	}	
-	xhr.open("post","/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtRegistration",false);
-	xhr.setRequestHeader("Content-type","application/json");
-	xhr.send(data2); 
-	
-	alert("저장됨");
-	window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
-}               
+    			}      
+    		}
+    		
+			xhr.open("post","/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtRegistration",false);
+			xhr.setRequestHeader("Content-type","application/json");
+			xhr.send(data2); 
+			
+			window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
+
+	      }
+			
+	    })
+}
 
 function plusCode(){
 	var TABLE = $("#TABLE").val();
@@ -442,9 +461,11 @@ document.addEventListener("DOMContentLoaded", function () {
 									</div>
 
 									<div class="col">
-										<button onclick="save()" type="button"
+										<button onclick="save()" type="button" id="success"
 											class="btn btn-outline-secondary buttonClick">저장</button>
 									</div>
+									
+
 								</div>
 
 								<div class="row" style="border: 1px solid black;">

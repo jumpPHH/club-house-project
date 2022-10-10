@@ -52,6 +52,7 @@ public class Student_MainService {
 			map.put("GetClubBoss", student_MainSQLMapper.selectGetClubBoss(stud_id));
 			// 동아리 장이 설립한 동아리에 대한 정보를 가져오는 로직
 			map.put("GetClubBossClubInfo", student_MainSQLMapper.selectGetClubBossClubInfo(stud_id));
+
 		}
 
 		return map;

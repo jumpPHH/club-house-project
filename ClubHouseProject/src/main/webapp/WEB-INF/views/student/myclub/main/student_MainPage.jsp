@@ -47,10 +47,8 @@
 						</div>
 					<div class="col-1"></div>	
 				</div>
-
-			</c:if>
-		</c:if>
-
+				</c:if>
+		</c:if>	
 
 		<c:if test="${not empty MainData.IsBoss}">
 			<div class="row">
