@@ -45,48 +45,7 @@
 </style>
 
 <script type="text/javascript">
-	function updateApprove(target) {
 
-		var club_stud_no = $(target).parent().children('.club_stud_no').text();
-
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var result = JSON.parse(xhr.responseText);
-
-			}
-		}
-
-		xhr.open("get",
-				"/cbh/student/myclub/membermgmt/updateApprove?club_stud_no="
-						+ club_stud_no);
-		xhr.send();
-
-		location.reload();
-	}
-
-	function deleteApprove(target) {
-
-		var club_stud_no = $(target).parent().children('.club_stud_no').text();
-
-		alert(club_stud_no);
-
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var result = JSON.parse(xhr.responseText);
-
-			}
-		}
-
-		xhr.open("get",
-				"/cbh/student/myclub/membermgmt/deleteApprove?club_stud_no="
-						+ club_stud_no);
-		xhr.send();
-
-		location.reload();
-	}
-	
 
 	document.addEventListener("DOMContentLoaded", function () {
 		
@@ -208,10 +167,89 @@
 													<td><input type="text" class="btn btn-secondary"
 														onclick="updateApprove(this)" value="가입 승인">
 														<div hidden="hidden" class="club_stud_no">${ApplicantMemberDataList[i].ApplicantMemberInfoVO.club_stud_no}</div>
+														
+															<script type="text/javascript">
+
+																	function updateApprove(target) {
+	
+																		var club_stud_no = $(target).parent().children('.club_stud_no').text();
+													
+																		Swal.fire({
+																		      title:'가입 승인을 하시겠습니까?',																		      
+																		      icon: 'question',
+																		      showCancelButton: true,
+																		      confirmButtonColor: '#3085d6',
+																		      cancelButtonColor: '#d33',
+																		      confirmButtonText: '승인',
+																		      cancelButtonText: '취소',
+																		      reverseButtons: true, // 버튼 순서 거꾸로
+																		      
+																		    }).then((result) => {
+																		      if (result.isConfirmed) {
+
+																		        var xhr = new XMLHttpRequest();
+																				xhr.onreadystatechange = function() {
+																					if (xhr.readyState == 4 && xhr.status == 200) {
+																						var result = JSON.parse(xhr.responseText);
+
+																					}
+																				}
+																		      
+																				xhr.open("get",
+																						"/cbh/student/myclub/membermgmt/deleteApprove?club_stud_no="
+																								+ club_stud_no);
+																				xhr.send();
+
+																				location.reload();
+
+																		      }
+																				
+																		    })
+																	}
+																</script>
 													</td>
 													<td><input type="text" class="btn btn-danger"
 														onclick="deleteApprove(this)" value="가입 거절">
 														<div hidden="hidden" class="club_stud_no">${ApplicantMemberDataList[i].ApplicantMemberInfoVO.club_stud_no}</div>
+														
+														<script type="text/javascript">
+
+																	function deleteApprove(target) {
+	
+																		var club_stud_no = $(target).parent().children('.club_stud_no').text();
+													
+																		Swal.fire({
+																		      title:'가입 거절을 하시겠습니까?',																		      
+																		      icon: 'warning',
+																		      showCancelButton: true,
+																		      confirmButtonColor: '#3085d6',
+																		      cancelButtonColor: '#d33',
+																		      confirmButtonText: '승인',
+																		      cancelButtonText: '취소',
+																		      reverseButtons: true, // 버튼 순서 거꾸로
+																		      
+																		    }).then((result) => {
+																		      if (result.isConfirmed) {
+
+																		        var xhr = new XMLHttpRequest();
+																				xhr.onreadystatechange = function() {
+																					if (xhr.readyState == 4 && xhr.status == 200) {
+																						var result = JSON.parse(xhr.responseText);
+
+																					}
+																				}
+																		      
+																				xhr.open("get",
+																						"/cbh/student/myclub/membermgmt/deleteApprove?club_stud_no="
+																								+ club_stud_no);
+																				xhr.send();
+
+																				location.reload();
+																		      }
+																				
+																		    })
+																	}
+																</script>
 													</td>
 												</tr>
 

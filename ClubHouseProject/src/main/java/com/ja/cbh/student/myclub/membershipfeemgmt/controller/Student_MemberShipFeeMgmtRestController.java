@@ -39,8 +39,7 @@ public class Student_MemberShipFeeMgmtRestController {
 	public HashMap<String, Object> student_MemberShipFeeMgmtSave(@RequestBody ArrayList<HashMap<String, Object>> data2){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		for(HashMap<String, Object> maps : data2) {
-			
+		for(HashMap<String, Object> maps : data2) {			
 				memberShipFeeMgmtRestService.updateMemberShipFeeMgmtSave(maps);
 			
 		}
