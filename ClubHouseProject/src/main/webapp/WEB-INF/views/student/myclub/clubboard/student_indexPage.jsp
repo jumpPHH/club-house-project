@@ -207,48 +207,51 @@
 
 											<!-- 페이징 -->
 											<!-- 나중에 컨트롤러에서 구현해야함. -->
-											<div class="row mt-5">
-												<div class="col">
-													<nav aria-label="Page navigation example">
-														<ul class="pagination justify-content-center">
-															<c:choose>
-																<c:when test="${startPage <= 1}">
-																	<li class="page-item disabled"><a
-																		class="page-link" href="#">&lt;</a></li>
-																</c:when>
-																<c:otherwise>
-																	<li class="page-item"><a class="page-link"
-																		href="./student_indexPage?pageNum=${startPage - 1}${additionalParam}&club_no=${clubNo}">&lt;</a></li>
-																</c:otherwise>
-															</c:choose>
+											<div class="row my-5">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination justify-content-center pagination-lg">
+										<c:choose>
+											<c:when test="${startPage <= 1}">
+												<li class="page-item disabled"><a class="page-link"
+													style="text-decoration-line: none; color: red;">◀</a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="page-item disabled"><a class="page-link"
+													style="text-decoration-line: none; color: black;"
+													href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage?pageNum=${startPage -1}">◀</a></li>
+											</c:otherwise>
+										</c:choose>
 
-															<c:forEach begin="${startPage }" end="${endPage }"
-																var="i">
-																<c:choose>
-																	<c:when test="${i == currentPageNum }">
-																		<li class="page-item active"><a class="page-link"
-																			href="./student_indexPage?pageNum=${i}${additionalParam}&club_no=${clubNo}">${i}</a></li>
-																	</c:when>
-																	<c:otherwise>
-																		<li class="page-item"><a class="page-link"
-																			href="./student_indexPage?pageNum=${i}${additionalParam}&club_no=${clubNo}">${i}</a></li>
-																	</c:otherwise>
-																</c:choose>
-															</c:forEach>
-															<c:choose>
-																<c:when test="${endPage >= totalPageCount}">
-																	<li class="page-item disabled"><a
-																		class="page-link">&gt;</a></li>
-																</c:when>
-																<c:otherwise>
-																	<li class="page-item"><a class="page-link"
-																		href="./student_indexPage?pageNum=${endPage+1}${additionalParam}&club_no=${clubNo}">&gt;</a></li>
-																</c:otherwise>
-															</c:choose>
-														</ul>
-													</nav>
-												</div>
-											</div>
+										<c:forEach begin="${startPage}" end="${endPage}" var="i">
+											<c:choose>
+												<c:when test="${i == currentPageNum}">
+													<li class="page-item"><a class="page-link"
+														style="text-decoration-line: none; color: blue; font-weight: 600;"
+														href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage?pageNum=${i}">${i}</a></li>
+												</c:when>
+												<c:otherwise>
+													<li class="page-item"><a class="page-link"
+														style="text-decoration-line: none; color: black;"
+														href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage?pageNum=${i}">${i}</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+
+										<c:choose>
+											<c:when test="${endPage >= totalPageCount }">
+												<li class="page-item"><a class="page-link"
+													style="text-decoration-line: none; color: red;">▶</a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="page-item"><a class="page-link"
+													style="text-decoration-line: none; color: black;"
+													href="/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage?pageNum=${endPage +1}">▶</a></li>
+											</c:otherwise>
+										</c:choose>
+
+									</ul>
+								</nav>
+							</div>
 
 										</div>
 									</div>
