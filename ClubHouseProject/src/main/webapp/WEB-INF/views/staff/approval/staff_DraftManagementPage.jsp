@@ -1580,7 +1580,9 @@ window.addEventListener('DOMContentLoaded', function(){
 						</div>
 					</div>
 					<div class="row">
-						<div class="col" id="attachFile"></div>
+						<div class="col" id="attachFile">
+						
+						</div>
 					</div>
 					
 					<div class="row">
