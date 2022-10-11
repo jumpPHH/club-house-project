@@ -11,6 +11,10 @@
 	crossorigin="anonymous">
 	
 </script>
+<script>
+
+</script>
+
 
 <style type="text/css">
 	.selectDiv {
@@ -53,7 +57,7 @@
 		<button id="sidebarCollapse" type="button"
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
 			<i class="fa fa-bars mr-2"></i><small
-				class="text-uppercase font-weight-bold">Toggle</small>
+				class="text-uppercase font-weight-bold">MENU</small>
 		</button>
 		
 		<div class="row card box" style="width: 100%; height: 45px;">
@@ -105,7 +109,7 @@
 							<!-- 컨텐트 of 헤더 -->
 							<div class="row page_title">
 								
-								<div class="col text_align_left pt-2" style="color: red">
+								<div class="col text_align_left pt-2" style="color: red; margin-left:2.4em;">
 									* 표시가 있는 항목들은 필수 입력항목입니다.</div>
 							</div>
 

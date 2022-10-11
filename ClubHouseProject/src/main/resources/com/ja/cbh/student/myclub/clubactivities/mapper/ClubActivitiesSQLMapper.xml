@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 컨텐트 페이지에서 이전 글 앞의글 데이터 따기 위한 것  -->
 	<select id="selectClubActivitiesListForContentPageByClubActNo" resultType="com.ja.cbh.vo.Club_ActVO">
 		SELECT * FROM CBH_CLUB_ACT
-		WHERE CLUB_ACT_NO = #{clubActNo}
+		WHERE CLUB_NO = #{clubNo}
 	</select>
 	
 	<select id="selectClubActivitiesCountByClubNoAndSearchWord" resultType="int">

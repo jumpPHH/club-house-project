@@ -79,6 +79,7 @@ public class ClubActivitiesController {
 		StudVO sessionUserInfo = (StudVO) session.getAttribute("sessionUserInfo");
 
 		HashMap<String, Object> map = clubActivitiesService.getClubActivityByClubActNoAndClubNo(clubActNo, clubNo);
+
 		model.addAttribute("map", map);
 		model.addAttribute("sessionUserInfo", sessionUserInfo);
 
