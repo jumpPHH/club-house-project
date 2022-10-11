@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ja.cbh.staff.volunteer.service.Staff_VlntrService;
+import com.ja.cbh.student.myclub.main.service.Student_MainService;
 import com.ja.cbh.student.volunteer.service.Student_VlntrService;
 import com.ja.cbh.vo.StudVO;
 import com.ja.cbh.vo.VlntrNotiVO;
@@ -25,11 +26,16 @@ public class Student_VlntrController {
 	@Autowired
 	private Staff_VlntrService staff_VlntrService;
 	
+	@Autowired
+	private Student_MainService mainService;
 	
 	@RequestMapping("stud_VlntrApplPage")
-	public String stud_VlntrApplPage(Model model,  String searchType , String searchWord , 
+	public String stud_VlntrApplPage(HttpSession session, Model model,  String searchType , String searchWord , 
 			@RequestParam(value = "pageNum" , defaultValue = "1") int pageNum) {
 		
+		StudVO sessionUserInfo = (StudVO)session.getAttribute("sessionUserInfo");
+		String stud_id = sessionUserInfo.getStud_id();		
+	
 		ArrayList<HashMap<String, Object>> vlntrNotiList = staff_VlntrService.getVlntrNoti(searchType, searchWord, pageNum);
 		model.addAttribute("vlntrNotiList", vlntrNotiList);
 		
@@ -54,6 +60,7 @@ public class Student_VlntrController {
 			additionalParam += "&searchWord=" + searchWord;
 		}
 		
+		model.addAttribute("MainData",mainService.student_MainData(stud_id));
 		model.addAttribute("additionalParam", additionalParam);
 		
 		return "student/volunteer/stud_VlntrApplPage";

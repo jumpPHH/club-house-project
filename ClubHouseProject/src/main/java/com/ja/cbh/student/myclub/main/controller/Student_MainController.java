@@ -28,4 +28,10 @@ public class Student_MainController {
 		
 		return "student/myclub/main/student_MainPage"; 
 	}
+	
+	@RequestMapping("student_ErrorPage")
+	public String student_ErrorPage() {
+	
+		return "student/myclub/main/student_ErrorPage"; 
+	}
 }
