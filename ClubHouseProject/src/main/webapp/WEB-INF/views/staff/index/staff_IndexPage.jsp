@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +42,7 @@
 								<table class="table table-sm mb-1 table-borderless" style="font-size: 0.8rem">
 									<tbody>
 										<c:choose>
-											<c:when test="${not empty data.MyProcessApvList }">
+											<c:when test="${fn:length(data.MyProcessApvList) == 2 }">
 												<c:forEach begin="0" end="1" step="1" items="${data.MyProcessApvList }" var="data">
 													<tr>
 														<th class="text-center col-1 py-0 ps-3"><i class="bi bi-dot"></i></th>
@@ -49,7 +50,21 @@
 														<td class="text-center col-2 py-0 "><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
 													</tr>
 												</c:forEach>
-											</c:when>										
+											</c:when>
+											<c:when test="${fn:length(data.MyProcessApvList) == 1 }">
+													<c:forEach begin="0" end="1" step="1" items="${data.MyProcessApvList }" var="data">
+													<tr>
+														<th class="text-center col-1 py-0 ps-3"><i class="bi bi-dot"></i></th>
+														<td class="py-0">${data.APV_TITLE }</td>
+														<td class="text-center col-2 py-0 "><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
+													</tr>
+												</c:forEach>
+												<tr style="height: 19.19px">
+													<th class="text-center col-1 py-0 ps-3"></th>
+													<td class="py-0"></td>
+													<td class="text-center col-2 py-0"></td>	
+												</tr>
+											</c:when>
 											<c:otherwise>
 												<tr style="height: 19.19px">
 													<th class="text-center col-1 py-0 ps-3"></th>
@@ -80,7 +95,7 @@
 								<table class="table table-sm mb-1 table-borderless" style="font-size: 0.8rem">
 									<tbody>
 										<c:choose>
-											<c:when test="${not empty data.MyCompleteApvList }">
+											<c:when test="${fn:length(data.MyCompleteApvList) == 2 }">
 												<c:forEach begin="0" end="1" step="1" items="${data.MyCompleteApvList }" var="data">
 													<tr>
 														<th class="text-center col-1 py-0 ps-3"><i class="bi bi-dot"></i></th>
@@ -89,6 +104,20 @@
 													</tr>
 												</c:forEach>
 											</c:when>										
+											<c:when test="${fn:length(data.MyCompleteApvList) == 1 }">
+												<c:forEach begin="0" end="1" step="1" items="${data.MyCompleteApvList }" var="data">
+													<tr>
+														<th class="text-center col-1 py-0 ps-3"><i class="bi bi-dot"></i></th>
+														<td class="py-0">${data.APV_TITLE }</td>
+														<td class="text-center col-2 py-0"><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
+													</tr>
+												</c:forEach>
+												<tr style="height: 19.19px">
+													<th class="text-center col-1 py-0 ps-3"></th>
+													<td class="py-0"></td>
+													<td class="text-center col-2 py-0"></td>	
+												</tr>
+											</c:when>
 											<c:otherwise>
 												<tr style="height: 19.19px">
 													<th class="text-center col-1 py-0 ps-3"></th>
@@ -120,7 +149,7 @@
 									
 									<tbody>
 										<c:choose>
-											<c:when test="${not empty data.MyRejectApvList }">
+											<c:when test="${fn:length(data.MyRejectApvList) == 2 }">
 												<c:forEach begin="0" end="1" step="1" items="${data.MyRejectApvList }" var="data">
 													<tr>
 														<th class="text-center col-1 py-0 ps-3"><i class="bi bi-dot"></i></th>
@@ -128,7 +157,21 @@
 														<td class="text-center col-2 py-0"><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
 													</tr>
 												</c:forEach>
-											</c:when>										
+											</c:when>		
+											<c:when test="${fn:length(data.MyRejectApvList) == 1 }">
+												<c:forEach begin="0" end="1" step="1" items="${data.MyRejectApvList }" var="data">
+													<tr>
+														<th class="text-center col-1 py-0 ps-3"><i class="bi bi-dot"></i></th>
+														<td class="py-0">${data.APV_TITLE }</td>
+														<td class="text-center col-2 py-0"><fmt:formatDate value="${data.APV_WRITEDATE }" pattern="yyyy-MM-dd"/></td>
+													</tr>
+												</c:forEach>
+												<tr style="height: 19.19px">
+													<th class="text-center col-1 py-0 ps-3"></th>
+													<td class="py-0"></td>
+													<td class="text-center col-2 py-0"></td>	
+												</tr>
+											</c:when>								
 											<c:otherwise>
 												<tr style="height: 19.19px">
 													<th class="text-center col-1 py-0 ps-3"></th>

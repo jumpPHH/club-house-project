@@ -615,15 +615,17 @@ font-weight: bold;
  			
  			if(result.Apv.APV_REJECT_RSN != undefined){
 				rejectTitle.innerText = "반려사유"
-		
+				rejectTitle.setAttribute("style","font-weight: bold;")
 				reject.innerText = result.Apv.APV_REJECT_RSN;
+				reject.setAttribute("style","background-color: #F7F7F7;border-radius: 0.5rem;height: 60px;margin-left: 0.5rem;margin-right: 0.5rem;margin-top: 0.3rem;")
  			}
  		}else if(division == 'Requested'){
-	 					var approvalButtonCol = document.getElementById("approvalButtonCol");
-	 		 			approvalButtonCol.innerHTML = "";
+	 			var approvalButtonCol = document.getElementById("approvalButtonCol");
+	 		 	approvalButtonCol.innerHTML = "";
  			if(result.Apv.STAFF_MID_ID == result.staffVO.staff_id){
  				if((result.Apv.APV_MID_DATE == undefined) && (result.Apv.APV_REJECT_DATE == undefined)){
  					rejectTitle.innerText = "반려사유"
+ 					rejectTitle.setAttribute("style","font-weight: bold;")
  						
  						var rejectTextarea = document.createElement("textarea")
  						rejectTextarea.classList.add("form-control");
@@ -648,9 +650,10 @@ font-weight: bold;
 		 			}else if((result.Apv.APV_MID_DATE == undefined) && (result.Apv.APV_REJECT_DATE != undefined)){
 		 				if(result.Apv.APV_REJECT_RSN != undefined){
 	 					rejectTitle.innerText = "반려사유"
-	 			
+	 					rejectTitle.setAttribute("style","font-weight: bold;")
 	 					reject.innerText = result.Apv.APV_REJECT_RSN;
-	 	 				}	
+	 					reject.setAttribute("style","background-color: #F7F7F7;border-radius: 0.5rem;height: 60px;margin-left: 0.5rem;margin-right: 0.5rem;margin-top: 0.3rem;")
+		 				}	
 		 			}else if(reslut.Apv.APV_MID_DATE != undefined){
 		 				
 		 			}
@@ -658,7 +661,7 @@ font-weight: bold;
  			}else if(result.Apv.STAFF_FNL_ID == result.staffVO.staff_id){
   		 			if((result.Apv.APV_FNL_DATE == undefined) && (result.Apv.APV_REJECT_DATE == undefined)){
 						rejectTitle.innerText = "반려사유"
-	 						
+						rejectTitle.setAttribute("style","font-weight: bold;")
 	 						var rejectTextarea = document.createElement("textarea")
 	 						rejectTextarea.classList.add("form-control");
 						rejectTextarea.setAttribute("id","CONTENT");
@@ -683,8 +686,10 @@ font-weight: bold;
   		 			}else if((result.Apv.APV_FNL_DATE == undefined) && (result.Apv.APV_REJECT_DATE != undefined)){
   		 				if(result.Apv.APV_REJECT_RSN != undefined){
   		 					rejectTitle.innerText = "반려사유"
+  		 					rejectTitle.setAttribute("style","font-weight: bold;")
   		 					reject.innerText = result.Apv.APV_REJECT_RSN;
-  		 	 				}	
+  		 					reject.setAttribute("style","background-color: #F7F7F7;border-radius: 0.5rem;height: 60px;margin-left: 0.5rem;margin-right: 0.5rem;margin-top: 0.3rem;")	
+  		 				}	
   		 			}else if(result.Apv.APV_FNL_DATE != undefined){
   		 				
   		 			}
@@ -996,7 +1001,7 @@ font-weight: bold;
 	 			if(result.Apv.STAFF_MID_ID == result.staffVO.staff_id){
 	 				if((result.Apv.APV_MID_DATE == undefined) && (result.Apv.APV_REJECT_DATE == undefined)){
 	 						rejectTitle.innerText = "반려사유"
-	 						
+	 						rejectTitle.setAttribute("style","font-weight: bold;")
 	 						var rejectTextarea = document.createElement("textarea")
 	 						rejectTextarea.classList.add("form-control");
 	 						rejectTextarea.setAttribute("id","CONTENT");
@@ -1020,9 +1025,10 @@ font-weight: bold;
 			 			}else if((result.Apv.APV_MID_DATE == undefined) && (result.Apv.APV_REJECT_DATE != undefined)){
 			 				if(result.Apv.APV_REJECT_RSN != undefined){
 		 					rejectTitle.innerText = "반려사유"
-		 			
+		 					rejectTitle.setAttribute("style","font-weight: bold;")
 		 					reject.innerText = result.Apv.APV_REJECT_RSN;
-		 	 				}	
+		 					reject.setAttribute("style","background-color: #F7F7F7;border-radius: 0.5rem;height: 60px;margin-left: 0.5rem;margin-right: 0.5rem;margin-top: 0.3rem;")
+			 				}	
 			 			}else if(reslut.Apv.APV_MID_DATE != undefined){
 			 				
 			 			}
@@ -1030,7 +1036,7 @@ font-weight: bold;
 	 			}else if(result.Apv.STAFF_FNL_ID == result.staffVO.staff_id){
 	  		 			if((result.Apv.APV_FNL_DATE == undefined) && (result.Apv.APV_REJECT_DATE == undefined)){
 	  		 				rejectTitle.innerText = "반려사유"
-		 						
+	  		 				rejectTitle.setAttribute("style","font-weight: bold;")
 		 						var rejectTextarea = document.createElement("textarea")
 		 						rejectTextarea.classList.add("form-control");
 	  		 				rejectTextarea.setAttribute("id","CONTENT");
@@ -1054,8 +1060,10 @@ font-weight: bold;
 	  		 			}else if((result.Apv.APV_FNL_DATE == undefined) && (result.Apv.APV_REJECT_DATE != undefined)){
 	  		 				if(result.Apv.APV_REJECT_RSN != undefined){
 	  		 					rejectTitle.innerText = "반려사유"
+	  		 					rejectTitle.setAttribute("style","font-weight: bold;")
 	  		 					reject.innerText = result.Apv.APV_REJECT_RSN;
-	  		 	 				}	
+	  		 					reject.setAttribute("style","background-color: #F7F7F7;border-radius: 0.5rem;height: 60px;margin-left: 0.5rem;margin-right: 0.5rem;margin-top: 0.3rem;")	
+	  		 				}	
 	  		 			}else if(result.Apv.APV_FNL_DATE != undefined){
 	  		 				
 	  		 			}
@@ -1361,7 +1369,7 @@ font-weight: bold;
 	 			if(result.Apv.STAFF_MID_ID == result.staffVO.staff_id){
 	 				if((result.Apv.APV_MID_DATE == undefined) && (result.Apv.APV_REJECT_DATE == undefined)){
 	 						rejectTitle.innerText = "반려사유"
-	 						
+	 						rejectTitle.setAttribute("style","font-weight: bold;")
 	 						var rejectTextarea = document.createElement("textarea")
 	 						rejectTextarea.classList.add("form-control");
 	 						rejectTextarea.setAttribute("id","CONTENT");
@@ -1385,9 +1393,10 @@ font-weight: bold;
 			 			}else if((result.Apv.APV_MID_DATE == undefined) && (result.Apv.APV_REJECT_DATE != undefined)){
 			 				if(result.Apv.APV_REJECT_RSN != undefined){
 		 					rejectTitle.innerText = "반려사유"
-		 			
+		 					rejectTitle.setAttribute("style","font-weight: bold;")
 		 					reject.innerText = result.Apv.APV_REJECT_RSN;
-		 	 				}	
+		 					reject.setAttribute("style","background-color: #F7F7F7;border-radius: 0.5rem;height: 60px;margin-left: 0.5rem;margin-right: 0.5rem;margin-top: 0.3rem;")
+			 				}	
 			 			}else if(reslut.Apv.APV_MID_DATE != undefined){
 			 				
 			 			}
@@ -1395,7 +1404,7 @@ font-weight: bold;
 	 			}else if(result.Apv.STAFF_FNL_ID == result.staffVO.staff_id){
 	  		 			if((result.Apv.APV_FNL_DATE == undefined) && (result.Apv.APV_REJECT_DATE == undefined)){
 	  		 				rejectTitle.innerText = "반려사유"
-		 						
+	  		 				rejectTitle.setAttribute("style","font-weight: bold;")
 		 						var rejectTextarea = document.createElement("textarea")
 		 						rejectTextarea.setAttribute("id","CONTENT");
 		 						rejectTextarea.classList.add("form-control");
@@ -1419,8 +1428,10 @@ font-weight: bold;
 	  		 			}else if((result.Apv.APV_FNL_DATE == undefined) && (result.Apv.APV_REJECT_DATE != undefined)){
 	  		 				if(result.Apv.APV_REJECT_RSN != undefined){
 	  		 					rejectTitle.innerText = "반려사유"
+	  		 					rejectTitle.setAttribute("style","font-weight: bold;")
 	  		 					reject.innerText = result.Apv.APV_REJECT_RSN;
-	  		 	 				}	
+	  		 					reject.setAttribute("style","background-color: #F7F7F7;border-radius: 0.5rem;height: 60px;margin-left: 0.5rem;margin-right: 0.5rem;margin-top: 0.3rem;")	
+	  		 				}	
 	  		 			}else if(result.Apv.APV_FNL_DATE != undefined){
 	  		 				
 	  		 			}
@@ -1568,6 +1579,10 @@ window.addEventListener('DOMContentLoaded', function(){
 							<textarea  id="modalBody"></textarea>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col" id="attachFile"></div>
+					</div>
+					
 					<div class="row">
 						<div id="rejectTitle" class="col"></div>
 					</div>

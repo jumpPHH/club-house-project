@@ -67,7 +67,7 @@ document.addEventListener('focusin', (e) => {
 function doSubmit(){
 		if(document.getElementById("STAFF_FNL_ID_select").value){
 		}else{
-			alert("최종결재자는 필수입니다.")
+			swal("","최종결재자는 필수입니다.","info")
 			return;
 		}
 		
