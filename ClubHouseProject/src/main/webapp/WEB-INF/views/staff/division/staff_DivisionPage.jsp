@@ -1001,9 +1001,9 @@ function stateCheck(e){
 					
 							<div class="col-auto">
 								<button onclick="plusCode()" type="button"
-									class="btn btn-sm border-0">추가</button>
+									class="btn btn-sm border-0" style="color: blue">추가</button>
 								<button onclick="deleteRow()" type="button"
-									class="btn btn-sm border-0">삭제</button>
+									class="btn btn-sm border-0" style="color: red">삭제</button>
 								<button onclick="save()" type="button"
 									class="btn btn-sm border-0">저장</button>
 							</div>

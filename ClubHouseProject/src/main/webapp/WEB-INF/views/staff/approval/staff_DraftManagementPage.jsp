@@ -633,6 +633,7 @@ font-weight: bold;
  						var approvalButten = document.createElement("button")
 	 		 			approvalButten.classList.add("btn");
 	 		 			approvalButten.setAttribute("type","button");
+	 		 			approvalButten.setAttribute("style","color:blue");
 	 		 			approvalButten.setAttribute("onclick","approval('"+result.Apv.APV_NO+"','MID')");
 	 		 			approvalButten.innerText = "결재"
 	 		 			approvalButtonCol.appendChild(approvalButten);
@@ -641,6 +642,7 @@ font-weight: bold;
 	 		 			rejectButten.classList.add("btn");
 	 		 			rejectButten.setAttribute("onclick","reject('"+result.Apv.APV_NO+"')");
 	 		 			rejectButten.setAttribute("type","button");
+	 		 			rejectButten.setAttribute("style","color:red");
 	 		 			rejectButten.innerText = "반려"
 	 		 			approvalButtonCol.appendChild(rejectButten);
 		 			}else if((result.Apv.APV_MID_DATE == undefined) && (result.Apv.APV_REJECT_DATE != undefined)){
@@ -665,6 +667,7 @@ font-weight: bold;
   		 				var approvalButten = document.createElement("button")
 	 		 			approvalButten.classList.add("btn");
 	 		 			approvalButten.setAttribute("type","button");
+	 		 			approvalButten.setAttribute("style","color:blue");
 	 		 			approvalButten.setAttribute("onclick","approval('"+result.Apv.APV_NO+"','FNL')");
 	 		 			approvalButten.innerText = "결재"
 	 		 			approvalButtonCol.appendChild(approvalButten);
@@ -673,6 +676,7 @@ font-weight: bold;
 	 		 			rejectButten.classList.add("btn");
 	 		 			rejectButten.setAttribute("onclick","reject('"+result.Apv.APV_NO+"')");
 	 		 			rejectButten.setAttribute("type","button");
+	 		 			rejectButten.setAttribute("style","color:red");
 	 		 			rejectButten.innerText = "반려"
 	 		 			approvalButtonCol.appendChild(rejectButten);
   		 				
@@ -1001,6 +1005,7 @@ font-weight: bold;
 		 		 			var approvalButten = document.createElement("button")
 		 		 			approvalButten.classList.add("btn");
 		 		 			approvalButten.setAttribute("type","button");
+		 		 			approvalButten.setAttribute("style","color:blue");
 		 		 			approvalButten.setAttribute("onclick","approval('"+result.Apv.APV_NO+"','MID')");
 		 		 			approvalButten.innerText = "결재"
 		 		 			approvalButtonCol.appendChild(approvalButten);
@@ -1008,6 +1013,7 @@ font-weight: bold;
 		 		 			var rejectButten = document.createElement("button")
 		 		 			rejectButten.classList.add("btn");
 		 		 			rejectButten.setAttribute("type","button");
+		 		 			rejectButten.setAttribute("style","color:red");
 		 		 			rejectButten.setAttribute("onclick","reject('"+result.Apv.APV_NO+"')");
 		 		 			rejectButten.innerText = "반려"
 		 		 			approvalButtonCol.appendChild(rejectButten);
@@ -1033,6 +1039,7 @@ font-weight: bold;
 	  		 				var approvalButten = document.createElement("button")
 		 		 			approvalButten.classList.add("btn");
 		 		 			approvalButten.setAttribute("type","button");
+		 		 			approvalButten.setAttribute("style","color:blue");
 		 		 			approvalButten.setAttribute("onclick","approval('"+result.Apv.APV_NO+"','FNL')");
 		 		 			approvalButten.innerText = "결재"
 		 		 			approvalButtonCol.appendChild(approvalButten);
@@ -1040,6 +1047,7 @@ font-weight: bold;
 		 		 			var rejectButten = document.createElement("button")
 		 		 			rejectButten.classList.add("btn");
 		 		 			rejectButten.setAttribute("type","button");
+		 		 			rejectButten.setAttribute("style","color:red");
 		 		 			rejectButten.innerText = "반려"
 		 		 			approvalButtonCol.appendChild(rejectButten);
 	  		 				
@@ -1362,6 +1370,7 @@ font-weight: bold;
 		 		 			var approvalButten = document.createElement("button")
 		 		 			approvalButten.classList.add("btn");
 		 		 			approvalButten.setAttribute("type","button");
+		 		 			approvalButten.setAttribute("stye","color:blue");
 		 		 			approvalButten.setAttribute("onclick","approval('"+result.Apv.APV_NO+"','MID')");
 		 		 			approvalButten.innerText = "결재"
 		 		 			approvalButtonCol.appendChild(approvalButten);
@@ -1369,6 +1378,7 @@ font-weight: bold;
 		 		 			var rejectButten = document.createElement("button")
 		 		 			rejectButten.classList.add("btn");
 		 		 			rejectButten.setAttribute("type","button");
+		 		 			rejectButten.setAttribute("style","color:red");
 		 		 			rejectButten.setAttribute("onclick","reject('"+result.Apv.APV_NO+"')");
 		 		 			rejectButten.innerText = "반려"
 		 		 			approvalButtonCol.appendChild(rejectButten);
@@ -1394,6 +1404,7 @@ font-weight: bold;
 	  		 				var approvalButten = document.createElement("button")
 		 		 			approvalButten.classList.add("btn");
 		 		 			approvalButten.setAttribute("type","button");
+		 		 			approvalButten.setAttribute("style","color:blue");
 		 		 			approvalButten.setAttribute("onclick","approval('"+result.Apv.APV_NO+"','FNL')");
 		 		 			approvalButten.innerText = "결재"
 		 		 			approvalButtonCol.appendChild(approvalButten);
@@ -1401,6 +1412,7 @@ font-weight: bold;
 		 		 			var rejectButten = document.createElement("button")
 		 		 			rejectButten.classList.add("btn");
 		 		 			rejectButten.setAttribute("type","button");
+		 		 			rejectButten.setAttribute("style","color:red");
 		 		 			rejectButten.innerText = "반려"
 		 		 			approvalButtonCol.appendChild(rejectButten);
 	  		 				

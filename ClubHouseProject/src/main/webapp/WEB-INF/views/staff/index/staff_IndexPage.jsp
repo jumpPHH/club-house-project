@@ -186,7 +186,7 @@
 					<div class="row">
 						<div class="col text-between pt-1 mb-2" style="color:#FA5858">
 							<span style="font-weight: bold;font-size: 1.1rem;color: black;">동아리신청</span> 
-							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/approval/staff_DraftManagementPage'">전체보기</span> 
+							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/applyClub/staff_applyClubPage'">전체보기</span> 
 							</div>
 					</div>
 					<div class="row">
@@ -230,7 +230,7 @@
 					<div class="row">
 						<div class="col text-between pt-1 mb-2" style="color:#FA5858">
 							<span style="font-weight: bold;font-size: 1.1rem;color: black;">동아리 경비신청</span> 
-							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/approval/staff_DraftManagementPage'">전체보기</span> 
+							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/clubExpense/staff_ClubExpenseApplyListPage'">전체보기</span> 
 							</div>
 					</div>
 						<div class="row">
@@ -243,6 +243,7 @@
 													<tr>
 														<th class="text-center col-1 py-0 ps-3"><i class="bi bi-dot"></i></th>
 														<td class="py-0">${data.CLUB_NAME }</td>
+														<td class="py-0">${data.CLUB_EXPNS_APPLY_PURPOSE_USE }</td>
 														<td class="text-center col-2 py-0"><fmt:formatDate value="${data.CLUB_EXPNS_APPLY_DATE }" pattern="yyyy-MM-dd"/></td>
 													</tr>
 												</c:forEach>
@@ -276,7 +277,7 @@
 				<div class="row">
 						<div class="col text-between pt-1 mb-2" style="color:#FA5858">
 							<span style="font-weight: bold;font-size: 1.1rem;color: black;">학생공지사항</span> 
-							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/approval/staff_DraftManagementPage'">전체보기</span> 
+							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/studentNotice/staff_StudentNoticePage'">전체보기</span> 
 							</div>
 					</div>
 				<div class="row">
@@ -320,7 +321,7 @@
 				<div class="row">
 						<div class="col text-between pt-1 mb-2" style="color:#FA5858">
 							<span style="font-weight: bold;font-size: 1.1rem;color: black;">봉사신청</span> 
-							<span style="cursor: pointer;float: right" onclick="location.href='/cbh/staff/approval/staff_DraftManagementPage'">전체보기</span> 
+							<span style="cursor: pointer;float: right">전체보기</span> 
 							</div>
 					</div>
 				<div class="row">
@@ -343,7 +344,7 @@
 												<c:if test="${i.index == 4 }">
 													<tr style="height: 19.19px">
 													<th class="text-center col-1 py-0 ps-3"></th>
-													<td class="py-0">공지사항이 없습니다..</td>
+													<td class="py-0">봉사신청 내역이 없습니다.</td>
 													<td class="text-center col-2 py-0"></td>	
 												</tr>
 												</c:if>
