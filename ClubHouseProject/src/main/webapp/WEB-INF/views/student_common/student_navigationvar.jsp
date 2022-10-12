@@ -20,33 +20,6 @@ $(function() {
 	
 	
 	
-	function getClubNo() {
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if(xhr.status == 200 && xhr.readyState == 4) {
-				var jsonObj = JSON.parse(xhr.responseText);
-				
-				var establigshingClubResultPage = document.querySelector('#establishingClubResultPage');
-				console.log("establigshingClubResultPage : " + establigshingClubResultPage);
-				console.log("clubNo : " +jsonObj.clubNo)
-				establigshingClubResultPage.setAttribute("href","/cbh/student/establishingclub/student_establishingClubResultPage?clubNo="+jsonObj.clubNo);
-				
-				var establishingClubIndexPage = document.querySelector('#establishingClubIndexPage');
-				establishingClubIndexPage.setAttribute("href","/cbh/student/establishingclub/student_indexPage?clubNo="+jsonObj.clubNo);
-			
-				var myclubClubActivities = document.querySelector('#myclubClubActivities');
-				myclubClubActivities.setAttribute("href", "/cbh/student/myclub/clubactivities/student_indexPage?club_no="+ jsonObj.clubNo);
-				
-				var myclubClubBoardPage = document.querySelector('#myclubClubBoardPage');
-				myclubClubBoardPage.setAttribute("href", "/cbh/student/myclub/clubboard/student_indexPage?club_no="+ jsonObj.clubNo);
-				
-			}
-		}
-		
-		xhr.open('get','/cbh/student/index/restapi/getClubNo');
-		xhr.send();
-	}
-	
 	window.addEventListener("DOMContentLoaded", function(){
 		getClubNo();
 	});
@@ -148,7 +121,7 @@ function ul(index) {
 			</a>
 		</li>
 
-		<li class="nav-item"><a id="myclubClubBoardPage" href="/cbh/student/myclub/clubboard?clubNo="
+		<li class="nav-item"><a id="myclubClubBoardPage" href="/cbh/student/myclub/clubboard/student_indexPage"
 			class="nav-link text-dark font-italic bg-light"> <i
 				class="fa bi bi-journal-text mr-3  fa-fw" style="color: #FA5858"></i> 자유게시판
 		</a></li>

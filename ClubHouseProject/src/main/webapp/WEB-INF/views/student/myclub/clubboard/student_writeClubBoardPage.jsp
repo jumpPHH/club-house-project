@@ -180,7 +180,6 @@ document.addEventListener("DOMContentLoaded", function () {
 												</div>
 											</div>
 										</div>
-										<input type="hidden" value="${clubNo }" name="club_no">
 										<hr class="mt-3 hrSetting">
 										<div class="row mt-5 mb-5">
 											<div class="col" style="text-align: right;">

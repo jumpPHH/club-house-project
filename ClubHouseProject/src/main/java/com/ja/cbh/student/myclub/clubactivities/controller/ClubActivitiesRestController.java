@@ -25,10 +25,9 @@ public class ClubActivitiesRestController {
 	
 	//모든 클럽의 리스트 가져오기.
 	@RequestMapping("getClubActList")
-	public HashMap<String, Object> getClubActList(@RequestParam(value="club_no") String club_no, @RequestParam(value="searchWord") String searchWord) {
-		int clubNo = Integer.parseInt(club_no);
+	public HashMap<String, Object> getClubActList(@RequestParam(value="searchWord") String searchWord) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		ArrayList<Club_ActVO> data = clubActivitiesService.getClubActivitiesList(clubNo, searchWord); 
+		ArrayList<Club_ActVO> data = clubActivitiesService.getClubActivitiesList(searchWord); 
 		
 		map.put("result", "success");
 		map.put("data", data);
@@ -37,11 +36,10 @@ public class ClubActivitiesRestController {
 	
 	// 클럽 정보 가져오기.
 	@RequestMapping("getClubData")
-	public HashMap<String, Object> getClubData(@RequestParam(value="club_no") String club_no) {
-		int clubNo = Integer.parseInt(club_no);
+	public HashMap<String, Object> getClubData() {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		ClubVO clubData = findingClubService.getClubByNo(clubNo);
+		ClubVO clubData = findingClubService.getClubByNo();
 		
 		map.put("result","success");
 		map.put("data", clubData);

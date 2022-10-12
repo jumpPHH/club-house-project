@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					
 					var row1_col1_row1_col1= document.createElement("div");
 					row1_col1_row1_col1.setAttribute("class", "col");
-					row1_col1_row1_col1.setAttribute("style","font-weight:bold; font-size:12px;");
+					row1_col1_row1_col1.setAttribute("style","font-weight:bold; font-size:1.2em;");
 					row1_col1_row1_col1.innerText = writerName;
 					row1_col1_row1.appendChild(row1_col1_row1_col1);
 					
@@ -177,8 +177,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					if(${sessionClubStudNo} === jsonObj[i].comment.club_stud_no){
 						var row1_col1_row1_col2_button = document.createElement("a");
 						row1_col1_row1_col2_button.innerText = "삭제";
-						row1_col1_row1_col2_button.setAttribute("href", "deleteComment("+clubBoardNo+","+clubNo+","+clubBoardCommentNo + ")");	// 나중에 delete 함수 만들면 넣어주기.
-						row1_col1_row1_col2_button.setAttribute("style", "background-color:white; color:black; padding:1px; border:none; font-size:10px")
+						row1_col1_row1_col2_button.setAttribute("href", "./restapi/deleteClubBoardComment_By3No?club_board_no="+clubBoardNo+"&club_no="+clubNo+"&club_board_comment_no="+clubBoardCommentNo);	// 나중에 delete 함수 만들면 넣어주기.
+						row1_col1_row1_col2_button.setAttribute("style", "background-color:white; color:black; padding:1px; border:none; font-size:1.2em")
 						row1_col1_row1_col2.appendChild(row1_col1_row1_col2_button);
 					}
 					
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					
 					var row1_col1_row2_col1 = document.createElement("div");
 					row1_col1_row2_col1.setAttribute("class","col");
-					row1_col1_row2_col1.setAttribute("style", "font-size:13px");
+					row1_col1_row2_col1.setAttribute("style", "font-size:1em");
 					row1_col1_row2_col1.innerText = commentContent;
 					row1_col1_row2.appendChild(row1_col1_row2_col1);
 					
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					
 					var row1_col1_row3_col1 = document.createElement("div");
 					row1_col1_row3_col1.setAttribute("class","col");
-					row1_col1_row3_col1.setAttribute("style", "font-size:10px");
+					row1_col1_row3_col1.setAttribute("style", "font-size:1em");
 					row1_col1_row3_col1.innerText = date;
 					row1_col1_row3.appendChild(row1_col1_row3_col1);
 					
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 		
 		xhr.open("get" , "./restapi/getClubBoardComment?club_board_no=${map.clubBoardData.club_board_no}&club_no=${map.clubBoardData.club_no}"); //리퀘스트 세팅..
-		//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 		xhr.send(); //AJAX로 리퀘스트함..
 	}
 	
@@ -226,14 +226,13 @@ document.addEventListener("DOMContentLoaded", function () {
 				refreshCommentList();
 			}
 		}
-		xhr.open("get","./restapi/deleteClubBoardComment_By3No?club_board_no="+clubBoardNo+"&club_no="+clubNo+"&club_board_comment_no="+clubBoardCommentNo);
-		xhr.send(); //AJAX로 리퀘스트함..
+		xhr.open("post","./restapi/deleteClubBoardComment_By3No");
+		xhr.send("club_board_no="+clubBoardNo+"&club_no="+clubNo+"&club_board_comment_no="+clubBoardCommentNo); //AJAX로 리퀘스트함..
 	}
 
 	window.addEventListener("DOMContentLoaded", function() {
 		//사실상 처음 실행하는 코드 모음...
-		activateUpdateAndDeleteButtonIfHeIsClubBoss();
-
+		refreshCommentList();
 		//setInterval(refreshCommentList , 3000); //폴링 방식의 실시간... 화면 갱신...
 
 	});
@@ -336,7 +335,7 @@ document.addEventListener("DOMContentLoaded", function () {
 													<!-- 작성자 -->
 													<div class="row">
 														<div class="col"
-															style="text-align: right; padding: 0 2em;">작성자 : 회장
+															style="text-align: right; padding: 0 2em;">작성자 : ${map.studVO.stud_name }
 														</div>
 													</div>
 
@@ -366,9 +365,10 @@ document.addEventListener("DOMContentLoaded", function () {
 													</div>
 													
 													<!-- 1 리스트 박스 -->
+													<div style="font-weight:bold; font-size:20px; margin-top:3em;">댓글</div>
 													<div class="row mt-5">
 														<div class="col" id="commentListBox"  style="border:1px; border-radius:5px; border-color:gray;">
-														<span style="font-weight:bold; font-size:20px;">댓글</span>
+														
 														</div>
 													</div>
 													<div class="row"  style="border-top:1px solid #ddd; margin-top:1em; width:15%; margin-left:1px;">

@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			CBH_CLUB_APPL_SEQ.nextval,
 			#{clubApplVO.stud_id},
 			#{clubApplVO.club_name},
+			#{clubApplVO.club_category_no},
 			#{clubApplVO.club_appl_people_count},
 			#{clubApplVO.club_purpose},
 			SYSDATE,

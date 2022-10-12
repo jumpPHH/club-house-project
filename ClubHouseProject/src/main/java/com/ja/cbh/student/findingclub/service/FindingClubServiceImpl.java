@@ -35,8 +35,8 @@ public class FindingClubServiceImpl {
 	}
 	
 	// 특정 클럽no에 해당하는 클럽 정보 갖고오기
-	public ClubVO getClubByNo(int clubNo) {
-		ClubVO clubInfoByNo = findingClubSQLMapper.selectClubByNo(clubNo);
+	public ClubVO getClubByNo() {
+		ClubVO clubInfoByNo = findingClubSQLMapper.selectClubByNo();
 		
 		return clubInfoByNo;
 	}

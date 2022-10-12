@@ -22,8 +22,8 @@ public class ClubActivitiesController {
 
 	@Autowired
 	private ClubActivitesServiceImpl clubActivitiesService;
-    @Autowired
-    private Student_MainService mainService;
+	 @Autowired
+	   private Student_MainService mainService;
 
 	// 동아리 활동내역 메인페이지. 동아리 활동 내역이 보이는 페이지임.
 	// 나중에 추가해야할 기능. 해당 동아리가 아닌 사람이 파라미터만 수정해서 데이터를
@@ -39,17 +39,12 @@ public class ClubActivitiesController {
 		
 		
 		
-		System.out.println(clubNo);
 		
-		if(clubNo == 0) { 
-			System.out.println(clubNo);
-			
-			return "../../student_common/student_error";
-		}
+		
 
-		ArrayList<Club_ActVO> clubActivitiesList = clubActivitiesService.getClubActivitiesList(clubNo,searchWord);
+		ArrayList<Club_ActVO> clubActivitiesList = clubActivitiesService.getClubActivitiesList(searchWord);
 		
-		int clubActCount = clubActivitiesService.getClubActCountByClubNoAndSearchWord(clubNo, searchWord);
+		int clubActCount = clubActivitiesService.getClubActCountByClubNoAndSearchWord(searchWord);
 		
 		int totalPageCount = (int)Math.ceil(clubActCount/10.0);
 		//1 2 3 4 5	, 6 7 8 9 10 ....16 17 18 19 20
@@ -87,7 +82,7 @@ public class ClubActivitiesController {
 
 		StudVO sessionUserInfo = (StudVO) session.getAttribute("sessionUserInfo");
 
-		HashMap<String, Object> map = clubActivitiesService.getClubActivityByClubActNoAndClubNo(clubActNo, clubNo);
+		HashMap<String, Object> map = clubActivitiesService.getClubActivityByClubActNoAndClubNo(clubActNo);
 
 		model.addAttribute("map", map);
 		model.addAttribute("sessionUserInfo", sessionUserInfo);
@@ -137,7 +132,7 @@ public class ClubActivitiesController {
 		int clubActNo = NewClubActVO.getClub_no();
 		int clubNo = NewClubActVO.getClub_act_no();
 		
-		Club_ActVO originClubActVO = clubActivitiesService.getClubActByClubActNoAndClubNoForJustDataUse(clubNo, clubActNo);
+		Club_ActVO originClubActVO = clubActivitiesService.getClubActByClubActNoAndClubNoForJustDataUse(clubActNo);
 		originClubActVO.setClub_act_title(NewClubActVO.getClub_act_title());
 		originClubActVO.setClub_act_content(NewClubActVO.getClub_act_content());
 		

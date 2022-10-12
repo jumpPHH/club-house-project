@@ -21,11 +21,11 @@ public class ClubBoardServiceImpl {
 	private ClubBoardSQLMapper clubBoardSQLMapper;
 	
 	// 특정 동아리의 모든 게시글 가져오기 
-	public ArrayList<HashMap<String, Object>> getClubBoardList(int clubNo,String searchWord){
+	public ArrayList<HashMap<String, Object>> getClubBoardList(String searchWord){
 		ArrayList<HashMap<String, Object>> mapList = new ArrayList<HashMap<String, Object>>();
 		
 		
-		ArrayList<Club_BoardVO> clubBoardList = clubBoardSQLMapper.selectClubBoardListByClubNo(clubNo, searchWord);
+		ArrayList<Club_BoardVO> clubBoardList = clubBoardSQLMapper.selectClubBoardListByClubNo(searchWord);
 		
 		for(Club_BoardVO boardData : clubBoardList) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -48,15 +48,18 @@ public class ClubBoardServiceImpl {
 	}
 	
 	// 특정 글의 내용 페이지
-	public HashMap<String, Object> getClubBoardByClubBoardNoAndClubNo(@Param(value="clubBoardNo") int clubBoardNo, @Param(value="clubNo") int clubNo) {
+	public HashMap<String, Object> getClubBoardByClubBoardNoAndClubNo(@Param(value="clubBoardNo") int clubBoardNo) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		Club_BoardVO clubBoardData = clubBoardSQLMapper.selectClubBoardByClubBoardNoAndClubNo(clubBoardNo,clubNo);
-		ArrayList<Club_BoardImageVO> clubBoardImageList = clubBoardSQLMapper.selectClubBoardImageByClubBoardNoAndClubNo(clubBoardNo,clubNo);
+		Club_BoardVO clubBoardData = clubBoardSQLMapper.selectClubBoardByClubBoardNoAndClubNo(clubBoardNo);
+		ArrayList<Club_BoardImageVO> clubBoardImageList = clubBoardSQLMapper.selectClubBoardImageByClubBoardNoAndClubNo(clubBoardNo);
 		
-		Club_BoardVO[] forPreviousAndNextPost = clubBoardSQLMapper.selectClubBoardListForContentPageByClubNo(clubNo);
+		Club_BoardVO[] forPreviousAndNextPost = clubBoardSQLMapper.selectClubBoardListForContentPageByClubNo();
 		// 이전 글 다음 글 제목과 club_Board_no를 따기 위한 코드
 		
+		Club_StudVO clubStudVO = clubBoardSQLMapper.selectClubStudByClubStudNo(clubBoardNo);
+		 StudVO studVO = clubBoardSQLMapper.selectStudByStudId(clubStudVO.getStud_id());
+		 map.put("studVO", studVO);
 		
 		for(int i = 0 ; i < forPreviousAndNextPost.length ; i++) {
 			if(forPreviousAndNextPost[i].getClub_board_no() == clubBoardNo) {
@@ -117,16 +120,16 @@ public class ClubBoardServiceImpl {
 	}
 	
 	// 단순하게 특정 클럽게시판 데이터만 가져오기.
-	public Club_BoardVO getClubBoardByClubBoardNoAndClubNoForJustDataUse(int clubBoardNo, int clubNo) {
+	public Club_BoardVO getClubBoardByClubBoardNoAndClubNoForJustDataUse(int clubBoardNo) {
 		
-		Club_BoardVO clubBoardData = clubBoardSQLMapper.selectClubBoardByClubBoardNoAndClubNo(clubBoardNo,clubNo); 
+		Club_BoardVO clubBoardData = clubBoardSQLMapper.selectClubBoardByClubBoardNoAndClubNo(clubBoardNo); 
 	
 		return clubBoardData;
 	}
 	
 	// 어떤 클럽의 클럽 활동내역의 개수가 몇개인지 가져오기
-	public int getClubBoardCountByClubNoAndSearchWord(int clubNo, String searchWord) {
-		int clubBoardCount = clubBoardSQLMapper.selectClubBoardCountByClubNoAndSearchWord(clubNo, searchWord);
+	public int getClubBoardCountByClubNoAndSearchWord(String searchWord) {
+		int clubBoardCount = clubBoardSQLMapper.selectClubBoardCountByClubNoAndSearchWord(searchWord);
 		
 		return clubBoardCount; 
 	}
@@ -183,11 +186,10 @@ public class ClubBoardServiceImpl {
 	}
 	
 	// 댓글 가져오기
-	public ArrayList<HashMap<String, Object>> getClubBoardCommentList_ByClubBoardNoAndClubNo(@Param(value="clubBoardNo")int clubBoardNo, 
-																							@Param(value="clubNo") int clubNo){
+	public ArrayList<HashMap<String, Object>> getClubBoardCommentList_ByClubBoardNoAndClubNo(@Param(value="clubBoardNo")int clubBoardNo){
 		ArrayList<HashMap<String, Object>> mapList = new ArrayList<HashMap<String, Object>>();
 		
-		ArrayList<Club_BoardCommentVO> commentList = clubBoardSQLMapper.selectClubBoardCommentList_ByClubNoAndClubBoardNo(clubBoardNo,clubNo);
+		ArrayList<Club_BoardCommentVO> commentList = clubBoardSQLMapper.selectClubBoardCommentList_ByClubNoAndClubBoardNo(clubBoardNo);
 		
 		for(Club_BoardCommentVO comment : commentList ) {
 			HashMap<String, Object> map = new HashMap<String, Object>();

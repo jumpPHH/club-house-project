@@ -53,7 +53,7 @@ public class FindingClubController {
 	public String student_clubIntroducingPage(Model model, String club_no) {
 		int clubNo = Integer.parseInt(club_no);
 		
-		ClubVO clubData = findingClubService.getClubByNo(clubNo);
+		ClubVO clubData = findingClubService.getClubByNo();
 		StudVO clubBossData = findingClubService.getStudByStudId(clubData.getClub_boss()) ;
 		Club_Dept_CategoryVO clubCategoryData = findingClubService.getClubCategoryByNo(clubData.getClub_category_no());
 		model.addAttribute("clubCategoryData", clubCategoryData);

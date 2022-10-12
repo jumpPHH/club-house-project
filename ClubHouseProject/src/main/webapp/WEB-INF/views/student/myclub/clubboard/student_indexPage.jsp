@@ -133,7 +133,7 @@
 									<div class="row"
 										style="justify-content: center; border-right: 2px solid #ededed">
 										<a id="student_indexPage"
-											href="/cbh/student/myclub/clubboard/student_indexPage?club_no=${clubNo }"
+											href="/cbh/student/myclub/clubboard/student_indexPage"
 											class="col-auto px-3 aClick"
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none; background-color: #bfc9e3; color: white !important; padding-left: 0px; padding-right: 0px; width: 60%;">
 											자유게시판 </a>
@@ -143,7 +143,7 @@
 								<div class="col text-center">
 									<div class="row" style="justify-content: center">
 										<a id="student_MemberJoinMgmtPage"
-											href="/cbh/student/myclub/clubboard/student_writeClubBoardPage?club_no=${clubNo }"
+											href="/cbh/student/myclub/clubboard/student_writeClubBoardPage"
 											class="col-auto px-3 aClick"
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											자유게시판 작성 </a>
@@ -172,7 +172,7 @@
 									<div class="col" id="content">
 										<div class="row my-3">
 											<div class="col">
-												<form action="./student_indexPage?club_no=${clubNo }"
+												<form action="./student_indexPage"
 													method="post">
 													<div class="row">
 														<div class="col" style="text-align: right">
@@ -228,7 +228,7 @@
 												<div class="row mt-3">
 													<div class="col" style="text-align: right;">
 														<button class="btn btn-danger"
-															onclick="location.href='./student_writeClubBoardPage?club_no=${clubNo}'">작성하기</button>
+															onclick="location.href='./student_writeClubBoardPage'">작성하기</button>
 													</div>
 												</div>
 
@@ -309,7 +309,7 @@
 									<div class="row"
 										style="justify-content: center; border-right: 2px solid #ededed">
 										<a id="student_indexPage"
-											href="/cbh/student/myclub/clubboard/student_indexPage?club_no=${clubNo }"
+											href="/cbh/student/myclub/clubboard/student_indexPage"
 											class="col-auto px-3 aClick"
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none; background-color: #bfc9e3; color: white !important; padding-left: 0px; padding-right: 0px; width: 60%;">
 											자유게시판 </a>
@@ -319,7 +319,7 @@
 								<div class="col text-center">
 									<div class="row" style="justify-content: center">
 										<a id="student_MemberJoinMgmtPage"
-											href="/cbh/student/myclub/clubboard/student_writeClubBoardPage?club_no=${clubNo }"
+											href="/cbh/student/myclub/clubboard/student_writeClubBoardPage"
 											class="col-auto px-3 aClick"
 											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 											자유게시판 작성 </a>
@@ -348,7 +348,7 @@
 									<div class="col" id="content">
 										<div class="row my-3">
 											<div class="col">
-												<form action="./student_indexPage?club_no=${clubNo }"
+												<form action="./student_indexPage"
 													method="post">
 													<div class="row">
 														<div class="col" style="text-align: right">
@@ -404,7 +404,7 @@
 												<div class="row mt-3">
 													<div class="col" style="text-align: right;">
 														<button class="btn btn-danger"
-															onclick="location.href='./student_writeClubBoardPage?club_no=${clubNo}'">작성하기</button>
+															onclick="location.href='./student_writeClubBoardPage'">작성하기</button>
 													</div>
 												</div>
 

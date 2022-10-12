@@ -50,10 +50,9 @@ public class ClubBoardRestController {
 	
 	//댓글 가져오기
 	@RequestMapping("getClubBoardComment")
-	public ArrayList<HashMap<String, Object>> getClubBoardComment(String club_board_no, String club_no){
+	public ArrayList<HashMap<String, Object>> getClubBoardComment(String club_board_no){
 		int clubBoardNo= Integer.parseInt(club_board_no);
-		int clubNo = Integer.parseInt(club_no);
-		ArrayList<HashMap<String, Object>> mapList = clubBoardService.getClubBoardCommentList_ByClubBoardNoAndClubNo(clubBoardNo,clubNo);
+		ArrayList<HashMap<String, Object>> mapList = clubBoardService.getClubBoardCommentList_ByClubBoardNoAndClubNo(clubBoardNo);
 	
 		
 		
@@ -74,7 +73,7 @@ public class ClubBoardRestController {
 	}
 	
 	@RequestMapping("deleteClubBoardComment_By3No")
-	public HashMap<String, Object> deleteClubBoardComment_By3No(@Param(value="club_no") String club_no,@Param(value="club_board_no") String club_board_no,@Param(value="club_board_comment_no") String club_board_comment_no) {
+	public String deleteClubBoardComment_By3No(@Param(value="club_board_no") String club_board_no,@Param(value="club_board_comment_no") String club_board_comment_no) {
 		System.out.println("delete 레스트 컨트롤러에 들어오긴 함.");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
@@ -82,12 +81,11 @@ public class ClubBoardRestController {
 		
 		clubBoardCommentVO.setClub_board_comment_no(Integer.parseInt(club_board_comment_no));
 		clubBoardCommentVO.setClub_board_no(Integer.parseInt(club_board_no));
-		clubBoardCommentVO.setClub_no(Integer.parseInt(club_no));
+		clubBoardCommentVO.setClub_no(1);
 		
 		clubBoardService.deleteCommentBy3No(clubBoardCommentVO);
 		
-		
-		return map; 
+		return "../student_clubBoardContentPage?club_board_no="+clubBoardCommentVO.getClub_board_no()+"&club_no="+clubBoardCommentVO.getClub_no();
 	}
 	
 	@RequestMapping("updateClubBoardCommentBy3No")

@@ -162,7 +162,6 @@
 												method="post">
 												<div class="row">
 													<div class="col" style="text-align: right">
-														<i class="bi bi-search" style="font-size:1em;"></i>
 														<div style="margin-right: 1em; display: inline-block">
 															<input type="text" name="searchWord" style="width: 100%">
 														</div>

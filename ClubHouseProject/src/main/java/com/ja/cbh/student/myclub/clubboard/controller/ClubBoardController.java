@@ -35,19 +35,17 @@ public class ClubBoardController {
 	// 동아리 활동내역 메인페이지. 동아리 활동 내역이 보이는 페이지임.
 	// 나중에 추가해야할 기능. 해당 동아리가 아닌 사람이 파라미터만 수정해서 데이터를
 	@RequestMapping("student_indexPage")
-	public String student_indexPage(Model model,HttpSession session, @RequestParam(value="club_no") String club_no,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
+	public String student_indexPage(Model model,HttpSession session,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
 		StudVO sessionUserInfo = (StudVO)session.getAttribute("sessionUserInfo");
 	   String stud_id = sessionUserInfo.getStud_id();
 		
 		
-		int clubNo = Integer.parseInt(club_no);
 		
 		model.addAttribute("MainData",mainService.student_MainData(stud_id));
-		System.out.println(clubNo);
 
-		ArrayList<HashMap<String, Object>> clubBoardList = clubBoardService.getClubBoardList(clubNo,searchWord);
+		ArrayList<HashMap<String, Object>> clubBoardList = clubBoardService.getClubBoardList(searchWord);
 		
-		int clubBoardCount = clubBoardService.getClubBoardCountByClubNoAndSearchWord(clubNo, searchWord);
+		int clubBoardCount = clubBoardService.getClubBoardCountByClubNoAndSearchWord(searchWord);
 		
 		int totalPageCount = (int)Math.ceil(clubBoardCount/10.0);
 		//1 2 3 4 5	, 6 7 8 9 10 ....16 17 18 19 20
@@ -71,17 +69,14 @@ public class ClubBoardController {
 		model.addAttribute("additionalParam", additionalParam);
 
 		model.addAttribute("clubBoardList", clubBoardList);
-		model.addAttribute("clubNo", clubNo);
 
 		return "student/myclub/clubboard/student_indexPage";
 	}
 
 	// 특정 글 상세보기 페이지
 	@RequestMapping("student_clubBoardContentPage")
-	public String student_clubBoardContentPage(Model model, String club_board_no, String club_no,
-													HttpSession session) {
+	public String student_clubBoardContentPage(Model model, String club_board_no,	HttpSession session) {
 		int clubBoardNo = Integer.parseInt(club_board_no);
-		int clubNo = Integer.parseInt(club_no);
 
 		StudVO sessionUserInfo = (StudVO) session.getAttribute("sessionUserInfo");
 		if(sessionUserInfo == null) {
@@ -89,7 +84,7 @@ public class ClubBoardController {
 		}
 		int sessionClubStudNo = clubBoardService.getClubStudNoByStudId(sessionUserInfo.getStud_id());
 
-		HashMap<String, Object> map = clubBoardService.getClubBoardByClubBoardNoAndClubNo(clubBoardNo, clubNo);
+		HashMap<String, Object> map = clubBoardService.getClubBoardByClubBoardNoAndClubNo(clubBoardNo);
 		model.addAttribute("map", map);
 		model.addAttribute("sessionUserInfo", sessionUserInfo);
 		model.addAttribute("sessionClubStudNo", sessionClubStudNo);
@@ -99,14 +94,12 @@ public class ClubBoardController {
 	
 	//작성 페이지
 	@RequestMapping("student_writeClubBoardPage")
-	public String student_writeClubBoardPage(Model model, String club_no, HttpSession session) {
-		int clubNo = Integer.parseInt(club_no);
+	public String student_writeClubBoardPage(Model model, HttpSession session) {
 		
 		StudVO studVO = (StudVO)session.getAttribute("sessionUserInfo");
 		String writerName = studVO.getStud_name();
 		
 		
-		model.addAttribute("clubNo", clubNo);
 		model.addAttribute("writerName",writerName);
 		
 		return "student/myclub/clubboard/student_writeClubBoardPage";
@@ -116,10 +109,10 @@ public class ClubBoardController {
 	public String student_writeClubBoardProcess(Club_BoardVO clubBoardVO, HttpSession session, MultipartFile []club_board_image) {
 		
 		int clubBoardNo = clubBoardService.getClubBoardNo();
-		int clubNo = clubBoardVO.getClub_no();
+		clubBoardVO.setClub_no(1);
 		
 		//ClubVO에 클럽 회장, 동아리 이름 , 동아리 신청 회원수, 동아리 신청일자 넣기
-		if(club_board_image[0].getOriginalFilename() != null) {
+		if(club_board_image[0] != null) {
 			for(MultipartFile file : club_board_image) {
 			String rootFilePath = "C:/uploadFiles/";
 			String originalFilename = file.getOriginalFilename();
@@ -150,7 +143,7 @@ public class ClubBoardController {
 			Club_BoardImageVO clubBoardImageVO = new Club_BoardImageVO();
 			clubBoardImageVO.setClub_board_image_link(todayFolder + randomName);
 			clubBoardImageVO.setClub_board_no(clubBoardNo);
-			clubBoardImageVO.setClub_no(clubNo);
+			clubBoardImageVO.setClub_no(1);
 			clubBoardService.inputClubBoardImage(clubBoardImageVO);
 			}
 		}
@@ -164,18 +157,16 @@ public class ClubBoardController {
 		clubBoardService.inputClubBoardByClubBoardVO(clubBoardVO);
 		
 		
-		return "redirect:./student_indexPage?club_no="+ clubBoardVO.getClub_no();
+		return "redirect:./student_indexPage";
 	}
 
 	//수정 페이지
 	@RequestMapping("student_modifyClubBoardPage")
-	public String student_modifyClubBoardPage(Model model, String club_board_no, String club_no ) {
+	public String student_modifyClubBoardPage(Model model, String club_board_no) {
 		
-		int clubNo = Integer.parseInt(club_no);
 		int clubBoardNo = Integer.parseInt(club_board_no);
-		Club_BoardVO clubBoardData = clubBoardService.getClubBoardByClubBoardNoAndClubNoForJustDataUse(clubBoardNo, clubNo);
+		Club_BoardVO clubBoardData = clubBoardService.getClubBoardByClubBoardNoAndClubNoForJustDataUse(clubBoardNo);
 		
-		model.addAttribute("clubNo", clubNo);
 		model.addAttribute("clubBoardNo", clubBoardNo);
 		model.addAttribute("clubBoardData", clubBoardData);
 		
@@ -186,9 +177,8 @@ public class ClubBoardController {
 	@RequestMapping("student_modifyClubBoardProcess")
 	public String student_modifyClubBoardProcess(Club_BoardVO NewClubBoardVO) {
 		int clubBoardNo = NewClubBoardVO.getClub_no();
-		int clubNo = NewClubBoardVO.getClub_board_no();
 		
-		Club_BoardVO originClubBoardVO = clubBoardService.getClubBoardByClubBoardNoAndClubNoForJustDataUse(clubNo, clubBoardNo);
+		Club_BoardVO originClubBoardVO = clubBoardService.getClubBoardByClubBoardNoAndClubNoForJustDataUse(clubBoardNo);
 		originClubBoardVO.setClub_board_title(NewClubBoardVO.getClub_board_title());
 		originClubBoardVO.setClub_board_content(NewClubBoardVO.getClub_board_content());
 		
@@ -198,17 +188,16 @@ public class ClubBoardController {
 	}
 	// 게시글 삭제 및 게시글 이미지 삭제.... 댓글 삭제도 넣어야함.
 	@RequestMapping("student_deleteClubBoardProcess")
-	public String student_deleteClubBoardProcess(String club_board_no, String club_no) {
+	public String student_deleteClubBoardProcess(String club_board_no) {
 		int clubBoardNo = Integer.parseInt(club_board_no);
-		int clubNo = Integer.parseInt(club_no);
 		
 		Club_BoardVO clubBoardVO = new Club_BoardVO();
-		clubBoardVO.setClub_no(clubNo);
+		clubBoardVO.setClub_no(1);
 		clubBoardVO.setClub_board_no(clubBoardNo);
 		
 		clubBoardService.deleteClubBoardByClubNoAndClubBoardNo(clubBoardVO);
 		clubBoardService.deleteClubBoardImageByBoardNo(clubBoardNo);
 		
-		return "redirect:./student_indexPage?club_no=" + club_no;
+		return "redirect:./student_indexPage";
 	}
 }

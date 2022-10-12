@@ -20,21 +20,21 @@ public class ClubActivitesServiceImpl {
 	private ClubActivitiesSQLMapper clubActivitiesSQLMapper;
 	
 	// 특정 동아리의 모든 활동내역 가져오기
-	public ArrayList<Club_ActVO> getClubActivitiesList(int clubNo,String searchWord){
-		ArrayList<Club_ActVO> clubActivitiesList = clubActivitiesSQLMapper.selectClubActivitiesListByClubNo(clubNo, searchWord);
+	public ArrayList<Club_ActVO> getClubActivitiesList(String searchWord){
+		ArrayList<Club_ActVO> clubActivitiesList = clubActivitiesSQLMapper.selectClubActivitiesListByClubNo(searchWord);
 		
 		return clubActivitiesList;
 	}
 	
 	// 특정 글의 내용 페이지
-	public HashMap<String, Object> getClubActivityByClubActNoAndClubNo(@Param(value="clubActNo") int clubActNo,@Param(value="clubNo") int clubNo) {
+	public HashMap<String, Object> getClubActivityByClubActNoAndClubNo(@Param(value="clubActNo") int clubActNo) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		Club_ActVO clubActData = clubActivitiesSQLMapper.selectClubActivityByClubActNoAndClubNo(clubActNo,clubNo);
+		Club_ActVO clubActData = clubActivitiesSQLMapper.selectClubActivityByClubActNoAndClubNo(clubActNo);
 		System.out.println("clubActivities Service : " + clubActData.getClub_act_title());
 	 
 		
-		Club_ActVO[] forPreviousAndNextPost = clubActivitiesSQLMapper.selectClubActivitiesListForContentPageByClubActNo(clubNo);
+		Club_ActVO[] forPreviousAndNextPost = clubActivitiesSQLMapper.selectClubActivitiesListForContentPageByClubActNo();
 		// 이전 글 다음 글 제목과 club_act_no를 따기 위한 코드
 		
 		System.out.println("이거length다" + forPreviousAndNextPost.length);
@@ -101,16 +101,16 @@ public class ClubActivitesServiceImpl {
 	}
 	
 	// 단순하게 특정 클럽활동내역 데이터만 가져오기.
-	public Club_ActVO getClubActByClubActNoAndClubNoForJustDataUse(int clubActNo, int clubNo) {
+	public Club_ActVO getClubActByClubActNoAndClubNoForJustDataUse(int clubActNo) {
 		
-		Club_ActVO clubActData = clubActivitiesSQLMapper.selectClubActivityByClubActNoAndClubNo(clubActNo,clubNo); 
+		Club_ActVO clubActData = clubActivitiesSQLMapper.selectClubActivityByClubActNoAndClubNo(clubActNo); 
 	
 		return clubActData;
 	}
 	
 	// 어떤 클럽의 클럽 활동내역의 개수가 몇개인지 가져오기
-	public int getClubActCountByClubNoAndSearchWord(int clubNo, String searchWord) {
-		int clubActCount = clubActivitiesSQLMapper.selectClubActivitiesCountByClubNoAndSearchWord(clubNo, searchWord);
+	public int getClubActCountByClubNoAndSearchWord(String searchWord) {
+		int clubActCount = clubActivitiesSQLMapper.selectClubActivitiesCountByClubNoAndSearchWord(searchWord);
 		
 		return clubActCount; 
 	}
