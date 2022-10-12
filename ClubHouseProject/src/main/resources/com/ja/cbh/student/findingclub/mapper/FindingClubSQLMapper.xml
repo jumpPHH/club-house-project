@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectClubByNo" resultType="com.ja.cbh.vo.ClubVO">
 		SELECT * FROM CBH_CLUB
+		WHERE club_no = #{clubNo}
 	</select>
 	
 	<select id="selectStudByStudId" resultType="com.ja.cbh.vo.StudVO">

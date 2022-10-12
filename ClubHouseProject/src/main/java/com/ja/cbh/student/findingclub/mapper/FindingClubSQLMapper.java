@@ -17,7 +17,7 @@ public interface FindingClubSQLMapper {
 	// 특정 카테고리의 클럽들 가져오기
 	public ArrayList<ClubVO> selectAllClubsOfCategory(@Param("clubCategoryNo")int clubCategoryNo, @Param("searchWord")String searchWord);
 	// 특정 클럽no에 해당하는 클럽 정보 갖고오기
-	public ClubVO selectClubByNo();
+	public ClubVO selectClubByNo(int clubNo);
 	// 일반회원이 특정 클럽 가입신청시 insert
 	public void insertClubStud(Club_StudVO clubStudVO);
 	// 아이디에 해당하는 사람 정보 갖고오기

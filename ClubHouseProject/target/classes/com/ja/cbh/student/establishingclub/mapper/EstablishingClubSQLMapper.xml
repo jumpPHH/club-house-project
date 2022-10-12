@@ -93,14 +93,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertClubStudByStud">
 		INSERT INTO CBH_CLUB_STUD VALUES(
 			CBH_CLUB_STUD_SEQ.NEXTVAL,
-			#{studVO.stud_id},
-			#{studVO.club_no},
-			#{studVO.club_stud_grade},
+			#{clubStudVO.stud_id},
+			#{clubStudVO.club_no},
+			#{clubStudVO.club_stud_grade},
 			SYSDATE,
 			SYSDATE,
 			'',
 			'',
-			'1'
+			'1',
+			'활동중'
 		)
 	
 	</insert>
