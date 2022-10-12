@@ -72,10 +72,8 @@
 
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-				var club_bossId = jsonObj.data.club_boss;
 				var sessionUserId = "${sessionUserInfo.stud_id}";
 
-				if (club_bossId == sessionUserId) {
 					var buttonBoxCol1 = document.querySelector('#buttonBox');
 
 					var updateButton = document.createElement("button");
@@ -102,7 +100,6 @@
 					deleteButtonAhref.setAttribute("style", "color:white");
 					deleteButtonAhref.innerText = "삭제";
 					deleteButton.appendChild(deleteButtonAhref);
-				}
 			}
 		}
 
@@ -232,7 +229,7 @@
 													<div class="row">
 														<div class="col" id="buttonBox"
 															style="padding: 2em; border-top: 1px solid #ddd">
-															<button class="btn btn-secondary">목록</button>
+															<button class="btn btn-secondary" onclick="location.href='/cbh/student/myclub/clubactivities/student_indexPage'">목록</button>
 
 														</div>
 													</div>

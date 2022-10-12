@@ -107,12 +107,13 @@ public class ClubActivitiesController {
 
 	//수정 페이지
 	@RequestMapping("student_modifyClubActPage")
-	public String student_modifyClubActPage(Model model, String club_act_no) {
-		
+	public String student_modifyClubActPage(Model model, String club_act_no, String club_no) {
+		int clubNo = Integer.parseInt(club_no);
 		
 		int clubActNo = Integer.parseInt(club_act_no);
 		
 		model.addAttribute("clubActNo", clubActNo);
+		model.addAttribute("clubNo", clubNo);
 		
 		
 		
@@ -123,7 +124,7 @@ public class ClubActivitiesController {
 	// 수정 프로세스
 	@RequestMapping("student_modifyClubActProcess")
 	public String student_modifyClubActProcess(Club_ActVO NewClubActVO) {
-		int clubActNo = NewClubActVO.getClub_no();
+		int clubActNo = NewClubActVO.getClub_act_no();
 		
 		
 		Club_ActVO originClubActVO = clubActivitiesService.getClubActByClubActNoAndClubNoForJustDataUse(clubActNo);
@@ -132,7 +133,7 @@ public class ClubActivitiesController {
 		
 		clubActivitiesService.modifyClubAct(originClubActVO);
 		
-		return "redirect:./student_indexPage?club_no=" + clubActNo;
+		return "redirect:./student_indexPage";
 	}
 
 	@RequestMapping("student_deleteClubActProcess")

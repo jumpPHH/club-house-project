@@ -163,8 +163,8 @@
 
 										<div class="row mt-5">
 											<div class="col" style="text-align: right">
-												<button class="btn"
-													style="background-color: gray; color: white; width: 15em; height: 3em;">뻐튼</button>
+												<button class="btn" 
+													 style="background-color: gray; color: white; width: 15em; height: 3em;"><a href="/cbh/student/establishingclub/student_establishingClubResultPage" style="color:white; text-decoration:none">취소</a></button>
 											</div>
 											<div class="col" style="text-align: left">
 												<button type="submit" class="btn"

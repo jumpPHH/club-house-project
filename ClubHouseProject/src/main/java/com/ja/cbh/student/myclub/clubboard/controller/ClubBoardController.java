@@ -115,7 +115,7 @@ public class ClubBoardController {
 		//ClubVO에 클럽 회장, 동아리 이름 , 동아리 신청 회원수, 동아리 신청일자 넣기
 		if(club_board_image[0] != null) {
 			for(MultipartFile file : club_board_image) {
-			String rootFilePath = "C:/uploadFiles/";
+			String rootFilePath = "C:/uploadFiles/ClubHouseProject\student";
 			String originalFilename = file.getOriginalFilename();
 			String randomName = UUID.randomUUID().toString();
 			randomName += "_" + System.currentTimeMillis();
@@ -163,21 +163,22 @@ public class ClubBoardController {
 
 	//수정 페이지
 	@RequestMapping("student_modifyClubBoardPage")
-	public String student_modifyClubBoardPage(Model model, String club_board_no) {
-		
+	public String student_modifyClubBoardPage(Model model, String club_board_no,String club_no) {
+		int clubNo = Integer.parseInt(club_no);
 		int clubBoardNo = Integer.parseInt(club_board_no);
 		Club_BoardVO clubBoardData = clubBoardService.getClubBoardByClubBoardNoAndClubNoForJustDataUse(clubBoardNo);
 		
 		model.addAttribute("clubBoardNo", clubBoardNo);
 		model.addAttribute("clubBoardData", clubBoardData);
-		
+		model.addAttribute("clubNo", clubNo);
 		return "student/myclub/clubboard/student_modifyClubBoardPage";
 	}
 	
 	// 수정 프로세스
 	@RequestMapping("student_modifyClubBoardProcess")
 	public String student_modifyClubBoardProcess(Club_BoardVO NewClubBoardVO) {
-		int clubBoardNo = NewClubBoardVO.getClub_no();
+		int clubBoardNo = NewClubBoardVO.getClub_board_no();
+	
 		
 		Club_BoardVO originClubBoardVO = clubBoardService.getClubBoardByClubBoardNoAndClubNoForJustDataUse(clubBoardNo);
 		originClubBoardVO.setClub_board_title(NewClubBoardVO.getClub_board_title());
@@ -185,7 +186,7 @@ public class ClubBoardController {
 		
 		clubBoardService.modifyClubBoard(originClubBoardVO);
 		
-		return "redirect:./student_indexPage?club_no=" + clubBoardNo;
+		return "redirect:./student_indexPage";
 	}
 	// 게시글 삭제 및 게시글 이미지 삭제.... 댓글 삭제도 넣어야함.
 	@RequestMapping("student_deleteClubBoardProcess")

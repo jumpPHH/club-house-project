@@ -53,9 +53,6 @@
 				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Toggle</small>
 		</button>
 		
-		<c:if test="${clubNo == 0}">
-			
-		</c:if>
 		
 	
 		<div class="row card box"
@@ -72,7 +69,7 @@
 								<div class="row"
 									style="justify-content: center; border-right: 2px solid #ededed">
 									<a
-										href="/cbh/student/myclub/clubactivities/student_indexPage?club_no=${clubNo }"
+										href="/cbh/student/myclub/clubactivities/student_indexPage"
 										class="col-auto px-3" 
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
 										동아리 활동내역 </a>
@@ -82,7 +79,7 @@
 							<div class="col text-center">
 								<div class="row" style="justify-content: center">
 									<a id="student_MemberShipFeeMgmtListPage"
-										href="/cbh/student/myclub/clubactivities/student_writeClubActPage?club_no=${clubNo}"
+										href="/cbh/student/myclub/clubactivities/student_writeClubActPage"
 										class="col-auto px-3"
 										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none; background-color: #bfc9e3; color: white !important; padding-left: 0px; padding-right: 0px; width: 60%;">
 										활동내역 작성 </a>
@@ -143,7 +140,7 @@
 												<!-- 동아리 설명 -->
 												<div class="row p-3">
 													<div class="col-3">
-														<span style="color: red;">*</span> 동아리 설명
+														<span style="color: red;">*</span> 내용
 													</div>
 													<div class="col">
 														<div class="row">
@@ -156,12 +153,11 @@
 												</div>
 											</div>
 										</div>
-										<input type="hidden" value="${clubNo }" name="club_no">
 
 										<div class="row mt-5">
 											<div class="col text_align_right" style="text-align:right;">
 												<button class="btn"
-													style="background-color: gray; color: white; width: 15em; height: 3em;">뻐튼</button>
+													style="background-color: gray; color: white; width: 15em; height: 3em;"><a href="/cbh/student/myclub/clubactivities/student_indexPage" style="color:white; text-decoration:none">취소</a></button>
 											</div>
 											<div class="col" style="text-align:left;">
 												<button type="submit" class="btn"

@@ -175,7 +175,7 @@
 									<div class="mt-5">제목</div>
 									<div class="row mt-1">
 										<div class="col">
-											<input type="text" placeholder="${clubBoardData.club_board_title }" class="form-control" name="club_board_title">
+											<input type="text" value="${clubBoardData.club_board_title }" class="form-control" name="club_board_title">
 										</div>
 									</div>
 									<!-- 글 내용 입력 칸 -->

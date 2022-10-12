@@ -126,7 +126,7 @@ public class EstablishingClubController {
 		
 		//ClubVO에 클럽 회장, 동아리 이름 , 동아리 신청 회원수, 동아리 신청일자 넣기
 		{
-		String rootFilePath = "C:/uploadFiles/";
+		String rootFilePath = "C:/uploadFiles/ClubHouseProject/student/";
 		
 		String originalFilename = title_image.getOriginalFilename();
 		String randomName = UUID.randomUUID().toString();
@@ -194,16 +194,20 @@ public class EstablishingClubController {
 		
 		Club_ApplVO clubApplData = establishingClubService.getApprovedClubApplByStudId(studData.getStud_id());
 		
+		int applNo = clubApplData.getClub_appl_no();
+		
 		clubVO.setClub_no(clubNo);
+		clubVO.setClub_category_no(1);
 		clubVO.setClub_appl_dt(clubApplData.getClub_appl_date());
 		clubVO.setClub_people_count(clubApplData.getClub_appl_people_count());
 		clubVO.setClub_name(clubApplData.getClub_name());
 		clubVO.setClub_boss(studData.getStud_id());
+		clubVO.setClub_appl_no(applNo);
 		
 		clubStudVO.setStud_id(studData.getStud_id());
 		clubStudVO.setClub_no(clubNo);
 		
-		int applNo = clubApplData.getClub_appl_no();
+		
 		
 		
 		establishingClubService.inputClubStudByStud(clubStudVO);
