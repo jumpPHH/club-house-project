@@ -77,7 +77,7 @@
 
 
 		<c:if test="${not empty MainData.IsBoss}">
-									<div class="row card box" style="width: 100%; height: 45px;">
+			<div class="row card box" style="width: 100%; height: 45px;">
 					<div class="dashboard-card-bottom">
 						<div class="row">
 
@@ -265,7 +265,7 @@
 			</c:if>
 		
 		<c:if test="${not empty MainData.IsNormalMember}">
-												<div class="row card box" style="width: 100%; height: 45px;">
+				<div class="row card box" style="width: 100%; height: 45px;">
 					<div class="dashboard-card-bottom">
 						<div class="row">
 
