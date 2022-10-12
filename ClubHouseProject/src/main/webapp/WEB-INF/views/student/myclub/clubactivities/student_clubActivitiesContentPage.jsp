@@ -41,14 +41,8 @@
 
 
 <script type="text/javascript">
-	var club_no = $
-	{
-		map.clubActData.club_no
-	};
-	var club_act_no = $
-	{
-		map.clubActData.club_act_no
-	};
+	var club_no = ${map.clubActData.club_no};
+	var club_act_no = ${	map.clubActData.club_act_no};
 	console.log(club_no);
 
 	function seeTheReason() {
@@ -140,7 +134,7 @@
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
 			<i class="fa fa-bars mr-2"></i><small
 				class="text-uppercase font-weight-bold"
-				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Toggle</small>
+				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">MENU</small>
 		</button>
 
 		<div class="row card box"
@@ -257,14 +251,14 @@
 																	style="border-right: 1px solid #dee2e6; text-align: center; padding: 2vh 0.5vh">다음
 																	글</th>
 																<td style="padding-left: 1em; padding: 2vh"><a
-																	href="./student_clubActivitiesContentPage?club_act_no=${map.NextPostActNo }">${map.NextPostTitle }</a></td>
+																	style="color:black; text-align:center;" href="./student_clubActivitiesContentPage?club_act_no=${map.NextPostActNo }&club_no=${map.clubActData.club_no}">${map.NextPostTitle }</a></td>
 															</tr>
 															<tr style="border-top: 1px solid #dee2e6">
 																<th
 																	style="border-right: 1px solid #dee2e6; text-align: center; padding: 2vh 0.5vh">이전
 																	글</th>
 																<td style="padding-left: 1em; padding: 2vh"><a
-																	href="./student_clubActivitiesContentPage?club_act_no=${map.PreviousPostActNo }">${map.PreviousPostTitle }</a></td>
+																	style="color:black; text-align:center;" href="./student_clubActivitiesContentPage?club_act_no=${map.PreviousPostActNo }&club_no=${map.clubActData.club_no}">${map.PreviousPostTitle }</a></td>
 															</tr>
 														</tbody>
 													</table>

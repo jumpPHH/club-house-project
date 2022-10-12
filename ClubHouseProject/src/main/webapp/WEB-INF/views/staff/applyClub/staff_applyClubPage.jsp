@@ -180,10 +180,10 @@
 			<div class="col-1">
 				동아리명
 			</div>
-			<div class="col">
-				<input name="searchWord" type="text">
+			<div class="col-3">
+				<input class="container-fluid form-control" name="searchWord" type="text">
 			</div>
-			<div class="col-7" style=""></div>
+			<div class="col-6" style=""></div>
 			<div class="col d-grid" style="">
 				<button class="btn btn-outline-primary py-1" type="submit"><i class="bi bi-search"></i>조회</button>
 			</div>
@@ -193,7 +193,7 @@
 		</div>
 	</form>
 		
-	<div class="row mt-4 box ms-1 p-4" style="height: 68vh;">
+	<div class="row mt-4 box ms-1 p-4" style="height: 65vh;">
 		<div class="col">
 			<table class="table table hover caption-top table-sm" >
 			  <thead style="background-color: rgb(252, 243, 243);">
@@ -216,14 +216,17 @@
 					      <td style="text-align: center"><fmt:formatDate value ="${clubApplData.club_ApplVO.club_appl_date }" pattern="yyyy년 MM월 dd일"/></td>
 					      <td id="state" style="text-align: center">
 					      <c:choose>
-					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state eq 0}">
-					      		승인
-					      	</c:when>
 					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state eq 1}">
-					      		반려
+					      		임시승인
 					      	</c:when>
 					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state eq 2}">
+					      		반려
+					      	</c:when>
+					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state eq 3}">
 					      		심사중
+					      	</c:when>
+					      	<c:when test="${clubApplData.club_ApplVO.club_appl_state eq 4}">
+					      		승인
 					      	</c:when>
 					      </c:choose>
 					      </td>
@@ -252,7 +255,7 @@
 			</div>
 			<br>
 			<div class="row" >
-				<div class="col-3" style="font-weight: bold">신청인:</div>
+				<div class="col-3" style="font-weight: bold">학번:</div>
 				<div class="col">
 					 ${applData.applVO.stud_id }
 				</div>

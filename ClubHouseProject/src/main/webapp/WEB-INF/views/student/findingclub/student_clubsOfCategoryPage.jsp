@@ -246,7 +246,7 @@ img {
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
 			<i class="fa fa-bars mr-2"></i><small
 				class="text-uppercase font-weight-bold"
-				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Toggle</small>
+				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">MENU</small>
 		</button>
 		
 		<div class="row card box"
@@ -337,7 +337,7 @@ img {
 									<!-- 동아리 검색 -->
 									<div class="row">
 										<div class="col" style="margin-top: 6vh; text-align: right;">
-											<input type="text" placeholder="동아리검색" class="searchWord">
+											<input type="text" placeholder="동아리 제목을 입력해주세요." class="searchWord">
 											<button type="submit" onclick="searchClub()">검색</button>
 
 										</div>

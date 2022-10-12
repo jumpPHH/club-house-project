@@ -246,13 +246,13 @@ thead{
 				학번(이름)
 			</div>
 			<div class="col-3">
-				<input type="text">
+				<input class="container-fluid form-control" type="text">
 			</div>
 			<div class="col-1">
 				학적상태
 			</div>
 			<div class="col-1">
-				<select name="searchType" >
+				<select class=" form-select" name="searchType" >
 					<option value="attending">재학</option>
 					<option value="absence">휴학</option>
 					<option value="drop">제적</option>
@@ -263,7 +263,7 @@ thead{
 				소속학과
 			</div>
 			<div class="col-3">
-				<input type="text">
+				<input class="container-fluid form-control" type="text">
 			</div>
 		
 			<div class="col d-grid" style="">
@@ -285,7 +285,7 @@ thead{
 <!-- 			</div> -->
 <!-- 		</div> -->
 		<!-- 학생정보 -->
-			<div class="row mt-4 ms-1 box p-4" id="stud" style="height: 75vh; overflow: auto;">
+			<div class="row mt-4 ms-1 box p-4" id="stud" style="height: 70vh; overflow: auto;">
 				<div class="col">
 					<table class="table table-sm table-hover">
 						<thead style="background-color: rgb(252, 243, 243);">

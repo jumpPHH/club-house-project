@@ -236,7 +236,7 @@
 															<h3>동아리 활동 내역</h3>
 														</div>
 														<div class="col" style="text-align: right;">
-															전체보기<i class="bi bi-arrow-right-circle-fill"
+															<a href="/cbh/student/myclub/clubactivities/student_indexPage?club_no=${Maindata.MyclubInfo.club_no }"></a> 전체보기<i class="bi bi-arrow-right-circle-fill"
 																style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
 														</div>
 

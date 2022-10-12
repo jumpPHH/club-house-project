@@ -27,17 +27,21 @@ public class ClubActivitesServiceImpl {
 	}
 	
 	// 특정 글의 내용 페이지
-	public HashMap<String, Object> getClubActivityByClubActNoAndClubNo(int clubActNo, int clubNo) {
+	public HashMap<String, Object> getClubActivityByClubActNoAndClubNo(@Param(value="clubActNo") int clubActNo,@Param(value="clubNo") int clubNo) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		Club_ActVO clubActData = clubActivitiesSQLMapper.selectClubActivityByClubActNoAndClubNo(clubActNo,clubNo);
-		
+		System.out.println("clubActivities Service : " + clubActData.getClub_act_title());
+	 
 		
 		Club_ActVO[] forPreviousAndNextPost = clubActivitiesSQLMapper.selectClubActivitiesListForContentPageByClubActNo(clubNo);
 		// 이전 글 다음 글 제목과 club_act_no를 따기 위한 코드
 		
+		System.out.println("이거length다" + forPreviousAndNextPost.length);
+		
+		
 		for(int i = 0 ; i < forPreviousAndNextPost.length ; i++) {
-			System.out.println();
+			System.out.println("이전글 다음 글 위한 for문에 들어옴.");
 
 			if(forPreviousAndNextPost[i].getClub_act_no() == clubActNo) {
 				
@@ -79,6 +83,7 @@ public class ClubActivitesServiceImpl {
 			}
 				
 		}
+		System.out.println(map.get("NextPostTitle"));
 		
 		//HTML escape 특수문자 처리.. <br> &npsp;
 		String content = clubActData.getClub_act_content();

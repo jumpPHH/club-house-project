@@ -101,13 +101,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	<jsp:include
 		page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
 <!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
-<div class="page-content p-5" id="content">
+<div class="page-content p-3" id="content">
 	<!-- 토글 버튼 -->
 	<button id="sidebarCollapse" type="button"
 		class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
 		<i class="fa fa-bars mr-2"></i><small
 			class="text-uppercase font-weight-bold"
-			style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Toggle</small>
+			style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">MENU</small>
 	</button>
 	
 	<div class="row card box"
@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
 														<div class="row pt-4">
 															<div class="col-4"></div>
 															<div class="col category_box_content"
-																style="color: #919191"></div>
+																style="color: #919191">학교에서도 종교생활을 하고 싶다면!</div>
 														</div>
 														<div class="row mt-4">
 															<div class="col-4"></div>
@@ -410,7 +410,7 @@ document.addEventListener("DOMContentLoaded", function () {
 														<div class="row pt-4">
 															<div class="col-4"></div>
 															<div class="col category_box_content"
-																style="color: #919191"></div>
+																style="color: #919191">그 외의 동아리들</div>
 														</div>
 														<div class="row mt-4">
 															<div class="col-4"></div>

@@ -35,6 +35,16 @@ th{
 
 td{
 	text-align: center;
+	 
+}
+
+.title{
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .form-check-input:checked {
@@ -148,16 +158,16 @@ td{
 				공지구분
 			</div>
 			<div class="col-2">
-				<select name="noti_div_no">
-					<option selected value="0">일반공지</option>
-					<option value="1">긴급공지</option>					
+				<select name="noti_div_no" class=" form-select">
+					<option selected value="1">일반공지</option>
+					<option value="2">긴급공지</option>					
 				</select>
 			</div>
 			<div class="col-1">
 				제목
 			</div>
 			<div class="col">
-				<input name="searchWord" id="search" type="text">
+				<input class="container-fluid form-control" name="searchWord" id="search" type="text">
 			</div>
 			<div class="col-1" style="">
 				<button class="btn btn-outline-primary py-1" type="submit"><i class="bi bi-search"></i>조회</button>
@@ -172,9 +182,9 @@ td{
 		</div>
 		</form>
 
-		<div class="row mt-4 ms-1 box p-4" style="height: 70vh;">
+		<div class="row mt-4 ms-1 box p-4" style="height: 65vh;">
 				<div class="col">
-					<table class="table table hover caption-top table-sm" >
+					<table class="table table hover caption-top table-sm">
 						<thead style="background-color: rgb(252, 243, 243);">
 							<tr>
 								<th class="col-1" style="text-align: left;"><input id="checkAll" onclick="checkAll()" type="checkbox" class="form-check-input" value="전체체크"></th>
@@ -192,12 +202,12 @@ td{
 									<td style="text-align: left;"><input name="check" onclick="check()" type="checkbox"  class="check form-check-input" value="${noticeData.noticeVO.noti_no }"></td>
 									<td>${noticeData.noticeVO.noti_no }</td>
 									<td>${noticeData.staffVO.staff_name}</td>
-									<td><a id="title" href="./readNoticePage?noticeNo=${noticeData.noticeVO.noti_no }">${noticeData.noticeVO.noti_title }</a></td>
+									<td><a id="title" class="title" href="./readNoticePage?noticeNo=${noticeData.noticeVO.noti_no }">${noticeData.noticeVO.noti_title }</a></td>
 									<c:choose>
-										<c:when test="${noticeData.noticeVO.noti_div_no == 0 }">
+										<c:when test="${noticeData.noticeVO.noti_div_no == 1 }">
 											<td>일반공지</td>
 										</c:when>
-										<c:when test="${noticeData.noticeVO.noti_div_no == 1 }">
+										<c:when test="${noticeData.noticeVO.noti_div_no == 2 }">
 											<td>긴급공지</td>
 										</c:when>
 									</c:choose>

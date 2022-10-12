@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
 			<i class="fa fa-bars mr-2"></i><small
 				class="text-uppercase font-weight-bold"
-				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Toggle</small>
+				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">MENU</small>
 		</button>
 
 		<div class="row card box"
@@ -185,12 +185,12 @@ document.addEventListener("DOMContentLoaded", function () {
 													<div class="row" style="margin-top: 1em; font-size: 1.3em;">
 														<div class="col">
 															<span style="font-weight: bold; margin-right: 2em;">동아리
-																설립일자</span> <span style="color: gray;"><fmt:formatDate
+																설립일자</span> <span style="color: gray; font-size:0.9em;"><fmt:formatDate
 																	value="${clubData.club_estbl_dt }" pattern="yyyy-MM-dd" /></span>
 														</div>
 														<div class="col">
 															<span style="font-weight: bold; margin-right: 2em;">동아리
-																회장</span> <span style="color: gray;">${clubData.club_boss }</span>
+																회장</span> <span style="color: gray; font-size:0.9em;">${clubData.club_boss }</span>
 														</div>
 													</div>
 													<div class="row" style="margin-top: 1em; font-size: 1.3em">
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
 															<span style="font-weight: bold; margin-right: 2em;"><span>연</span><span
 																style="margin-left: 1.9em;">락</span><span
 																style="margin-left: 1.9em;">처</span></span> <span
-																style="color: gray; margin-left: 3px">${clubBossData.stud_phone}</span>
+																style="color: gray; margin-left: 3px; font-size:0.9em">${clubBossData.stud_phone}</span>
 														</div>
 														<div class="col"></div>
 													</div>
