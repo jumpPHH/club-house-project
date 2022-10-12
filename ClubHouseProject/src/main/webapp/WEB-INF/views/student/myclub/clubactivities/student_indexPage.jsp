@@ -112,59 +112,42 @@
 
 		<c:if test="${not empty MainData.IsBoss}">
 			<div class="row card box"
-				style="width: 100%; height: 45px; margin-left: 0.1em; margin-bottom: 1em;">
-				<div class="dashboard-card-bottom">
-					<div class="row">
+			style="width: 100%; height: 45px; margin-left: 0.1em; margin-bottom: 1em;">
+			<div class="dashboard-card-bottom">
+				<div class="row">
 
-						<div class="col-1"></div>
+					<div class="col-1"></div>
 
-						<div class="col">
+					<div class="col">
 
-
-							<!-- 여기다 작성하세요 -->
-							<div class="row">
-								<div class="col" id="content">
-									<div class="row my-3">
-										<div class="col">
-											<form action="./student_indexPage?club_no=${clubNo }"
-												method="post">
-												<div class="row">
-													<div class="col" style="text-align: right">
-														<div style="margin-right: 1em; display: inline-block">
-															<input type="text" name="searchWord" style="width: 100%">
-														</div>
-														<div style="display: inline-block">
-															<button class="btn btn-primary">검색</button>
-
-							<div class="row ps-1 p-2 mb-2">
-								<div class="col text-center">
-									<div class="row"
-										style="justify-content: center; border-right: 2px solid #ededed">
-										<a
-											href="/cbh/student/myclub/clubactivities/student_indexPage?club_no=${map.clubActData.club_no }"
-											class="col-auto px-3"
-											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none; background-color: #bfc9e3; color: white !important; padding-left: 0px; padding-right: 0px; width: 60%;">
-											동아리 활동내역 </a>
-									</div>
-								</div>
-
-								<div class="col text-center">
-									<div class="row" style="justify-content: center">
-										<a id="student_MemberShipFeeMgmtListPage"
-											href="/cbh/student/myclub/clubactivities/student_writeClubActPage?club_no=${map.clubActData.club_no }"
-											class="col-auto px-3"
-											style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
-											활동내역 작성 </a>
-									</div>
+						<div class="row ps-1 p-2 mb-2">
+							<div class="col text-center">
+								<div class="row"
+									style="justify-content: center; border-right: 2px solid #ededed">
+									<a
+										href="/cbh/student/myclub/clubactivities/student_indexPage?club_no=${map.clubActData.club_no }"
+										class="col-auto px-3"
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none; background-color: #bfc9e3; color: white !important; padding-left: 0px; padding-right: 0px; width: 60%;">
+										동아리 활동내역 </a>
 								</div>
 							</div>
 
+							<div class="col text-center">
+								<div class="row" style="justify-content: center">
+									<a id="student_MemberShipFeeMgmtListPage"
+										href="/cbh/student/myclub/clubactivities/student_writeClubActPage?club_no=${map.clubActData.club_no }"
+										class="col-auto px-3"
+										style="cursor: pointer; border-radius: 2rem; color: #4140cb; font-weight: bold; text-decoration: none;">
+										활동내역 작성 </a>
+								</div>
+							</div>
 						</div>
 
-						<div class="col-1"></div>
 					</div>
+					<div class="col-1"></div>
 				</div>
 			</div>
+		</div>
 
 			<div class="card"
 				style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important; padding: 30px;">
@@ -184,7 +167,6 @@
 													method="post">
 													<div class="row">
 														<div class="col" style="text-align: right">
-															<i class="bi bi-search" style="font-size: 1em;"></i>
 															<div style="margin-right: 1em; display: inline-block">
 																<input type="text" name="searchWord" style="width: 100%">
 															</div>

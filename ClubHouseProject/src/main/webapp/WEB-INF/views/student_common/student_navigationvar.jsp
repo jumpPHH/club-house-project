@@ -20,9 +20,6 @@ $(function() {
 	
 	
 	
-	window.addEventListener("DOMContentLoaded", function(){
-		getClubNo();
-	});
 
 function ul(index) {
 	console.log('click!' + index)

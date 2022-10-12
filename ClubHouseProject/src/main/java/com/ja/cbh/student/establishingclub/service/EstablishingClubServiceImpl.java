@@ -39,7 +39,7 @@ public class EstablishingClubServiceImpl {
 	//클럽 정보 넣기
 	public void inputClub(@Param(value="clubVO") ClubVO clubVO, @Param(value="applNo") int applNo) {
 		establishingClubSQLMapper.insertClub(clubVO);
-		establishingClubSQLMapper.updateClubApplBy(applNo);
+		establishingClubSQLMapper.updateClubApplStateByApplNo(applNo);
 	}
 	
 	// 특정 아이디가 신청한 클럽이 있는지 확인용
@@ -60,6 +60,12 @@ public class EstablishingClubServiceImpl {
 	public void inputClubStudByStud(Club_StudVO clubStudVO) {
 		establishingClubSQLMapper.insertClubStudByStud(clubStudVO);
 		
+	}
+	
+	//클럽 pk생성
+	public int createClubPk() {
+		int clubNo  = establishingClubSQLMapper.createClubPk();
+		return clubNo;
 	}
 	
 

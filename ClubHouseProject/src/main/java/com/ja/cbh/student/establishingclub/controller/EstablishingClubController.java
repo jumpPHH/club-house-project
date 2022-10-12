@@ -122,6 +122,8 @@ public class EstablishingClubController {
 	
 	@RequestMapping("student_writeClubInfoProcess")
 	public String student_writeClubInfoProcess(ClubVO clubVO, Model model, HttpSession session, @Param("title_image")MultipartFile title_image, @Param("club_dscrp_image")MultipartFile dscrp_image) {
+		int clubNo = establishingClubService.createClubPk();
+		
 		//ClubVO에 클럽 회장, 동아리 이름 , 동아리 신청 회원수, 동아리 신청일자 넣기
 		{
 		String rootFilePath = "C:/uploadFiles/";
@@ -192,16 +194,17 @@ public class EstablishingClubController {
 		
 		Club_ApplVO clubApplData = establishingClubService.getApprovedClubApplByStudId(studData.getStud_id());
 		
-		
+		clubVO.setClub_no(clubNo);
 		clubVO.setClub_appl_dt(clubApplData.getClub_appl_date());
 		clubVO.setClub_people_count(clubApplData.getClub_appl_people_count());
 		clubVO.setClub_name(clubApplData.getClub_name());
 		clubVO.setClub_boss(studData.getStud_id());
-		System.out.println(clubVO.getClub_boss());
 		
+		clubStudVO.setStud_id(studData.getStud_id());
+		clubStudVO.setClub_no(clubNo);
 		
 		int applNo = clubApplData.getClub_appl_no();
-		clubStudVO.setStud_id(studData.getStud_id());
+		
 		
 		establishingClubService.inputClubStudByStud(clubStudVO);
 		establishingClubService.inputClub(clubVO,applNo);
