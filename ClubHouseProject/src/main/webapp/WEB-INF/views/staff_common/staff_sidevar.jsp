@@ -161,7 +161,7 @@ $(function() {
   <ul class="nav flex-column ps-3 mb-0">
     <li class="nav-item ps-1" id="StudentSearchPage">
       <a href="/cbh/staff/studentSearch/staff_StudentSearchPage" class="nav-link text-dark font-italic">
-                <i class=" bi bi-pencil-square me-2" style="color: #FA5858"></i>
+                <i class=" bi bi-search me-2" style="color: #FA5858"></i>
                 학생조회
             </a>
     </li>
@@ -179,8 +179,8 @@ $(function() {
   <ul class="nav flex-column ps-3 mb-0">
  <li class="nav-item ps-1" id="ApplyClubPage">
       <a href="/cbh/staff/applyClub/staff_applyClubPage" class="nav-link text-dark font-italic">
-                <i class=" bi bi-house-door-fill me-2" style="color: #FA5858"></i>
-            	동아리신청
+                <i class=" bi bi-file-check me-2" style="color: #FA5858"></i>
+            	동아리신청접수
             </a>
     </li>
 

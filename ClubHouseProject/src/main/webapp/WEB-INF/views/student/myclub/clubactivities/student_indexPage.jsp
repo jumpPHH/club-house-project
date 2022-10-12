@@ -82,6 +82,28 @@
 				class="text-uppercase font-weight-bold"
 				style="box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;">Menu</small>
 		</button>
+		
+		<c:if test="">
+		<link rel="stylesheet" href="/cbh/resources/css/status02.css">
+
+				<!-- Google font -->
+				<link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
+				
+				<div class="row">
+					<div class="col-1"></div>
+						<div class="col">
+							<div id="notfound">
+							<div class="notfound">
+								<div class="notfound-404"></div>
+								<h1 style="font-size: 45px;">동아리 미가입/개설</h1>
+								<h2 style="font-size: 20px;">동아리 미가입/개설 되어있지 않습니다.</h2>
+								<p>죄송합니다. 현재 서비스를 이용하시려면 동아리 가입을 하거나 개설을 해주세요.</p>						
+							</div>
+						</div>
+						</div>
+					<div class="col-1"></div>	
+				</div>
+				</c:if>
 
 		<div class="row card box"
 			style="width: 100%; height: 45px; margin-left: 0.1em; margin-bottom: 1em;">
@@ -250,6 +272,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
 </body>
 </html>

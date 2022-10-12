@@ -40,17 +40,17 @@
 		</div>
 		
 		
-<div class="row mt-4 box ms-1 p-4" style="height: 75vh">
+<div class="row mt-4 box ms-1 p-4" style="height: 70vh; overflow: auto;">
 	<div class="col">
 	
 		<div class="row" style="padding: 2vh;">
 			<div class="col-2">공지구분</div>
 			<div class="col">
 				<c:choose>
-					<c:when test="${notiData.noticeVO.noti_div_no == 0 }">
+					<c:when test="${notiData.noticeVO.noti_div_no == 1 }">
 						<td>일반공지</td>
 					</c:when>
-					<c:when test="${notiData.noticeVO.noti_div_no == 1 }">
+					<c:when test="${notiData.noticeVO.noti_div_no == 2 }">
 						<td>긴급공지</td>
 					</c:when>
 				</c:choose>

@@ -29,13 +29,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				SELECT * FROM CBH_NOTI
 				<if test="searchWord != null">
 					<choose>
-						<when test="noti_div_no == 0">
-							WHERE NOTI_DIV_NO = 0
+						<when test="noti_div_no == 1">
+							WHERE NOTI_DIV_NO = 1
 							AND NOTI_TITLE LIKE '%' || #{searchWord} || '%'
 						</when>
 
-						<when test="noti_div_no == 1">
-							WHERE NOTI_DIV_NO = 1
+						<when test="noti_div_no == 2">
+							WHERE NOTI_DIV_NO = 2
 							AND NOTI_TITLE LIKE '%' || #{searchWord} || '%'
 						</when>
 					</choose>

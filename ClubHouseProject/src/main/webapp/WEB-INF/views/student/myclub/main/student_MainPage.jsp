@@ -16,7 +16,7 @@
 
 	<jsp:include
 		page="/WEB-INF/views/student_common/student_navigationvar.jsp"></jsp:include>
-		
+
 	<!-- 페이지 내용 부분 시작 (이 부분만 카피해서 사용할것. 카피 후 삭제) -->
 	<div class="page-content p-5" id="content">
 		<!-- 토글 버튼 -->
@@ -28,27 +28,28 @@
 
 		<c:if test="${empty MainData.IsBoss}">
 			<c:if test="${empty MainData.IsNormalMember}">
-			 	<link rel="stylesheet" href="/cbh/resources/css/status02.css">
+				<link rel="stylesheet" href="/cbh/resources/css/status02.css">
 
 				<!-- Google font -->
-				<link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
-				
+				<link href="https://fonts.googleapis.com/css?family=Nunito:400,700"
+					rel="stylesheet">
+
 				<div class="row">
 					<div class="col-1"></div>
-						<div class="col">
-							<div id="notfound">
+					<div class="col">
+						<div id="notfound">
 							<div class="notfound">
 								<div class="notfound-404"></div>
 								<h1 style="font-size: 45px;">동아리 미가입/개설</h1>
 								<h2 style="font-size: 20px;">동아리 미가입/개설 되어있지 않습니다.</h2>
-								<p>죄송합니다. 현재 서비스를 이용하시려면 동아리 가입을 하거나 개설을 해주세요.</p>						
+								<p>죄송합니다. 현재 서비스를 이용하시려면 동아리 가입을 하거나 개설을 해주세요.</p>
 							</div>
 						</div>
-						</div>
-					<div class="col-1"></div>	
+					</div>
+					<div class="col-1"></div>
 				</div>
-				</c:if>
-		</c:if>	
+			</c:if>
+		</c:if>
 
 		<c:if test="${not empty MainData.IsBoss}">
 			<div class="row">
@@ -128,6 +129,169 @@
 					</div>
 
 				</div>
+
+				<c:if test="${not empty MainBoardData}">
+					<c:if test="${not empty MainActData}">
+						<div class="row my-3">
+
+							<div class="col">
+
+								<div class="card box" style="width: auto; height: 500px;">
+
+									<div class="dashboard-card-bottom">
+
+										<!-- 실제 내용 -->
+										<div class="container-fluid">
+
+											<div class="row">
+												<div class="col-1"></div>
+												<div class="col">
+													<div class="row my-3">
+														<div class="col">
+															<div class="row my-4">
+																<div class="col">
+																	<h3>동아리 활동 내역</h3>
+																</div>
+																<div class="col" style="text-align: right;">
+																	<a
+																		href="/cbh/student/myclub/clubactivities/student_indexPage?club_no=${Maindata.MyclubInfo.club_no }"></a>
+																	전체보기<i class="bi bi-arrow-right-circle-fill"
+																		style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
+																</div>
+
+															</div>
+
+															<div class="row my-2">
+
+																<table class="table">
+																	<thead>
+																		<tr>
+																			<th scope="col">#</th>
+																			<th scope="col">제목</th>
+																			<th scope="col">글쓴이</th>
+																			<th scope="col">작성일</th>
+																			<th scope="col">조회수</th>
+																		</tr>
+																	</thead>
+
+																	<c:forEach items="${MainActData}" begin="0" end="4"
+																		var="MainActData">
+																		<tbody>
+																			<tr>
+																				<th scope="row">${MainActData.Club_ActVoList.club_act_no }</th>
+																				<td
+																					style="width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block;">${MainActData.Club_ActVoList.club_act_title }</td>
+																				<td>${MainActData.Club_ActStudVoList.stud_name }</td>
+																				<td><fmt:formatDate
+																						value="${MainActData.Club_ActVoList.club_act_date }"
+																						pattern="yy.MM.dd" /></td>
+																				<td>${MainActData.Club_ActVoList.club_readcount }</td>
+																			</tr>
+																		</tbody>
+																	</c:forEach>
+
+																</table>
+
+
+															</div>
+														</div>
+													</div>
+
+
+												</div>
+
+												<div class="col-1"></div>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+
+							<div class="col">
+
+								<div class="card box" style="width: auto; height: 500px;">
+
+									<div class="dashboard-card-bottom">
+										<!-- 실제 내용 -->
+
+										<div class="container-fluid">
+
+											<div class="row">
+
+												<div class="col-1"></div>
+
+												<div class="col">
+
+													<div class="row my-3">
+
+														<div class="col">
+
+															<div class="row my-4">
+																<div class="col">
+																	<h3>동아리 자유 게시판</h3>
+																</div>
+																<div class="col" style="text-align: right;">
+																	전체보기<i class="bi bi-arrow-right-circle-fill"
+																		style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
+																</div>
+															</div>
+
+															<div class="row my-2">
+
+																<table class="table">
+																	<thead>
+																		<tr>
+																			<th scope="col">#</th>
+																			<th scope="col">제목</th>
+																			<th scope="col">글쓴이</th>
+																			<th scope="col">작성일</th>
+																			<th scope="col">조회수</th>
+																		</tr>
+																	</thead>
+
+																	<c:forEach items="${MainBoardData}" begin="0" end="4"
+																		var="MainBoardData">
+																		<tbody>
+																			<tr>
+																				<th scope="row">${MainBoardData.Club_BoardVoList.club_board_no }</th>
+																				<td
+																					style="width: 230px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block;">${MainBoardData.Club_BoardVoList.club_board_title }</td>
+																				<td>${MainBoardData.Club_BoardStudVoList.stud_name}</td>
+																				<td><fmt:formatDate
+																						value="${MainBoardData.Club_BoardVoList.club_board_writedate }"
+																						pattern="yy.MM.dd" /></td>
+																				<td>${MainBoardData.Club_BoardVoList.club_board_readcount }</td>
+																			</tr>
+																		</tbody>
+																	</c:forEach>
+																</table>
+
+															</div>
+
+														</div>
+
+													</div>
+
+												</div>
+
+												<div class="col-1"></div>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</c:if>
+				</c:if>
 			</div>
 		</c:if>
 
@@ -211,119 +375,117 @@
 
 				</div>
 			</div>
-		</c:if>
 
-		<c:if test="${not empty MainBoardData}">
-			<c:if test="${not empty MainActData}">
-				<div class="row my-3">
-				
-					<div class="col">
-					
-						<div class="card box" style="width: auto; height: 500px;">
-						
-							<div class="dashboard-card-bottom">
-							
-								<!-- 실제 내용 -->
-								<div class="container-fluid">
-								
-									<div class="row">
-										<div class="col-1"></div>
-										<div class="col">
-											<div class="row my-3">
-												<div class="col">
-													<div class="row my-4">
-														<div class="col">
-															<h3>동아리 활동 내역</h3>
-														</div>
-														<div class="col" style="text-align: right;">
-															<a href="/cbh/student/myclub/clubactivities/student_indexPage?club_no=${Maindata.MyclubInfo.club_no }"></a> 전체보기<i class="bi bi-arrow-right-circle-fill"
-																style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
-														</div>
+			<div class="row my-3">
 
+				<div class="col">
+
+					<div class="card box" style="width: auto; height: 500px;">
+
+						<div class="dashboard-card-bottom">
+
+							<!-- 실제 내용 -->
+							<div class="container-fluid">
+
+								<div class="row">
+									<div class="col-1"></div>
+									<div class="col">
+										<div class="row my-3">
+											<div class="col">
+												<div class="row my-4">
+													<div class="col">
+														<h3>동아리 활동 내역</h3>
+													</div>
+													<div class="col" style="text-align: right;">
+														<a
+															href="/cbh/student/myclub/clubactivities/student_indexPage?club_no=${Maindata.MyclubInfo.club_no }"></a>
+														전체보기<i class="bi bi-arrow-right-circle-fill"
+															style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
 													</div>
 
-													<div class="row my-2">
-
-														<table class="table">
-															<thead>
-																<tr>
-																	<th scope="col">#</th>
-																	<th scope="col">제목</th>
-																	<th scope="col">글쓴이</th>
-																	<th scope="col">작성일</th>
-																	<th scope="col">조회수</th>
-																</tr>
-															</thead>
-
-															<c:forEach items="${MainActData}" begin="0" end="4"
-																var="MainActData">
-																<tbody>
-																	<tr>
-																		<th scope="row">${MainActData.Club_ActVoList.club_act_no }</th>
-																		<td
-																			style="width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block;">${MainActData.Club_ActVoList.club_act_title }</td>
-																		<td>${MainActData.Club_ActStudVoList.stud_name }</td>
-																		<td><fmt:formatDate
-																				value="${MainActData.Club_ActVoList.club_act_date }"
-																				pattern="yy.MM.dd" /></td>
-																		<td>${MainActData.Club_ActVoList.club_readcount }</td>
-																	</tr>
-																</tbody>
-															</c:forEach>
-
-														</table>
-
-
-													</div>
 												</div>
-											</div>
-
-
-										</div>
-										
-										<div class="col-1"></div>
-									</div>
-									
-								</div>
-								
-							</div>
-							
-						</div>
-						
-					</div>
-					
-					
-					<div class="col">
-					
-						<div class="card box" style="width: auto; height: 500px;">
-						
-							<div class="dashboard-card-bottom">
-								<!-- 실제 내용 -->
-								
-								<div class="container-fluid">
-								
-									<div class="row">
-									
-										<div class="col-1"></div>
-										
-										<div class="col">
-										
-											<div class="row my-3">
-											
-												<div class="col">
-												
-													<div class="row my-4">
-														<div class="col">
-															<h3>동아리 자유 게시판</h3>
-														</div>
-														<div class="col" style="text-align: right;">
-															전체보기<i class="bi bi-arrow-right-circle-fill"
-																style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
-														</div>
-													</div>
 
 												<div class="row my-2">
-												
+
+													<table class="table">
+														<thead>
+															<tr>
+																<th scope="col">#</th>
+																<th scope="col">제목</th>
+																<th scope="col">글쓴이</th>
+																<th scope="col">작성일</th>
+																<th scope="col">조회수</th>
+															</tr>
+														</thead>
+
+														<c:forEach items="${MainActData}" begin="0" end="4"
+															var="MainActData">
+															<tbody>
+																<tr>
+																	<th scope="row">${MainActData.Club_ActVoList.club_act_no }</th>
+																	<td
+																		style="width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block;">${MainActData.Club_ActVoList.club_act_title }</td>
+																	<td>${MainActData.Club_ActStudVoList.stud_name }</td>
+																	<td><fmt:formatDate
+																			value="${MainActData.Club_ActVoList.club_act_date }"
+																			pattern="yy.MM.dd" /></td>
+																	<td>${MainActData.Club_ActVoList.club_readcount }</td>
+																</tr>
+															</tbody>
+														</c:forEach>
+
+													</table>
+
+
+												</div>
+											</div>
+										</div>
+
+
+									</div>
+
+									<div class="col-1"></div>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="col">
+
+					<div class="card box" style="width: auto; height: 500px;">
+
+						<div class="dashboard-card-bottom">
+							<!-- 실제 내용 -->
+
+							<div class="container-fluid">
+
+								<div class="row">
+
+									<div class="col-1"></div>
+
+									<div class="col">
+
+										<div class="row my-3">
+
+											<div class="col">
+
+												<div class="row my-4">
+													<div class="col">
+														<h3>동아리 자유 게시판</h3>
+													</div>
+													<div class="col" style="text-align: right;">
+														전체보기<i class="bi bi-arrow-right-circle-fill"
+															style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
+													</div>
+												</div>
+
+												<div class="row my-2">
+
 													<table class="table">
 														<thead>
 															<tr>
@@ -351,30 +513,21 @@
 															</tbody>
 														</c:forEach>
 													</table>
-													
 												</div>
-												
 											</div>
-
 										</div>
-											
 									</div>
-									
 									<div class="col-1"></div>
 								</div>
-								
 							</div>
-							
 						</div>
-						
 					</div>
-					
 				</div>
-				</div>
-			</c:if>
+			</div>
 		</c:if>
 	</div>
-		<script type="text/javascript"
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

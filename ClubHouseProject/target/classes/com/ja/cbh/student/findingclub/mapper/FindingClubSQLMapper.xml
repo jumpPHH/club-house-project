@@ -30,10 +30,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE CLUB_NO = #{clubNo}
 	</select>
 	
-	<select id="selectClubStudByStudId" resultType="com.ja.cbh.vo.StudVO">
+	<select id="selectStudByStudId" resultType="com.ja.cbh.vo.StudVO">
 		SELECT * FROM CBH_STUD
 		WHERE STUD_ID = #{studId}
 	</select>
+	
+	<select id="selectClubStudByStudId" resultType="com.ja.cbh.vo.Club_StudVO">
+		SELECT * FROM CBH_CLUB_STUD
+		WHERE STUD_ID = #{studId}
+	</select>
+	
 	
 	<insert id="insertClubStud">
 		INSERT INTO CBH_CLUB_STUD VALUES(
@@ -41,6 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{stud_id},
 			#{club_no},
 			'1',
+			'2011-11-11',
 			'2011-11-11',
 			'2011-11-11',
 			'기타사항',
