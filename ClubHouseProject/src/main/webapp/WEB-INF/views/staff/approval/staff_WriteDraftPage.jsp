@@ -67,7 +67,7 @@ document.addEventListener('focusin', (e) => {
 function doSubmit(){
 		if(document.getElementById("STAFF_FNL_ID_select").value){
 		}else{
-			alert("최종결재자는 필수입니다.")
+			swal("","최종결재자는 필수입니다.","info")
 			return;
 		}
 		
@@ -76,12 +76,13 @@ function doSubmit(){
 		swal("","작성완료.","success")
 	}
 	
-	function selectApvDiv(e,NAME){
-		var NAME = NAME;
+	function selectApvDiv(e,NO){
 		$(".divisionTab").removeClass("selectDiv");
 		if(e){
 			e.classList.add("selectDiv")
 		}
+		var APV_DIV_NO = document.getElementById("APV_DIV_NO");
+		APV_DIV_NO.setAttribute("value",""+NO+"");
 		
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
 		xhr.onreadystatechange = function () {
@@ -99,7 +100,7 @@ function doSubmit(){
 		}
 		xhr.open("post","../restApproval/getApvForm");
 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xhr.send("NAME=" + NAME); 	
+		xhr.send("NO=" + NO); 	
 	}
 	window.addEventListener('DOMContentLoaded', function(){
 		var navtab = document.getElementById("WriteDraftPage")
@@ -135,8 +136,8 @@ function doSubmit(){
 							<div class="col text-center" style=" border-right: 2px solid #ededed;">
 							
 								<div class="row" style="justify-content: center">
-								<div id="start${i.index }"class="col-auto px-3 divisionTab" style="cursor: pointer; border-radius: 2rem;" onclick="selectApvDiv(this,'${ApvDiv.APV_DIV_NAME}')">
-							${ApvDiv.APV_DIV_NAME } <span class="no" style="display: none;">${ApvDiv.APV_DIV_NO }</span>
+								<div id="start${i.index }"class="col-auto px-3 divisionTab" style="cursor: pointer; border-radius: 2rem;" onclick="selectApvDiv(this,'${ApvDiv.APV_DIV_NO}')">
+							${ApvDiv.APV_DIV_NAME }
 								</div>
 								</div>
 							
@@ -147,8 +148,8 @@ function doSubmit(){
 							<c:otherwise>
 							<div class="col text-center" >
 							<div class="row" style="justify-content: center">
-								<div class="col-auto px-3 divisionTab" style="cursor: pointer; border-radius: 2rem;" onclick="selectApvDiv(this,'${ApvDiv.APV_DIV_NAME}')">
-							${ApvDiv.APV_DIV_NAME } <span class="no" style="display: none;">${ApvDiv.APV_DIV_NO }</span>
+								<div class="col-auto px-3 divisionTab" style="cursor: pointer; border-radius: 2rem;" onclick="selectApvDiv(this,'${ApvDiv.APV_DIV_NO}')">
+							${ApvDiv.APV_DIV_NAME } 
 								
 								</div>
 							</div>

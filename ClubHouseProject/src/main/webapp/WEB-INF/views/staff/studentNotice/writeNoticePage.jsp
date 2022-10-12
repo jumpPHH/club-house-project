@@ -53,8 +53,8 @@
 			</div>
 			<div class="col">
 				<select name="noti_div_no" class=" form-select">
-					<option selected value="0">일반공지</option>
-					<option value="1">긴급공지</option>					
+					<option selected value="1">일반공지</option>
+					<option value="2">긴급공지</option>					
 				</select>
 			</div>
 		</div>
@@ -73,7 +73,7 @@
 				공지내용
 			</div>
 			<div class="col">
-				<textarea class=" form-control" name="noti_content" rows="15" cols="100" placeholder="  공지내용을 적어주세요"></textarea>
+				<textarea class="form-control" name="noti_content" rows="15" cols="100" placeholder="  공지내용을 적어주세요"></textarea>
 			</div>
 		</div>
 		<br>

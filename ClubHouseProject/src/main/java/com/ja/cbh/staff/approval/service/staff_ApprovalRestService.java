@@ -56,9 +56,9 @@ public class staff_ApprovalRestService {
 		staff_ApprovalRestSQLMapper.updateApvFnlDateByApvNo(param);
 	}
 	
-	public String getApvDivForm(String NAME){
+	public String getApvDivForm(int NO){
 		String ApvDivForm = new String(); 
-		Object ApvFormObj = staff_ApprovalRestSQLMapper.selectApvDivFormByApvDivName(NAME);
+		Object ApvFormObj = staff_ApprovalRestSQLMapper.selectApvDivFormByApvDivName(NO);
 		
 		if((Clob)ApvFormObj != null) {
 			try {
