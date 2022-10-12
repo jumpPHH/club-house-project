@@ -408,7 +408,7 @@
 				<div class="col-1"></div>
 				<div class="col-10" style="padding: 0;">
 					<div class="row">
-						<img class="img-fluid" src="/uploadFiles/${vlntrMap.vlntrNotiVo.vlntr_image_link }" style="width: 100%; height:100%;"><br>
+						<img class="img-fluid" src="/uploadFiles/ClubHouseProject/student/2022/09/30/KakaoTalk_20221012_191339304.png" style="width: 100%; height:100%;"><br>
 					</div>
 						
 				</div>

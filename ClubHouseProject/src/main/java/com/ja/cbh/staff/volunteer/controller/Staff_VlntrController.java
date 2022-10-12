@@ -66,7 +66,7 @@ public class Staff_VlntrController {
 	
 	@RequestMapping("staff_VlntrNotiProcess")
 	public String staff_VlntrNotiProcess(VlntrNotiVO param, MultipartFile file) {
-		String rootFilePath = "/Users/kimchanwoo/Documents/uploadFiles/";
+		String rootFilePath = "/uploadFiles/ClubHouseProject/student";
 		
 		String originalFilename = file.getOriginalFilename();
 		

@@ -91,6 +91,11 @@ color: #FA5858;
 font-size: 1.2rem;
 font-weight: bold;
 }
+.coloR{
+color: #FA5858;
+font-size: 1.2rem;
+font-weight: bold;
+}
 </style>
 <script type="text/javascript">
 	function allClubData(e){
@@ -186,6 +191,7 @@ font-weight: bold;
 					divBox.setAttribute("onclick" , "getStudData("+list.club_no+",this)");
 					divBox.classList.add("thClick");
 					divBox.classList.add("col");
+					divBox.classList.add("mb-3");
 					
 					if(forIndex >= 5){
 						document.getElementById("collapseText").appendChild(divBox);
@@ -376,7 +382,7 @@ font-weight: bold;
 			 	 <div class="accordion" id="accordionExample">
 						  <div class="row">
 							    <div class="col">
-									<div class="row mt-2 mb-2 row-cols-5 accordion-header" id="headingOne">
+									<div class="row mt-2 row-cols-5 accordion-header" id="headingOne">
 										
 							    	</div>
 								

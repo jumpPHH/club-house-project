@@ -36,9 +36,7 @@ public class ClubActivitiesController {
 		int clubNo = Integer.parseInt(club_no);
 		
 		model.addAttribute("MainData",mainService.student_MainData(stud_id));
-		
-		
-		
+
 		System.out.println(clubNo);
 		
 		if(clubNo == 0) { 

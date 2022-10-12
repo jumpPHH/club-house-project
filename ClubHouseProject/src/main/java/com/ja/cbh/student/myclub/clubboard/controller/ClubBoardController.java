@@ -43,6 +43,7 @@ public class ClubBoardController {
 		int clubNo = Integer.parseInt(club_no);
 		
 		model.addAttribute("MainData",mainService.student_MainData(stud_id));
+		
 		System.out.println(clubNo);
 
 		ArrayList<HashMap<String, Object>> clubBoardList = clubBoardService.getClubBoardList(clubNo,searchWord);
