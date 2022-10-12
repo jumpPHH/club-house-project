@@ -5,5 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.ja.cbh.staff.applyClub.mapper.Staff_ApplyClubSQLMapper">
 
+	<update id="updateClubApplyStateByNo">
+		UPDATE CBH_CLUB_APPL SET CLUB_APPL_STATE = #{STATE} WHERE CLUB_APPL_NO = #{NO}
+	</update>
+
+
 
 </mapper>
