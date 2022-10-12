@@ -57,8 +57,8 @@ public class EstablishingClubServiceImpl {
 	}
 	
 	//동아리 회장도 동아리 회원으로 등록하기
-	public void inputClubStudByStud(StudVO studVO) {
-		establishingClubSQLMapper.insertClubStudByStud(studVO);
+	public void inputClubStudByStud(Club_StudVO clubStudVO) {
+		establishingClubSQLMapper.insertClubStudByStud(clubStudVO);
 		
 	}
 	

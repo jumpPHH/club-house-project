@@ -21,7 +21,7 @@ public class Student_MemberShipFeeMgmtRestService {
 	}
 	
 	public void updateMemberShipFeeMgmtSave(HashMap<String, Object> pram) {
-		
+
 			memberShipFeeMgmtRestSQLMapper.updateMemberShipFeeMgmtSave(pram);
 		
 	}

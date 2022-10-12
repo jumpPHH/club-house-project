@@ -13,7 +13,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -247,70 +248,97 @@
 		xhr.send(); //AJAX로 리퀘스트함..
 	}
 	
-	function saveButton(taget){
+	function saveButton(taget) {
 		
-		var data = new Array();
-		
-		var CLUB_FEE_NO = taget;
-		var CLUB_FEE_DIVISION = $(".colBox").children(".divisionCheck").children(".CLUB_FEE_DIVISION").val();
-		var CLUB_FEE_DETAIL = $(".colBox").children(".detailCheck").children(".CLUB_FEE_DETAIL").val();
-		var CLUB_FEE_INCOME_AMOUNT = $(".colBox").children(".incomeAmountCheck").children(".CLUB_FEE_INCOME_AMOUNT").val();
-		var CLUB_FEE_USING_AMOUNT = $(".colBox").children(".usingAmountCheck").children(".CLUB_FEE_USING_AMOUNT").val();
-		var CLUB_FEE_USE_DATE = $(".colBox").children(".dateCheck").children(".CLUB_FEE_USE_DATE").val();
-		var CLUB_FEE_OTHER_DETAIL = $(".colBox").children(".otherDetailCheck").children(".CLUB_FEE_OTHER_DETAIL").val();
-
-		var jsonObj = {
-				"CLUB_FEE_NO":CLUB_FEE_NO,
-				"CLUB_FEE_DIVISION":CLUB_FEE_DIVISION,
-				"CLUB_FEE_DETAIL":CLUB_FEE_DETAIL,
-				"CLUB_FEE_INCOME_AMOUNT":CLUB_FEE_INCOME_AMOUNT,
-				"CLUB_FEE_USING_AMOUNT":CLUB_FEE_USING_AMOUNT,
-				"CLUB_FEE_USE_DATE":CLUB_FEE_USE_DATE,
-				"CLUB_FEE_OTHER_DETAIL":CLUB_FEE_OTHER_DETAIL
-			}
-			data.push(jsonObj); 
-			
-			var data2 = JSON.stringify(data);
-		
-		var xhr = new XMLHttpRequest(); 
-		xhr.onreadystatechange = function () {
-			if(xhr.readyState == 4 && xhr.status == 200){
-				var jsonObj = JSON.parse(xhr.responseText);
+		Swal.fire({
+		      title:'저장 하시겠습니까?',																		      
+		      icon: 'question',
+		      showCancelButton: true,
+		      confirmButtonColor: '#3085d6',
+		      cancelButtonColor: '#d33',
+		      confirmButtonText: '저장',
+		      cancelButtonText: '취소',
+		      reverseButtons: true, // 버튼 순서 거꾸로
+		      
+		    }).then((result) => {
+		      if (result.isConfirmed) {
+		    	  
+		  		var data = new Array();
 				
+				var CLUB_FEE_NO = taget;
+				var CLUB_FEE_DIVISION = $(".colBox").children(".divisionCheck").children(".CLUB_FEE_DIVISION").val();
+				var CLUB_FEE_DETAIL = $(".colBox").children(".detailCheck").children(".CLUB_FEE_DETAIL").val();
+				var CLUB_FEE_INCOME_AMOUNT = $(".colBox").children(".incomeAmountCheck").children(".CLUB_FEE_INCOME_AMOUNT").val();
+				var CLUB_FEE_USING_AMOUNT = $(".colBox").children(".usingAmountCheck").children(".CLUB_FEE_USING_AMOUNT").val();
+				var CLUB_FEE_USE_DATE = $(".colBox").children(".dateCheck").children(".CLUB_FEE_USE_DATE").val();
+				var CLUB_FEE_OTHER_DETAIL = $(".colBox").children(".otherDetailCheck").children(".CLUB_FEE_OTHER_DETAIL").val();
+
+				var jsonObj = {
+						"CLUB_FEE_NO":CLUB_FEE_NO,
+						"CLUB_FEE_DIVISION":CLUB_FEE_DIVISION,
+						"CLUB_FEE_DETAIL":CLUB_FEE_DETAIL,
+						"CLUB_FEE_INCOME_AMOUNT":CLUB_FEE_INCOME_AMOUNT,
+						"CLUB_FEE_USING_AMOUNT":CLUB_FEE_USING_AMOUNT,
+						"CLUB_FEE_USE_DATE":CLUB_FEE_USE_DATE,
+						"CLUB_FEE_OTHER_DETAIL":CLUB_FEE_OTHER_DETAIL
+					}
+					data.push(jsonObj); 
 					
-				}	
-			}
-		
-		xhr.open("post" , "/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtSave",false); //리퀘스트 세팅..
-		xhr.setRequestHeader("Content-type","application/json");
-		xhr.send(data2); //AJAX로 리퀘스트함..
-		
-		alert("저장됨");
-		window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
+					var data2 = JSON.stringify(data);
+	    		
+	    		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+	    			 xhr.onreadystatechange = function () {
+	    		if(xhr.readyState == 4 && xhr.status == 200){
+	    	    var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+
+	    			}      
+	    		}
+	    		
+   				xhr.open("post" , "/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtSave",false); //리퀘스트 세팅..
+   				xhr.setRequestHeader("Content-type","application/json");
+   				xhr.send(data2); //AJAX로 리퀘스트함..
+   				
+   				window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
+		      }
+				
+		    })
 	}
 	
 	function deleteButton(taget) {
 		
-		var club_fee_no = taget;
-		
-		
-		var xhr = new XMLHttpRequest(); 
-		xhr.onreadystatechange = function () {
-			if(xhr.readyState == 4 && xhr.status == 200){
-				var jsonObj = JSON.parse(xhr.responseText);
+		Swal.fire({
+		      title:'정말 삭세 하시겠습니까?',																		      
+		      icon: 'warning',
+		      showCancelButton: true,
+		      confirmButtonColor: '#3085d6',
+		      cancelButtonColor: '#d33',
+		      confirmButtonText: '삭제',
+		      cancelButtonText: '취소',
+		      reverseButtons: true, // 버튼 순서 거꾸로
+		      
+		    }).then((result) => {
+		      if (result.isConfirmed) {
+		    	  
+		    	var club_fee_no = taget;
+		    		
+	    		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+	    			 xhr.onreadystatechange = function () {
+	    		if(xhr.readyState == 4 && xhr.status == 200){
+	    	    var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+
+	    			}      
+	    		}
+	    		
+   				xhr.open("get" , "/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtDelete?club_fee_no=" + club_fee_no); //리퀘스트 세팅..
+   				//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+   				xhr.send(); //AJAX로 리퀘스트함..
+   				
+   				window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
+		      }
 				
-					
-				}	
-			}
-		
-		xhr.open("get" , "/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtDelete?club_fee_no=" + club_fee_no); //리퀘스트 세팅..
-		//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
-		xhr.send(); //AJAX로 리퀘스트함..
-		
-		alert("삭제됨");
-		window.location.href = '/cbh/student/myclub/membershipfeemgmt/student_MemberShipFeeMgmtListPage';
+		    })
 	}
-	
+
 	document.addEventListener("DOMContentLoaded", function () {
 		
 		var nowPage = "${pageContext.request.requestURI}".split('/')["${pageContext.request.requestURI}".split('/').length-1];
