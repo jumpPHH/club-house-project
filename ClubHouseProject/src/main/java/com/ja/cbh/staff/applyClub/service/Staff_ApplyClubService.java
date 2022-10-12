@@ -71,4 +71,12 @@ public class Staff_ApplyClubService {
 	public int getNoticeCount(int club_appl_no, String searchWord) {
 		return establishingClubSQLMapper.selectCount(club_appl_no, searchWord);
 	}
+	
+	
+	public void modifyClubApplyState(HashMap<String, Object> param) {
+		
+		staff_ApplyClubSQLMapper.updateClubApplyStateByNo(param);
+		
+	}
+
 }

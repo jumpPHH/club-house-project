@@ -43,6 +43,7 @@ public class ClubBoardController {
 		
 		model.addAttribute("MainData",mainService.student_MainData(stud_id));
 
+
 		ArrayList<HashMap<String, Object>> clubBoardList = clubBoardService.getClubBoardList(searchWord);
 		
 		int clubBoardCount = clubBoardService.getClubBoardCountByClubNoAndSearchWord(searchWord);

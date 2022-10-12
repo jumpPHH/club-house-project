@@ -28,7 +28,7 @@ public class ClubActivitiesController {
 	// 동아리 활동내역 메인페이지. 동아리 활동 내역이 보이는 페이지임.
 	// 나중에 추가해야할 기능. 해당 동아리가 아닌 사람이 파라미터만 수정해서 데이터를
 	@RequestMapping("student_indexPage")
-	public String student_indexPage(Model model, HttpSession session, @RequestParam(value = "club_no",defaultValue = "0")String club_no,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
+	public String student_indexPage(Model model, HttpSession session,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
 	   StudVO sessionUserInfo = (StudVO)session.getAttribute("sessionUserInfo");
       String stud_id = sessionUserInfo.getStud_id();
 	
@@ -36,9 +36,7 @@ public class ClubActivitiesController {
 		int clubNo = Integer.parseInt(club_no);
 		
 		model.addAttribute("MainData",mainService.student_MainData(stud_id));
-		
-		
-		
+
 		
 		
 
@@ -75,11 +73,10 @@ public class ClubActivitiesController {
 
 	// 특정 글 상세보기 페이지
 	@RequestMapping("student_clubActivitiesContentPage")
-	public String student_clubActivitiesContentPage(Model model, String club_act_no, String club_no,
+	public String student_clubActivitiesContentPage(Model model, String club_act_no,
 													HttpSession session) {
 		int clubActNo = Integer.parseInt(club_act_no);
-		int clubNo = Integer.parseInt(club_no);
-
+		
 		StudVO sessionUserInfo = (StudVO) session.getAttribute("sessionUserInfo");
 
 		HashMap<String, Object> map = clubActivitiesService.getClubActivityByClubActNoAndClubNo(clubActNo);
@@ -92,10 +89,9 @@ public class ClubActivitiesController {
 	
 	//작성 페이지
 	@RequestMapping("student_writeClubActPage")
-	public String student_writeClubActPage(Model model, String club_no) {
-		int clubNo = Integer.parseInt(club_no);
-		model.addAttribute("clubNo", clubNo);
-		System.out.println(clubNo);
+	public String student_writeClubActPage(Model model) {
+		
+		
 		
 		return "student/myclub/clubactivities/student_writeClubActPage";
 	}
@@ -113,11 +109,11 @@ public class ClubActivitiesController {
 
 	//수정 페이지
 	@RequestMapping("student_modifyClubActPage")
-	public String student_modifyClubActPage(Model model, String club_act_no, String club_no ) {
+	public String student_modifyClubActPage(Model model, String club_act_no) {
 		
-		int clubNo = Integer.parseInt(club_no);
+		
 		int clubActNo = Integer.parseInt(club_act_no);
-		model.addAttribute("clubNo", clubNo);
+		
 		model.addAttribute("clubActNo", clubActNo);
 		
 		
@@ -130,7 +126,7 @@ public class ClubActivitiesController {
 	@RequestMapping("student_modifyClubActProcess")
 	public String student_modifyClubActProcess(Club_ActVO NewClubActVO) {
 		int clubActNo = NewClubActVO.getClub_no();
-		int clubNo = NewClubActVO.getClub_act_no();
+		
 		
 		Club_ActVO originClubActVO = clubActivitiesService.getClubActByClubActNoAndClubNoForJustDataUse(clubActNo);
 		originClubActVO.setClub_act_title(NewClubActVO.getClub_act_title());
@@ -142,17 +138,17 @@ public class ClubActivitiesController {
 	}
 
 	@RequestMapping("student_deleteClubActProcess")
-	public String student_deleteClubActProcess(String club_act_no, String club_no) {
+	public String student_deleteClubActProcess(String club_act_no) {
 		int clubActNo = Integer.parseInt(club_act_no);
-		int clubNo = Integer.parseInt(club_no);
+	
 		
 		Club_ActVO clubActVO = new Club_ActVO();
-		clubActVO.setClub_no(clubNo);
+		
 		clubActVO.setClub_act_no(clubActNo);
 		
 		clubActivitiesService.deleteClubActByClubNoAndClubActNo(clubActVO);
 		
-		return "redirect:./student_indexPage?club_no=" + club_no;
+		return "redirect:./student_indexPage";
 	}
 	
 }

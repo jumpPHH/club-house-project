@@ -155,7 +155,7 @@
 													<td style="padding-top:1em; text-align:center;">${data.club_name }</td>
 													<td style="padding-top:1em; text-align:center;">${data.club_purpose }</td>
 													<td style="text-align:center;"><c:if test="${data.club_appl_state eq '1' }">
-															<c:out value="승인"></c:out><span style="margin-left: 2em"><button
+															<c:out value="임시 승인"></c:out><span style="margin-left: 2em"><button
 																	class="btn btn-danger"
 																	onclick="location.href='./student_writeClubInfoPage'">동아리
 																	정보 입력하기</button></span>

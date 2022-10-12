@@ -1,10 +1,8 @@
 package com.ja.cbh.staff.applyClub.mapper;
 
-import java.util.ArrayList;
-
-import com.ja.cbh.vo.Club_ApplVO;
+import java.util.HashMap;
 
 public interface Staff_ApplyClubSQLMapper {
 	
-	
+	public void updateClubApplyStateByNo(HashMap<String, Object> param); 
 }

@@ -125,27 +125,6 @@
 		
 // 	}
 	
-	function reject(){
-		if($(".reject").click()){
-				var tdState = document.getElementById("state");
-				tdState.innerHTML ="";
-				tdState.innerHTML ="반려";
-			}
-		
-		
-	}
-	
-	function accept(){
-		if($(".accept").click()){
-				var tdState = document.getElementById("state");
-				tdState.innerHTML ="";
-				tdState.innerHTML ="승인";
-			}
-		
-		
-	}
-	
-	
 	function checkAll(){
 		if($(".checkAll").check()){
 			
@@ -153,7 +132,75 @@
 			
 		
 	}
+
+	function updateState(NO,STATE){
+		var jsonObj = {
+				"NO" : NO,
+				"STATE": STATE
+			}
+		
+		var param = JSON.stringify(jsonObj);
+		
+		
+		var xhr = new XMLHttpRequest(); 
+		xhr.onreadystatechange = function () {
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var result = JSON.parse(xhr.responseText);
+				//callback
+			
+				var applyListbar = document.getElementById("applyListbar")
+				applyListbar.submit();
+			
+			}
+		}
+		xhr.open("post" ,"/cbh/staff/restApplyClub/updateClubApplyState");
+		xhr.setRequestHeader("Content-type","application/json");
+		xhr.send(param);
+	}
 	
+	
+	function modalOn(no){
+		var myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+		
+		
+		var xhr = new XMLHttpRequest(); 
+		xhr.onreadystatechange = function () {
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var result = JSON.parse(xhr.responseText);
+				//callback
+			
+				var CLUB_NAME = document.getElementById("CLUB_NAME");
+				var STUD_ID = document.getElementById("STUD_ID");
+				var PEOPLE_COUNT = document.getElementById("PEOPLE_COUNT");
+				var PURPOST = document.getElementById("PURPOST");
+				
+				var reject = document.getElementById("reject");
+				var accept = document.getElementById("accept");
+				
+				CLUB_NAME.innerHTML = "";
+				STUD_ID.innerHTML = "";
+				PEOPLE_COUNT.innerHTML = "";
+				PURPOST.innerHTML = "";
+			
+				CLUB_NAME.innerText = result.data.applVO.club_name;
+				STUD_ID.innerText = result.data.applVO.stud_id;
+				PEOPLE_COUNT.innerText = result.data.applVO.club_appl_people_count;
+				PURPOST.innerText = result.data.applVO.club_purpose;
+				
+				
+				reject.setAttribute("onclick","updateState("+result.data.applVO.club_appl_no+",2)")
+				accept.setAttribute("onclick","updateState("+result.data.applVO.club_appl_no+",1)")
+				
+				
+				
+				myModal.show();
+				
+			}
+		}
+		xhr.open("get" , "/cbh/staff/restApplyClub/getClubApply?no=" + no);
+		xhr.send();
+		
+	}
 
 
  	window.addEventListener('DOMContentLoaded' , function(){
@@ -175,7 +222,7 @@
             class="text-uppercase font-weight-bold" style="color: #FA5858">MENU</small>
       </button>
 		
-	<form action="./staff_applyClubPage" method="get">
+	<form id="applyListbar" action="./staff_applyClubPage" method="get">
 		<div class="row mt-4 ms-1 ps-3 box" style="height: 45px; align-items: center">
 			<div class="col-1">
 				동아리명
@@ -211,7 +258,7 @@
 						  <th><input id="check" onclick="check()" type="checkbox" class="form-check-input" value="${clubApplData.club_appl_no }"></th>
 						  <!-- <td><a href="./staff_readClubRequestPage?=${clubApplData.club_ApplVO.club_appl_no }">${clubApplData.club_ApplVO.club_name }</a></td> -->
 					      <!-- Button trigger modal -->
-					      <td style="text-align: center; color:#FA5858;"><a data-bs-toggle="modal" data-bs-target="#exampleModal">${clubApplData.club_ApplVO.club_name }</a></td>
+					      <td style="text-align: center; color:#FA5858;"><a onclick="modalOn(${clubApplData.club_ApplVO.club_appl_no })">${clubApplData.club_ApplVO.club_name }</a></td>
 					      <td style="text-align: center">${clubApplData.studVO.stud_name }</td>
 					      <td style="text-align: center"><fmt:formatDate value ="${clubApplData.club_ApplVO.club_appl_date }" pattern="yyyy년 MM월 dd일"/></td>
 					      <td id="state" style="text-align: center">
@@ -249,36 +296,32 @@
 	      <div class="modal-body">
 			     <div class="row" >
 				<div class="col-3" style="font-weight: bold">동아리 이름:</div>
-				<div class="col">
-					 ${applData.applVO.club_name }
+				<div id="CLUB_NAME" class="col">
 				</div>
 			</div>
 			<br>
 			<div class="row" >
 				<div class="col-3" style="font-weight: bold">학번:</div>
-				<div class="col">
-					 ${applData.applVO.stud_id }
+				<div id="STUD_ID" class="col">
 				</div>
 			</div>
 			<br>
 			<div class="row" >
 				<div class="col-3" style="font-weight: bold">신청인원:</div>
-				<div class="col">
-					 ${applData.applVO.club_appl_people_count }
+				<div id="PEOPLE_COUNT" class="col">
 				</div>
 			</div>
 			<br>
 			<div class="row" >
 				<div class="col-3" style="font-weight: bold">동아리설명:</div>
-				<div class="col">
-					 ${applData.applVO.club_purpose }
+				<div id="PURPOST" class="col">
 				</div>
 			</div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">돌아가기</button>
-	        <button id="reject" onclick="reject()" type="button" class="btn btn-danger" data-bs-dismiss="modal">반려</button>
-	        <button id="accept" onclick="accept()" type="button" class="btn btn-primary" data-bs-dismiss="modal">승인</button>
+	        <button id="reject" type="button" class="btn btn-danger" data-bs-dismiss="modal">반려</button>
+	        <button id="accept" type="button" class="btn btn-primary" data-bs-dismiss="modal">승인</button>
 	      </div>
 	    </div>
 	  </div>
