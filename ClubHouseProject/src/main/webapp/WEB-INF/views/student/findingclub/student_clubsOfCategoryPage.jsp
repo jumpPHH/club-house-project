@@ -142,7 +142,7 @@ img {
 
 						var col1_img = document.createElement("img");
 						col1_img.setAttribute("src",
-								jsonObj.data[Array].club_title_image);
+								"/cbh/resources/img/student/findingclub/"+(Array+1)+".jpg");
 						col1_img.setAttribute("style",
 								"width:15em; height:13em; cursor:pointer;");
 						col1_a1.appendChild(col1_img);
