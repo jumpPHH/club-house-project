@@ -33,7 +33,6 @@ public class ClubActivitiesController {
       String stud_id = sessionUserInfo.getStud_id();
 	
 		
-		int clubNo = Integer.parseInt(club_no);
 		
 		model.addAttribute("MainData",mainService.student_MainData(stud_id));
 
@@ -66,7 +65,6 @@ public class ClubActivitiesController {
 		model.addAttribute("additionalParam", additionalParam);
 
 		model.addAttribute("clubActivitiesList", clubActivitiesList);
-		model.addAttribute("clubNo", clubNo);
 
 		return "student/myclub/clubactivities/student_indexPage";
 	}
@@ -104,7 +102,7 @@ public class ClubActivitiesController {
 		
 		clubActivitiesService.inputClubActByClubActVO(clubActVO);
 		
-		return "redirect:./student_indexPage?club_no="+ clubActVO.getClub_no();
+		return "redirect:./student_indexPage";
 	}
 
 	//수정 페이지
