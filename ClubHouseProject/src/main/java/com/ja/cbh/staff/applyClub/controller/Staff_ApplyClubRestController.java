@@ -20,8 +20,6 @@ public class Staff_ApplyClubRestController {
 	@RequestMapping("updateClubApplyState")
 	public HashMap<String, Object> updateRejectClubApplyState(@RequestBody HashMap<String, Object> param){
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		System.out.println(param.get("NO"));
-		System.out.println(param.get("STATE"));
 		staff_ApplyClubService.modifyClubApplyState(param);
 		
 		return map;
@@ -31,8 +29,6 @@ public class Staff_ApplyClubRestController {
 	@RequestMapping("getClubApply")
 	public HashMap<String, Object> getClubApply(int no){
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-
 		
 		
 		map.put("data", staff_ApplyClubService.getApplData(no));
