@@ -27,7 +27,7 @@ public class Staff_StudentNoticeController {
 	
 	//공지 메인페이지
 	@RequestMapping("staff_StudentNoticePage")
-	public String staff_StudentNoticePage(Model model, @RequestParam (value="noti_div_no", defaultValue="0")int noti_div_no, String searchWord, @RequestParam(value ="pageNum",defaultValue="1")int pageNum){
+	public String staff_StudentNoticePage(Model model, @RequestParam (value="noti_div_no", defaultValue="1")int noti_div_no, String searchWord, @RequestParam(value ="pageNum",defaultValue="1")int pageNum){
 		
 		ArrayList<HashMap<String, Object>> noticeDataList = staff_StudentNoticeService.getNoticeDataList(noti_div_no, searchWord, pageNum);
 		
@@ -48,11 +48,11 @@ public class Staff_StudentNoticeController {
 		model.addAttribute("currentPageNum" , pageNum);
 		
 		String additionalParam = "";
-		if((noti_div_no == 0 || noti_div_no == 1) && searchWord != null) {
+		if((noti_div_no == 1 || noti_div_no == 2) && searchWord != null) {
 		additionalParam += "&notiDiv=" + noti_div_no;
 		additionalParam += "&searchWord=" + searchWord;
 		
-		}else if((noti_div_no != 0 && noti_div_no != 1) || searchWord == null) {
+		}else if((noti_div_no != 1 && noti_div_no != 2) || searchWord == null) {
 			additionalParam += "&notiDiv"; 
 			additionalParam += "&searchWord";	
 		}

@@ -50,9 +50,9 @@
 				공지구분
 			</div>
 			<div class="col">
-				<select name="noti_div_no">
-					<option selected value="0">일반공지</option>
-					<option value="1">긴급공지</option>				
+				<select name="noti_div_no" class=" form-select">
+					<option selected value="1">일반공지</option>
+					<option value="2">긴급공지</option>				
 				</select>
 			</div>
 		</div>
@@ -61,7 +61,7 @@
 			<div class="col-2">
 				공지제목</div>
 			<div class="col">
-				<input type="text" name="noti_title" value="${data.noticeVO.noti_title }">
+				<input class="container-fluid form-control" type="text" name="noti_title" value="${data.noticeVO.noti_title }">
 			</div>
 		</div>
 		
@@ -70,7 +70,7 @@
 				공지사항
 			</div>
 			<div class="col">
-				<textarea name="noti_content" rows="15" cols="100">${data.noticeVO.noti_content }</textarea>
+				<textarea class=" form-control" name="noti_content" rows="15" cols="100">${data.noticeVO.noti_content }</textarea>
 				<input type="hidden" name="noti_no" value="${data.noticeVO.noti_no }">
 			</div>
 		</div>
