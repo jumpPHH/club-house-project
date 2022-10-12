@@ -3,10 +3,8 @@ package com.ja.cbh.student.myclub.clubactivities.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ja.cbh.student.myclub.clubactivities.service.ClubActivitesServiceImpl;
+import com.ja.cbh.student.myclub.main.service.Student_MainService;
 import com.ja.cbh.vo.Club_ActVO;
 import com.ja.cbh.vo.StudVO;
 
@@ -23,12 +22,22 @@ public class ClubActivitiesController {
 
 	@Autowired
 	private ClubActivitesServiceImpl clubActivitiesService;
+    @Autowired
+    private Student_MainService mainService;
 
 	// 동아리 활동내역 메인페이지. 동아리 활동 내역이 보이는 페이지임.
 	// 나중에 추가해야할 기능. 해당 동아리가 아닌 사람이 파라미터만 수정해서 데이터를
 	@RequestMapping("student_indexPage")
-	public String student_indexPage(Model model, @RequestParam(value = "club_no",defaultValue = "0")String club_no,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
+	public String student_indexPage(Model model, HttpSession session, @RequestParam(value = "club_no",defaultValue = "0")String club_no,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
+	   StudVO sessionUserInfo = (StudVO)session.getAttribute("sessionUserInfo");
+      String stud_id = sessionUserInfo.getStud_id();
+	
+		
 		int clubNo = Integer.parseInt(club_no);
+		
+		model.addAttribute("MainData",mainService.student_MainData(stud_id));
+		
+		
 		
 		System.out.println(clubNo);
 		

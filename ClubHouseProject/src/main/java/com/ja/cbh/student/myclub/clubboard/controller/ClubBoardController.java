@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ja.cbh.student.myclub.clubboard.service.ClubBoardServiceImpl;
+import com.ja.cbh.student.myclub.main.service.Student_MainService;
 import com.ja.cbh.vo.Club_BoardImageVO;
 import com.ja.cbh.vo.Club_BoardVO;
 import com.ja.cbh.vo.StudVO;
@@ -27,12 +28,21 @@ public class ClubBoardController {
 
 	@Autowired
 	private ClubBoardServiceImpl clubBoardService;
+	
+	@Autowired
+	private Student_MainService mainService;
 
 	// 동아리 활동내역 메인페이지. 동아리 활동 내역이 보이는 페이지임.
 	// 나중에 추가해야할 기능. 해당 동아리가 아닌 사람이 파라미터만 수정해서 데이터를
 	@RequestMapping("student_indexPage")
-	public String student_indexPage(Model model, @RequestParam(value="club_no") String club_no,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
+	public String student_indexPage(Model model,HttpSession session, @RequestParam(value="club_no") String club_no,String searchWord,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum) {
+		StudVO sessionUserInfo = (StudVO)session.getAttribute("sessionUserInfo");
+	   String stud_id = sessionUserInfo.getStud_id();
+		
+		
 		int clubNo = Integer.parseInt(club_no);
+		
+		model.addAttribute("MainData",mainService.student_MainData(stud_id));
 		System.out.println(clubNo);
 
 		ArrayList<HashMap<String, Object>> clubBoardList = clubBoardService.getClubBoardList(clubNo,searchWord);
