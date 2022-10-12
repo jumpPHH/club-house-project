@@ -63,14 +63,6 @@ public class EstablishingClubController {
 		}
 		
 		if(sessionApplData == null) {
-			System.out.println(clubApplVO.getClub_appl_no());
-			System.out.println(clubApplVO.getClub_appl_people_count());
-			System.out.println(clubApplVO.getClub_appl_state());
-			System.out.println(clubApplVO.getClub_category_no());
-			System.out.println(clubApplVO.getClub_name());
-			System.out.println(clubApplVO.getClub_purpose());
-			System.out.println(clubApplVO.getStud_id());
-			System.out.println(clubApplVO.getClub_appl_date());
 			establishingClubService.inputClubAppl(clubApplVO);
 			return "student/establishingclub/student_establishingRequestSuccessPage";
 		}
@@ -201,7 +193,6 @@ public class EstablishingClubController {
 		Club_ApplVO clubApplData = establishingClubService.getApprovedClubApplByStudId(studData.getStud_id());
 		
 		
-		clubVO.setClub_category_no(clubApplData.getClub_category_no());
 		clubVO.setClub_appl_dt(clubApplData.getClub_appl_date());
 		clubVO.setClub_people_count(clubApplData.getClub_appl_people_count());
 		clubVO.setClub_name(clubApplData.getClub_name());

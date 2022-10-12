@@ -54,7 +54,7 @@ public class FindingClubController {
 		int clubNo = Integer.parseInt(club_no);
 		
 		ClubVO clubData = findingClubService.getClubByNo(clubNo);
-		StudVO clubBossData = findingClubService.getClubStudByStudId(clubData.getClub_boss()) ;
+		StudVO clubBossData = findingClubService.getStudByStudId(clubData.getClub_boss()) ;
 		Club_Dept_CategoryVO clubCategoryData = findingClubService.getClubCategoryByNo(clubData.getClub_category_no());
 		model.addAttribute("clubCategoryData", clubCategoryData);
 		model.addAttribute("clubData", clubData);
