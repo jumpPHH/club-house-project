@@ -120,24 +120,23 @@
 								<div class="row px-4 mt-4">
 									<div class="col">
 										<!-- 동아리 카테고리 -->
-										<div class="row p-3">
-											<div class="col-3 pt-2">
-												<span style="color: red;">*</span> 동아리 카테고리
-											</div>
-											<div class="col">
-												<select class="form-control" aria-label="Default select example" name="club_category_no">
-												  <option selected>카테고리를 선택해주세요</option>
-												  <option value="1">공연예술분과</option>
-												  <option value="2">종교분과</option>
-												  <option value="3">체육분과</option>
-												  <option value="4">사회활동분과</option>
-												  <option value="5">창작예술분과</option>
-												  <option value="6">기타분과</option>
-												  <option value="7">학술교양분과</option>
-												</select>
-											</div>
-										</div>
-										<hr style="size: 1px; color: #adb5bd">
+<!-- 										<div class="row p-3"> -->
+<!-- 											<div class="col-3 pt-2"> -->
+<!-- 												<span style="color: red;">*</span> 동아리 카테고리 -->
+<!-- 											</div> -->
+<!-- 											<div class="col"> -->
+<!-- 												<select class="form-control" aria-label="Default select example" name="club_category_no"> -->
+<!-- 												  <option selected>카테고리를 선택해주세요</option> -->
+<!-- 												  <option value="1">공연예술분과</option> -->
+<!-- 												  <option value="2">종교분과</option> -->
+<!-- 												  <option value="3">체육분과</option> -->
+<!-- 												  <option value="4">사회활동분과</option> -->
+<!-- 												  <option value="5">창작예술분과</option> -->
+<!-- 												  <option value="6">기타분과</option> -->
+<!-- 												  <option value="7">학술교양분과</option> -->
+<!-- 												</select> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
 										
 										<!-- 동아리 이름 -->
 										<div class="row p-3">

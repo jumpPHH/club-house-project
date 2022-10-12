@@ -172,20 +172,28 @@
 										</div>
 									</div>
 									<!-- 글 제목 입력 칸 -->
-									<div class="row mt-5">
+									<div class="mt-5">제목</div>
+									<div class="row mt-1">
 										<div class="col">
 											<input type="text" placeholder="${clubBoardData.club_board_title }" class="form-control" name="club_board_title">
 										</div>
 									</div>
 									<!-- 글 내용 입력 칸 -->
-									<div class="row mt-3">
+									<div class="mt-5">내용</div>
+									<div class="row mt-1">
 										<div class="col" style="text-align:center">
 											<textarea class="form-control" name="club_board_content" placeholder="${clubBoardData.club_board_content }" style="width:100%; height:10em;"></textarea>
 										</div>
 										<input type="hidden" name="club_no" value="${clubNo }">
 										<input type="hidden" name="club_board_no" value="${clubBoardNo }">
 									</div>
-									<div class="row mt-3 mb-5">
+									<div class="row mt-5">
+										<div class="col">
+											<input type="file">
+										</div>
+									</div>
+									
+									<div class="row mt-5 mb-5">
 										<div class="col" style="text-align:right">
 											<button class="btn btn-secondary mr-3">취소</button>
 											<button class="btn btn-danger">제출</button>

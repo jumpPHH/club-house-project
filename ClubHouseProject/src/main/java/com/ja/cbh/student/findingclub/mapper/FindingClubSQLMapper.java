@@ -21,5 +21,6 @@ public interface FindingClubSQLMapper {
 	// 일반회원이 특정 클럽 가입신청시 insert
 	public void insertClubStud(Club_StudVO clubStudVO);
 	// 아이디에 해당하는 사람 정보 갖고오기
-	public StudVO selectClubStudByStudId(String studId);
+	public StudVO selectStudByStudId(String studId);
+	public Club_StudVO selectClubStudByStudId(String studId);
 }

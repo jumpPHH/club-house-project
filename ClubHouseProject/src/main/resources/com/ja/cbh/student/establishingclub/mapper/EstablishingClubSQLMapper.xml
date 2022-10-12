@@ -13,8 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{clubApplVO.club_appl_people_count},
 			#{clubApplVO.club_purpose},
 			SYSDATE,
-			3,
-			#{clubApplVO.club_category_no}
+			3
 		)	
 	</insert>
 	

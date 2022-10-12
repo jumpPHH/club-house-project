@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ja.cbh.student.findingclub.mapper.FindingClubSQLMapper;
+import com.ja.cbh.vo.ClubStudVO;
 import com.ja.cbh.vo.ClubVO;
 import com.ja.cbh.vo.Club_Dept_CategoryVO;
 import com.ja.cbh.vo.Club_StudVO;
@@ -47,10 +48,16 @@ public class FindingClubServiceImpl {
 	}
 	
 	// 특정 아이디에 해당하는 사람 정보 갖고오기
-	public StudVO getClubStudByStudId(String studId) {
-		StudVO StudVO = findingClubSQLMapper.selectClubStudByStudId(studId);
+	public StudVO getStudByStudId(String studId) {
+		StudVO StudVO = findingClubSQLMapper.selectStudByStudId(studId);
 		
 		return StudVO;
+	}
+	
+	public Club_StudVO getClubStudByStudId(String studId) {
+		Club_StudVO club_StudVO = findingClubSQLMapper.selectClubStudByStudId(studId);
+		
+		return club_StudVO ;
 	}
 	
 }
