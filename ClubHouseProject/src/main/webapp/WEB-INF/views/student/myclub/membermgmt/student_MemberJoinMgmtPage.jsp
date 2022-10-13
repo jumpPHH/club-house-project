@@ -196,7 +196,7 @@
 																				}
 																		      
 																				xhr.open("get",
-																						"/cbh/student/myclub/membermgmt/deleteApprove?club_stud_no="
+																						"/cbh/student/myclub/membermgmt/updateApprove?club_stud_no="
 																								+ club_stud_no);
 																				xhr.send();
 

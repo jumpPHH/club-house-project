@@ -38,8 +38,9 @@ public class ClubActivitiesRestController {
 	@RequestMapping("getClubData")
 	public HashMap<String, Object> getClubData() {
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		int clubNo = 1;
 		
-		ClubVO clubData = findingClubService.getClubByNo();
+		ClubVO clubData = findingClubService.getClubByNo(clubNo);
 		
 		map.put("result","success");
 		map.put("data", clubData);

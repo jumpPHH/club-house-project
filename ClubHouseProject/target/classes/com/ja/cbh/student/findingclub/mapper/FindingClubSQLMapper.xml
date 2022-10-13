@@ -46,12 +46,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			CBH_CLUB_STUD_seq.nextval,
 			#{stud_id},
 			#{club_no},
-			'1',
+			'가입신청자',
+			SYSDATE,
 			'2011-11-11',
-			'2011-11-11',
-			'2011-11-11',
+			null,
 			'기타사항',
-			'2'
+			'가입대기중'
 		)
 	</insert>
 	

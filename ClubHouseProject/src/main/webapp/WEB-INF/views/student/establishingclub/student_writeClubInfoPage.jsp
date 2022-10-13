@@ -162,11 +162,8 @@
 										</div>
 
 										<div class="row mt-5">
-											<div class="col" style="text-align: right">
-												<button class="btn"
-													style="background-color: gray; color: white; width: 15em; height: 3em;">뻐튼</button>
-											</div>
-											<div class="col" style="text-align: left">
+											
+											<div class="col" style="text-align: center">
 												<button type="submit" class="btn"
 													style="background-color: #c4073d; color: white; width: 15em; height: 3em;">제출하기</button>
 											</div>
