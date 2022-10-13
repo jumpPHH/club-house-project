@@ -121,9 +121,9 @@ img {
 				var ArrayLength = jsonObj.data.length;
 				var clubListBox = document.querySelector("#clubListBox");
 
-				for (let e = 0; e < rowNum; e++) {
+				
 
-					for (let r = 0; r < 4; r++) {
+					for (let r = 0; r < 8; r++) {
 						if (Array === ArrayLength)
 							break;
 						console.log(jsonObj.data[Array].club_name);
@@ -142,7 +142,7 @@ img {
 
 						var col1_img = document.createElement("img");
 						col1_img.setAttribute("src",
-								"/cbh/resources/img/student/findingclub/"+(Array+1)+".jpg");
+								"/cbh/resources/img/student/"+r+".jpg");
 						col1_img.setAttribute("style",
 								"width:15em; height:13em; cursor:pointer;");
 						col1_a1.appendChild(col1_img);
@@ -150,9 +150,9 @@ img {
 
 						var col1_text = document.createElement("p");
 						col1_text.setAttribute("class", "hover_text");
-						col1_text.innerText = "이것이다.";
+						col1_text.innerText = "[일렉기타] AMBITION";
 						col1_a1.appendChild(col1_text);
-					}
+					
 				}
 			}
 		}

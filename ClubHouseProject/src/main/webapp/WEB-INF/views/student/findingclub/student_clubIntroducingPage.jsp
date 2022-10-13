@@ -168,14 +168,14 @@ document.addEventListener("DOMContentLoaded", function () {
 									<div class="row px-4 mt-5">
 										<!-- 타이틀 이미지 부분 -->
 										<div class="col-4 mt-5">
-											<img src="${clubData.club_title_image }"
+											<img src="/cbh/resources/img/student/0.jpg"
 												style="width: 16em; height: 20em;">
 										</div>
 										<!-- 동아리 발행연도, 연락처, 대표자명 등 정보 박스 -->
 										<div class="col mt-5">
 											<div class="row">
 												<div class="col">
-													<span style="font-weight: bold; font-size: 2.5em">${clubData.club_name }</span>
+													<span style="font-weight: bold; font-size: 2.5em">[일렉기타] AMBITION</span>
 													<!-- ${clubData.club_name } -->
 												</div>
 											</div>
@@ -211,13 +211,14 @@ document.addEventListener("DOMContentLoaded", function () {
 										style="border-top: 1px solid #adb5bd">
 										<!--  style="border-top: 1px solid #adb5bd; -->
 										<div class="col mt-5">
-											<span>${clubData.club_description }</span>
+											<div>기타를 쳐보고 싶지만 독학은 엄두가 안났던 분들!</div>
+											
 										</div>
 									</div>
 									<!-- 동아리 설명 이미지 -->
 									<div class="row px-4 mt-5">
 										<div class="col">
-											<img src="/uploadFiles/${clubData.club_dscrp_image }">
+											<img src="/cbh/resources/img/student/KakaoTalk_20221013_102629199.png">
 										</div>
 									</div>
 									<!-- 동아리 가입신청 및 목록 돌아가기 버튼 -->

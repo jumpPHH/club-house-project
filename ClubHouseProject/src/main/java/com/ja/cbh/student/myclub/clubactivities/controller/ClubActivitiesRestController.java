@@ -39,8 +39,7 @@ public class ClubActivitiesRestController {
 	public HashMap<String, Object> getClubData(String club_no) {
 		int clubNo = Integer.parseInt(club_no);
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		int clubNo = 1;
-		
+
 		ClubVO clubData = findingClubService.getClubByNo(clubNo);
 		
 		map.put("result","success");

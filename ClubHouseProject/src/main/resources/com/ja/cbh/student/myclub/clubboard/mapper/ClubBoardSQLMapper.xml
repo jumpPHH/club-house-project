@@ -111,7 +111,7 @@
 	<!-- 댓글 작성 -->
 	<insert id="insertClubBoardComment">
 		INSERT INTO CBH_CLUB_BOARD_COMMENT VALUES(
-			CBH_club_BOARD_COMMenT_SEQ.nextval,
+			CBH_BOARD_COMMENT_seq.nextval,
 			#{clubBoardCommentVO.club_board_no},
 			#{clubBoardCommentVO.club_stud_no},
 			1,

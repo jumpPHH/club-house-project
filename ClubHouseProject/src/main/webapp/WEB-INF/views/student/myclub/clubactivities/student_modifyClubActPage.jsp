@@ -127,7 +127,7 @@
 				<!-- 여기다 작성하세요 -->
 				<div class="row">
 					<div class="col" id="content">
-							<!-- 컨텐트 박스 -->
+						 	<!-- 컨텐트 박스 -->
 							<form action="./student_modifyClubActProcess">
 							<div class="row">
 								<div class="col">
@@ -140,14 +140,14 @@
 									<div class="mt-5">제목</div>
 									<div class="row mt-3">
 										<div class="col">
-											<input type="text" value="동아리 신고식 했습니다." class="form-control" name="club_act_title">
+											<input type="text" value="동아리 회비는 이 날 내주세요." class="form-control" name="club_act_title">
 										</div>
 									</div>
 									<!-- 글 내용 입력 칸 -->
 									<div class="mt-5">내용</div>
 									<div class="row mt-3">
 										<div class="col" style="text-align:center">
-											<textarea class="form-control" name="club_act_content" placeholder="동아리 신고식 했습니다." style="width:100%; height:10em;"></textarea>
+											<textarea class="form-control" name="club_act_content" placeholder="동아리 회비는 이 날 내주세요." style="width:100%; height:10em;"></textarea>
 										</div>
 										<input type="hidden" name="club_no" value="${clubNo }">
 										<input type="hidden" name="club_act_no" value="${clubActNo }">

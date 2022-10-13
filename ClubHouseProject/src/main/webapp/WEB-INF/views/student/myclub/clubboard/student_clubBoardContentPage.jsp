@@ -346,11 +346,11 @@ document.addEventListener("DOMContentLoaded", function () {
 													</div>
 										
 													<div class="row">
-														<c:forEach items="${map.clubBoardImageList }" var="clubBoardImageLink">
+														
 															<div class="col mb-5" style="padding:2em;">
-																<img src="${clubBoardImageLink.club_board_image_link }"><br>
+																<img src="\cbh\resources\img\student\clubImage02jpg.jpg"><br>
 															</div>
-														</c:forEach>
+														
 													</div>
 													
 													
