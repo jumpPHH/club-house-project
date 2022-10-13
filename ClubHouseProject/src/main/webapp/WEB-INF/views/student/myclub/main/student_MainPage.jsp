@@ -154,8 +154,8 @@
 																</div>
 																<div class="col" style="text-align: right;">
 																	<a
-																		href="/cbh/student/myclub/clubactivities/student_indexPage?club_no=${Maindata.MyclubInfo.club_no }"></a>
-																	전체보기<i class="bi bi-arrow-right-circle-fill"
+																		href="/cbh/student/myclub/clubactivities/student_indexPage" style="color:black;">전체보기</a>
+																	<i class="bi bi-arrow-right-circle-fill"
 																		style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
 																</div>
 
@@ -235,8 +235,9 @@
 																<div class="col">
 																	<h3>동아리 자유 게시판</h3>
 																</div>
-																<div class="col" style="text-align: right;">
-																	전체보기<i class="bi bi-arrow-right-circle-fill"
+																<div class="col" style="text-align: right;"><a
+																		href="/cbh/student/myclub/clubboard/student_indexPage" style="color:black;">전체보기</a>
+																	<i class="bi bi-arrow-right-circle-fill"
 																		style="padding-left: 20px; font-size: 20px; color: #428EF4;"></i>
 																</div>
 															</div>

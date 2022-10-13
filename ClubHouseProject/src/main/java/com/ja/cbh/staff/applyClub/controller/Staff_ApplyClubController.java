@@ -24,22 +24,13 @@ public class Staff_ApplyClubController {
 	
 	
 	@RequestMapping("staff_applyClubPage")
-	public String applyClubPage(Model model, @RequestParam(value="club_appl_no", defaultValue="1")int club_appl_no, @RequestParam(value="searchWord", defaultValue="")String searchWord, @RequestParam(value="pageNum", defaultValue="1")int pageNum) {
+	public String applyClubPage(Model model, @RequestParam(value="searchWord", defaultValue="")String searchWord, @RequestParam(value="pageNum", defaultValue="1")int pageNum) {
 		ArrayList<HashMap<String, Object>> clubApplDataList = staff_ApplyClubService.getAllClubAppl(searchWord, pageNum);
 		model.addAttribute("clubApplDataList", clubApplDataList);
 		
-		HashMap<String, Object> applData = staff_ApplyClubService.getApplData(club_appl_no);
+
 		
-		Club_ApplVO applVO = (Club_ApplVO)applData.get("applVO");
-		String content = applVO.getClub_purpose();
-		content = StringEscapeUtils.escapeHtml4(content);
-		content = content.replaceAll(" ", "&nbsp");
-		content = content.replaceAll("\n", "<br>");
-		applVO.setClub_purpose(content);
-		
-		model.addAttribute("applData", applData);
-		
-		int noticeCount = staff_ApplyClubService.getNoticeCount(club_appl_no, searchWord);
+		int noticeCount = staff_ApplyClubService.getNoticeCount(searchWord);
 		int totalPageCount = (int)Math.ceil(noticeCount/10.0);
 		int startPage = ((pageNum-1)/5)*5+1;
 		int endPage = ((pageNum-1)/5+1)*5; 

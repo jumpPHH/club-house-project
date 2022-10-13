@@ -9,6 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE CBH_CLUB_APPL SET CLUB_APPL_STATE = #{STATE} WHERE CLUB_APPL_NO = #{NO}
 	</update>
 
-
+	<select id="selectCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM CBH_CLUB_APPL 
+		WHERE CLUB_NAME LIKE '%' || #{searchWord} || '%'
+	</select>
 
 </mapper>

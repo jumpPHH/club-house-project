@@ -20,9 +20,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertClub">
 		INSERT INTO CBH_CLUB VALUES(
-			CBH_CLUB_SEQ.nextval,
+			#{clubVO.club_no},
 			1,
 			#{clubVO.club_category_no},
+			#{clubVO.club_appl_no},
 			#{clubVO.club_boss},
 			#{clubVO.club_name},
 			#{clubVO.club_description},
@@ -51,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE STUD_ID = #{studId}
 	</select>
 	
-	<update id="updateClubApplBy">
+	<update id="updateClubApplStateByApplNo">
 	 UPDATE CBH_CLUB_APPL
 	 SET CLUB_APPL_STATE = 4
 	 WHERE CLUB_APPL_NO = #{applNo}
@@ -95,16 +96,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			CBH_CLUB_STUD_SEQ.NEXTVAL,
 			#{clubStudVO.stud_id},
 			#{clubStudVO.club_no},
-			#{clubStudVO.club_stud_grade},
+			'대표',
 			SYSDATE,
 			SYSDATE,
 			'',
-			'',
-			'1',
+			'동아리 회장',
 			'활동중'
 		)
-	
 	</insert>
+	
+	<select id="createClubPk" resultType="int">
+		SELECT CBH_CLUB_SEQ.nextval FROM dual
+	</select>
 
 
 </mapper>

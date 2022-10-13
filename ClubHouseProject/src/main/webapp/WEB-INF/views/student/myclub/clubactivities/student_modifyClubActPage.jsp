@@ -137,22 +137,23 @@
 										</div>
 									</div>
 									<!-- 글 제목 입력 칸 -->
-									<div class="row mt-5">
+									<div class="mt-5">제목</div>
+									<div class="row mt-3">
 										<div class="col">
-											<input type="text" placeholder="안녕하세요 09/25일자 동아리 활동입니다." class="form-control" name="club_act_title">
+											<input type="text" value="동아리 신고식 했습니다." class="form-control" name="club_act_title">
 										</div>
 									</div>
 									<!-- 글 내용 입력 칸 -->
+									<div class="mt-5">내용</div>
 									<div class="row mt-3">
 										<div class="col" style="text-align:center">
-											<textarea class="form-control" name="club_act_content" placeholder="안녕하세요 동아리 회장입니다.
-이번 동아리 참석자는 이희건 , 김준형 , 안요섭 , 송성용 , 김찬우 5명입니다.  박한희씨는 고향인 일본에 잠시 다녀오느라 참석하지 못했습니다. 
-모임에서 우리 동아리는 앞으로 어떤   방향성을 가지고 움직일 것이며, 목표에 대해서 나눈 시간이었습니다. 이번 식사는 김준형님이 제공해주셨습니다. " style="width:100%; height:10em;"></textarea>
+											<textarea class="form-control" name="club_act_content" placeholder="동아리 신고식 했습니다." style="width:100%; height:10em;"></textarea>
 										</div>
 										<input type="hidden" name="club_no" value="${clubNo }">
 										<input type="hidden" name="club_act_no" value="${clubActNo }">
 									</div>
-									<div class="row mt-3">
+									
+									<div class="row mt-5 mb-5">
 										<div class="col" style="text-align:right">
 											<button class="btn btn-secondary mr-3">취소</button>
 											<button class="btn btn-danger">제출</button>
@@ -160,6 +161,7 @@
 									</div>
 								</div>
 							</div>
+							<input type="hidden" name="club_no" value="${clubNo }">
 							</form>
 						</div>
 						</div>

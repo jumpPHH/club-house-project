@@ -36,7 +36,8 @@ public class ClubActivitiesRestController {
 	
 	// 클럽 정보 가져오기.
 	@RequestMapping("getClubData")
-	public HashMap<String, Object> getClubData() {
+	public HashMap<String, Object> getClubData(String club_no) {
+		int clubNo = Integer.parseInt(club_no);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int clubNo = 1;
 		

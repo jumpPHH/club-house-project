@@ -7,10 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 모든 글 가져오기 -->
 	<select id="selectClubActivitiesListByClubNo" resultType="com.ja.cbh.vo.Club_ActVO">
-		SELECT c1.* FROM (SELECT RowNUM AS rnum, cca.* FROM CBH_CLUB_ACT cca ORDER BY rnum DESC)c1
+		SELECT * FROM CBH_CLUB_ACT
 		<if test="searchWord != null">
 			WHERE CLUB_ACT_TITLE LIKE '%' || #{searchWord} || '%'
 		</if>
+		 ORDER BY CLUB_ACT_NO DESC
 	</select>
 	
 	<!-- 특정 글의 데이터 가져오기 -->
@@ -34,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectClubActivitiesCountByClubNoAndSearchWord" resultType="int">
 		SELECT count(*) FROM CBH_CLUB_ACT
 		<if test="searchWord != null">
-			AND club_act_title like '%' || #{searchWord} || '%'
+			WHERE club_act_title like '%' || #{searchWord} || '%'
 		</if>
 	</select>
 	

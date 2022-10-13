@@ -7,6 +7,7 @@ public class ClubVO {
 	private int club_no; //동아리 (기본키)
 	private int club_division_no; //동아리 구분 넘버 (외부키)
 	private int club_category_no; //클럽 카테고리 (외부키)
+	private int club_appl_no; //클럽 신청서 번호?
 	private String club_boss; //동아리 회장
 	private String club_name; //동아리 이름
 	private String club_description; //동아리 설명
@@ -19,13 +20,14 @@ public class ClubVO {
 	public ClubVO() {
 		super();
 	}
-	public ClubVO(int club_no, int club_division_no, int club_category_no, String club_boss, String club_name,
-			String club_description, int club_people_count, String club_state, String club_title_image,
-			String club_dscrp_image, Date club_estbl_dt, Date club_appl_dt) {
+	public ClubVO(int club_no, int club_division_no, int club_category_no, int club_appl_no, String club_boss,
+			String club_name, String club_description, int club_people_count, String club_state,
+			String club_title_image, String club_dscrp_image, Date club_estbl_dt, Date club_appl_dt) {
 		super();
 		this.club_no = club_no;
 		this.club_division_no = club_division_no;
 		this.club_category_no = club_category_no;
+		this.club_appl_no = club_appl_no;
 		this.club_boss = club_boss;
 		this.club_name = club_name;
 		this.club_description = club_description;
@@ -53,6 +55,12 @@ public class ClubVO {
 	}
 	public void setClub_category_no(int club_category_no) {
 		this.club_category_no = club_category_no;
+	}
+	public int getClub_appl_no() {
+		return club_appl_no;
+	}
+	public void setClub_appl_no(int club_appl_no) {
+		this.club_appl_no = club_appl_no;
 	}
 	public String getClub_boss() {
 		return club_boss;

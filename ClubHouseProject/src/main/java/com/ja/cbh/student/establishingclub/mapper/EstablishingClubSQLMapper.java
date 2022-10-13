@@ -45,11 +45,12 @@ public interface EstablishingClubSQLMapper {
 	public Club_ApplVO selectRequestByNo(int applNo);
 	
 	// 동아리 승인될 시 더이상 동아리 상세정보 입력 버튼 이용못하게 만들기용
-	public void updateClubApplBy(int applNo);
+	public void updateClubApplStateByApplNo(int applNo);
 
 	// 동아리 개설이 승인되고 개설한 사람 해당 동아리에 가입된 상태 만들기
 	public void insertClubStudByStud(@Param(value="clubStudVO") Club_StudVO clubStudVO);
-	
+	// 프라이머리키 생성
+	public int createClubPk();
 
 
 

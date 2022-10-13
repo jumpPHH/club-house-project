@@ -68,8 +68,8 @@ public class Staff_ApplyClubService {
 		return map;
 	}
 	
-	public int getNoticeCount(int club_appl_no, String searchWord) {
-		return establishingClubSQLMapper.selectCount(club_appl_no, searchWord);
+	public int getNoticeCount(String searchWord) {
+		return staff_ApplyClubSQLMapper.selectCount(searchWord);
 	}
 	
 	

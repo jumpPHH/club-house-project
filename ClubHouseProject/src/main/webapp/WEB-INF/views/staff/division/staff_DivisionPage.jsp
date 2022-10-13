@@ -154,12 +154,30 @@ function save(){
 	xhr.send(data2); 
 }
 
-
 function getDivisionList(table,e){
 	if(data.length != 0){
-	alert("구분이동시 사라짐")
+	swal({
+		  text: "구분 이동시 수정된 부분은 저장되지 않습니다.",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+			  DivisionList(table,e)
+		  } else {
+		 
+		  
+		  }
+		});
+	}else{
+		DivisionList(table,e)
 	}
-		data = [];
+}
+
+
+function DivisionList(table,e){
+	data = [];
 	var NAME = NAME;
 	var TABLE = document.getElementById("TABLE")
 	TABLE.setAttribute("value",table);
@@ -597,7 +615,7 @@ function codeClick(e) {
 		var TABLE = $("#TABLE").val();
 		var codeBody = $('#codeBody')[0]
 		
-		if(TABLE != "동아리카테고리"){
+		if((TABLE != '동아리카테고리') && (TABLE != '결재')){
 		
 		var tr = document.createElement("tr");
 		tr.classList.add("text-center");
@@ -656,7 +674,7 @@ function codeClick(e) {
 		checkBox.setAttribute("checked","checked")
 		td4.appendChild(checkBox);
 		
-		}else{
+		}else if(TABLE == '동아리카테고리'){
 			var tr = document.createElement("tr");
 			tr.classList.add("text-center");
 			tr.classList.add("newRow");
@@ -710,6 +728,71 @@ function codeClick(e) {
 			checkBox.setAttribute("onclick","stateCheck(this)")
 			checkBox.setAttribute("checked","checked")
 			td4.appendChild(checkBox);
+		}else if(TABLE == '결재'){
+			var tr = document.createElement("tr");
+			tr.classList.add("text-center");
+			tr.classList.add("newRow");
+			tr.classList.add("contentRow");
+			codeBody.appendChild(tr);
+			
+			var tdd = document.createElement("td");
+			tdd.classList.add("col-1");
+			tr.appendChild(tdd);
+			
+			var inputCheck = document.createElement("input")
+			inputCheck.classList.add("form-check-input");
+			inputCheck.classList.add("check");
+			inputCheck.setAttribute("onclick","deleteValuetoggle(this)")
+			inputCheck.setAttribute("type","checkBox")
+			tdd.appendChild(inputCheck);
+			
+			var th = document.createElement("th");
+			th.classList.add("NO");
+			th.classList.add("col-1");
+			tr.appendChild(th);
+			
+			var td1 = document.createElement("td");
+			td1.classList.add("col-3");
+			td1.classList.add("NAME");
+			td1.setAttribute("ondblclick","inputBox(this)")
+			tr.appendChild(td1);
+			
+			var td2 = document.createElement("td");
+			td2.classList.add("col-3");
+			td2.classList.add("ENG");
+			td2.setAttribute("ondblclick","inputBox(this)")
+			tr.appendChild(td2);
+			
+			var td3 = document.createElement("td");
+			td3.classList.add("col-1");
+			td3.classList.add("ABRBT");
+			td3.setAttribute("ondblclick","inputBox(this)")
+			tr.appendChild(td3);
+			
+			var td3_1 = document.createElement("td");
+			td3_1.classList.add("col-1");
+			td3_1.classList.add("FORMBUTTON");
+			td3_1.setAttribute("style","cursor: pointer;")
+			td3_1.innerText = "보기"
+			tr.appendChild(td3_1);
+			
+			var td4 = document.createElement("td");
+			td4.classList.add("stateCheck");
+			td4.classList.add("col-1");
+			tr.appendChild(td4);
+			
+			var checkBox = document.createElement("input")
+			checkBox.classList.add("form-check-input");
+			checkBox.classList.add("STATE");
+			checkBox.setAttribute("type","checkBox")
+			checkBox.setAttribute("value","1")
+			checkBox.setAttribute("onclick","stateCheck(this)")
+			checkBox.setAttribute("checked","checked")
+			td4.appendChild(checkBox);
+			
+			
+			
+			
 		}
 	}
 	
